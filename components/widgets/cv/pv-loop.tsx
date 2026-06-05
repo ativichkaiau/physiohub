@@ -184,11 +184,22 @@ export default function PvLoopWidget() {
             <span className="ph-readout">SV {values.sv.toFixed(0)} mL</span>
             <span className="ph-readout">EF {values.ef.toFixed(0)}%</span>
             <span className="ph-readout">CO {values.cardiacOutput.toFixed(1)} L/min</span>
-            <span className="ph-readout">Peak {values.peakPressure.toFixed(0)} mmHg</span>
+            <span className="ph-readout">CI {(values.cardiacOutput / 1.73).toFixed(1)} L/min/m²</span>
+            <span className="ph-readout">Peak LV {values.peakPressure.toFixed(0)} mmHg</span>
+            <span className="ph-readout">LVEDP {values.endDiastolicPressure.toFixed(0)} mmHg</span>
+            {/* Stroke work = SV × MAP proxy = SV × peakP × 0.85, in mL·mmHg → J × 0.000133 */}
+            <span className="ph-readout">SW {(values.sv * values.peakPressure * 0.85 * 0.000133).toFixed(2)} J</span>
+            {/* MVO2 proxy ≈ HR × peakP × 0.0001 (rate-pressure product) */}
+            <span className="ph-readout">RPP {(heartRate * values.peakPressure).toFixed(0)}</span>
+            <span className="ph-readout">Ees {(2.5 * contractility).toFixed(1)} mmHg/mL</span>
           </div>
           {edgeState ? (
             <p className="mb-3 rounded-ph border border-[color-mix(in_srgb,var(--ph-warn),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-warn),transparent_88%)] px-3 py-2 text-sm text-ph-text">
-              Edge state: the loop is approaching failed ejection or extreme afterload.
+              {values.sv < 15
+                ? "Edge state: SV < 15 mL — cardiogenic shock (CI < 1.5 L/min/m²)."
+                : afterload >= 125
+                  ? "Edge state: afterload ≥ 125 mmHg — sustained pressure overload drives concentric hypertrophy."
+                  : "Edge state: contractility ≤ 0.55 — failing pump on the descending limb of Frank–Starling."}
             </p>
           ) : null}
           <Curve

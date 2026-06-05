@@ -157,24 +157,50 @@ export default function CoronaryPerfusionWidget() {
   const perfP = perfusionPressure(p);
   const T = 60 / hr;
   const diastoleSeconds = T * 0.68;
+  // Rate-pressure product (Robinson index) — clinical bedside proxy for MVO₂.
+  // Normal at rest: ~7000–9000; ischemic threshold often quoted ~25,000–30,000.
+  const rpp = hr * aoSys;
+  // Fractional flow reserve (FFR) proxy: distal-to-aortic pressure ratio at hyperaemia.
+  // We approximate FFR ≈ 1 − stenosis fraction (linear simplification).
+  const ffr = clamp(1 - stenosis / 100, 0.1, 1);
+
+  // Severity grading (AHA/ESC angiographic categories — simplified):
+  const stenosisGrade =
+    stenosis < 30
+      ? "minor (< 30%)"
+      : stenosis < 50
+        ? "mild (30–50%)"
+        : stenosis < 70
+          ? "moderate (50–70%)"
+          : stenosis < 90
+            ? "severe (70–90%)"
+            : "critical (≥ 90%)";
 
   const state =
-    stenosis > 70
-      ? "Severe stenosis — flow reserve exhausted"
-      : stenosis > 50
-        ? "Moderate stenosis — limited reserve"
-        : hr > 130
-          ? "Tachycardia — diastolic time compressed"
-          : lvedp > 22
-            ? "Elevated LVEDP — subendocardial ischaemia risk"
-            : "Normal coronary perfusion";
+    stenosis >= 90
+      ? `Critical stenosis (${stenosisGrade}) — FFR ≪ 0.80, ischaemia at rest`
+      : ffr < 0.80
+        ? `Hemodynamically significant stenosis (FFR ${ffr.toFixed(2)} < 0.80) — revascularization indicated`
+        : hr > 130 && lvedp > 18
+          ? "Demand ischaemia — tachycardia + high LVEDP collapse diastolic perfusion window"
+          : hr > 130
+            ? "Tachycardia — diastolic time compressed (every +10 bpm steals ~30 ms of perfusion)"
+            : lvedp > 22
+              ? "Elevated LVEDP — subendocardial ischaemia risk; LV-Ao gradient reversed in late diastole"
+              : aoDia < 50
+                ? "Diastolic hypotension — coronary driving pressure collapsed (look for AR / sepsis)"
+                : `Normal coronary perfusion (${stenosisGrade})`;
 
   const warning =
     cfrValue < 2
-      ? "Edge state: coronary flow reserve < 2 — minimal capacity to increase flow on demand (e.g. exercise)."
+      ? `Edge state: CFR ${cfrValue.toFixed(1)}× — minimal reserve to increase flow on demand (CFR < 2 predicts MACE).`
       : perfP < 40
-        ? "Edge state: coronary perfusion pressure < 40 mmHg — subendocardial ischaemia likely."
-        : undefined;
+        ? "Edge state: coronary perfusion pressure < 40 mmHg — subendocardial ischaemia within minutes."
+        : rpp > 30000
+          ? "Edge state: rate-pressure product > 30,000 — myocardial O₂ demand exceeds normal supply capacity."
+          : ffr < 0.75
+            ? `Edge state: FFR ${ffr.toFixed(2)} below the < 0.75 ischaemia threshold — revascularization indicated.`
+            : undefined;
 
   return (
     <section className="ph-widget-shell">
@@ -195,7 +221,9 @@ export default function CoronaryPerfusionWidget() {
           <div aria-live="polite" className="mb-3 grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
             <span className="ph-readout">Mean Q {meanQ.toFixed(0)}</span>
             <span className="ph-readout">CFR {cfrValue.toFixed(1)}×</span>
+            <span className="ph-readout">FFR {ffr.toFixed(2)}</span>
             <span className="ph-readout">CPP {perfP.toFixed(0)} mmHg</span>
+            <span className="ph-readout">RPP {rpp.toFixed(0)}</span>
             <span className="ph-readout">Diastole {(diastoleSeconds * 1000).toFixed(0)} ms</span>
           </div>
 

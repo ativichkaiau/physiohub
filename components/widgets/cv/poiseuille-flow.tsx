@@ -66,28 +66,45 @@ const config: CurveLabConfig = {
     const q = poiseuilleFlow(values.radius, values.dp, values.viscosity, values.length);
     const qHalfR = poiseuilleFlow(values.radius / 2, values.dp, values.viscosity, values.length);
     const ratio = q > 0 ? q / Math.max(qHalfR, 0.0001) : 0;
+    // Mean velocity (cm/s) from Q (mL/min) and area (πr² mm² → cm²).
+    const areaCm2 = Math.PI * Math.pow(values.radius / 10, 2);
+    const velocity = areaCm2 > 0 ? (q / 60) / areaCm2 : 0;
+    // Reynolds number: Re = ρ · v · D / η. Blood density ≈ 1.06 g/mL.
+    // Critical Re ≈ 2000 (laminar → transitional → turbulent in vessels).
+    const diameterCm = (2 * values.radius) / 10;
+    const re = (1.06 * velocity * diameterCm) / (values.viscosity * 0.01);
+    // Resistance per unit length: R ∝ η / r⁴. Normalised to 1.0 at default.
+    const resistance = (values.viscosity * values.length) / Math.pow(values.radius, 4);
     return {
       state:
-        values.radius < 0.6
-          ? "Resistive vessel — arteriolar control"
-          : values.radius > 3.5
-            ? "Conduit vessel — flow-dominated"
-            : values.viscosity > 1.6
-              ? "Hyperviscous (polycythemia / dehydration)"
-              : "Normal regime",
-      body: "Flow scales with the FOURTH power of radius — halving the radius cuts flow by a factor of 16. Slide vessel radius to feel the r⁴ dominance; adjust ΔP, viscosity, and length to scale the curve linearly.",
+        values.radius < 0.05
+          ? "Capillary scale — single-file RBCs, plug flow"
+          : values.radius < 0.3
+            ? "Arteriole — primary resistance vessel of the circulation"
+            : values.radius < 1.5
+              ? "Small artery — distributive vessel"
+              : values.radius > 3.5
+                ? "Conduit artery (aorta-scale) — flow-dominated, low resistance"
+                : values.viscosity > 1.6
+                  ? "Hyperviscous regime (polycythemia / dehydration / cryoglobulinemia)"
+                  : "Normal arterial regime",
+      body: "Flow scales with the FOURTH power of radius — halving the radius cuts flow by 16×. Arteriolar tone (smooth muscle radius control) is the single most powerful determinant of regional perfusion. Reynolds number > ~2000 → turbulence (audible bruit / murmur).",
       readouts: [
         { label: "Q", value: `${q.toFixed(0)} mL/min` },
         { label: "r", value: `${values.radius.toFixed(2)} mm` },
+        { label: "v̄", value: `${velocity.toFixed(1)} cm/s` },
+        { label: "Re", value: `${re.toFixed(0)}` },
         { label: "Q vs r/2", value: `${ratio.toFixed(1)}×` },
-        { label: "ΔP", value: `${values.dp.toFixed(0)} mmHg` }
+        { label: "R (× normal)", value: `${resistance.toFixed(2)}×` }
       ],
       warning:
-        values.viscosity > 2.5
-          ? "Edge state: viscosity > 2.5 cP suggests polycythemia or severe dehydration — flow is markedly reduced."
-          : values.radius < 0.3
-            ? "Edge state: radius below capillary scale — Poiseuille assumptions (Newtonian, laminar) break down."
-            : undefined
+        re > 2000
+          ? "Edge state: Re > 2000 — flow becomes turbulent; Poiseuille's equation no longer holds. Clinically: bruit / murmur audible at this site."
+          : values.viscosity > 2.5
+            ? "Edge state: viscosity > 2.5 cP — polycythemia vera, severe dehydration, or hyperproteinemia. Flow markedly reduced; thrombosis risk rises."
+            : values.radius < 0.03
+              ? "Edge state: radius below RBC diameter (~4 µm) — non-Newtonian behaviour (Fåhraeus–Lindqvist effect) takes over."
+              : undefined
     };
   }
 };

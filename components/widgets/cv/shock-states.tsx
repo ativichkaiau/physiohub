@@ -134,17 +134,35 @@ function calculateState(profile: ShockProfile, severity: number, fluids: number,
 }
 
 function mapFromState(state: HemodynamicState) {
-  return clamp((state.co * state.svr) / 80, 35, 155);
+  // Resistance equation: SVR = 80 · (MAP − CVP) / CO  →  MAP = CO · SVR / 80 + CVP.
+  // The CVP term matters in obstructive and cardiogenic states where CVP > 10.
+  return clamp((state.co * state.svr) / 80 + state.cvp, 35, 165);
+}
+
+function cardiacIndex(state: HemodynamicState) {
+  // Assume an average adult BSA of 1.73 m². CI < 1.8 L/min/m² defines low-output shock by SHOCK trial criteria.
+  return state.co / 1.73;
+}
+
+function shockIndex(map: number, hr = 100) {
+  // Allgöwer shock index = HR / SBP. We approximate HR from severity heuristically inside the caller.
+  return hr / Math.max(50, map + 25);
 }
 
 function stateLabel(state: HemodynamicState, profile: ShockProfile) {
   const map = mapFromState(state);
-  if (map < 60 || state.lactate > 5.5) return "Decompensated shock";
-  if (profile.id === "distributive" && state.svr < 650) return "Vasodilatory shock";
-  if (profile.id === "cardiogenic" && state.pcwp > 20) return "Congested low-output shock";
-  if (profile.id === "obstructive" && state.cvp > 14) return "Obstructed preload / outflow";
-  if (profile.id === "hypovolemic" && state.cvp < 3) return "Volume-depleted shock";
-  return "Partially compensated";
+  const ci = cardiacIndex(state);
+  // Order matters: name the most specific decompensated entity first.
+  if (map < 60 && state.lactate > 4) return "Decompensated shock — ↓MAP + lactic acidosis";
+  if (ci < 1.8 && state.pcwp > 18) return "Forrester IV — cold and wet (cardiogenic shock)";
+  if (profile.id === "distributive" && state.svr < 650) return "Vasodilatory (warm) shock — sepsis / anaphylaxis early";
+  if (profile.id === "distributive" && state.svr > 1300) return "Cold septic shock — late vasoplegia with secondary myocardial depression";
+  if (profile.id === "cardiogenic" && state.pcwp > 20) return "Congested low-output (Killip III / IV)";
+  if (profile.id === "obstructive" && state.cvp > 14 && Math.abs(state.cvp - state.pcwp) < 3) return "Tamponade physiology — equalized chamber pressures";
+  if (profile.id === "obstructive" && state.cvp > 14 && state.pcwp < 10) return "Obstructive — PE-pattern (↑CVP, ↓PCWP)";
+  if (profile.id === "hypovolemic" && state.cvp < 3) return "Class III–IV hemorrhagic shock (ATLS)";
+  if (map > 65 && state.lactate < 2.5) return "Compensated — adequate perfusion";
+  return "Pre-shock — early compensation";
 }
 
 export default function ShockStatesWidget() {
@@ -246,11 +264,12 @@ export default function ShockStatesWidget() {
           <div aria-live="polite" className="mb-3 grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
             <span className="ph-readout">MAP {map.toFixed(0)} mmHg</span>
             <span className="ph-readout">CO {state.co.toFixed(1)} L/min</span>
-            <span className="ph-readout">SVR {state.svr.toFixed(0)}</span>
-            <span className="ph-readout">SvO2 {state.svo2.toFixed(0)}%</span>
-            <span className="ph-readout">CVP {state.cvp.toFixed(0)}</span>
-            <span className="ph-readout">PCWP {state.pcwp.toFixed(0)}</span>
-            <span className="ph-readout">Lactate {state.lactate.toFixed(1)}</span>
+            <span className="ph-readout">CI {cardiacIndex(state).toFixed(1)} L/min/m²</span>
+            <span className="ph-readout">SVR {state.svr.toFixed(0)} dyn·s·cm⁻⁵</span>
+            <span className="ph-readout">CVP {state.cvp.toFixed(0)} mmHg</span>
+            <span className="ph-readout">PCWP {state.pcwp.toFixed(0)} mmHg</span>
+            <span className="ph-readout">SvO₂ {state.svo2.toFixed(0)}%</span>
+            <span className="ph-readout">Lactate {state.lactate.toFixed(1)} mmol/L</span>
           </div>
 
           {warning ? (
@@ -263,7 +282,7 @@ export default function ShockStatesWidget() {
             title="Shock hemodynamic state space"
             xDomain={[250, 2300]}
             yDomain={[0, 10]}
-            xLabel="SVR (dyn·s/cm5)"
+            xLabel="SVR (dyn·s·cm⁻⁵)"
             yLabel="Cardiac output (L/min)"
             series={trajectory}
             annotations={[

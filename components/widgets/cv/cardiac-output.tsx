@@ -89,25 +89,40 @@ const config: CurveLabConfig = {
   },
   summarize: (values) => {
     const point = operatingPoint(values.volume, values.contractility, values.resistance);
+    const msfp = 7 + (values.volume - 50) * 0.1;
+    const ci = point.flow / 1.73; // Cardiac index, assuming average adult BSA 1.73 m²
+    // Map operating-point coordinates to canonical shock / failure phenotypes.
+    const phenotype =
+      point.flow < 2.5
+        ? "Cardiogenic / hypovolemic shock pattern"
+        : values.volume < 30 && values.contractility >= 0.85
+          ? "Hypovolemic pattern — ↓MSFP shifts VR left"
+          : values.contractility < 0.75 && point.rap > 5
+            ? "Cardiogenic pattern — CO curve depressed, RAP rises"
+            : values.volume > 75 && values.contractility >= 0.9
+              ? "Volume overload — CHF or iatrogenic resuscitation"
+              : values.contractility > 1.25
+                ? "Hyperdynamic (β-stim / dobutamine / early sepsis warm phase)"
+                : "Balanced intersection — normal physiology";
     return {
-      state:
-        values.volume > 70
-          ? "Volume expanded"
-          : values.volume < 30
-            ? "Volume contracted"
-            : values.contractility > 1.2
-              ? "Cardiac curve lifted"
-              : values.contractility < 0.75
-                ? "Pump weakened"
-                : "Balanced intersection",
-      body: "The circulation settles where the cardiac output curve crosses the venous return curve. Move volume to shift VR's x-intercept (MSFP), contractility to scale the CO plateau, and venous resistance to change the VR slope.",
+      state: phenotype,
+      body: "The circulation settles where the CO curve crosses the VR curve. Volume sets MSFP (VR x-intercept); contractility scales the CO plateau; venous resistance changes the VR slope. The intersection point IS the steady-state cardiac output.",
       readouts: [
         { label: "CO", value: `${point.flow.toFixed(1)} L/min` },
+        { label: "CI", value: `${ci.toFixed(1)} L/min/m²` },
         { label: "RAP", value: `${point.rap.toFixed(1)} mmHg` },
+        { label: "MSFP", value: `${msfp.toFixed(1)} mmHg` },
         { label: "Volume", value: `${values.volume.toFixed(0)}%` },
-        { label: "Resistance", value: `${values.resistance.toFixed(2)}x` }
+        { label: "Resistance", value: `${values.resistance.toFixed(2)}×` }
       ],
-      warning: point.flow < 2.5 ? "Edge state: the intersection has collapsed toward low-flow shock." : undefined
+      warning:
+        point.flow < 2.2
+          ? "Edge state: CI < 1.3 L/min/m² — frank cardiogenic shock with end-organ hypoperfusion."
+          : point.rap > 10 && values.contractility < 0.8
+            ? "Edge state: high RAP plus depressed pump — right-heart congestion (peripheral edema, hepatic stretch)."
+            : msfp < 3
+              ? "Edge state: MSFP < 3 mmHg — severe volume contraction, VR collapse imminent."
+              : undefined
     };
   }
 };

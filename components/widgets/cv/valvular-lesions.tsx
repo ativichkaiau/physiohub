@@ -46,50 +46,50 @@ const LESIONS: Lesion[] = [
   {
     id: "AS",
     shortName: "AS",
-    fullName: "Aortic stenosis",
+    fullName: "Aortic stenosis (severe, AVA < 1 cm²)",
     edv: 120, esv: 60, peakP: 200, aorticDiastolic: 75, endSystolicP: 150, endDiastolicP: 16,
     hasIVC: true, hasIVR: true,
-    murmur: "Crescendo–decrescendo systolic ejection murmur",
-    timing: "Systolic, peaks mid-systole",
-    location: "Right 2nd intercostal space; radiates to carotids",
-    hemodynamics: "Fixed outflow obstruction → LV must generate very high pressure to eject. Chronic pressure overload → concentric hypertrophy → ↑ LVEDP.",
-    body: "Aortic stenosis: peak LV pressure rises far above aortic. The loop becomes tall and narrow; the LV–aorta gradient (peak − aortic) is the hallmark."
+    murmur: "Crescendo–decrescendo systolic ejection murmur — late peak in severe disease",
+    timing: "Systolic; late peak + soft/absent A2 = severe (paradoxical splitting)",
+    location: "Right 2nd intercostal space; radiates to carotids (delayed, attenuated pulse — pulsus parvus et tardus)",
+    hemodynamics: "AHA grading: mild gradient < 20 mmHg / AVA > 1.5 cm²; moderate 20–40 / 1.0–1.5; SEVERE > 40 mmHg / AVA < 1.0 cm² / Vmax > 4 m/s. Triad: angina, syncope, HF — once symptomatic, median survival 2–5 years without AVR / TAVR.",
+    body: "Aortic stenosis: fixed outflow obstruction → peak LV pressure rises far above aortic. The loop becomes tall and narrow; the trans-valvular gradient (peak LV − peak aortic) IS the lesion. Chronic pressure overload drives concentric LVH → ↑ LVEDP → exertional dyspnoea."
   },
   {
     id: "AR",
     shortName: "AR",
-    fullName: "Aortic regurgitation",
+    fullName: "Aortic regurgitation (chronic severe)",
     edv: 200, esv: 80, peakP: 140, aorticDiastolic: 45, endSystolicP: 95, endDiastolicP: 14,
     hasIVC: false, hasIVR: true,
-    murmur: "Early decrescendo diastolic blowing murmur",
-    timing: "Early diastolic",
-    location: "Left lower sternal border, leaning forward",
-    hemodynamics: "Diastolic backflow → LV volume overload → eccentric hypertrophy → large EDV. Wide pulse pressure: low aortic diastolic + bounding systolic.",
-    body: "Aortic regurgitation: the aortic valve never fully closes, so the LV refills via both the mitral valve and the incompetent AV — no true isovolumic contraction phase."
+    murmur: "Early decrescendo diastolic blowing murmur; Austin Flint mid-diastolic rumble if severe",
+    timing: "Early diastolic — best at end-expiration, sitting forward",
+    location: "Left lower sternal border (Erb's point); aetiology-specific signs (Corrigan's pulse, de Musset's head bobbing, Quincke's nail pulsations)",
+    hemodynamics: "Severity by regurgitant volume: mild < 30 mL/beat; moderate 30–60; severe > 60 mL. Wide pulse pressure (often > 80 mmHg) and water-hammer pulse are bedside hallmarks. Chronic AR → eccentric LV dilation; acute AR (endocarditis, dissection) → catastrophic LVEDP rise, flash pulmonary edema.",
+    body: "Aortic regurgitation: the AV doesn't close, so the LV continues to fill from the aorta during diastole. There is no true isovolumic contraction — LV pressure starts rising against ongoing AV leak. Chronic volume overload → massive EDV (LV can reach 400+ mL)."
   },
   {
     id: "MS",
     shortName: "MS",
-    fullName: "Mitral stenosis",
+    fullName: "Mitral stenosis (severe, MVA < 1.5 cm²)",
     edv: 80, esv: 40, peakP: 115, aorticDiastolic: 80, endSystolicP: 90, endDiastolicP: 5,
     hasIVC: true, hasIVR: true,
-    murmur: "Mid-diastolic low-pitched rumble after opening snap",
-    timing: "Diastolic (after S2 + OS)",
+    murmur: "Mid-diastolic low-pitched rumble with opening snap; loud S1 if mobile valve",
+    timing: "Diastolic — after S2 → OS → rumble (shorter S2-OS interval = more severe)",
     location: "Apex, left lateral decubitus, bell of stethoscope",
-    hemodynamics: "Narrowed MV → impaired LV filling → small EDV → small forward SV. LA pressure ↑ → atrial fibrillation, pulmonary congestion.",
-    body: "Mitral stenosis: the LV is chronically underfilled, so the loop is small. The dramatic finding is on the LA / pulmonary side (high LA pressure) — the LV loop itself just shrinks."
+    hemodynamics: "Severity by valve area: mild MVA > 1.5 cm²; moderate 1.0–1.5; SEVERE < 1.0 cm² (with mean gradient > 10 mmHg). Almost always rheumatic. Sequelae: ↑ LA pressure → AF (30%), pulmonary HTN, RV failure, systemic thromboembolism.",
+    body: "Mitral stenosis: a narrowed MV chronically underfills the LV → small EDV, small forward SV. The LV loop just shrinks; the dramatic findings are upstream (LA dilation, pulmonary congestion, AF). Pregnancy or tachycardia (less diastolic filling time) unmasks symptoms."
   },
   {
     id: "MR",
     shortName: "MR",
-    fullName: "Mitral regurgitation",
+    fullName: "Mitral regurgitation (chronic severe)",
     edv: 170, esv: 50, peakP: 110, aorticDiastolic: 80, endSystolicP: 95, endDiastolicP: 11,
     hasIVC: false, hasIVR: true,
-    murmur: "Holosystolic blowing murmur",
-    timing: "Holosystolic",
-    location: "Apex, radiates to axilla",
-    hemodynamics: "Systolic backflow into LA → effective afterload ↓, total SV ↑ but forward SV ↓. Chronic volume overload → eccentric hypertrophy.",
-    body: "Mitral regurgitation: the MV leaks during systole, so as soon as LV pressure exceeds LA pressure, ejection into the LA already begins — no isovolumic contraction phase."
+    murmur: "Holosystolic blowing murmur; S3 gallop with severe regurgitant volume",
+    timing: "Holosystolic — begins with S1, extends through A2",
+    location: "Apex, radiates to axilla (posterior leaflet) or back (anterior leaflet prolapse)",
+    hemodynamics: "Severity by regurgitant fraction: mild < 30%; moderate 30–49%; SEVERE ≥ 50% (or effective regurgitant orifice ≥ 0.40 cm²). Reduced effective afterload (LA is a low-pressure 'pop-off') → LV emptying is initially preserved. Eventual eccentric LV dilation + LA volume overload → AF and pulmonary HTN.",
+    body: "Mitral regurgitation: the MV leaks during systole. As LV pressure exceeds LA pressure, ejection into the LA begins immediately — no isovolumic contraction phase. Forward SV may be normal early (total SV ↑) but exercise capacity falls as LV dilation progresses."
   }
 ];
 
