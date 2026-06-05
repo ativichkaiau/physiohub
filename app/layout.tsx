@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="mx-auto flex h-16 w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">
               <Link href="/" className="focus-ring flex min-w-0 items-center gap-2.5 rounded-ph no-underline">
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-ph-accent text-sm font-bold text-white">PH</span>
-                <span className="text-base font-semibold tracking-tight">PhysioHub</span>
+                <span className="text-base font-bold tracking-tight">PhysioHub</span>
               </Link>
               <nav className="flex items-center gap-1.5 text-sm font-medium text-ph-muted" aria-label="Primary">
                 <Link className="focus-ring rounded-ph px-3 py-2 hover:bg-ph-surface2 hover:text-ph-text" href="/">
@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main>{children}</main>
           <footer className="border-t border-[var(--ph-border)] px-4 py-6 text-sm text-ph-muted sm:px-6">
             <div className="mx-auto flex max-w-[1500px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <span className="font-semibold text-ph-text">PhysioHub</span>
+              <span className="font-bold text-ph-text">PhysioHub</span>
               <span>Interactive physiology · URL-synced state · No backend</span>
             </div>
           </footer>

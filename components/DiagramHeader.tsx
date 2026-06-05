@@ -19,7 +19,7 @@ export function DiagramHeader({ diagram }: { diagram: DiagramMeta }) {
             </Link>
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-3">
-            <h1 className="text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">{diagram.title}</h1>
+            <h1 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{diagram.title}</h1>
             <ArchetypeBadge archetype={diagram.archetype} />
           </div>
         </div>

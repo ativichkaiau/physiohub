@@ -112,7 +112,7 @@ export default function HomePage() {
       <section id="systems" className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="ph-kicker">Catalog</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight">Choose a system</h2>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight">Choose a system</h2>
         </div>
         <p className="max-w-xl text-sm text-ph-muted">
           Each card opens that system&rsquo;s diagram list. Live widgets are interactive; the rest are in development.
@@ -135,7 +135,7 @@ export default function HomePage() {
                 </span>
                 <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} diagrams</span>
               </div>
-              <h3 className="mt-5 text-lg font-semibold tracking-tight">{system.name}</h3>
+              <h3 className="mt-5 text-lg font-bold tracking-tight">{system.name}</h3>
               <p className="mt-2 text-sm text-ph-muted">{system.teaser}</p>
               <div className="mt-5 h-1 overflow-hidden rounded-full bg-ph-surface2">
                 <div className="h-full rounded-full bg-ph-accent transition-all" style={{ width: `${pct}%` }} />

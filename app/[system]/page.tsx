@@ -36,21 +36,21 @@ export default function SystemPage({ params }: { params: { system: string } }) {
               ← All systems
             </Link>
             <p className="ph-kicker mt-4">{system.shortName}</p>
-            <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{system.name}</h1>
+            <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{system.name}</h1>
             <p className="mt-3 max-w-2xl text-base text-ph-muted">{system.teaser}</p>
           </div>
           <dl className="grid grid-cols-3 gap-x-8 gap-y-2 sm:min-w-[280px]">
             <div>
               <dt className="ph-kicker">Diagrams</dt>
-              <dd className="mt-1.5 text-2xl font-semibold tabular-nums">{system.diagrams.length}</dd>
+              <dd className="mt-1.5 text-2xl font-bold tabular-nums">{system.diagrams.length}</dd>
             </div>
             <div>
               <dt className="ph-kicker">Live</dt>
-              <dd className="mt-1.5 text-2xl font-semibold tabular-nums">{referenceCount}</dd>
+              <dd className="mt-1.5 text-2xl font-bold tabular-nums">{referenceCount}</dd>
             </div>
             <div>
               <dt className="ph-kicker">Pending</dt>
-              <dd className="mt-1.5 text-2xl font-semibold tabular-nums">{system.diagrams.length - referenceCount}</dd>
+              <dd className="mt-1.5 text-2xl font-bold tabular-nums">{system.diagrams.length - referenceCount}</dd>
             </div>
           </dl>
         </div>
@@ -59,7 +59,7 @@ export default function SystemPage({ params }: { params: { system: string } }) {
       <section className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="ph-kicker">Diagrams</p>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight">Open a widget</h2>
+          <h2 className="mt-2 text-xl font-bold tracking-tight">Open a widget</h2>
         </div>
       </section>
 
@@ -82,7 +82,7 @@ export default function SystemPage({ params }: { params: { system: string } }) {
                 {diagram.status === "reference" ? "Live" : "In development"}
               </span>
             </div>
-            <h3 className="mt-5 text-lg font-semibold tracking-tight">{diagram.title}</h3>
+            <h3 className="mt-5 text-lg font-bold tracking-tight">{diagram.title}</h3>
             <p className="mt-2 text-sm text-ph-muted">{diagram.teaser}</p>
             <div className="mt-5 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.12em] text-ph-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-ph-accent" />
