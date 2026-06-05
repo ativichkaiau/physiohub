@@ -124,28 +124,29 @@ export default function ValvularLesionsWidget() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const currentQuery = searchParams.toString();
   const initialId = (LESIONS.find((l) => l.id === searchParams.get("lesion"))?.id ?? "normal") as LesionId;
   const [selectedId, setSelectedId] = useState<LesionId>(initialId);
   const urlTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(currentQuery);
     params.set("lesion", selectedId);
     const nextQuery = params.toString();
-    if (nextQuery === searchParams.toString()) return;
+    if (nextQuery === currentQuery) return;
     window.clearTimeout(urlTimer.current);
     urlTimer.current = window.setTimeout(() => {
       router.replace(`${pathname}?${nextQuery}`, { scroll: false });
     }, 180);
     return () => window.clearTimeout(urlTimer.current);
-  }, [selectedId, pathname, router, searchParams]);
+  }, [currentQuery, pathname, router, selectedId]);
 
   useEffect(() => {
-    const next = searchParams.get("lesion") as LesionId | null;
-    if (next && LESIONS.find((l) => l.id === next) && next !== selectedId) {
-      setSelectedId(next);
-    }
-  }, [searchParams, selectedId]);
+    const params = new URLSearchParams(currentQuery);
+    const next = params.get("lesion") as LesionId | null;
+    if (!next || !LESIONS.find((l) => l.id === next)) return;
+    setSelectedId((current) => (next === current ? current : next));
+  }, [currentQuery]);
 
   const selected = LESIONS.find((l) => l.id === selectedId)!;
   const normal = LESIONS[0];

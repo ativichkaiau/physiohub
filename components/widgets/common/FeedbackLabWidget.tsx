@@ -82,11 +82,12 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
 
   useEffect(() => {
     const current = stateRef.current;
-    const nextValues = initialValues(config.controls, searchParams);
-    const nextToggles = initialToggles(config.toggles, searchParams);
+    const params = new URLSearchParams(currentQuery);
+    const nextValues = initialValues(config.controls, params);
+    const nextToggles = initialToggles(config.toggles, params);
     if (changed(nextValues, current.values)) setValues(nextValues);
     if (changed(nextToggles, current.toggles)) setToggles(nextToggles);
-  }, [config.controls, config.toggles, searchParams]);
+  }, [config.controls, config.toggles, currentQuery]);
 
   useEffect(() => {
     const params = new URLSearchParams();

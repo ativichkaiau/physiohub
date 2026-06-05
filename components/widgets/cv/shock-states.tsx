@@ -160,17 +160,18 @@ export default function ShockStatesWidget() {
   const urlTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    const nextProfile = getProfile(searchParams.get("type"));
-    if (nextProfile.id !== profile.id) setProfile(nextProfile);
-    const nextSeverity = parseNumber(searchParams.get("severity"), severity, 0, 100);
-    const nextFluids = parseNumber(searchParams.get("fluids"), fluids, 0, 100);
-    const nextPressor = parseNumber(searchParams.get("pressor"), pressor, 0, 100);
-    const nextInotropy = parseNumber(searchParams.get("inotropy"), inotropy, 0, 100);
-    if (Math.abs(nextSeverity - severity) > 0.1) setSeverity(nextSeverity);
-    if (Math.abs(nextFluids - fluids) > 0.1) setFluids(nextFluids);
-    if (Math.abs(nextPressor - pressor) > 0.1) setPressor(nextPressor);
-    if (Math.abs(nextInotropy - inotropy) > 0.1) setInotropy(nextInotropy);
-  }, [fluids, inotropy, pressor, profile.id, searchParams, severity]);
+    const params = new URLSearchParams(currentQuery);
+    const nextProfile = getProfile(params.get("type"));
+    setProfile((current) => (nextProfile.id === current.id ? current : nextProfile));
+    const nextSeverity = parseNumber(params.get("severity"), 65, 0, 100);
+    const nextFluids = parseNumber(params.get("fluids"), 0, 0, 100);
+    const nextPressor = parseNumber(params.get("pressor"), 0, 0, 100);
+    const nextInotropy = parseNumber(params.get("inotropy"), 0, 0, 100);
+    setSeverity((current) => (Math.abs(nextSeverity - current) > 0.1 ? nextSeverity : current));
+    setFluids((current) => (Math.abs(nextFluids - current) > 0.1 ? nextFluids : current));
+    setPressor((current) => (Math.abs(nextPressor - current) > 0.1 ? nextPressor : current));
+    setInotropy((current) => (Math.abs(nextInotropy - current) > 0.1 ? nextInotropy : current));
+  }, [currentQuery]);
 
   useEffect(() => {
     const params = new URLSearchParams();

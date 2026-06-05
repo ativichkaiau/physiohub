@@ -5,86 +5,119 @@ import type { ComponentType } from "react";
 
 const widgetMap: Record<string, ComponentType> = {
   "cv/wiggers": dynamic(() => import("@/components/widgets/cv/wiggers"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/frank-starling": dynamic(() => import("@/components/widgets/cv/frank-starling"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/pv-loop": dynamic(() => import("@/components/widgets/cv/pv-loop"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/baroreflex": dynamic(() => import("@/components/widgets/cv/baroreflex"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/cardiac-output": dynamic(() => import("@/components/widgets/cv/cardiac-output"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/cardiac-action-potentials": dynamic(() => import("@/components/widgets/cv/cardiac-action-potentials"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/coronary-perfusion": dynamic(() => import("@/components/widgets/cv/coronary-perfusion"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/vascular-compliance": dynamic(() => import("@/components/widgets/cv/vascular-compliance"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/poiseuille-flow": dynamic(() => import("@/components/widgets/cv/poiseuille-flow"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/capillary-starling": dynamic(() => import("@/components/widgets/cv/capillary-starling"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/microcirculation-autoregulation": dynamic(
     () => import("@/components/widgets/cv/microcirculation-autoregulation"),
-    { loading: () => <WidgetLoading /> }
+    {
+      loading: () => <WidgetLoading />,
+      ssr: false
+    }
   ),
   "cv/ecg-intervals": dynamic(() => import("@/components/widgets/cv/ecg-intervals"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/valvular-lesions": dynamic(() => import("@/components/widgets/cv/valvular-lesions"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/shock-states": dynamic(() => import("@/components/widgets/cv/shock-states"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "cv/fetal-circulation-transition": dynamic(
     () => import("@/components/widgets/cv/fetal-circulation-transition"),
-    { loading: () => <WidgetLoading /> }
+    {
+      loading: () => <WidgetLoading />,
+      ssr: false
+    }
   ),
   "resp/o2-hb": dynamic(() => import("@/components/widgets/resp/o2-hb"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "resp/vq-matching": dynamic(() => import("@/components/widgets/resp/vq-matching"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "nerv/action-potential": dynamic(() => import("@/components/widgets/nerv/action-potential"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "msk/cross-bridge": dynamic(() => import("@/components/widgets/msk/cross-bridge"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "msk/length-tension": dynamic(() => import("@/components/widgets/msk/length-tension"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "gi/gastric-acid": dynamic(() => import("@/components/widgets/gi/gastric-acid"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "endo/hpa-axis": dynamic(() => import("@/components/widgets/endo/hpa-axis"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
-  "endo/glucose-homeostasis": dynamic(() => import("@/components/widgets/endo/glucose-homeostasis"), {
-    loading: () => <WidgetLoading />
-  }),
+  "endo/glucose-homeostasis": dynamic(
+    () => import("@/components/widgets/endo/glucose-homeostasis"),
+    {
+      loading: () => <WidgetLoading />,
+      ssr: false
+    }
+  ),
   "renal/raas": dynamic(() => import("@/components/widgets/renal/raas"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   }),
   "repro/menstrual-cycle": dynamic(() => import("@/components/widgets/repro/menstrual-cycle"), {
-    loading: () => <WidgetLoading />
+    loading: () => <WidgetLoading />,
+    ssr: false
   })
 };
 
 const PendingWidget = dynamic(() => import("@/components/widgets/PendingWidget"), {
-  loading: () => <WidgetLoading />
+  loading: () => <WidgetLoading />,
+  ssr: false
 });
 
 function WidgetLoading() {

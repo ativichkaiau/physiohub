@@ -93,28 +93,29 @@ export default function FetalCirculationTransitionWidget() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const currentQuery = searchParams.toString();
   const initialId = (STAGES.find((s) => s.id === searchParams.get("stage"))?.id ?? "fetal") as StageId;
   const [selectedId, setSelectedId] = useState<StageId>(initialId);
   const urlTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(currentQuery);
     params.set("stage", selectedId);
     const nextQuery = params.toString();
-    if (nextQuery === searchParams.toString()) return;
+    if (nextQuery === currentQuery) return;
     window.clearTimeout(urlTimer.current);
     urlTimer.current = window.setTimeout(() => {
       router.replace(`${pathname}?${nextQuery}`, { scroll: false });
     }, 180);
     return () => window.clearTimeout(urlTimer.current);
-  }, [selectedId, pathname, router, searchParams]);
+  }, [currentQuery, pathname, router, selectedId]);
 
   useEffect(() => {
-    const next = searchParams.get("stage") as StageId | null;
-    if (next && STAGES.find((s) => s.id === next) && next !== selectedId) {
-      setSelectedId(next);
-    }
-  }, [searchParams, selectedId]);
+    const params = new URLSearchParams(currentQuery);
+    const next = params.get("stage") as StageId | null;
+    if (!next || !STAGES.find((s) => s.id === next)) return;
+    setSelectedId((current) => (next === current ? current : next));
+  }, [currentQuery]);
 
   const selected = STAGES.find((s) => s.id === selectedId)!;
   const selectedIndex = STAGES.findIndex((s) => s.id === selectedId);

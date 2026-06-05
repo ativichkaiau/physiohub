@@ -82,15 +82,16 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
 
   useEffect(() => {
     const current = stateRef.current;
-    const nextValues = initialValues(config.controls, searchParams);
-    const nextOverlay = parseBoolean(searchParams.get("overlay"), current.overlay);
+    const params = new URLSearchParams(currentQuery);
+    const nextValues = initialValues(config.controls, params);
+    const nextOverlay = parseBoolean(params.get("overlay"), current.overlay);
     if (valuesChanged(nextValues, current.values)) {
       setValues(nextValues);
     }
     if (nextOverlay !== current.overlay) {
       setOverlay(nextOverlay);
     }
-  }, [config.controls, searchParams]);
+  }, [config.controls, currentQuery]);
 
   useEffect(() => {
     const params = new URLSearchParams();

@@ -90,29 +90,30 @@ export default function EcgIntervalsWidget() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const currentQuery = searchParams.toString();
   const initial = searchParams.get("event");
   const initialId: EventId = (EVENTS.find((e) => e.id === initial)?.id ?? "qrs");
   const [selectedId, setSelectedId] = useState<EventId>(initialId);
   const urlTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(currentQuery);
     params.set("event", selectedId);
     const nextQuery = params.toString();
-    if (nextQuery === searchParams.toString()) return;
+    if (nextQuery === currentQuery) return;
     window.clearTimeout(urlTimer.current);
     urlTimer.current = window.setTimeout(() => {
       router.replace(`${pathname}?${nextQuery}`, { scroll: false });
     }, 180);
     return () => window.clearTimeout(urlTimer.current);
-  }, [selectedId, pathname, router, searchParams]);
+  }, [currentQuery, pathname, router, selectedId]);
 
   useEffect(() => {
-    const next = searchParams.get("event") as EventId | null;
-    if (next && EVENTS.find((e) => e.id === next) && next !== selectedId) {
-      setSelectedId(next);
-    }
-  }, [searchParams, selectedId]);
+    const params = new URLSearchParams(currentQuery);
+    const next = params.get("event") as EventId | null;
+    if (!next || !EVENTS.find((e) => e.id === next)) return;
+    setSelectedId((current) => (next === current ? current : next));
+  }, [currentQuery]);
 
   const selected = EVENTS.find((e) => e.id === selectedId)!;
 
