@@ -118,7 +118,7 @@
           "slug": "vascular-compliance",
           "title": "Vascular Compliance and Windkessel",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Change arterial compliance and resistance to reshape pulse pressure decay.",
           "concept": "You are looking at arterial pressure storage and runoff during one beat. Manipulate compliance, resistance, and stroke volume to perturb pulse pressure. Observe how stiff arteries widen pulse pressure.",
           "references": [
@@ -131,7 +131,7 @@
           "slug": "poiseuille-flow",
           "title": "Poiseuille Flow",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Slide vessel radius, viscosity, and pressure gradient to watch flow scale by radius to the fourth power.",
           "concept": "You are looking at laminar flow through a cylindrical vessel. Manipulate radius, pressure gradient, length, and viscosity. Observe why radius dominates resistance and flow.",
           "references": [
@@ -144,7 +144,7 @@
           "slug": "capillary-starling",
           "title": "Capillary Starling Forces",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust hydrostatic and oncotic pressures to predict filtration, absorption, and edema risk.",
           "concept": "You are looking at fluid movement across the capillary wall. Manipulate capillary hydrostatic pressure, plasma oncotic pressure, interstitial pressure, and permeability. Observe when net filtration overwhelms lymphatic return.",
           "references": [
@@ -157,7 +157,7 @@
           "slug": "microcirculation-autoregulation",
           "title": "Microcirculation Autoregulation",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb local O2 demand and pressure to watch arteriolar tone restore tissue flow.",
           "concept": "You are looking at local metabolic control of tissue blood flow. Perturb oxygen demand, arterial pressure, or myogenic tone. Observe how arterioles adjust resistance to stabilize delivery.",
           "references": [

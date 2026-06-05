@@ -19,6 +19,19 @@ const widgetMap: Record<string, ComponentType> = {
   "cv/cardiac-output": dynamic(() => import("@/components/widgets/cv/cardiac-output"), {
     loading: () => <WidgetLoading />
   }),
+  "cv/vascular-compliance": dynamic(() => import("@/components/widgets/cv/vascular-compliance"), {
+    loading: () => <WidgetLoading />
+  }),
+  "cv/poiseuille-flow": dynamic(() => import("@/components/widgets/cv/poiseuille-flow"), {
+    loading: () => <WidgetLoading />
+  }),
+  "cv/capillary-starling": dynamic(() => import("@/components/widgets/cv/capillary-starling"), {
+    loading: () => <WidgetLoading />
+  }),
+  "cv/microcirculation-autoregulation": dynamic(
+    () => import("@/components/widgets/cv/microcirculation-autoregulation"),
+    { loading: () => <WidgetLoading /> }
+  ),
   "resp/o2-hb": dynamic(() => import("@/components/widgets/resp/o2-hb"), {
     loading: () => <WidgetLoading />
   }),
