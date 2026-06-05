@@ -45,11 +45,14 @@ const pressureTraces: Record<"ao" | "lv" | "la", CurvePoint[]> = {
   ],
   la: [
     { x: 0, y: 6 },
-    { x: 0.07, y: 13 },
-    { x: 0.12, y: 8 },
-    { x: 0.24, y: 6 },
-    { x: 0.42, y: 14 },
-    { x: 0.53, y: 7 },
+    { x: 0.07, y: 13 },   // a wave — atrial contraction
+    { x: 0.1, y: 7 },     // x descent
+    { x: 0.16, y: 10 },   // c wave — MV cusp bulges into LA during IVC
+    { x: 0.22, y: 8 },
+    { x: 0.32, y: 9 },    // gradual rise: LA fills against closed MV during ejection
+    { x: 0.42, y: 12 },
+    { x: 0.5, y: 14 },    // v wave peaks at MV opening
+    { x: 0.55, y: 8 },    // y descent — LA empties into LV
     { x: 0.8, y: 6 }
   ]
 };
@@ -363,7 +366,7 @@ export default function WiggersWidget() {
               cursorX={time}
               annotations={[
                 { x: 0.16, y: 12, label: "QRS" },
-                { x: 0.46, y: 96, label: "dicrotic notch" }
+                { x: 0.45, y: 92, label: "dicrotic notch" }
               ]}
               height={250}
             />

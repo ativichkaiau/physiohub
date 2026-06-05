@@ -4,8 +4,12 @@ import { CurveLabWidget, type CurveLabConfig } from "@/components/widgets/common
 import { clamp, makeRange } from "@/components/widgets/widgetUtils";
 
 function starlingPoint(filling: number, contractility: number, afterload: number) {
-  const plateau = 118 * contractility - (afterload - 80) * 0.28;
-  return clamp(18 + plateau * (1 - Math.exp(-filling / 6.2)), 0, 145);
+  // Stroke volume rises asymptotically with ventricular filling and must pass
+  // through (0, 0) — no filling, no ejection. Plateau ~95 mL at normal
+  // contractility / afterload; lifts with inotropy, depresses with afterload.
+  // At LVEDP = 10 mmHg (normal), SV ≈ 67 mL.
+  const plateau = 95 * contractility - (afterload - 80) * 0.25;
+  return clamp(plateau * (1 - Math.exp(-filling / 8.3)), 0, 145);
 }
 
 const config: CurveLabConfig = {

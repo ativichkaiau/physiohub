@@ -10,6 +10,19 @@ import { clamp, lineSeries, parseBoolean, parseNumber } from "@/components/widge
 const DIAGRAM_ID = "cv/pv-loop";
 const diagram = getDiagramById(DIAGRAM_ID);
 
+// ESPVR (end-systolic P–V relationship): straight line P = Ees · (V − V0).
+// V0 ≈ 15 mL puts the volume-axis intercept in the clinically normal range;
+// Ees scales with contractility around a baseline of 2.5 mmHg/mL.
+const ESPVR_V0 = 15;
+const ESPVR_BASE_SLOPE = 2.5;
+
+// EDPVR (end-diastolic P–V relationship): passive filling pressure rises
+// quadratically with volume above ~90 mL. Same formula is used both for the
+// reference line and for the loop's MV-closes corner, so they always touch.
+function edpvrAt(volume: number) {
+  return clamp(4 + ((volume - 90) ** 2) / 380, 3, 50);
+}
+
 type Hemodynamics = {
   edv: number;
   esv: number;
@@ -17,50 +30,76 @@ type Hemodynamics = {
   ef: number;
   peakPressure: number;
   endDiastolicPressure: number;
+  endSystolicPressure: number;
+  aorticDiastolic: number;
   cardiacOutput: number;
 };
 
 function computeLoop(preload: number, afterload: number, contractility: number, heartRate: number): Hemodynamics {
+  // ESV is where the ESPVR line meets the end-systolic pressure (≈ aortic
+  // pressure at the instant of AV closure ≈ afterload). This pins the loop's
+  // top-left corner to the ESPVR by construction.
+  const slope = ESPVR_BASE_SLOPE * contractility;
   const edv = preload;
-  const esv = clamp(92 - contractility * 35 + (afterload - 80) * 0.5, 25, edv - 6);
+  const aorticDiastolic = afterload;
+  const endSystolicPressure = afterload;
+  const esv = clamp(ESPVR_V0 + endSystolicPressure / slope, 20, edv - 6);
   const sv = Math.max(0, edv - esv);
   const ef = edv > 0 ? (sv / edv) * 100 : 0;
-  const peakPressure = clamp(afterload + 36 * contractility, 60, 165);
-  const endDiastolicPressure = clamp(4 + ((edv - 90) ** 2) / 380, 4, 28);
+  // Peak LV pressure during ejection sits above aortic diastolic — this is
+  // the systolic blood pressure students recognise on a cuff reading.
+  const peakPressure = clamp(afterload * 1.5, 60, 170);
+  const endDiastolicPressure = edpvrAt(edv);
   const cardiacOutput = (sv * heartRate) / 1000;
-  return { edv, esv, sv, ef, peakPressure, endDiastolicPressure, cardiacOutput };
+  return {
+    edv, esv, sv, ef,
+    peakPressure, endDiastolicPressure, endSystolicPressure, aorticDiastolic,
+    cardiacOutput
+  };
 }
 
 function loopPoints(values: Hemodynamics): CurvePoint[] {
-  const { edv, esv, peakPressure, endDiastolicPressure } = values;
-  return lineSeries([
-    [esv, 8],
-    [edv - 18, endDiastolicPressure + 1],
-    [edv, endDiastolicPressure],
-    [edv, peakPressure * 0.62],
-    [edv - 8, peakPressure],
-    [esv + 12, peakPressure * 0.9],
-    [esv, peakPressure * 0.45],
-    [esv, 8]
-  ]);
+  // Walks counterclockwise around the loop:
+  //   MV opens (bottom-left) → filling along EDPVR → MV closes (bottom-right)
+  //   → IVC (vertical, at EDV) → AV opens (top-right) → ejection arc
+  //   → AV closes (top-left, on ESPVR) → IVR (vertical, at ESV) → back to MV opens.
+  const { edv, esv, peakPressure, endSystolicPressure, aorticDiastolic } = values;
+  const filling: CurvePoint[] = [];
+  const steps = 4;
+  for (let i = 1; i <= steps; i += 1) {
+    const v = esv + ((edv - esv) * i) / steps;
+    filling.push({ x: v, y: edpvrAt(v) });
+  }
+  return [
+    { x: esv, y: edpvrAt(esv) },                              // MV opens (bottom-left)
+    ...filling,                                               // filling along EDPVR
+    { x: edv, y: aorticDiastolic },                           // AV opens (top-right, after IVC)
+    { x: edv - (edv - esv) * 0.20, y: peakPressure },         // early peak ejection
+    { x: edv - (edv - esv) * 0.55, y: peakPressure },         // peak plateau
+    { x: esv + (edv - esv) * 0.20, y: peakPressure * 0.95 },  // late ejection
+    { x: esv, y: endSystolicPressure },                       // AV closes (top-left, on ESPVR)
+    { x: esv, y: edpvrAt(esv) }                               // IVR back to MV opens
+  ];
 }
 
 function espvr(contractility: number): CurvePoint[] {
-  const slope = 1.05 * contractility;
+  // Straight line P = slope · (V − V0), drawn from V0 up to the chart top.
+  const slope = ESPVR_BASE_SLOPE * contractility;
+  const yMax = 170;
+  const vMax = Math.min(190, ESPVR_V0 + yMax / slope);
   return lineSeries([
-    [45, 0],
-    [145, clamp((145 - 45) * slope, 20, 160)]
+    [ESPVR_V0, 0],
+    [vMax, Math.min(yMax, slope * (vMax - ESPVR_V0))]
   ]);
 }
 
 function edpvr(): CurvePoint[] {
-  return lineSeries([
-    [45, 3],
-    [75, 4],
-    [105, 7],
-    [135, 15],
-    [175, 35]
-  ]);
+  // Sampled along edpvrAt so the loop's MV-closes corner sits exactly on this line.
+  const samples: Array<[number, number]> = [];
+  for (let v = 40; v <= 190; v += 10) {
+    samples.push([v, edpvrAt(v)]);
+  }
+  return lineSeries(samples);
 }
 
 export default function PvLoopWidget() {
@@ -162,8 +201,9 @@ export default function PvLoopWidget() {
             referenceSeries={referenceSeries}
             annotations={[
               { x: values.edv, y: values.endDiastolicPressure, label: "MV closes" },
-              { x: values.edv, y: values.peakPressure * 0.62, label: "AV opens" },
-              { x: values.esv, y: values.peakPressure * 0.45, label: "MV opens" }
+              { x: values.edv, y: values.aorticDiastolic, label: "AV opens" },
+              { x: values.esv, y: values.endSystolicPressure, label: "AV closes" },
+              { x: values.esv, y: edpvrAt(values.esv), label: "MV opens" }
             ]}
             height={480}
           />
