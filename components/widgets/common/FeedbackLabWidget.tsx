@@ -144,24 +144,62 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
               {model.warning}
             </p>
           ) : null}
-          <svg role="img" aria-label={`${diagram.title} node graph`} viewBox="0 0 700 520" className="ph-pathway-canvas h-auto w-full">
-            <text x="28" y="36" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
+          <svg role="img" aria-label={`${diagram.title} node graph`} viewBox="0 0 760 560" className="ph-pathway-canvas h-auto w-full">
+            <text x="28" y="38" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
               SIGNAL PATHWAY
             </text>
-            <text x="672" y="36" textAnchor="end" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
+            <text x="732" y="38" textAnchor="end" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
               NEGATIVE FEEDBACK
             </text>
-            <FeedbackLoopEdge id={`${safeSvgId}-edge-1`} from={{ x: 350, y: 115 }} to={{ x: 350, y: 190 }} label="drive" active={model.forwardActive} />
-            <FeedbackLoopEdge id={`${safeSvgId}-edge-2`} from={{ x: 350, y: 255 }} to={{ x: 350, y: 330 }} label="response" active={model.forwardActive} />
-            <FeedbackLoopEdge id={`${safeSvgId}-feedback-1`} from={{ x: 350, y: 395 }} to={{ x: 142, y: 88 }} label="feedback" inhibitory active={model.feedbackActive} />
-            <FeedbackLoopEdge id={`${safeSvgId}-feedback-2`} from={{ x: 350, y: 395 }} to={{ x: 152, y: 228 }} label="set point brake" inhibitory active={model.feedbackActive} />
-            <FeedbackLoopNode id={`${safeSvgId}-node-1`} label={model.nodes[0].label} value={model.nodes[0].value} x={350} y={80} active={model.nodes[0].active} />
-            <FeedbackLoopNode id={`${safeSvgId}-node-2`} label={model.nodes[1].label} value={model.nodes[1].value} x={350} y={220} active={model.nodes[1].active} />
-            <FeedbackLoopNode id={`${safeSvgId}-node-3`} label={model.nodes[2].label} value={model.nodes[2].value} x={350} y={360} active={model.nodes[2].active} />
+            <FeedbackLoopEdge
+              id={`${safeSvgId}-edge-1`}
+              from={{ x: 430, y: 122 }}
+              to={{ x: 430, y: 212 }}
+              label="drive"
+              active={model.forwardActive}
+              labelPosition={{ x: 488, y: 166 }}
+            />
+            <FeedbackLoopEdge
+              id={`${safeSvgId}-edge-2`}
+              from={{ x: 430, y: 280 }}
+              to={{ x: 430, y: 370 }}
+              label="response"
+              active={model.forwardActive}
+              labelPosition={{ x: 496, y: 324 }}
+            />
+            <FeedbackLoopEdge
+              id={`${safeSvgId}-feedback-1`}
+              from={{ x: 327, y: 404 }}
+              to={{ x: 327, y: 88 }}
+              via={[
+                { x: 132, y: 404 },
+                { x: 132, y: 88 }
+              ]}
+              label="feedback"
+              inhibitory
+              active={model.feedbackActive}
+              labelPosition={{ x: 132, y: 250 }}
+            />
+            <FeedbackLoopEdge
+              id={`${safeSvgId}-feedback-2`}
+              from={{ x: 327, y: 404 }}
+              to={{ x: 327, y: 246 }}
+              via={[
+                { x: 198, y: 404 },
+                { x: 198, y: 246 }
+              ]}
+              label="set point brake"
+              inhibitory
+              active={model.feedbackActive}
+              labelPosition={{ x: 198, y: 326 }}
+            />
+            <FeedbackLoopNode id={`${safeSvgId}-node-1`} label={model.nodes[0].label} value={model.nodes[0].value} x={430} y={88} active={model.nodes[0].active} />
+            <FeedbackLoopNode id={`${safeSvgId}-node-2`} label={model.nodes[1].label} value={model.nodes[1].value} x={430} y={246} active={model.nodes[1].active} />
+            <FeedbackLoopNode id={`${safeSvgId}-node-3`} label={model.nodes[2].label} value={model.nodes[2].value} x={430} y={404} active={model.nodes[2].active} />
             {!model.feedbackActive ? (
               <g>
-                <rect x="258" y="455" width="184" height="30" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
-                <text x="350" y="475" textAnchor="middle" fill="var(--ph-warn)" fontSize="13" fontWeight="800">
+                <rect x="338" y="488" width="184" height="30" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
+                <text x="430" y="508" textAnchor="middle" fill="var(--ph-warn)" fontSize="13" fontWeight="800">
                   Feedback path inactive
                 </text>
               </g>

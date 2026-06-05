@@ -97,7 +97,21 @@ Node and edge primitives for endocrine, renal, metabolic, and reflex loop diagra
 
 ```tsx
 <svg viewBox="0 0 640 420">
-  <FeedbackLoopEdge id="acth-edge" from={{ x: 320, y: 110 }} to={{ x: 320, y: 190 }} label="ACTH" />
+  <FeedbackLoopEdge
+    id="acth-edge"
+    from={{ x: 320, y: 110 }}
+    to={{ x: 320, y: 190 }}
+    label="ACTH"
+    labelPosition={{ x: 370, y: 150 }}
+  />
+  <FeedbackLoopEdge
+    id="cortisol-feedback"
+    from={{ x: 217, y: 350 }}
+    to={{ x: 217, y: 80 }}
+    via={[{ x: 110, y: 350 }, { x: 110, y: 80 }]}
+    inhibitory
+    label="feedback"
+  />
   <FeedbackLoopNode id="pituitary" label="Anterior pituitary" value="ACTH 20 pg/mL" x={320} y={220} />
 </svg>
 ```
@@ -105,4 +119,4 @@ Node and edge primitives for endocrine, renal, metabolic, and reflex loop diagra
 Props:
 
 - `FeedbackLoopNode`: `id`, `label`, `value?`, `x`, `y`, `active?`
-- `FeedbackLoopEdge`: `id`, `from`, `to`, `label?`, `inhibitory?`, `active?`
+- `FeedbackLoopEdge`: `id`, `from`, `to`, `label?`, `inhibitory?`, `active?`, `via?`, `labelPosition?`

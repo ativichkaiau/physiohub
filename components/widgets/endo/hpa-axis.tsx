@@ -35,25 +35,18 @@ export default function HpaAxisWidget() {
   const [feedback, setFeedback] = useState(() => parseBoolean(searchParams.get("feedback"), true));
   const [dexamethasone, setDexamethasone] = useState(() => parseBoolean(searchParams.get("dex"), false));
   const urlTimer = useRef<number | undefined>(undefined);
-  const stateRef = useRef({ stress, acthBolus, feedback, dexamethasone });
 
   useEffect(() => {
-    stateRef.current = { stress, acthBolus, feedback, dexamethasone };
-  }, [acthBolus, dexamethasone, feedback, stress]);
-
-  useEffect(() => {
-    const current = stateRef.current;
-    const next = {
-      stress: parseNumber(searchParams.get("stress"), current.stress, 0, 100),
-      acthBolus: parseNumber(searchParams.get("acth"), current.acthBolus, 0, 100),
-      feedback: parseBoolean(searchParams.get("feedback"), current.feedback),
-      dexamethasone: parseBoolean(searchParams.get("dex"), current.dexamethasone)
-    };
-    if (Math.abs(next.stress - current.stress) > 0.1) setStress(next.stress);
-    if (Math.abs(next.acthBolus - current.acthBolus) > 0.1) setActhBolus(next.acthBolus);
-    if (next.feedback !== current.feedback) setFeedback(next.feedback);
-    if (next.dexamethasone !== current.dexamethasone) setDexamethasone(next.dexamethasone);
-  }, [searchParams]);
+    const params = new URLSearchParams(currentQuery);
+    const nextStress = parseNumber(params.get("stress"), 35, 0, 100);
+    const nextActh = parseNumber(params.get("acth"), 0, 0, 100);
+    const nextFeedback = parseBoolean(params.get("feedback"), true);
+    const nextDex = parseBoolean(params.get("dex"), false);
+    setStress((current) => (Math.abs(nextStress - current) > 0.1 ? nextStress : current));
+    setActhBolus((current) => (Math.abs(nextActh - current) > 0.1 ? nextActh : current));
+    setFeedback((current) => (nextFeedback !== current ? nextFeedback : current));
+    setDexamethasone((current) => (nextDex !== current ? nextDex : current));
+  }, [currentQuery]);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -112,24 +105,62 @@ export default function HpaAxisWidget() {
               Edge state: negative feedback is disabled, so cortisol stays high after perturbation.
             </p>
           ) : null}
-          <svg role="img" aria-label="HPA axis node graph" viewBox="0 0 700 520" className="ph-pathway-canvas h-auto w-full">
-            <text x="28" y="36" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
+          <svg role="img" aria-label="HPA axis node graph" viewBox="0 0 760 560" className="ph-pathway-canvas h-auto w-full">
+            <text x="28" y="38" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
               HORMONE AXIS
             </text>
-            <text x="672" y="36" textAnchor="end" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
+            <text x="732" y="38" textAnchor="end" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
               CORTISOL BRAKE
             </text>
-            <FeedbackLoopEdge id="hpa-crh" from={{ x: 350, y: 115 }} to={{ x: 350, y: 190 }} label="CRH" active={stress > 35} />
-            <FeedbackLoopEdge id="hpa-acth" from={{ x: 350, y: 255 }} to={{ x: 350, y: 330 }} label="ACTH" active={acthBolus > 0 || stress > 45} />
-            <FeedbackLoopEdge id="hpa-cortisol" from={{ x: 350, y: 395 }} to={{ x: 142, y: 88 }} label="negative feedback" inhibitory active={feedback} />
-            <FeedbackLoopEdge id="hpa-pit-feedback" from={{ x: 350, y: 395 }} to={{ x: 152, y: 228 }} label="pituitary brake" inhibitory active={feedback} />
-            <FeedbackLoopNode id="hypothalamus" label="Hypothalamus" value={`CRH ${axis.crh.toFixed(1)} pg/mL`} x={350} y={80} active={stress > 50 && feedback} />
-            <FeedbackLoopNode id="pituitary" label="Anterior pituitary" value={`ACTH ${axis.acth.toFixed(0)} pg/mL`} x={350} y={220} active={axis.acth > 60} />
-            <FeedbackLoopNode id="adrenal" label="Adrenal cortex" value={`Cortisol ${axis.cortisol.toFixed(1)} ug/dL`} x={350} y={360} active={axis.cortisol > 22} />
+            <FeedbackLoopEdge
+              id="hpa-crh"
+              from={{ x: 430, y: 122 }}
+              to={{ x: 430, y: 212 }}
+              label="CRH"
+              active={stress > 35}
+              labelPosition={{ x: 486, y: 166 }}
+            />
+            <FeedbackLoopEdge
+              id="hpa-acth"
+              from={{ x: 430, y: 280 }}
+              to={{ x: 430, y: 370 }}
+              label="ACTH"
+              active={acthBolus > 0 || stress > 45}
+              labelPosition={{ x: 492, y: 324 }}
+            />
+            <FeedbackLoopEdge
+              id="hpa-cortisol"
+              from={{ x: 327, y: 404 }}
+              to={{ x: 327, y: 88 }}
+              via={[
+                { x: 132, y: 404 },
+                { x: 132, y: 88 }
+              ]}
+              label="feedback"
+              inhibitory
+              active={feedback}
+              labelPosition={{ x: 132, y: 250 }}
+            />
+            <FeedbackLoopEdge
+              id="hpa-pit-feedback"
+              from={{ x: 327, y: 404 }}
+              to={{ x: 327, y: 246 }}
+              via={[
+                { x: 198, y: 404 },
+                { x: 198, y: 246 }
+              ]}
+              label="pituitary brake"
+              inhibitory
+              active={feedback}
+              labelPosition={{ x: 198, y: 326 }}
+            />
+            <FeedbackLoopNode id="hypothalamus" label="Hypothalamus" value={`CRH ${axis.crh.toFixed(1)} pg/mL`} x={430} y={88} active={stress > 50 && feedback} />
+            <FeedbackLoopNode id="pituitary" label="Anterior pituitary" value={`ACTH ${axis.acth.toFixed(0)} pg/mL`} x={430} y={246} active={axis.acth > 60} />
+            <FeedbackLoopNode id="adrenal" label="Adrenal cortex" value={`Cortisol ${axis.cortisol.toFixed(1)} ug/dL`} x={430} y={404} active={axis.cortisol > 22} />
             {!feedback ? (
               <g>
-                <rect x="262" y="455" width="176" height="30" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
-                <text x="350" y="475" textAnchor="middle" fill="var(--ph-warn)" fontSize="13" fontWeight="800">
+                <rect x="342" y="488" width="176" height="30" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
+                <text x="430" y="508" textAnchor="middle" fill="var(--ph-warn)" fontSize="13" fontWeight="800">
                   Feedback arm disabled
                 </text>
               </g>

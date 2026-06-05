@@ -108,16 +108,28 @@ export default function PendingWidget() {
             </span>
           </div>
           {diagram.archetype === "feedback-loop" ? (
-            <svg role="img" aria-label="Feedback loop template" viewBox="0 0 640 420" className="ph-pathway-canvas h-auto w-full">
+            <svg role="img" aria-label="Feedback loop template" viewBox="0 0 760 520" className="ph-pathway-canvas h-auto w-full">
               <text x="26" y="34" fill="var(--ph-muted)" fontSize="11" fontWeight="600" letterSpacing="2">
                 LOOP TEMPLATE
               </text>
-              <FeedbackLoopEdge id="edge-a" from={{ x: 320, y: 104 }} to={{ x: 320, y: 176 }} label="drive" active={value > 60} />
-              <FeedbackLoopEdge id="edge-b" from={{ x: 320, y: 244 }} to={{ x: 320, y: 316 }} label="response" active={value > 60} />
-              <FeedbackLoopEdge id="edge-c" from={{ x: 232, y: 316 }} to={{ x: 232, y: 104 }} label="feedback" inhibitory active={enabled} />
-              <FeedbackLoopNode id="node-a" label="Sensor" value={`${Math.round(value)}%`} x={320} y={74} active={value > 60} />
-              <FeedbackLoopNode id="node-b" label="Integrator" value="set point" x={320} y={214} />
-              <FeedbackLoopNode id="node-c" label="Effector" value={enabled ? "feedback on" : "feedback off"} x={320} y={354} active={enabled} />
+              <FeedbackLoopEdge id="edge-a" from={{ x: 430, y: 112 }} to={{ x: 430, y: 196 }} label="drive" active={value > 60} labelPosition={{ x: 486, y: 154 }} />
+              <FeedbackLoopEdge id="edge-b" from={{ x: 430, y: 264 }} to={{ x: 430, y: 348 }} label="response" active={value > 60} labelPosition={{ x: 496, y: 306 }} />
+              <FeedbackLoopEdge
+                id="edge-c"
+                from={{ x: 327, y: 382 }}
+                to={{ x: 327, y: 78 }}
+                via={[
+                  { x: 148, y: 382 },
+                  { x: 148, y: 78 }
+                ]}
+                label="feedback"
+                inhibitory
+                active={enabled}
+                labelPosition={{ x: 148, y: 232 }}
+              />
+              <FeedbackLoopNode id="node-a" label="Sensor" value={`${Math.round(value)}%`} x={430} y={78} active={value > 60} />
+              <FeedbackLoopNode id="node-b" label="Integrator" value="set point" x={430} y={230} />
+              <FeedbackLoopNode id="node-c" label="Effector" value={enabled ? "feedback on" : "feedback off"} x={430} y={382} active={enabled} />
             </svg>
           ) : (
             <Curve

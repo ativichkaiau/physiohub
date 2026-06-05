@@ -14,6 +14,8 @@ export type FeedbackLoopEdgeProps = {
   label?: string;
   inhibitory?: boolean;
   active?: boolean;
+  via?: Array<{ x: number; y: number }>;
+  labelPosition?: { x: number; y: number };
 };
 
 const nodeWidth = 206;
@@ -23,7 +25,11 @@ function labelWidth(label: string) {
   return Math.min(142, Math.max(54, label.length * 7 + 22));
 }
 
-function edgePath(from: { x: number; y: number }, to: { x: number; y: number }) {
+function edgePath(from: { x: number; y: number }, to: { x: number; y: number }, via: Array<{ x: number; y: number }> = []) {
+  if (via.length) {
+    return [from, ...via, to].map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
+  }
+
   const dx = to.x - from.x;
   const dy = to.y - from.y;
   if (Math.abs(dx) < 6) {
@@ -35,6 +41,9 @@ function edgePath(from: { x: number; y: number }, to: { x: number; y: number }) 
 }
 
 export function FeedbackLoopNode({ id, label, value, x, y, active = false }: FeedbackLoopNodeProps) {
+  const displayLabel = label.length > 28 ? `${label.slice(0, 25)}...` : label;
+  const displayValue = value && value.length > 26 ? `${value.slice(0, 23)}...` : value;
+
   return (
     <g id={id} transform={`translate(${x} ${y})`} role="img" aria-label={`${label}${value ? ` ${value}` : ""}`}>
       {active ? (
@@ -74,9 +83,9 @@ export function FeedbackLoopNode({ id, label, value, x, y, active = false }: Fee
         fill={active ? "var(--ph-accent)" : "var(--ph-muted-2)"}
       />
       <text x="0" y="-16" textAnchor="middle" fill="var(--ph-text)" fontSize="13" fontWeight="800">
-        {label}
+        {displayLabel}
       </text>
-      {value ? (
+      {displayValue ? (
         <>
           <rect
             x="-82"
@@ -88,7 +97,7 @@ export function FeedbackLoopNode({ id, label, value, x, y, active = false }: Fee
             stroke="var(--ph-border)"
           />
           <text x="0" y="22" textAnchor="middle" fill={active ? "var(--ph-text)" : "var(--ph-muted)"} fontSize="12" fontWeight="700">
-            {value}
+            {displayValue}
           </text>
         </>
       ) : null}
@@ -102,17 +111,23 @@ export function FeedbackLoopEdge({
   to,
   label,
   inhibitory = false,
-  active = false
+  active = false,
+  via = [],
+  labelPosition
 }: FeedbackLoopEdgeProps) {
   const dx = to.x - from.x;
   const dy = to.y - from.y;
-  const curved = Math.abs(dx) > 6;
-  const midX = curved ? from.x + dx * 0.72 : (from.x + to.x) / 2;
-  const midY = curved ? from.y + dy * 0.52 : (from.y + to.y) / 2;
+  const labelPoint = labelPosition ?? (via.length ? via[Math.max(0, Math.floor(via.length / 2) - 1)] : undefined);
+  const curved = !via.length && Math.abs(dx) > 6;
+  const midX = labelPoint?.x ?? (curved ? from.x + dx * 0.72 : (from.x + to.x) / 2);
+  const midY = labelPoint?.y ?? (curved ? from.y + dy * 0.52 : (from.y + to.y) / 2);
   const width = label ? labelWidth(label) : 0;
-  const length = Math.hypot(dx, dy) || 1;
-  const normal = { x: -dy / length, y: dx / length };
-  const path = edgePath(from, to);
+  const terminalFrom = via[via.length - 1] ?? from;
+  const terminalDx = to.x - terminalFrom.x;
+  const terminalDy = to.y - terminalFrom.y;
+  const length = Math.hypot(terminalDx, terminalDy) || 1;
+  const normal = { x: -terminalDy / length, y: terminalDx / length };
+  const path = edgePath(from, to, via);
   const stroke = active ? "var(--ph-accent)" : "color-mix(in srgb, var(--ph-axis), transparent 22%)";
 
   return (
@@ -158,14 +173,14 @@ export function FeedbackLoopEdge({
         <g>
           <rect
             x={midX - width / 2}
-            y={midY - 22}
+            y={midY - 11}
             width={width}
             height="22"
             rx="7"
-            fill={active ? "color-mix(in srgb, var(--ph-accent), transparent 82%)" : "color-mix(in srgb, var(--ph-surface-2), black 4%)"}
+            fill={active ? "color-mix(in srgb, var(--ph-accent), transparent 82%)" : "var(--ph-surface)"}
             stroke={active ? "color-mix(in srgb, var(--ph-accent), transparent 42%)" : "var(--ph-border)"}
           />
-          <text x={midX} y={midY - 7} textAnchor="middle" fill={active ? "var(--ph-text)" : "var(--ph-muted)"} fontSize="11" fontWeight="800">
+          <text x={midX} y={midY + 4} textAnchor="middle" fill={active ? "var(--ph-text)" : "var(--ph-muted)"} fontSize="11" fontWeight="800">
             {label}
           </text>
         </g>
