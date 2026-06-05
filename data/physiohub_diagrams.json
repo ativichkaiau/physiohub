@@ -79,7 +79,7 @@
           "slug": "cardiac-action-potentials",
           "title": "Cardiac Action Potentials",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub nodal and ventricular action potentials to compare phases and channel currents.",
           "concept": "You are looking at fast-response and slow-response cardiac action potentials. Scrub time and toggle sodium, calcium, and potassium currents. Observe how plateau duration and pacemaker depolarization differ by tissue.",
           "references": [
@@ -105,7 +105,7 @@
           "slug": "coronary-perfusion",
           "title": "Coronary Perfusion",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust aortic pressure, LV pressure, heart rate, and stenosis to see coronary flow reserve.",
           "concept": "You are looking at coronary flow across systole and diastole. Manipulate perfusion pressure, ventricular compression, heart rate, and stenosis severity. Observe why left coronary perfusion is most vulnerable in diastole-shortening states.",
           "references": [
@@ -183,7 +183,7 @@
           "slug": "shock-states",
           "title": "Shock States",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Compare hypovolemic, cardiogenic, distributive, and obstructive shock in one hemodynamic state space.",
           "concept": "You are looking at cardiac output, systemic vascular resistance, filling pressure, and oxygen delivery. Select a shock phenotype and perturb compensation. Observe why similar blood pressures can hide different hemodynamic failures.",
           "references": [

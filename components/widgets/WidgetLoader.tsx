@@ -19,6 +19,12 @@ const widgetMap: Record<string, ComponentType> = {
   "cv/cardiac-output": dynamic(() => import("@/components/widgets/cv/cardiac-output"), {
     loading: () => <WidgetLoading />
   }),
+  "cv/cardiac-action-potentials": dynamic(() => import("@/components/widgets/cv/cardiac-action-potentials"), {
+    loading: () => <WidgetLoading />
+  }),
+  "cv/coronary-perfusion": dynamic(() => import("@/components/widgets/cv/coronary-perfusion"), {
+    loading: () => <WidgetLoading />
+  }),
   "cv/vascular-compliance": dynamic(() => import("@/components/widgets/cv/vascular-compliance"), {
     loading: () => <WidgetLoading />
   }),
@@ -36,6 +42,9 @@ const widgetMap: Record<string, ComponentType> = {
     loading: () => <WidgetLoading />
   }),
   "cv/valvular-lesions": dynamic(() => import("@/components/widgets/cv/valvular-lesions"), {
+    loading: () => <WidgetLoading />
+  }),
+  "cv/shock-states": dynamic(() => import("@/components/widgets/cv/shock-states"), {
     loading: () => <WidgetLoading />
   }),
   "cv/fetal-circulation-transition": dynamic(
