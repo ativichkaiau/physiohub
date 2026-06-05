@@ -6,10 +6,10 @@ type Theme = "light" | "dark";
 const STORAGE_KEY = "physiohub-theme";
 
 /**
- * Light/dark toggle. The actual theme switch happens inline in <head> (see
- * the bootstrap script in app/layout.tsx) to avoid a flash of wrong theme on
- * first paint. This component just keeps React in sync with what the
- * bootstrap script already set on <html data-theme>.
+ * Theme pill in the cockpit's navigation. Two-line label (kicker + current
+ * mode + glyph) matching the operator-deck aesthetic. The actual class
+ * switch happens inline in <head> before hydration (see app/layout.tsx)
+ * so there is no flash of wrong theme on first paint.
  */
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("light");
@@ -32,20 +32,28 @@ export function ThemeToggle() {
     }
   }
 
-  const goingTo = theme === "dark" ? "light" : "dark";
+  const currentLabel = mounted ? (theme === "dark" ? "Night" : "Day") : "Day";
+  const currentIcon = mounted ? (theme === "dark" ? "☾" : "☀") : "☀";
+  const nextLabel = theme === "dark" ? "day" : "night";
 
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label={`Switch to ${goingTo} mode`}
-      title={`Switch to ${goingTo} mode`}
-      className="focus-ring inline-flex items-center gap-1.5 rounded-ph border border-[var(--ph-border)] bg-ph-surface px-3 py-2 text-sm font-medium text-ph-muted transition hover:border-[var(--ph-border-strong)] hover:text-ph-text"
+      aria-label={`Switch to ${nextLabel} mode`}
+      title={`Switch to ${nextLabel} mode`}
+      className="focus-ring inline-flex items-center gap-2 rounded-full border border-[var(--ph-border)] bg-ph-surface px-3 py-1.5 text-left transition hover:border-[var(--ph-border-strong)]"
     >
-      <span aria-hidden="true" className="text-base leading-none">
-        {mounted ? (theme === "dark" ? "☀" : "☾") : "☾"}
+      <span className="hidden flex-col leading-tight sm:flex">
+        <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-ph-muted">Mode</span>
+        <span className="text-xs font-bold tracking-tight text-ph-text">{currentLabel}</span>
       </span>
-      <span className="hidden sm:inline">{mounted ? (theme === "dark" ? "Day" : "Night") : "Night"}</span>
+      <span
+        aria-hidden="true"
+        className="grid h-7 w-7 place-items-center rounded-full bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-sm text-ph-accent"
+      >
+        {currentIcon}
+      </span>
     </button>
   );
 }

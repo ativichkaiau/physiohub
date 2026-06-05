@@ -142,7 +142,130 @@ svg { display: block; }
   box-shadow: var(--ph-shadow);
 }
 
-/* Backward-compatible alias for system page hero — used by older templates. */
+/* =====================================================================
+   Cockpit hero — dark inset panel for the marquee on the homepage.
+   Stays dark regardless of light/dark site theme; its colour tokens are
+   intentionally independent so the hero reads the same on paper and on
+   slate. Inspired by the operator-deck aesthetic, no team livery.
+   ===================================================================== */
+
+.ph-cockpit {
+  --cockpit-bg-1:       #08131c;
+  --cockpit-bg-2:       #06080e;
+  --cockpit-bg-3:       #0b1a2a;
+  --cockpit-accent:     #28d3ec;
+  --cockpit-accent-2:   #5fa8ff;
+  --cockpit-grid:       rgba(255, 255, 255, 0.05);
+  --cockpit-border:     rgba(255, 255, 255, 0.10);
+  --cockpit-text:       #f6fafc;
+  --cockpit-muted:      #94a8b6;
+
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--cockpit-border);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 8% 12%,
+      color-mix(in srgb, var(--cockpit-accent), transparent 78%),
+      transparent 18rem),
+    radial-gradient(circle at 96% 8%,
+      color-mix(in srgb, var(--cockpit-accent-2), transparent 82%),
+      transparent 22rem),
+    linear-gradient(var(--cockpit-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cockpit-grid) 1px, transparent 1px),
+    linear-gradient(135deg, var(--cockpit-bg-1) 0%, var(--cockpit-bg-2) 48%, var(--cockpit-bg-3) 100%);
+  background-size: auto, auto, 44px 44px, 44px 44px, auto;
+  box-shadow:
+    0 26px 80px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: var(--cockpit-text);
+}
+
+.ph-cockpit-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--cockpit-accent), transparent 65%);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cockpit-accent), transparent 90%);
+  padding: 0.45rem 0.85rem;
+  color: color-mix(in srgb, var(--cockpit-accent), white 14%);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ph-cockpit-kicker::before {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--cockpit-accent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--cockpit-accent), transparent 35%);
+  content: "";
+}
+
+.ph-cockpit-accent {
+  background: linear-gradient(135deg,
+    var(--cockpit-accent) 0%,
+    color-mix(in srgb, var(--cockpit-accent), white 30%) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.ph-cockpit-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.75rem;
+  color: var(--cockpit-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ph-cockpit-bullet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ph-cockpit-bullet::before {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: var(--cockpit-accent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--cockpit-accent), transparent 50%);
+  content: "";
+}
+
+.ph-cockpit-console {
+  border: 1px solid color-mix(in srgb, white, transparent 88%);
+  border-radius: 18px;
+  background: color-mix(in srgb, #0e1c2a, transparent 12%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.ph-cockpit-stat {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.30);
+  padding: 0.75rem;
+}
+
+/* Theme-aware mode pill — shows current mode label inside the cockpit
+   console without needing JS. */
+.ph-mode-day,
+.ph-mode-night { display: none; }
+:root .ph-mode-day { display: inline; }
+:root[data-theme="dark"] .ph-mode-day { display: none; }
+:root[data-theme="dark"] .ph-mode-night { display: inline; }
+
+/* Legacy alias — older system templates referenced this name. */
 .ph-grid-panel {
   position: relative;
   border: 1px solid var(--ph-border);
