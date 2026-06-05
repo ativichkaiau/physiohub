@@ -1,0 +1,253 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ReportError } from "@/components/ReportError";
+import { getDiagramById } from "@/lib/registry";
+
+const DIAGRAM_ID = "cv/ecg-intervals";
+const diagram = getDiagramById(DIAGRAM_ID);
+
+type EventId = "p" | "pr" | "qrs" | "st" | "t";
+
+type EcgEvent = {
+  id: EventId;
+  label: string;
+  startMs: number;
+  endMs: number;
+  conduction: string;
+  body: string;
+  pathology: string;
+};
+
+// One ECG cycle over 800 ms (HR ≈ 75 bpm). Times are conventional adult values.
+const EVENTS: EcgEvent[] = [
+  {
+    id: "p",
+    label: "P wave",
+    startMs: 50,
+    endMs: 130,
+    conduction: "Atrial depolarization",
+    body: "The SA node fires and the wavefront sweeps across both atria via internodal tracts and Bachmann's bundle. Duration normally < 120 ms; amplitude < 2.5 mm in II.",
+    pathology: "Peaked P (P pulmonale) → right atrial enlargement; broad / notched P (P mitrale) → left atrial enlargement; absent P → atrial fibrillation."
+  },
+  {
+    id: "pr",
+    label: "PR interval",
+    startMs: 50,
+    endMs: 170,
+    conduction: "AV nodal delay",
+    body: "Measured from the start of the P wave to the start of QRS. Normal 120–200 ms. The AV node deliberately delays conduction so atrial systole finishes before ventricular contraction begins.",
+    pathology: "PR > 200 ms = first-degree AV block. Progressive PR lengthening with dropped QRS = Mobitz I. Short PR with a delta wave = WPW pre-excitation."
+  },
+  {
+    id: "qrs",
+    label: "QRS complex",
+    startMs: 170,
+    endMs: 260,
+    conduction: "Ventricular depolarization (His–Purkinje)",
+    body: "Rapid spread through the His bundle → bundle branches → Purkinje network → ventricular myocardium. Duration normally < 120 ms. The dominant LV vector gives the upright R wave in I, V5–V6.",
+    pathology: "QRS > 120 ms = bundle branch block or ventricular escape rhythm. Poor R-wave progression V1–V4 suggests prior anteroseptal MI."
+  },
+  {
+    id: "st",
+    label: "ST segment",
+    startMs: 260,
+    endMs: 320,
+    conduction: "Ventricular plateau (AP phase 2)",
+    body: "Both ventricles fully depolarized; calcium plateau of the action potential. Isoelectric in health — the segment sits on the baseline between the end of QRS (J point) and the start of T.",
+    pathology: "ST elevation ≥ 1 mm in two contiguous limb leads = transmural ischaemia (STEMI). Horizontal or down-sloping ST depression = subendocardial ischaemia."
+  },
+  {
+    id: "t",
+    label: "T wave",
+    startMs: 320,
+    endMs: 440,
+    conduction: "Ventricular repolarization (AP phase 3)",
+    body: "Net repolarization vector. Normally concordant with QRS (upright in I, II, V3–V6). QT interval (Q → end of T) reflects total ventricular AP duration.",
+    pathology: "Peaked symmetric T = hyperkalaemia. Inverted T = ischaemia or strain. QTc > 460 ms = long-QT syndrome (risk of torsades)."
+  }
+];
+
+// One ECG beat sampled as (ms, mV).
+const ECG_POINTS: Array<[number, number]> = [
+  [0, 0], [40, 0],
+  [60, 0.06], [80, 0.18], [100, 0.06], [130, 0],
+  [165, 0],
+  [175, -0.12], [185, 0.30], [195, 0.95], [205, -0.25], [215, -0.08], [235, 0],
+  [260, 0],
+  [290, 0.04], [330, 0.32], [380, 0.42], [420, 0.10], [440, 0],
+  [800, 0]
+];
+
+function buildPath(points: Array<[number, number]>, scaleX: (ms: number) => number, scaleY: (mv: number) => number) {
+  return points
+    .map(([x, y], i) => `${i === 0 ? "M" : "L"} ${scaleX(x).toFixed(1)} ${scaleY(y).toFixed(1)}`)
+    .join(" ");
+}
+
+export default function EcgIntervalsWidget() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const initial = searchParams.get("event");
+  const initialId: EventId = (EVENTS.find((e) => e.id === initial)?.id ?? "qrs");
+  const [selectedId, setSelectedId] = useState<EventId>(initialId);
+  const urlTimer = useRef<number | undefined>(undefined);
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("event", selectedId);
+    const nextQuery = params.toString();
+    if (nextQuery === searchParams.toString()) return;
+    window.clearTimeout(urlTimer.current);
+    urlTimer.current = window.setTimeout(() => {
+      router.replace(`${pathname}?${nextQuery}`, { scroll: false });
+    }, 180);
+    return () => window.clearTimeout(urlTimer.current);
+  }, [selectedId, pathname, router, searchParams]);
+
+  useEffect(() => {
+    const next = searchParams.get("event") as EventId | null;
+    if (next && EVENTS.find((e) => e.id === next) && next !== selectedId) {
+      setSelectedId(next);
+    }
+  }, [searchParams, selectedId]);
+
+  const selected = EVENTS.find((e) => e.id === selectedId)!;
+
+  // SVG layout
+  const W = 760;
+  const H = 240;
+  const PAD = { l: 36, r: 16, t: 30, b: 32 };
+  const plotW = W - PAD.l - PAD.r;
+  const plotH = H - PAD.t - PAD.b;
+  const X = (ms: number) => PAD.l + (ms / 800) * plotW;
+  const Y = (mv: number) => PAD.t + plotH - ((mv + 0.35) / 1.6) * plotH;
+
+  return (
+    <section className="ph-widget-shell">
+      <section className="ph-concept-panel p-4">
+        <p className="ph-section-label">Concept scan</p>
+        <p className="mt-2 max-w-5xl text-sm font-medium text-ph-muted">{diagram.concept}</p>
+      </section>
+
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+        <section className="ph-panel ph-chart-stage p-4" aria-label="Interactive ECG strip">
+          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+            <p className="ph-section-label">{selected.label} — {selected.conduction}</p>
+            <p className="mt-1.5 text-sm text-ph-muted">{selected.body}</p>
+            <p className="mt-2 text-sm">
+              <span className="font-bold text-ph-text">Pathology:</span>{" "}
+              <span className="text-ph-muted">{selected.pathology}</span>
+            </p>
+          </div>
+
+          <svg
+            role="img"
+            aria-label="One ECG cycle with five clickable intervals"
+            viewBox={`0 0 ${W} ${H}`}
+            className="ph-pathway-canvas h-auto w-full"
+          >
+            {/* Major grid lines every 200 ms */}
+            {[0, 200, 400, 600, 800].map((ms) => (
+              <line key={`v${ms}`} x1={X(ms)} y1={PAD.t} x2={X(ms)} y2={PAD.t + plotH} stroke="var(--ph-grid)" strokeWidth="1" />
+            ))}
+            {/* Minor grid lines every 40 ms */}
+            {Array.from({ length: 20 }).map((_, i) => (
+              <line key={`vm${i}`} x1={X((i + 1) * 40)} y1={PAD.t} x2={X((i + 1) * 40)} y2={PAD.t + plotH} stroke="var(--ph-grid)" strokeWidth="0.4" opacity="0.6" />
+            ))}
+            {/* Baseline */}
+            <line x1={PAD.l} y1={Y(0)} x2={PAD.l + plotW} y2={Y(0)} stroke="var(--ph-axis)" strokeWidth="0.7" opacity="0.55" />
+
+            {/* Highlight rectangles — selected event gets full accent, others are clickable */}
+            {EVENTS.map((ev) => {
+              const isSelected = ev.id === selectedId;
+              return (
+                <g key={ev.id}>
+                  <rect
+                    x={X(ev.startMs)}
+                    y={PAD.t}
+                    width={X(ev.endMs) - X(ev.startMs)}
+                    height={plotH}
+                    fill={isSelected ? "color-mix(in srgb, var(--ph-accent), transparent 80%)" : "transparent"}
+                    stroke={isSelected ? "color-mix(in srgb, var(--ph-accent), transparent 45%)" : "transparent"}
+                    strokeWidth="1.5"
+                    rx="6"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setSelectedId(ev.id)}
+                    role="button"
+                    aria-label={`Select ${ev.label}`}
+                  />
+                  {isSelected ? (
+                    <text
+                      x={(X(ev.startMs) + X(ev.endMs)) / 2}
+                      y={PAD.t - 8}
+                      textAnchor="middle"
+                      fill="var(--ph-accent)"
+                      fontSize="11"
+                      fontWeight="700"
+                      letterSpacing="0.5"
+                    >
+                      {ev.label.toUpperCase()}
+                    </text>
+                  ) : null}
+                </g>
+              );
+            })}
+
+            {/* ECG trace */}
+            <path d={buildPath(ECG_POINTS, X, Y)} fill="none" stroke="var(--ph-curve-1)" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round" />
+
+            {/* Axis labels */}
+            <text x={PAD.l} y={H - 8} fontSize="10" fill="var(--ph-muted)">0</text>
+            <text x={X(400)} y={H - 8} fontSize="10" fill="var(--ph-muted)" textAnchor="middle">400 ms</text>
+            <text x={X(800)} y={H - 8} fontSize="10" fill="var(--ph-muted)" textAnchor="end">800 ms</text>
+            <text x={6} y={Y(1) + 4} fontSize="10" fill="var(--ph-muted)">1 mV</text>
+            <text x={6} y={Y(0) + 4} fontSize="10" fill="var(--ph-muted)">0</text>
+          </svg>
+        </section>
+
+        <aside className="grid gap-4">
+          <section className="ph-panel p-4" aria-label="Conduction events">
+            <h2 className="ph-section-label mb-4">Click an event</h2>
+            <div className="grid gap-2">
+              {EVENTS.map((ev) => {
+                const isSelected = ev.id === selectedId;
+                return (
+                  <button
+                    key={ev.id}
+                    type="button"
+                    onClick={() => setSelectedId(ev.id)}
+                    className={`focus-ring rounded-ph border px-3 py-2 text-left text-sm transition ${
+                      isSelected
+                        ? "border-[color-mix(in_srgb,var(--ph-accent),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-ph-accent"
+                        : "border-[var(--ph-border)] bg-ph-surface2 text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
+                    }`}
+                  >
+                    <span className="font-bold">{ev.label}</span>
+                    <span className="ml-2 text-xs">{ev.conduction}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="ph-panel p-4" aria-label="References">
+            <h2 className="ph-section-label mb-3">References</h2>
+            <ul className="grid gap-2 text-sm text-ph-muted">
+              {diagram.references.map((reference) => (
+                <li key={`${reference.source}-${reference.pages}`}>
+                  {reference.source}
+                  {reference.pages ? `, ${reference.pages}` : ""}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <ReportError diagramId={DIAGRAM_ID} />
+    </section>
+  );
+}

@@ -92,7 +92,7 @@
           "slug": "ecg-intervals",
           "title": "ECG Intervals and Conduction",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click P wave, PR interval, QRS, ST segment, and T wave to map conduction events.",
           "concept": "You are looking at the surface ECG linked to atrial, nodal, His-Purkinje, and ventricular events. Click each ECG segment to reveal its mechanism. Observe how conduction delay and repolarization map onto the tracing.",
           "references": [
@@ -170,7 +170,7 @@
           "slug": "valvular-lesions",
           "title": "Valvular Lesions on PV Loops",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Toggle stenosis or regurgitation to see how loop shape, murmur timing, and loading change.",
           "concept": "You are looking at pressure-volume loop changes caused by valve disease. Toggle aortic stenosis, aortic regurgitation, mitral stenosis, or mitral regurgitation. Observe how forward stroke volume and loop boundaries change.",
           "references": [
@@ -196,7 +196,7 @@
           "slug": "fetal-circulation-transition",
           "title": "Fetal Circulation Transition",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Step through placental flow, shunts, first breath, and closure of the ductus and foramen ovale.",
           "concept": "You are looking at the transition from fetal to neonatal circulation. Click each mechanism step from placental oxygenation to postnatal shunt closure. Observe how pressure reversals redirect flow after the first breath.",
           "references": [

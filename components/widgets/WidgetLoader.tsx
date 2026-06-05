@@ -32,6 +32,16 @@ const widgetMap: Record<string, ComponentType> = {
     () => import("@/components/widgets/cv/microcirculation-autoregulation"),
     { loading: () => <WidgetLoading /> }
   ),
+  "cv/ecg-intervals": dynamic(() => import("@/components/widgets/cv/ecg-intervals"), {
+    loading: () => <WidgetLoading />
+  }),
+  "cv/valvular-lesions": dynamic(() => import("@/components/widgets/cv/valvular-lesions"), {
+    loading: () => <WidgetLoading />
+  }),
+  "cv/fetal-circulation-transition": dynamic(
+    () => import("@/components/widgets/cv/fetal-circulation-transition"),
+    { loading: () => <WidgetLoading /> }
+  ),
   "resp/o2-hb": dynamic(() => import("@/components/widgets/resp/o2-hb"), {
     loading: () => <WidgetLoading />
   }),
