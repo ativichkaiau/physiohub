@@ -78,6 +78,41 @@ const widgetMap: Record<string, ComponentType> = {
     loading: () => <WidgetLoading />,
     ssr: false
   }),
+  "resp/lung-volumes": dynamic(() => import("@/components/widgets/resp/lung-volumes"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/airway-resistance": dynamic(() => import("@/components/widgets/resp/airway-resistance"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/ventilation-control": dynamic(() => import("@/components/widgets/resp/ventilation-control"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/diffusion-limitation": dynamic(() => import("@/components/widgets/resp/diffusion-limitation"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/compliance-pressure-volume": dynamic(
+    () => import("@/components/widgets/resp/compliance-pressure-volume"),
+    {
+      loading: () => <WidgetLoading />,
+      ssr: false
+    }
+  ),
+  "resp/dead-space-ventilation": dynamic(() => import("@/components/widgets/resp/dead-space-ventilation"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/oxygen-content": dynamic(() => import("@/components/widgets/resp/oxygen-content"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/respiratory-acid-base": dynamic(() => import("@/components/widgets/resp/respiratory-acid-base"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
   "nerv/action-potential": dynamic(() => import("@/components/widgets/nerv/action-potential"), {
     loading: () => <WidgetLoading />,
     ssr: false

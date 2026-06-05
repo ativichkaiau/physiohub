@@ -244,7 +244,7 @@
           "slug": "lung-volumes",
           "title": "Lung Volumes and Spirometry",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub a respiratory maneuver to map volumes, capacities, and flow.",
           "concept": "You are looking at a spirometry trace through quiet breathing and forced expiration. Scrub the maneuver and toggle capacity labels. Observe how obstructive and restrictive patterns alter the trace.",
           "references": [
@@ -257,7 +257,7 @@
           "slug": "airway-resistance",
           "title": "Airway Resistance",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Change radius, lung volume, and flow regime to see resistance scale.",
           "concept": "You are looking at resistance as airway radius and lung volume change. Manipulate radius, transmural pressure, and flow to compare laminar and turbulent behavior. Observe why small changes in radius dominate.",
           "references": [
@@ -270,7 +270,7 @@
           "slug": "ventilation-control",
           "title": "Ventilation Control Loop",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb CO2 or O2 and watch chemoreceptor drive update ventilation.",
           "concept": "You are looking at chemical control of ventilation. Perturb arterial CO2, O2, or pH to drive central and peripheral chemoreceptors. Observe how minute ventilation changes toward a new steady state.",
           "references": [
@@ -283,7 +283,7 @@
           "slug": "diffusion-limitation",
           "title": "Diffusion Limitation",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Change membrane thickness, surface area, transit time, and gas type to compare diffusion reserve.",
           "concept": "You are looking at alveolar-capillary gas equilibration over capillary transit time. Manipulate membrane thickness, surface area, cardiac output, and gas identity. Observe when oxygen becomes diffusion-limited rather than perfusion-limited.",
           "references": [
@@ -296,7 +296,7 @@
           "slug": "compliance-pressure-volume",
           "title": "Lung Compliance Pressure-Volume Curve",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Shift elastance, surfactant, and chest wall load to compare normal, emphysema, and fibrosis curves.",
           "concept": "You are looking at lung volume as transpulmonary pressure changes. Manipulate elastance, surfactant effect, and chest wall coupling to reshape the curve. Observe how compliance changes work of breathing.",
           "references": [
@@ -309,7 +309,7 @@
           "slug": "dead-space-ventilation",
           "title": "Dead Space and Alveolar Ventilation",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust tidal volume, respiratory rate, and dead space to see alveolar ventilation and PaCO2.",
           "concept": "You are looking at minute ventilation partitioned into dead-space and alveolar ventilation. Manipulate tidal volume, frequency, and anatomic or physiologic dead space. Observe why rapid shallow breathing can lower effective ventilation.",
           "references": [
@@ -322,7 +322,7 @@
           "slug": "oxygen-content",
           "title": "Oxygen Content and Delivery",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Balance hemoglobin, saturation, PaO2, and cardiac output to calculate oxygen delivery.",
           "concept": "You are looking at arterial oxygen content and systemic oxygen delivery. Manipulate hemoglobin, saturation, dissolved oxygen, and cardiac output. Observe why anemia and hypoxemia can produce different delivery profiles.",
           "references": [
@@ -335,7 +335,7 @@
           "slug": "respiratory-acid-base",
           "title": "Respiratory Acid-Base Compensation",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb PaCO2 and bicarbonate buffering to watch pH and ventilatory drive respond.",
           "concept": "You are looking at the respiratory contribution to acid-base control. Perturb CO2 production, alveolar ventilation, and renal bicarbonate compensation. Observe how pH, PaCO2, and ventilatory drive form a feedback loop.",
           "references": [

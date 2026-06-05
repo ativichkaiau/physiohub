@@ -34,27 +34,22 @@ export default function O2HbWidget() {
   const [bpg, setBpg] = useState(() => parseNumber(searchParams.get("bpg"), 1, 0.5, 2.5));
   const [overlay, setOverlay] = useState(() => parseBoolean(searchParams.get("overlay"), true));
   const urlTimer = useRef<number | undefined>(undefined);
-  const stateRef = useRef({ ph, pco2, temp, bpg, overlay });
 
   useEffect(() => {
-    stateRef.current = { ph, pco2, temp, bpg, overlay };
-  }, [bpg, overlay, pco2, ph, temp]);
-
-  useEffect(() => {
-    const current = stateRef.current;
+    const params = new URLSearchParams(currentQuery);
     const next = {
-      ph: parseNumber(searchParams.get("ph"), current.ph, 6.8, 7.8),
-      pco2: parseNumber(searchParams.get("pco2"), current.pco2, 20, 80),
-      temp: parseNumber(searchParams.get("temp"), current.temp, 33, 41),
-      bpg: parseNumber(searchParams.get("bpg"), current.bpg, 0.5, 2.5),
-      overlay: parseBoolean(searchParams.get("overlay"), current.overlay)
+      ph: parseNumber(params.get("ph"), 7.4, 6.8, 7.8),
+      pco2: parseNumber(params.get("pco2"), 40, 20, 80),
+      temp: parseNumber(params.get("temp"), 37, 33, 41),
+      bpg: parseNumber(params.get("bpg"), 1, 0.5, 2.5),
+      overlay: parseBoolean(params.get("overlay"), true)
     };
-    if (Math.abs(next.ph - current.ph) > 0.001) setPh(next.ph);
-    if (Math.abs(next.pco2 - current.pco2) > 0.1) setPco2(next.pco2);
-    if (Math.abs(next.temp - current.temp) > 0.1) setTemp(next.temp);
-    if (Math.abs(next.bpg - current.bpg) > 0.001) setBpg(next.bpg);
-    if (next.overlay !== current.overlay) setOverlay(next.overlay);
-  }, [searchParams]);
+    setPh((current) => (Math.abs(next.ph - current) > 0.001 ? next.ph : current));
+    setPco2((current) => (Math.abs(next.pco2 - current) > 0.1 ? next.pco2 : current));
+    setTemp((current) => (Math.abs(next.temp - current) > 0.1 ? next.temp : current));
+    setBpg((current) => (Math.abs(next.bpg - current) > 0.001 ? next.bpg : current));
+    setOverlay((current) => (next.overlay !== current ? next.overlay : current));
+  }, [currentQuery]);
 
   useEffect(() => {
     const params = new URLSearchParams();

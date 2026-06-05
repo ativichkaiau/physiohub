@@ -57,14 +57,15 @@ export function TimelineLabWidget({ config }: { config: TimelineLabConfig }) {
 
   useEffect(() => {
     const current = stateRef.current;
-    const nextTime = parseNumber(searchParams.get("t"), current.time, 0, config.duration);
-    const nextSpeed = parseNumber(searchParams.get("speed"), current.speed, 0.5, 2);
-    const nextTraces = parseTraces(searchParams.get("traces"), config.series);
+    const params = new URLSearchParams(currentQuery);
+    const nextTime = parseNumber(params.get("t"), current.time, 0, config.duration);
+    const nextSpeed = parseNumber(params.get("speed"), current.speed, 0.5, 2);
+    const nextTraces = parseTraces(params.get("traces"), config.series);
     const nextTraceList = traceKey(nextTraces, config.series);
     if (Math.abs(nextTime - current.time) > 0.001) setTime(nextTime);
     if (Math.abs(nextSpeed - current.speed) > 0.001) setSpeed(nextSpeed);
     if (nextTraceList !== current.traceList) setTraces(nextTraces);
-  }, [config.duration, config.series, searchParams]);
+  }, [config.duration, config.series, currentQuery]);
 
   useEffect(() => {
     const params = new URLSearchParams();
