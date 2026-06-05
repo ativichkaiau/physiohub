@@ -1,0 +1,1050 @@
+{
+  "reportEmail": "errata@physiohub.med",
+  "systems": [
+    {
+      "id": "cv",
+      "name": "Cardiovascular",
+      "shortName": "CV",
+      "status": "live",
+      "teaser": "Pressure, volume, flow, and reflex diagrams for core cardiac physiology.",
+      "diagrams": [
+        {
+          "id": "cv/wiggers",
+          "slug": "wiggers",
+          "title": "Wiggers Cycle",
+          "archetype": "scrubbable-timeline",
+          "status": "reference",
+          "teaser": "Scrub one cardiac cycle to align pressure, volume, valve events, and ECG.",
+          "concept": "You are looking at one left-sided cardiac cycle with stacked pressure, volume, and ECG traces. Scrub time or toggle traces to align valve events with the waveforms. Observe how the dicrotic notch appears as the aortic valve closes.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "124-128" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "510-516" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "110-117" }
+          ]
+        },
+        {
+          "id": "cv/frank-starling",
+          "slug": "frank-starling",
+          "title": "Frank-Starling Curve",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Slide preload to watch stroke volume rise, plateau, and fail.",
+          "concept": "You are looking at stroke volume as a function of ventricular filling. Manipulate preload, contractility, and afterload to compare the active curve against baseline. Observe where compensation becomes limited.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "134-138" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "540-548" }
+          ]
+        },
+        {
+          "id": "cv/pv-loop",
+          "slug": "pv-loop",
+          "title": "Pressure-Volume Loop",
+          "archetype": "multi-variable-interaction",
+          "status": "reference",
+          "teaser": "Adjust preload, afterload, contractility, and heart rate to reshape the loop.",
+          "concept": "You are looking at one ventricular pressure-volume loop with baseline overlays. Manipulate loading conditions and contractility to reshape the loop. Observe the linked changes in EDV, ESV, SV, and EF.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "134-138" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "540-548" }
+          ]
+        },
+        {
+          "id": "cv/baroreflex",
+          "slug": "baroreflex",
+          "title": "Baroreflex",
+          "archetype": "feedback-loop",
+          "status": "reference",
+          "teaser": "Perturb pressure and watch afferent firing, autonomic output, and heart rate respond.",
+          "concept": "You are looking at the arterial baroreceptor reflex loop. Trigger a pressure perturbation or break a feedback arm to follow the response. Observe how heart rate and vascular tone restore mean arterial pressure.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "147-153" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "223-231" }
+          ]
+        },
+        {
+          "id": "cv/cardiac-output",
+          "slug": "cardiac-output",
+          "title": "Cardiac Output and Venous Return",
+          "archetype": "multi-variable-interaction",
+          "status": "reference",
+          "teaser": "Move blood volume, resistance, and contractility to find the operating point.",
+          "concept": "You are looking at the intersection of cardiac output and venous return curves. Manipulate volume, venous tone, and contractility to move the operating point. Observe how right atrial pressure anchors the system.",
+          "references": [
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "239-247" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "548-555" }
+          ]
+        },
+        {
+          "id": "cv/cardiac-action-potentials",
+          "slug": "cardiac-action-potentials",
+          "title": "Cardiac Action Potentials",
+          "archetype": "scrubbable-timeline",
+          "status": "planned",
+          "teaser": "Scrub nodal and ventricular action potentials to compare phases and channel currents.",
+          "concept": "You are looking at fast-response and slow-response cardiac action potentials. Scrub time and toggle sodium, calcium, and potassium currents. Observe how plateau duration and pacemaker depolarization differ by tissue.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "93-105" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "483-501" }
+          ]
+        },
+        {
+          "id": "cv/ecg-intervals",
+          "slug": "ecg-intervals",
+          "title": "ECG Intervals and Conduction",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Click P wave, PR interval, QRS, ST segment, and T wave to map conduction events.",
+          "concept": "You are looking at the surface ECG linked to atrial, nodal, His-Purkinje, and ventricular events. Click each ECG segment to reveal its mechanism. Observe how conduction delay and repolarization map onto the tracing.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "105-114" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "126-141" }
+          ]
+        },
+        {
+          "id": "cv/coronary-perfusion",
+          "slug": "coronary-perfusion",
+          "title": "Coronary Perfusion",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Adjust aortic pressure, LV pressure, heart rate, and stenosis to see coronary flow reserve.",
+          "concept": "You are looking at coronary flow across systole and diastole. Manipulate perfusion pressure, ventricular compression, heart rate, and stenosis severity. Observe why left coronary perfusion is most vulnerable in diastole-shortening states.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "556-566" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "265-276" }
+          ]
+        },
+        {
+          "id": "cv/vascular-compliance",
+          "slug": "vascular-compliance",
+          "title": "Vascular Compliance and Windkessel",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Change arterial compliance and resistance to reshape pulse pressure decay.",
+          "concept": "You are looking at arterial pressure storage and runoff during one beat. Manipulate compliance, resistance, and stroke volume to perturb pulse pressure. Observe how stiff arteries widen pulse pressure.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "139-147" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "566-575" }
+          ]
+        },
+        {
+          "id": "cv/poiseuille-flow",
+          "slug": "poiseuille-flow",
+          "title": "Poiseuille Flow",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Slide vessel radius, viscosity, and pressure gradient to watch flow scale by radius to the fourth power.",
+          "concept": "You are looking at laminar flow through a cylindrical vessel. Manipulate radius, pressure gradient, length, and viscosity. Observe why radius dominates resistance and flow.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "139-144" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "575-583" }
+          ]
+        },
+        {
+          "id": "cv/capillary-starling",
+          "slug": "capillary-starling",
+          "title": "Capillary Starling Forces",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Adjust hydrostatic and oncotic pressures to predict filtration, absorption, and edema risk.",
+          "concept": "You are looking at fluid movement across the capillary wall. Manipulate capillary hydrostatic pressure, plasma oncotic pressure, interstitial pressure, and permeability. Observe when net filtration overwhelms lymphatic return.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "153-158" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "177-190" }
+          ]
+        },
+        {
+          "id": "cv/microcirculation-autoregulation",
+          "slug": "microcirculation-autoregulation",
+          "title": "Microcirculation Autoregulation",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb local O2 demand and pressure to watch arteriolar tone restore tissue flow.",
+          "concept": "You are looking at local metabolic control of tissue blood flow. Perturb oxygen demand, arterial pressure, or myogenic tone. Observe how arterioles adjust resistance to stabilize delivery.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "583-594" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "205-214" }
+          ]
+        },
+        {
+          "id": "cv/valvular-lesions",
+          "slug": "valvular-lesions",
+          "title": "Valvular Lesions on PV Loops",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Toggle stenosis or regurgitation to see how loop shape, murmur timing, and loading change.",
+          "concept": "You are looking at pressure-volume loop changes caused by valve disease. Toggle aortic stenosis, aortic regurgitation, mitral stenosis, or mitral regurgitation. Observe how forward stroke volume and loop boundaries change.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "134-138" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "548-555" }
+          ]
+        },
+        {
+          "id": "cv/shock-states",
+          "slug": "shock-states",
+          "title": "Shock States",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Compare hypovolemic, cardiogenic, distributive, and obstructive shock in one hemodynamic state space.",
+          "concept": "You are looking at cardiac output, systemic vascular resistance, filling pressure, and oxygen delivery. Select a shock phenotype and perturb compensation. Observe why similar blood pressures can hide different hemodynamic failures.",
+          "references": [
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "253-264" },
+            { "source": "Costanzo Physiology, 7e", "pages": "147-153" }
+          ]
+        },
+        {
+          "id": "cv/fetal-circulation-transition",
+          "slug": "fetal-circulation-transition",
+          "title": "Fetal Circulation Transition",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Step through placental flow, shunts, first breath, and closure of the ductus and foramen ovale.",
+          "concept": "You are looking at the transition from fetal to neonatal circulation. Click each mechanism step from placental oxygenation to postnatal shunt closure. Observe how pressure reversals redirect flow after the first breath.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1168-1174" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "1031-1037" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resp",
+      "name": "Respiratory",
+      "shortName": "Resp",
+      "status": "live",
+      "teaser": "Gas exchange, mechanics, control, and transport diagrams for pulmonary physiology.",
+      "diagrams": [
+        {
+          "id": "resp/o2-hb",
+          "slug": "o2-hb",
+          "title": "O2-Hb Dissociation",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Perturb pH, CO2, temperature, and 2,3-BPG to shift the curve.",
+          "concept": "You are looking at hemoglobin saturation as PO2 changes. Manipulate pH, PaCO2, temperature, and 2,3-BPG to shift affinity. Observe how P50 moves relative to normal.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "220-224" },
+            { "source": "West Respiratory Physiology, 11e", "pages": "76-82" }
+          ]
+        },
+        {
+          "id": "resp/vq-matching",
+          "slug": "vq-matching",
+          "title": "Ventilation-Perfusion Matching",
+          "archetype": "multi-variable-interaction",
+          "status": "reference",
+          "teaser": "Move regional ventilation and perfusion to compare shunt, dead space, and normal units.",
+          "concept": "You are looking at regional alveolar gas exchange across V/Q ratios. Manipulate ventilation and perfusion to create shunt-like and dead-space-like states. Observe how PAO2 and PACO2 move together.",
+          "references": [
+            { "source": "West Respiratory Physiology, 11e", "pages": "51-66" },
+            { "source": "Costanzo Physiology, 7e", "pages": "210-218" }
+          ]
+        },
+        {
+          "id": "resp/lung-volumes",
+          "slug": "lung-volumes",
+          "title": "Lung Volumes and Spirometry",
+          "archetype": "scrubbable-timeline",
+          "status": "planned",
+          "teaser": "Scrub a respiratory maneuver to map volumes, capacities, and flow.",
+          "concept": "You are looking at a spirometry trace through quiet breathing and forced expiration. Scrub the maneuver and toggle capacity labels. Observe how obstructive and restrictive patterns alter the trace.",
+          "references": [
+            { "source": "West Respiratory Physiology, 11e", "pages": "95-104" },
+            { "source": "Costanzo Physiology, 7e", "pages": "191-199" }
+          ]
+        },
+        {
+          "id": "resp/airway-resistance",
+          "slug": "airway-resistance",
+          "title": "Airway Resistance",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Change radius, lung volume, and flow regime to see resistance scale.",
+          "concept": "You are looking at resistance as airway radius and lung volume change. Manipulate radius, transmural pressure, and flow to compare laminar and turbulent behavior. Observe why small changes in radius dominate.",
+          "references": [
+            { "source": "West Respiratory Physiology, 11e", "pages": "117-124" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "686-694" }
+          ]
+        },
+        {
+          "id": "resp/ventilation-control",
+          "slug": "ventilation-control",
+          "title": "Ventilation Control Loop",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb CO2 or O2 and watch chemoreceptor drive update ventilation.",
+          "concept": "You are looking at chemical control of ventilation. Perturb arterial CO2, O2, or pH to drive central and peripheral chemoreceptors. Observe how minute ventilation changes toward a new steady state.",
+          "references": [
+            { "source": "West Respiratory Physiology, 11e", "pages": "137-151" },
+            { "source": "Costanzo Physiology, 7e", "pages": "230-237" }
+          ]
+        },
+        {
+          "id": "resp/diffusion-limitation",
+          "slug": "diffusion-limitation",
+          "title": "Diffusion Limitation",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Change membrane thickness, surface area, transit time, and gas type to compare diffusion reserve.",
+          "concept": "You are looking at alveolar-capillary gas equilibration over capillary transit time. Manipulate membrane thickness, surface area, cardiac output, and gas identity. Observe when oxygen becomes diffusion-limited rather than perfusion-limited.",
+          "references": [
+            { "source": "West Respiratory Physiology, 11e", "pages": "23-34" },
+            { "source": "Costanzo Physiology, 7e", "pages": "200-207" }
+          ]
+        },
+        {
+          "id": "resp/compliance-pressure-volume",
+          "slug": "compliance-pressure-volume",
+          "title": "Lung Compliance Pressure-Volume Curve",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Shift elastance, surfactant, and chest wall load to compare normal, emphysema, and fibrosis curves.",
+          "concept": "You are looking at lung volume as transpulmonary pressure changes. Manipulate elastance, surfactant effect, and chest wall coupling to reshape the curve. Observe how compliance changes work of breathing.",
+          "references": [
+            { "source": "West Respiratory Physiology, 11e", "pages": "107-116" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "694-706" }
+          ]
+        },
+        {
+          "id": "resp/dead-space-ventilation",
+          "slug": "dead-space-ventilation",
+          "title": "Dead Space and Alveolar Ventilation",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Adjust tidal volume, respiratory rate, and dead space to see alveolar ventilation and PaCO2.",
+          "concept": "You are looking at minute ventilation partitioned into dead-space and alveolar ventilation. Manipulate tidal volume, frequency, and anatomic or physiologic dead space. Observe why rapid shallow breathing can lower effective ventilation.",
+          "references": [
+            { "source": "West Respiratory Physiology, 11e", "pages": "13-22" },
+            { "source": "Costanzo Physiology, 7e", "pages": "191-199" }
+          ]
+        },
+        {
+          "id": "resp/oxygen-content",
+          "slug": "oxygen-content",
+          "title": "Oxygen Content and Delivery",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Balance hemoglobin, saturation, PaO2, and cardiac output to calculate oxygen delivery.",
+          "concept": "You are looking at arterial oxygen content and systemic oxygen delivery. Manipulate hemoglobin, saturation, dissolved oxygen, and cardiac output. Observe why anemia and hypoxemia can produce different delivery profiles.",
+          "references": [
+            { "source": "West Respiratory Physiology, 11e", "pages": "76-89" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "660-668" }
+          ]
+        },
+        {
+          "id": "resp/respiratory-acid-base",
+          "slug": "respiratory-acid-base",
+          "title": "Respiratory Acid-Base Compensation",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb PaCO2 and bicarbonate buffering to watch pH and ventilatory drive respond.",
+          "concept": "You are looking at the respiratory contribution to acid-base control. Perturb CO2 production, alveolar ventilation, and renal bicarbonate compensation. Observe how pH, PaCO2, and ventilatory drive form a feedback loop.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "237-244" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "818-850" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nerv",
+      "name": "Nervous",
+      "shortName": "Nerv",
+      "status": "live",
+      "teaser": "Excitability, sensory transduction, synapses, and reflexes.",
+      "diagrams": [
+        {
+          "id": "nerv/action-potential",
+          "slug": "action-potential",
+          "title": "Action Potential",
+          "archetype": "scrubbable-timeline",
+          "status": "reference",
+          "teaser": "Scrub membrane voltage to align Na, K, and refractory events.",
+          "concept": "You are looking at a neuronal action potential with channel states. Scrub time or toggle conductances to align ion movement with voltage. Observe how refractory periods emerge from channel kinetics.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "45-53" },
+            { "source": "Kandel Principles of Neural Science, 6e", "pages": "149-162" }
+          ]
+        },
+        {
+          "id": "nerv/synaptic-transmission",
+          "slug": "synaptic-transmission",
+          "title": "Synaptic Transmission",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Step through vesicle docking, release, receptor activation, and recycling.",
+          "concept": "You are looking at chemical synaptic transmission as a sequence. Click each mechanism step to reveal molecular events. Observe where calcium entry controls release probability.",
+          "references": [
+            { "source": "Kandel Principles of Neural Science, 6e", "pages": "200-219" },
+            { "source": "Costanzo Physiology, 7e", "pages": "60-66" }
+          ]
+        },
+        {
+          "id": "nerv/phototransduction",
+          "slug": "phototransduction",
+          "title": "Phototransduction",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Step through opsin activation, cGMP changes, and photoreceptor hyperpolarization.",
+          "concept": "You are looking at the photoreceptor cascade. Click each biochemical step from photon capture to glutamate release. Observe why light hyperpolarizes rods and cones.",
+          "references": [
+            { "source": "Kandel Principles of Neural Science, 6e", "pages": "530-548" },
+            { "source": "Costanzo Physiology, 7e", "pages": "86-92" }
+          ]
+        },
+        {
+          "id": "nerv/reflex-arc",
+          "slug": "reflex-arc",
+          "title": "Spinal Reflex Arc",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb stretch and watch afferent, interneuron, and motor output update.",
+          "concept": "You are looking at a stretch reflex loop. Perturb muscle length or inhibit an interneuron to follow signal flow. Observe how reciprocal inhibition shapes motor output.",
+          "references": [
+            { "source": "Kandel Principles of Neural Science, 6e", "pages": "763-779" },
+            { "source": "Costanzo Physiology, 7e", "pages": "74-82" }
+          ]
+        },
+        {
+          "id": "nerv/receptive-fields",
+          "slug": "receptive-fields",
+          "title": "Receptive Fields",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Move stimulus location and intensity to compare center-surround responses.",
+          "concept": "You are looking at sensory receptor response maps. Manipulate stimulus location, size, and intensity. Observe how lateral inhibition sharpens contrast.",
+          "references": [
+            { "source": "Kandel Principles of Neural Science, 6e", "pages": "395-410" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "msk",
+      "name": "Musculoskeletal",
+      "shortName": "MSK",
+      "status": "live",
+      "teaser": "Muscle mechanics, contraction mechanisms, recruitment, and bone regulation.",
+      "diagrams": [
+        {
+          "id": "msk/cross-bridge",
+          "slug": "cross-bridge",
+          "title": "Cross-Bridge Cycle",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Step through ATP binding, hydrolysis, cocking, binding, and power stroke.",
+          "concept": "You are looking at the actin-myosin cycle. Click each step or autoplay the loop to follow ATP use. Observe how attachment state changes force generation.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "25-32" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "76-88" }
+          ]
+        },
+        {
+          "id": "msk/length-tension",
+          "slug": "length-tension",
+          "title": "Length-Tension Relationship",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Slide sarcomere length to compare active, passive, and total tension.",
+          "concept": "You are looking at muscle tension across sarcomere lengths. Manipulate length and calcium availability to compare active and passive components. Observe why optimal overlap maximizes active force.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "30-35" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "248-260" }
+          ]
+        },
+        {
+          "id": "msk/excitation-contraction",
+          "slug": "excitation-contraction",
+          "title": "Excitation-Contraction Coupling",
+          "archetype": "scrubbable-timeline",
+          "status": "planned",
+          "teaser": "Scrub from sarcolemmal AP to calcium release and cross-bridge activation.",
+          "concept": "You are looking at the timeline linking membrane excitation to contraction. Scrub time and toggle calcium compartments. Observe how SR calcium release precedes force development.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "260-270" },
+            { "source": "Costanzo Physiology, 7e", "pages": "36-41" }
+          ]
+        },
+        {
+          "id": "msk/motor-unit-recruitment",
+          "slug": "motor-unit-recruitment",
+          "title": "Motor Unit Recruitment",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Change drive and fatigue to watch recruitment order and force output evolve.",
+          "concept": "You are looking at motor unit recruitment and summation. Manipulate neural drive, firing rate, and fatigue. Observe how force increases before fatigue reshapes the response.",
+          "references": [
+            { "source": "Kandel Principles of Neural Science, 6e", "pages": "744-756" }
+          ]
+        },
+        {
+          "id": "msk/bone-remodeling",
+          "slug": "bone-remodeling",
+          "title": "Bone Remodeling Loop",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb load, PTH, and vitamin D to track osteoblast and osteoclast balance.",
+          "concept": "You are looking at coupled bone formation and resorption. Perturb mechanical load or endocrine signals to alter remodeling. Observe how long time constants differ from acute calcium regulation.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1090-1100" }
+          ]
+        },
+        {
+          "id": "msk/force-velocity",
+          "slug": "force-velocity",
+          "title": "Force-Velocity Relationship",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Slide load to see shortening velocity fall and eccentric force rise.",
+          "concept": "You are looking at muscle shortening velocity as load changes. Manipulate load, fiber type, and activation to reshape concentric and eccentric regions. Observe why maximum power occurs between zero load and isometric force.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "32-36" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "248-260" }
+          ]
+        },
+        {
+          "id": "msk/twitch-summation",
+          "slug": "twitch-summation",
+          "title": "Twitch Summation and Tetanus",
+          "archetype": "scrubbable-timeline",
+          "status": "planned",
+          "teaser": "Scrub stimulus trains to compare twitch, summation, unfused tetanus, and fused tetanus.",
+          "concept": "You are looking at force development during repeated muscle stimulation. Manipulate stimulus frequency and calcium reuptake to compare isolated twitch and tetanic states. Observe how residual calcium supports summation.",
+          "references": [
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "84-91" },
+            { "source": "Costanzo Physiology, 7e", "pages": "36-41" }
+          ]
+        },
+        {
+          "id": "msk/fiber-type-metabolism",
+          "slug": "fiber-type-metabolism",
+          "title": "Muscle Fiber Type Metabolism",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Compare type I, IIa, and IIx fibers across fatigue, force, oxygen use, and ATP source.",
+          "concept": "You are looking at fiber-type tradeoffs in skeletal muscle. Manipulate workload, oxygen availability, and recruitment pattern to compare oxidative and glycolytic behavior. Observe how fatigue resistance and peak force diverge.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "270-279" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "91-96" }
+          ]
+        },
+        {
+          "id": "msk/muscle-spindle",
+          "slug": "muscle-spindle",
+          "title": "Muscle Spindle and Gamma Loop",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb stretch and gamma drive to watch Ia afferents and alpha motor output respond.",
+          "concept": "You are looking at proprioceptive stretch feedback. Manipulate muscle length, velocity, and gamma motor drive to change spindle firing. Observe how alpha motor output and intrafusal sensitivity interact.",
+          "references": [
+            { "source": "Kandel Principles of Neural Science, 6e", "pages": "744-779" },
+            { "source": "Costanzo Physiology, 7e", "pages": "74-82" }
+          ]
+        },
+        {
+          "id": "msk/joint-lever-mechanics",
+          "slug": "joint-lever-mechanics",
+          "title": "Joint Lever Mechanics",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Move joint angle, moment arm, load, and muscle force to understand torque production.",
+          "concept": "You are looking at a limb segment as a lever system. Manipulate joint angle, external load, moment arm, and muscle force. Observe how torque changes even when muscle force is constant.",
+          "references": [
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "76-88" },
+            { "source": "Kandel Principles of Neural Science, 6e", "pages": "724-744" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gi",
+      "name": "Gastrointestinal",
+      "shortName": "GI",
+      "status": "live",
+      "teaser": "Motility, secretion, absorption, and digestive feedback loops.",
+      "diagrams": [
+        {
+          "id": "gi/gastric-acid",
+          "slug": "gastric-acid",
+          "title": "Gastric Acid Control",
+          "archetype": "feedback-loop",
+          "status": "reference",
+          "teaser": "Stimulate vagal, gastrin, and histamine arms; suppress acid with feedback.",
+          "concept": "You are looking at parietal cell acid secretion control. Perturb meal phase, vagal tone, gastrin, or histamine. Observe how somatostatin and luminal pH restrain acid output.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "294-303" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "898-912" }
+          ]
+        },
+        {
+          "id": "gi/peristalsis",
+          "slug": "peristalsis",
+          "title": "Peristaltic Reflex",
+          "archetype": "scrubbable-timeline",
+          "status": "planned",
+          "teaser": "Scrub bolus movement to align oral contraction and anal relaxation.",
+          "concept": "You are looking at the enteric peristaltic reflex. Scrub bolus movement and toggle neurotransmitter layers. Observe how contraction behind and relaxation ahead propel contents.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "868-878" },
+            { "source": "Costanzo Physiology, 7e", "pages": "276-285" }
+          ]
+        },
+        {
+          "id": "gi/intestinal-absorption",
+          "slug": "intestinal-absorption",
+          "title": "Intestinal Absorption",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Click through apical entry, intracellular processing, and basolateral exit.",
+          "concept": "You are looking at epithelial nutrient and electrolyte absorption. Click transporter steps to follow luminal-to-blood movement. Observe how sodium gradients power coupled uptake.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "314-323" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "936-950" }
+          ]
+        },
+        {
+          "id": "gi/bile-flow",
+          "slug": "bile-flow",
+          "title": "Bile Flow and Enterohepatic Cycling",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb bile acid return and watch hepatic secretion and gallbladder contraction.",
+          "concept": "You are looking at enterohepatic cycling of bile acids. Perturb meal state, ileal return, or gallbladder contraction. Observe how recycled bile acids amplify secretion.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "924-935" },
+            { "source": "Costanzo Physiology, 7e", "pages": "304-311" }
+          ]
+        },
+        {
+          "id": "gi/pancreatic-secretion",
+          "slug": "pancreatic-secretion",
+          "title": "Pancreatic Secretion",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Balance secretin, CCK, duct bicarbonate, and acinar enzyme output.",
+          "concept": "You are looking at exocrine pancreatic secretion. Manipulate duodenal acid, fat, and vagal tone to drive duct and acinar responses. Observe how bicarbonate and enzyme secretion are coordinated.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "303-311" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "912-924" }
+          ]
+        },
+        {
+          "id": "gi/gastric-emptying",
+          "slug": "gastric-emptying",
+          "title": "Gastric Emptying",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Adjust meal volume, fat, osmolality, and duodenal feedback to predict emptying rate.",
+          "concept": "You are looking at stomach-to-duodenum flow control. Manipulate meal composition, pyloric resistance, and duodenal feedback signals. Observe how fat, acid, and hyperosmolar chyme slow gastric emptying.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "285-294" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "878-890" }
+          ]
+        },
+        {
+          "id": "gi/swallowing-esophageal-motility",
+          "slug": "swallowing-esophageal-motility",
+          "title": "Swallowing and Esophageal Motility",
+          "archetype": "scrubbable-timeline",
+          "status": "planned",
+          "teaser": "Scrub oral, pharyngeal, and esophageal phases while sphincters open and close.",
+          "concept": "You are looking at coordinated swallowing from bolus propulsion to lower esophageal sphincter relaxation. Scrub time and toggle cranial nerve or smooth-muscle phases. Observe how peristalsis clears the bolus without airway entry.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "276-285" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "858-868" }
+          ]
+        },
+        {
+          "id": "gi/fat-absorption-micelles",
+          "slug": "fat-absorption-micelles",
+          "title": "Fat Absorption and Micelles",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Click emulsification, lipase action, micelle delivery, chylomicron assembly, and lymph export.",
+          "concept": "You are looking at lipid digestion and absorption across the intestinal lumen and enterocyte. Click each mechanism step to follow fat from bile-salt emulsification to chylomicron export. Observe where pancreatic enzymes and bile acids are required.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "323-331" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "950-960" }
+          ]
+        },
+        {
+          "id": "gi/colon-water-electrolyte",
+          "slug": "colon-water-electrolyte",
+          "title": "Colon Water and Electrolyte Handling",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Balance transit time, aldosterone, secretion, and absorption to predict stool water.",
+          "concept": "You are looking at colonic water and electrolyte handling. Manipulate transit time, sodium absorption, chloride secretion, and aldosterone effect. Observe why fast transit and secretory states increase stool water.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "331-338" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "960-970" }
+          ]
+        },
+        {
+          "id": "gi/vomiting-reflex",
+          "slug": "vomiting-reflex",
+          "title": "Vomiting Reflex",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb vestibular, chemoreceptor, vagal, and cortical inputs to watch emetic output.",
+          "concept": "You are looking at emesis control through brainstem integration. Perturb vestibular input, chemoreceptor trigger zone activity, vagal afferents, or cortical drive. Observe how motor outputs coordinate retching, sphincter relaxation, and expulsion.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "890-898" },
+            { "source": "Costanzo Physiology, 7e", "pages": "276-285" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "endo",
+      "name": "Endocrine",
+      "shortName": "Endo",
+      "status": "live",
+      "teaser": "Hormone axes, glucose regulation, thyroid control, and calcium balance.",
+      "diagrams": [
+        {
+          "id": "endo/hpa-axis",
+          "slug": "hpa-axis",
+          "title": "HPA Axis",
+          "archetype": "feedback-loop",
+          "status": "reference",
+          "teaser": "Trigger stress, ACTH, or dexamethasone and watch cortisol feedback.",
+          "concept": "You are looking at hypothalamic-pituitary-adrenal control. Perturb stress, ACTH, or dexamethasone to drive the loop. Observe how cortisol feeds back on CRH and ACTH.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "410-418" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1024-1030" }
+          ]
+        },
+        {
+          "id": "endo/hpt-axis",
+          "slug": "hpt-axis",
+          "title": "HPT Axis",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb TSH, thyroid hormone, or iodine availability to see feedback.",
+          "concept": "You are looking at thyroid axis feedback. Perturb TRH, TSH, thyroid hormone, or iodine supply. Observe how negative feedback and gland responsiveness shape the steady state.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "388-399" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1002-1018" }
+          ]
+        },
+        {
+          "id": "endo/glucose-homeostasis",
+          "slug": "glucose-homeostasis",
+          "title": "Glucose Homeostasis",
+          "archetype": "feedback-loop",
+          "status": "reference",
+          "teaser": "Feed, fast, or inject insulin to watch liver, muscle, and pancreas respond.",
+          "concept": "You are looking at glucose regulation across pancreas, liver, muscle, and adipose tissue. Perturb meal state, insulin sensitivity, or glucagon. Observe how glucose returns toward range.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "424-438" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1038-1055" }
+          ]
+        },
+        {
+          "id": "endo/calcium-homeostasis",
+          "slug": "calcium-homeostasis",
+          "title": "Calcium Homeostasis",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Adjust PTH, vitamin D, kidney, gut, and bone terms to balance serum calcium.",
+          "concept": "You are looking at calcium flux among bone, kidney, gut, and plasma. Manipulate PTH, vitamin D, intake, and renal handling. Observe which compartments buffer acute and chronic changes.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "449-460" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1074-1090" }
+          ]
+        },
+        {
+          "id": "endo/thyroid-hormone-synthesis",
+          "slug": "thyroid-hormone-synthesis",
+          "title": "Thyroid Hormone Synthesis",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Click iodide trapping, organification, coupling, storage, and release.",
+          "concept": "You are looking at thyroid hormone synthesis inside the follicle. Click each biochemical step from iodide trapping to hormone release. Observe where common drugs interrupt synthesis.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "388-394" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1002-1011" }
+          ]
+        },
+        {
+          "id": "endo/insulin-glucagon",
+          "slug": "insulin-glucagon",
+          "title": "Insulin-Glucagon Ratio",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Move fed, fasting, exercise, and stress states to compare insulin/glucagon ratio and fuel flux.",
+          "concept": "You are looking at endocrine fuel partitioning across metabolic states. Manipulate meal state, exercise intensity, stress hormones, and insulin sensitivity. Observe how the insulin-glucagon ratio redirects liver, muscle, and adipose metabolism.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "424-438" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1038-1055" }
+          ]
+        },
+        {
+          "id": "endo/leptin-ghrelin-appetite",
+          "slug": "leptin-ghrelin-appetite",
+          "title": "Leptin-Ghrelin Appetite Loop",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb adiposity, fasting, and meal timing to watch hypothalamic hunger and satiety signals.",
+          "concept": "You are looking at appetite regulation through peripheral signals and hypothalamic integration. Manipulate adipose mass, fasting duration, and meal state to alter leptin and ghrelin. Observe how satiety and hunger drives oppose each other.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1055-1064" },
+            { "source": "Costanzo Physiology, 7e", "pages": "438-445" }
+          ]
+        },
+        {
+          "id": "endo/adrenal-medulla",
+          "slug": "adrenal-medulla",
+          "title": "Adrenal Medulla Catecholamines",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Trigger sympathetic stress and watch epinephrine, norepinephrine, glucose, and heart effects.",
+          "concept": "You are looking at adrenal medulla output during acute stress. Perturb sympathetic drive, cortisol priming, and receptor sensitivity. Observe how catecholamines coordinate cardiovascular and metabolic responses.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "410-418" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1024-1038" }
+          ]
+        },
+        {
+          "id": "endo/pituitary-hormone-map",
+          "slug": "pituitary-hormone-map",
+          "title": "Pituitary Hormone Map",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Click anterior and posterior pituitary hormones to reveal hypothalamic inputs and target organs.",
+          "concept": "You are looking at pituitary hormone outputs and their regulatory inputs. Click each hormone axis to trace hypothalamic control, pituitary release, and peripheral target response. Observe which axes use trophic feedback and which use neural release.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "380-388" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "984-1002" }
+          ]
+        },
+        {
+          "id": "endo/hormone-dose-response",
+          "slug": "hormone-dose-response",
+          "title": "Hormone Dose-Response",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Shift receptor number, affinity, and antagonist presence to compare sensitivity and maximal response.",
+          "concept": "You are looking at endocrine receptor dose-response behavior. Manipulate hormone concentration, receptor abundance, affinity, and antagonist effect. Observe how sensitivity and maximal response can change independently.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "970-984" },
+            { "source": "Costanzo Physiology, 7e", "pages": "372-380" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "renal",
+      "name": "Renal / KUB",
+      "shortName": "KUB",
+      "status": "live",
+      "teaser": "Kidney, ureter, bladder, filtration, tubular transport, countercurrent exchange, RAAS, and acid-base.",
+      "diagrams": [
+        {
+          "id": "renal/nephron-handling",
+          "slug": "nephron-handling",
+          "title": "Nephron Handling",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Click nephron segments to reveal solute transport and drug targets.",
+          "concept": "You are looking at tubular handling along the nephron. Click each segment to reveal transporters and gradients. Observe where diuretics alter sodium and water movement.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "160-180" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "738-780" }
+          ]
+        },
+        {
+          "id": "renal/raas",
+          "slug": "raas",
+          "title": "RAAS",
+          "archetype": "feedback-loop",
+          "status": "reference",
+          "teaser": "Perturb renal perfusion or sodium delivery and watch angiotensin and aldosterone.",
+          "concept": "You are looking at renin-angiotensin-aldosterone control. Perturb pressure, macula densa NaCl, or sympathetic tone. Observe how volume and resistance responses couple.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "182-188" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "806-818" }
+          ]
+        },
+        {
+          "id": "renal/gfr-autoregulation",
+          "slug": "gfr-autoregulation",
+          "title": "GFR Autoregulation",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Move arterial pressure and arteriolar tone to compare RPF and GFR.",
+          "concept": "You are looking at filtration across renal perfusion pressure. Manipulate arterial pressure, afferent tone, and efferent tone. Observe the autoregulatory plateau and its failure points.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "153-162" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "720-738" }
+          ]
+        },
+        {
+          "id": "renal/countercurrent",
+          "slug": "countercurrent",
+          "title": "Countercurrent Multiplication",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Adjust loop flow, transporter strength, and ADH to build or wash out the gradient.",
+          "concept": "You are looking at medullary osmotic gradient formation. Manipulate loop flow, NKCC activity, urea recycling, and ADH. Observe how a small transverse gradient becomes a longitudinal gradient.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "173-180" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "780-806" }
+          ]
+        },
+        {
+          "id": "renal/acid-base",
+          "slug": "acid-base",
+          "title": "Acid-Base Compensation",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Move pH, PaCO2, and bicarbonate to classify disorders and compensation.",
+          "concept": "You are looking at acid-base state space. Manipulate bicarbonate, PaCO2, and renal compensation. Observe how primary disorders move along expected compensation lines.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "188-190" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "818-850" }
+          ]
+        },
+        {
+          "id": "renal/micturition-reflex",
+          "slug": "micturition-reflex",
+          "title": "Micturition Reflex",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb bladder volume, stretch afferents, and sphincter tone to see voiding control.",
+          "concept": "You are looking at bladder filling and voiding control. Manipulate bladder volume, pontine drive, parasympathetic outflow, and external sphincter tone. Observe how storage switches into coordinated detrusor contraction and sphincter relaxation.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "806-818" },
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "433-438" }
+          ]
+        },
+        {
+          "id": "renal/bladder-pressure-volume",
+          "slug": "bladder-pressure-volume",
+          "title": "Bladder Pressure-Volume Curve",
+          "archetype": "perturbable-curve",
+          "status": "planned",
+          "teaser": "Slide volume, compliance, and outlet resistance to compare normal and retention states.",
+          "concept": "You are looking at cystometric pressure as bladder volume rises. Manipulate compliance, detrusor tone, and outlet resistance to reshape the curve. Observe how low compliance raises pressure before capacity is reached.",
+          "references": [
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "433-438" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "806-818" }
+          ]
+        },
+        {
+          "id": "renal/ureteral-peristalsis",
+          "slug": "ureteral-peristalsis",
+          "title": "Ureteral Peristalsis",
+          "archetype": "scrubbable-timeline",
+          "status": "planned",
+          "teaser": "Scrub a peristaltic wave from renal pelvis to bladder and compare obstruction states.",
+          "concept": "You are looking at ureteral propulsion from the renal pelvis to the ureterovesical junction. Scrub time and perturb obstruction or urine flow. Observe how pressure waves move boluses while reflux is prevented.",
+          "references": [
+            { "source": "Guyton and Hall Textbook of Medical Physiology, 14e", "pages": "431-438" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "806-818" }
+          ]
+        },
+        {
+          "id": "renal/diuretic-sites",
+          "slug": "diuretic-sites",
+          "title": "Diuretic Sites of Action",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Click nephron segments to map carbonic anhydrase, loop, thiazide, ENaC, and aldosterone targets.",
+          "concept": "You are looking at diuretic targets along the nephron. Click each drug class to reveal transporter blockade, electrolyte effects, and downstream compensation. Observe why segment location predicts urine and potassium effects.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "160-180" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "738-806" }
+          ]
+        },
+        {
+          "id": "renal/potassium-handling",
+          "slug": "potassium-handling",
+          "title": "Potassium Handling",
+          "archetype": "multi-variable-interaction",
+          "status": "planned",
+          "teaser": "Adjust aldosterone, distal flow, serum potassium, and acid-base state to predict K excretion.",
+          "concept": "You are looking at potassium secretion and reabsorption across distal nephron segments. Manipulate aldosterone, distal sodium delivery, flow, and acid-base state. Observe how multiple drivers converge on urinary potassium excretion.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "180-188" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "780-806" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "repro",
+      "name": "Reproductive",
+      "shortName": "Repro",
+      "status": "live",
+      "teaser": "Cycles, gametogenesis, pregnancy physiology, lactation, and reproductive reflexes.",
+      "diagrams": [
+        {
+          "id": "repro/menstrual-cycle",
+          "slug": "menstrual-cycle",
+          "title": "Menstrual Cycle",
+          "archetype": "scrubbable-timeline",
+          "status": "reference",
+          "teaser": "Scrub cycle day to align ovarian, endometrial, and hormone phases.",
+          "concept": "You are looking at the ovarian and endometrial cycle together. Scrub cycle day and toggle hormone traces. Observe how LH surge, ovulation, and progesterone map to tissue changes.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "466-474" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1134-1148" }
+          ]
+        },
+        {
+          "id": "repro/spermatogenesis",
+          "slug": "spermatogenesis",
+          "title": "Spermatogenesis",
+          "archetype": "click-to-mechanism",
+          "status": "planned",
+          "teaser": "Click through mitosis, meiosis, spermiogenesis, and Sertoli support.",
+          "concept": "You are looking at sperm development across the seminiferous epithelium. Click stages to track germ cell maturation and support cells. Observe where FSH, LH, and testosterone act.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "461-466" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1118-1133" }
+          ]
+        },
+        {
+          "id": "repro/pregnancy-hormones",
+          "slug": "pregnancy-hormones",
+          "title": "Pregnancy Hormones",
+          "archetype": "scrubbable-timeline",
+          "status": "planned",
+          "teaser": "Scrub gestational week to compare hCG, progesterone, estrogen, and placental shift.",
+          "concept": "You are looking at hormonal changes across pregnancy. Scrub gestational age and toggle maternal or placental sources. Observe the luteal-placental shift and hCG peak.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "474-482" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1148-1162" }
+          ]
+        },
+        {
+          "id": "repro/lactation",
+          "slug": "lactation",
+          "title": "Lactation Reflex",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Perturb suckling and watch prolactin, oxytocin, production, and letdown.",
+          "concept": "You are looking at neuroendocrine control of lactation. Perturb suckling frequency or hormone availability. Observe how milk production and letdown are controlled by different hormones.",
+          "references": [
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1162-1168" },
+            { "source": "Costanzo Physiology, 7e", "pages": "480-482" }
+          ]
+        },
+        {
+          "id": "repro/erection-ejaculation",
+          "slug": "erection-ejaculation",
+          "title": "Erection and Ejaculation Reflexes",
+          "archetype": "feedback-loop",
+          "status": "planned",
+          "teaser": "Toggle parasympathetic and sympathetic arms to separate erection from emission.",
+          "concept": "You are looking at autonomic control of male sexual function. Toggle parasympathetic, sympathetic, and somatic arms. Observe why erection and ejaculation use distinct pathways.",
+          "references": [
+            { "source": "Costanzo Physiology, 7e", "pages": "461-466" },
+            { "source": "Boron and Boulpaep Medical Physiology, 3e", "pages": "1118-1133" }
+          ]
+        }
+      ]
+    }
+  ]
+}

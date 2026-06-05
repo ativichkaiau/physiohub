@@ -1,0 +1,51 @@
+{
+  "$schema": {
+    "_comment": "Keyed by system_id -> structure_id -> detail. 'related' entries are 'structure_id' (same system) or 'system_id/structure_id' (cross-system). Detail copy here is engine-validation placeholder, not clinical content.",
+    "system_ids": ["cv", "resp", "nerv", "msk", "gi", "endo", "renal", "repro"],
+    "structure_shape": {
+      "name": "string — human-readable structure name",
+      "function": "string — one-paragraph normal physiology",
+      "clinical": "string — common pathology, one paragraph",
+      "related": "array of 'structure_id' or 'system_id/structure_id' refs"
+    }
+  },
+  "cv": {
+    "aortic_valve": {
+      "name": "Aortic Valve",
+      "function": "Tricuspid semilunar valve at the outflow of the left ventricle. Opens during systole as left ventricular pressure exceeds aortic pressure, permitting ejection into the ascending aorta. Closes at the dicrotic notch when ventricular pressure falls below aortic pressure, preventing diastolic backflow.",
+      "clinical": "Aortic stenosis — leaflet calcification or congenital bicuspid morphology raises the transvalvular gradient and produces a crescendo-decrescendo ejection murmur at the right upper sternal border. Aortic regurgitation — leaflet or root pathology causes diastolic backflow, a wide pulse pressure, and a blowing decrescendo diastolic murmur at the left sternal border.",
+      "related": ["left_ventricle", "ascending_aorta", "mitral_valve"]
+    },
+    "left_ventricle": {
+      "name": "Left Ventricle",
+      "function": "Primary systemic pump. Receives oxygenated blood from the left atrium through the mitral valve during diastole, then ejects it through the aortic valve during systole. Wall thickness (~10 mm) reflects the high afterload of the systemic circuit; ejection fraction is normally 55–70%.",
+      "clinical": "Left ventricular hypertrophy develops in response to chronic pressure overload (hypertension, aortic stenosis) and predisposes to diastolic dysfunction. Anterior wall myocardial infarction from LAD occlusion impairs systolic function and may cause acute heart failure or cardiogenic shock.",
+      "related": ["mitral_valve", "aortic_valve", "ascending_aorta"]
+    },
+    "ascending_aorta": {
+      "name": "Ascending Aorta",
+      "function": "First segment of the systemic arterial tree, running from the aortic valve to the brachiocephalic artery origin. Houses the coronary ostia just above the aortic valve cusps. Elastic recoil during diastole maintains coronary perfusion pressure and converts pulsatile ejection toward steadier downstream flow.",
+      "clinical": "Ascending aortic aneurysm is associated with cystic medial degeneration in Marfan syndrome and bicuspid aortic valve disease. Type A aortic dissection — an intimal tear with propagation into the false lumen — is a surgical emergency presenting with tearing chest pain radiating to the back.",
+      "related": ["aortic_valve", "left_ventricle"]
+    },
+    "mitral_valve": {
+      "name": "Mitral Valve",
+      "function": "Bicuspid atrioventricular valve between the left atrium and left ventricle. Opens in diastole to permit ventricular filling and closes at the onset of systole, producing the first heart sound (S1). Anchored to the papillary muscles via the chordae tendineae, which prevent leaflet prolapse during ventricular contraction.",
+      "clinical": "Mitral regurgitation — leaflet prolapse, chordal rupture, or annular dilation produces a holosystolic murmur at the apex radiating to the axilla. Mitral stenosis, most often rheumatic in origin, causes a low-pitched diastolic rumble and left atrial enlargement that predisposes to atrial fibrillation.",
+      "related": ["left_ventricle", "aortic_valve"]
+    },
+    "right_atrium": {
+      "name": "Right Atrium",
+      "function": "Low-pressure receiving chamber for systemic venous return via the superior and inferior vena cavae and for coronary venous return via the coronary sinus. Houses the sinoatrial node in the lateral wall near the SVC junction, which initiates each cardiac cycle as the dominant pacemaker.",
+      "clinical": "Right atrial enlargement appears on ECG as a peaked P wave (P pulmonale) and reflects elevated right-sided filling pressures, classically from pulmonary hypertension or tricuspid stenosis. Atrial fibrillation originating in or propagating through the right atrium produces an irregularly irregular ventricular response.",
+      "related": ["left_ventricle", "resp/pulmonary_artery"]
+    }
+  },
+  "resp": {},
+  "nerv": {},
+  "msk": {},
+  "gi": {},
+  "endo": {},
+  "renal": {},
+  "repro": {}
+}

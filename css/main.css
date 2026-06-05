@@ -1,0 +1,496 @@
+/* =====================================================================
+   PhysioHub — shared styling.
+   Theme variables mirror the W-Series (Williams Rothmans) instrument
+   cluster: dark cyan signal on layered surfaces. The base set is dark;
+   .light on <html> flips to a daylight variant. SVG-specific vars are
+   defined by the SVG_CONTRACT and consumed by the inlined system SVGs.
+   ===================================================================== */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root, :root.dark {
+  color-scheme: dark;
+
+  --background:        #050709;
+  --background-tint:   #07090c;
+  --surface:           #0e1217;
+  --surface-2:         #161b22;
+  --surface-3:         #1c222b;
+
+  --border:            #1e242c;
+  --border-strong:     #2a323c;
+  --border-bright:     #3a4452;
+
+  --foreground:        #e8ecf1;
+  --foreground-dim:    #b6bcc4;
+  --muted:             #7c848d;
+  --muted-strong:      #9aa3ad;
+
+  --signal:            #2dd4f1;
+  --signal-strong:     #00b8da;
+  --signal-soft:       rgba(45, 212, 241, 0.12);
+  --signal-glow:       0 0 0 1px rgba(45, 212, 241, 0.35),
+                       0 0 24px -6px rgba(45, 212, 241, 0.6);
+
+  --good:              #4ec27f;
+  --warn:              #e9b033;
+  --bad:               #ef5350;
+
+  --grid:              rgba(255, 255, 255, 0.025);
+  --grid-strong:       rgba(255, 255, 255, 0.06);
+  --ambient-top:       rgba(45, 212, 241, 0.04);
+  --ambient-bottom:    rgba(45, 212, 241, 0.025);
+
+  --inset-top:         inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+  --inset-bottom:      inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
+  --panel-shadow:      0 1px 0 0 rgba(0, 0, 0, 0.4);
+  --focus-ring:        rgba(45, 212, 241, 0.55);
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+
+  /* SVG palette — see docs/SVG_CONTRACT.md §3 */
+  --svg-stroke:        rgba(232, 236, 241, 0.55);
+  --svg-fill:          rgba(45, 212, 241, 0.04);
+  --svg-highlight:     var(--signal);
+  --svg-active:        var(--signal-strong);
+  --svg-decor:         rgba(232, 236, 241, 0.18);
+  --svg-label:         var(--foreground-dim);
+}
+
+:root.light {
+  color-scheme: light;
+
+  --background:        #f6f8fb;
+  --background-tint:   #eef3f8;
+  --surface:           #ffffff;
+  --surface-2:         #edf2f7;
+  --surface-3:         #e2e9f1;
+
+  --border:            #d4dde8;
+  --border-strong:     #bcc9d8;
+  --border-bright:     #8fa3b8;
+
+  --foreground:        #15202b;
+  --foreground-dim:    #405062;
+  --muted:             #647386;
+  --muted-strong:      #465668;
+
+  --signal:            #007a99;
+  --signal-strong:     #006680;
+  --signal-soft:       rgba(0, 122, 153, 0.12);
+  --signal-glow:       0 0 0 1px rgba(0, 122, 153, 0.28),
+                       0 0 18px -8px rgba(0, 122, 153, 0.45);
+
+  --good:              #207a4a;
+  --warn:              #9a6a00;
+  --bad:               #bd2f2a;
+
+  --grid:              rgba(21, 32, 43, 0.045);
+  --grid-strong:       rgba(21, 32, 43, 0.085);
+  --ambient-top:       rgba(0, 122, 153, 0.08);
+  --ambient-bottom:    rgba(32, 122, 74, 0.045);
+
+  --inset-top:         inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  --inset-bottom:      inset 0 -1px 0 0 rgba(21, 32, 43, 0.08);
+  --panel-shadow:      0 1px 2px 0 rgba(16, 24, 40, 0.06);
+  --focus-ring:        rgba(0, 122, 153, 0.35);
+
+  --svg-stroke:        rgba(21, 32, 43, 0.55);
+  --svg-fill:          rgba(0, 122, 153, 0.05);
+  --svg-highlight:     var(--signal);
+  --svg-active:        var(--signal-strong);
+  --svg-decor:         rgba(21, 32, 43, 0.18);
+  --svg-label:         var(--foreground-dim);
+}
+
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", sans-serif;
+  font-size: 14px;
+  color: var(--foreground);
+  background: var(--background);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, var(--ambient-top), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 110%, var(--ambient-bottom), transparent);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================================================
+   Header (shared by hub home + every system page)
+   ========================================================= */
+header.app-header {
+  height: 60px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+  box-shadow: var(--inset-top), var(--panel-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+.brand-mark {
+  width: 32px; height: 32px; border-radius: var(--radius-md);
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--signal), var(--signal-strong));
+  color: var(--background);
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: var(--signal-glow);
+}
+.brand-title { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+.brand-sub   { font-size: 11px; color: var(--muted); margin-top: 1px; letter-spacing: 0.04em; text-transform: uppercase; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.btn {
+  background: var(--surface-2);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 140ms ease, background-color 140ms ease, transform 140ms ease;
+}
+.btn:hover { border-color: var(--border-bright); background: var(--surface-3); }
+.btn:active { transform: translateY(1px); }
+.btn-back { color: var(--foreground-dim); text-decoration: none; }
+
+/* =========================================================
+   Hub home
+   ========================================================= */
+.hub {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.hub-hero { margin-bottom: 40px; }
+.hub-hero .eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 14px;
+}
+.hub-hero h1 {
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.6px;
+  font-weight: 600;
+  max-width: 720px;
+}
+.hub-hero p {
+  margin-top: 16px;
+  font-size: 15px;
+  color: var(--foreground-dim);
+  max-width: 640px;
+  line-height: 1.55;
+}
+
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.system-card {
+  display: block;
+  position: relative;
+  padding: 22px 22px 24px;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--background-tint) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--inset-top), var(--panel-shadow);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+.system-card:hover {
+  border-color: var(--border-bright);
+  background-color: var(--surface-2);
+  transform: translateY(-1px);
+}
+.system-card[data-state="coming-soon"] {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+.system-card[data-state="coming-soon"]:hover {
+  transform: none;
+  border-color: var(--border);
+  background-color: var(--surface);
+}
+.system-card .card-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.system-card[data-state="coming-soon"] .card-tag { color: var(--warn); }
+.system-card[data-state="ready"] .card-tag { color: var(--signal); }
+.system-card h2 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+.system-card p {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--foreground-dim);
+  line-height: 1.5;
+}
+
+/* =========================================================
+   System page layout — 2 columns: SVG canvas + detail panel
+   ========================================================= */
+.system-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 20px;
+  padding: 20px 24px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .system-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+.canvas-wrap {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--background-tint) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--inset-top), var(--panel-shadow);
+  padding: 16px;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+.canvas-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 4px 6px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.canvas-header h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.2px; }
+.canvas-header .hint { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.svg-host {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  position: relative;
+}
+.svg-host svg {
+  width: 100%;
+  height: auto;
+  max-height: 580px;
+  display: block;
+}
+
+/* Structure styling — see SVG_CONTRACT §3 */
+.svg-host .decor,
+.svg-host .decor * { pointer-events: none; }
+
+.svg-host .structure { cursor: pointer; outline: none; }
+.svg-host .structure > * {
+  transition: fill 140ms ease, stroke 140ms ease, stroke-width 140ms ease,
+              filter 140ms ease, opacity 140ms ease;
+}
+.svg-host .structure:hover > *:not(title),
+.svg-host .structure:focus-visible > *:not(title) {
+  stroke: var(--svg-highlight);
+  stroke-width: 2.5;
+  fill: var(--signal-soft);
+  filter: drop-shadow(0 0 6px var(--svg-highlight));
+}
+.svg-host .structure.is-active > *:not(title) {
+  stroke: var(--svg-active);
+  stroke-width: 2.5;
+  fill: var(--signal-soft);
+  filter: drop-shadow(0 0 10px var(--svg-active));
+}
+.svg-host .svg-label { font-size: 11px; font-family: inherit; pointer-events: none; }
+
+/* Floating tooltip on hover */
+.svg-tooltip {
+  position: absolute;
+  pointer-events: none;
+  padding: 5px 9px;
+  background: var(--surface-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--foreground);
+  box-shadow: var(--panel-shadow);
+  opacity: 0;
+  transform: translate(-50%, -130%);
+  transition: opacity 120ms ease;
+  white-space: nowrap;
+  z-index: 5;
+}
+.svg-tooltip.show { opacity: 1; }
+
+/* =========================================================
+   Detail panel
+   ========================================================= */
+.detail-panel {
+  position: sticky;
+  top: 80px;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--background-tint) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--inset-top), var(--panel-shadow);
+  padding: 20px;
+  min-height: 280px;
+}
+.detail-panel .eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+.detail-panel h2 {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+.detail-panel .empty {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.detail-section { margin-top: 18px; }
+.detail-section h3 {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-strong);
+  margin-bottom: 6px;
+}
+.detail-section p {
+  font-size: 13px;
+  color: var(--foreground-dim);
+  line-height: 1.55;
+}
+.related-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin-top: 4px;
+}
+.related-list a {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--signal);
+  text-decoration: none;
+  background: var(--signal-soft);
+  cursor: pointer;
+  transition: border-color 140ms ease, background-color 140ms ease;
+}
+.related-list a:hover {
+  border-color: var(--signal);
+  background: var(--surface-3);
+}
+.related-list a .cross {
+  margin-left: 6px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.detail-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+}
+.detail-close:hover { border-color: var(--border-bright); color: var(--foreground); }
+.detail-panel[data-empty="true"] .detail-close { display: none; }
+
+/* =========================================================
+   Coming-soon system pages
+   ========================================================= */
+.coming-soon {
+  max-width: 720px;
+  margin: 80px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+.coming-soon .eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--warn);
+}
+.coming-soon h1 {
+  margin-top: 12px;
+  font-size: 32px;
+  letter-spacing: -0.4px;
+  font-weight: 600;
+}
+.coming-soon p {
+  margin-top: 14px;
+  color: var(--foreground-dim);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.coming-soon .btn { margin-top: 28px; }
+
+/* =========================================================
+   Focus ring (keyboard nav)
+   ========================================================= */
+:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background),
+    0 0 0 4px var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+.svg-host .structure:focus-visible { box-shadow: none; }
+
+/* =========================================================
+   Reduced motion
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

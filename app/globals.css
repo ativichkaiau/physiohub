@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --ph-bg: #06080d;
+  --ph-surface: #10141c;
+  --ph-surface-2: #171d27;
+  --ph-surface-3: #222a36;
+  --ph-text: #eef5f7;
+  --ph-muted: #a7b1ba;
+  --ph-muted-2: #6f7d87;
+  --ph-accent: #28d3ec;
+  --ph-accent-2: #f2b84b;
+  --ph-curve-1: #28d3ec;
+  --ph-curve-2: #f2b84b;
+  --ph-curve-3: #b794f4;
+  --ph-curve-4: #f08db5;
+  --ph-curve-ref: #9aa6af;
+  --ph-axis: #c8d2da;
+  --ph-grid: rgba(238, 245, 247, 0.09);
+  --ph-border: rgba(238, 245, 247, 0.13);
+  --ph-border-strong: rgba(238, 245, 247, 0.24);
+  --ph-warn: #f2b84b;
+  --ph-danger: #ff8a7a;
+  --ph-ok: #69c9a2;
+  --ph-radius: 8px;
+  --ph-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
+
+  --background: var(--ph-bg);
+  --surface: var(--ph-surface);
+  --surface-2: var(--ph-surface-2);
+  --foreground: var(--ph-text);
+  --foreground-dim: var(--ph-muted);
+  --signal: var(--ph-accent);
+  --signal-soft: rgba(40, 211, 236, 0.13);
+  --warn: var(--ph-warn);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --ph-bg: #f1f4f7;
+    --ph-surface: #ffffff;
+    --ph-surface-2: #e9eef3;
+    --ph-surface-3: #e2ebef;
+    --ph-text: #111b21;
+    --ph-muted: #536672;
+    --ph-muted-2: #7a8a95;
+    --ph-accent: #007c96;
+    --ph-accent-2: #ad7110;
+    --ph-curve-1: #007c96;
+    --ph-curve-2: #ad7110;
+    --ph-curve-3: #6e54b9;
+    --ph-curve-4: #a94172;
+    --ph-curve-ref: #66737c;
+    --ph-axis: #253640;
+    --ph-grid: rgba(17, 27, 33, 0.09);
+    --ph-border: rgba(17, 27, 33, 0.14);
+    --ph-border-strong: rgba(17, 27, 33, 0.26);
+    --ph-warn: #9a6200;
+    --ph-danger: #b74136;
+    --ph-ok: #22785d;
+    --ph-shadow: 0 16px 36px rgba(34, 48, 60, 0.12);
+    --signal-soft: rgba(0, 124, 150, 0.11);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--ph-bg);
+  color: var(--ph-text);
+  letter-spacing: 0;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--ph-accent), transparent 84%), transparent 26rem),
+    radial-gradient(circle at 78% 4%, color-mix(in srgb, var(--ph-curve-3), transparent 86%), transparent 24rem),
+    linear-gradient(var(--ph-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px),
+    var(--ph-bg);
+  background-repeat: no-repeat, no-repeat, repeat, repeat, repeat;
+  background-size: auto, auto, 28px 28px, 28px 28px, auto;
+  background-attachment: fixed;
+  color: var(--ph-text);
+  font-size: 15px;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+svg {
+  display: block;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ph-accent), transparent 68%);
+}
+
+.ph-panel {
+  border: 1px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--ph-surface), white 3%), var(--ph-surface));
+  box-shadow: var(--ph-shadow), inset 0 1px 0 color-mix(in srgb, white, transparent 92%);
+}
+
+.ph-panel-soft {
+  border: 1px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--ph-surface-2), white 3%), var(--ph-surface-2));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white, transparent 94%);
+}
+
+.ph-grid-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--ph-border);
+  background:
+    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--ph-accent), transparent 73%), transparent 18rem),
+    radial-gradient(circle at 96% 0%, color-mix(in srgb, var(--ph-curve-3), transparent 76%), transparent 22rem),
+    linear-gradient(var(--ph-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px),
+    linear-gradient(135deg, #08141a 0%, #06080e 48%, #111936 100%);
+  background-size: auto, auto, 44px 44px, 44px 44px, auto;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.ph-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--ph-accent), transparent 70%);
+  border-radius: var(--ph-radius);
+  background: color-mix(in srgb, var(--ph-accent), transparent 88%);
+  padding: 0.45rem 0.7rem;
+  color: color-mix(in srgb, var(--ph-accent), white 18%);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ph-kicker::before {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--ph-accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--ph-accent), transparent 35%);
+  content: "";
+}
+
+.ph-widget-shell {
+  margin-inline: auto;
+  display: grid;
+  width: 100%;
+  max-width: 1500px;
+  gap: 1.25rem;
+  padding: 1.25rem 1rem;
+}
+
+.ph-concept-panel {
+  border: 1px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--ph-accent), transparent 88%), transparent 58%),
+    var(--ph-surface);
+  box-shadow: var(--ph-shadow);
+}
+
+.ph-section-label {
+  color: var(--ph-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.ph-readout {
+  border: 1px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--ph-surface-2), white 4%), var(--ph-surface-2));
+  padding: 0.62rem 0.75rem;
+  color: var(--ph-text);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.ph-chart-stage {
+  overflow: hidden;
+  border-radius: var(--ph-radius);
+  background:
+    radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--ph-accent), transparent 92%), transparent 18rem),
+    var(--ph-surface);
+}
+
+.ph-pathway-canvas {
+  display: block;
+  border: 1px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+  background:
+    radial-gradient(circle at 50% 8%, color-mix(in srgb, var(--ph-accent), transparent 86%), transparent 14rem),
+    radial-gradient(circle at 12% 86%, color-mix(in srgb, var(--ph-curve-2), transparent 90%), transparent 13rem),
+    linear-gradient(var(--ph-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px),
+    color-mix(in srgb, var(--ph-surface), black 8%);
+  background-size: auto, auto, 32px 32px, 32px 32px, auto;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white, transparent 92%);
+}
+
+@media (min-width: 640px) {
+  .ph-widget-shell {
+    padding-inline: 1.5rem;
+    padding-block: 1.75rem;
+  }
+}
+
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus-ring:focus-visible {
+  outline-color: var(--ph-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ph-accent), transparent 72%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}

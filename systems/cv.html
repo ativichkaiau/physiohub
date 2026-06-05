@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardiovascular — PhysioHub</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body data-page="system" data-system="cv">
+  <header class="app-header">
+    <a href="../index.html" class="brand" aria-label="PhysioHub home">
+      <div class="brand-mark" aria-hidden="true">P</div>
+      <div>
+        <div class="brand-title">PhysioHub</div>
+        <div class="brand-sub">Cardiovascular</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a href="../index.html" class="btn btn-back">← All systems</a>
+      <button id="theme-btn" class="btn" type="button" aria-label="Toggle theme">
+        <span class="ico" aria-hidden="true">☀</span>
+        <span class="lbl">Day</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="system-page">
+    <section class="canvas-wrap" aria-label="Cardiovascular schematic">
+      <div class="canvas-header">
+        <h1>Cardiovascular</h1>
+        <span class="hint">Hover · Click · Enter</span>
+      </div>
+      <div id="svg-host" class="svg-host" role="application" aria-label="Interactive cardiovascular schematic"></div>
+    </section>
+
+    <aside
+      id="detail-panel"
+      class="detail-panel"
+      data-empty="true"
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label="Structure detail"
+    >
+      <div class="eyebrow">Detail</div>
+      <h2>Select a structure</h2>
+      <p class="empty">Hover any labelled structure to preview it. Click or press Enter to lock its full detail open.</p>
+    </aside>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>PhysioHub.bootSystem('cv');</script>
+</body>
+</html>
