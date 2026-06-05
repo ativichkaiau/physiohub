@@ -42,27 +42,52 @@ const config: CurveLabConfig = {
     { key: "oncoticPlasma", label: "πc — plasma oncotic", min: 10, max: 35, step: 1, defaultValue: 25, unit: "mmHg" },
     { key: "oncoticInterstitial", label: "πi — interstitial oncotic", min: 0, max: 12, step: 1, defaultValue: 3, unit: "mmHg" }
   ],
-  buildSeries: (values) => [
-    {
-      id: "current",
-      label: "Net Jv",
-      colorVar: "var(--ph-curve-1)",
-      data: makeRange(0, 1, 0.02).map((x) => ({
-        x,
-        y: clamp(netJv(x, values.pcArt, values.pi, values.oncoticPlasma, values.oncoticInterstitial), -30, 30)
-      }))
-    },
-    {
-      id: "zero",
-      label: "Zero flux",
-      colorVar: "var(--ph-curve-ref)",
-      dashed: true,
-      data: [
-        { x: 0, y: 0 },
-        { x: 1, y: 0 }
-      ]
-    }
-  ],
+  buildSeries: (values) => {
+    const sigma = 0.95;
+    return [
+      {
+        // Capillary hydrostatic pressure profile (Pc − Pi) — falls along the capillary.
+        id: "hydrostatic",
+        label: "Pc − Pi (outward)",
+        colorVar: "var(--ph-curve-4)",
+        data: makeRange(0, 1, 0.02).map((x) => ({
+          x,
+          y: capillaryHydrostatic(x, values.pcArt) - values.pi
+        }))
+      },
+      {
+        // Net oncotic gradient σ(πc − πi) — mostly constant; opposes filtration.
+        id: "oncotic",
+        label: "σ(πc − πi) (inward)",
+        colorVar: "var(--ph-curve-6)",
+        data: makeRange(0, 1, 0.02).map((x) => ({
+          x,
+          y: sigma * (values.oncoticPlasma - values.oncoticInterstitial)
+        }))
+      },
+      {
+        // The resultant — net fluid flux. The eye-catcher.
+        id: "current",
+        label: "Net Jv",
+        colorVar: "var(--ph-curve-1)",
+        strokeWidth: 3,
+        data: makeRange(0, 1, 0.02).map((x) => ({
+          x,
+          y: clamp(netJv(x, values.pcArt, values.pi, values.oncoticPlasma, values.oncoticInterstitial), -30, 30)
+        }))
+      },
+      {
+        id: "zero",
+        label: "Zero flux",
+        colorVar: "var(--ph-curve-ref)",
+        dashed: true,
+        data: [
+          { x: 0, y: 0 },
+          { x: 1, y: 0 }
+        ]
+      }
+    ];
+  },
   buildReferenceSeries: () => [
     {
       id: "normal",

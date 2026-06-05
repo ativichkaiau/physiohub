@@ -27,6 +27,10 @@ type ShockProfile = {
   mechanism: string;
   exam: string;
   base: HemodynamicState;
+  // Signature plot colour — each shock type gets a distinct hue so the four
+  // markers + the current trajectory are immediately distinguishable on the
+  // state-space chart.
+  colorVar: string;
 };
 
 const normal: HemodynamicState = {
@@ -44,28 +48,32 @@ const profiles: ShockProfile[] = [
     label: "Hypovolemic",
     mechanism: "Low preload from hemorrhage or fluid loss. CO falls; SVR rises through sympathetic compensation.",
     exam: "Low CVP / PCWP, narrow pulse pressure, cool extremities, tachycardia.",
-    base: { co: 2.4, svr: 1700, cvp: 1, pcwp: 3, svo2: 48, lactate: 4.8 }
+    base: { co: 2.4, svr: 1700, cvp: 1, pcwp: 3, svo2: 48, lactate: 4.8 },
+    colorVar: "var(--ph-curve-4)"   // crimson — bleeding / loss
   },
   {
     id: "cardiogenic",
     label: "Cardiogenic",
     mechanism: "Pump failure. Filling pressures rise while forward CO collapses; SVR rises reflexively.",
     exam: "High PCWP, pulmonary edema, cool extremities, low pulse pressure.",
-    base: { co: 2.1, svr: 1600, cvp: 13, pcwp: 24, svo2: 46, lactate: 5.2 }
+    base: { co: 2.1, svr: 1600, cvp: 13, pcwp: 24, svo2: 46, lactate: 5.2 },
+    colorVar: "var(--ph-curve-3)"   // purple — pump
   },
   {
     id: "distributive",
     label: "Distributive",
     mechanism: "Loss of vascular tone, classically sepsis or anaphylaxis. SVR falls and CO may be high early.",
     exam: "Warm extremities early, wide pulse pressure, low SVR, high or normal CO.",
-    base: { co: 7.2, svr: 430, cvp: 4, pcwp: 7, svo2: 82, lactate: 3.8 }
+    base: { co: 7.2, svr: 430, cvp: 4, pcwp: 7, svo2: 82, lactate: 3.8 },
+    colorVar: "var(--ph-curve-2)"   // amber — warm
   },
   {
     id: "obstructive",
     label: "Obstructive",
     mechanism: "Mechanical block to filling or ejection, such as tamponade, massive PE, or tension pneumothorax.",
     exam: "High CVP with low CO; PCWP depends on the obstruction site. JVP is often prominent.",
-    base: { co: 2.5, svr: 1500, cvp: 18, pcwp: 8, svo2: 45, lactate: 4.5 }
+    base: { co: 2.5, svr: 1500, cvp: 18, pcwp: 8, svo2: 45, lactate: 4.5 },
+    colorVar: "var(--ph-curve-5)"   // teal — blocked
   }
 ];
 
@@ -212,10 +220,25 @@ export default function ShockStatesWidget() {
   const map = mapFromState(state);
   const trajectory: CurveSeries[] = useMemo(
     () => [
+      // Four classic shock-type markers — each plotted as a short horizontal
+      // segment around the canonical (SVR, CO) of that phenotype, in its own
+      // signature colour. The user's current state and the trajectory from
+      // normal sit on top in the cockpit indigo.
+      ...profiles.map((profile) => ({
+        id: `marker-${profile.id}`,
+        label: profile.label,
+        colorVar: profile.colorVar,
+        strokeWidth: profile.id === profile.id ? 5 : 3,
+        data: [
+          { x: profile.base.svr - 60, y: profile.base.co },
+          { x: profile.base.svr + 60, y: profile.base.co }
+        ]
+      })),
       {
         id: "trajectory",
         label: "Current trajectory",
         colorVar: "var(--ph-curve-1)",
+        strokeWidth: 2.5,
         data: [
           { x: normal.svr, y: normal.co },
           { x: untreated.svr, y: untreated.co },
@@ -225,15 +248,15 @@ export default function ShockStatesWidget() {
       {
         id: "normal",
         label: "Normal",
-        colorVar: "var(--ph-curve-ref)",
+        colorVar: "var(--ph-curve-6)",
         dashed: true,
         data: [
-          { x: normal.svr - 1, y: normal.co },
-          { x: normal.svr + 1, y: normal.co }
+          { x: normal.svr - 80, y: normal.co },
+          { x: normal.svr + 80, y: normal.co }
         ]
       }
     ],
-    [state.co, state.svr, untreated.co, untreated.svr]
+    [state.co, state.svr, untreated.co, untreated.svr, profile.id]
   );
 
   const warning =
@@ -304,12 +327,17 @@ export default function ShockStatesWidget() {
                     key={item.id}
                     type="button"
                     onClick={() => setProfile(item)}
-                    className={`focus-ring rounded-ph border px-3 py-2 text-left text-sm transition ${
+                    className={`focus-ring inline-flex items-center gap-2.5 rounded-ph border px-3 py-2 text-left text-sm transition ${
                       selected
                         ? "border-[color-mix(in_srgb,var(--ph-accent),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-ph-accent"
                         : "border-[var(--ph-border)] bg-ph-surface2 text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
                     }`}
                   >
+                    <span
+                      aria-hidden="true"
+                      className="inline-block h-2.5 w-2.5 shrink-0 rounded-full"
+                      style={{ backgroundColor: item.colorVar }}
+                    />
                     <span className="font-bold">{item.label}</span>
                   </button>
                 );

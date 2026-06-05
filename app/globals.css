@@ -32,6 +32,9 @@
   --ph-curve-2:       #b45309;   /* amber   */
   --ph-curve-3:       #6d28d9;   /* purple  */
   --ph-curve-4:       #be123c;   /* crimson */
+  --ph-curve-5:       #0891b2;   /* teal    */
+  --ph-curve-6:       #047857;   /* emerald */
+  --ph-curve-7:       #db2777;   /* magenta */
   --ph-curve-ref:     #94a3b8;   /* slate baseline */
 
   /* Axes + grid */
@@ -75,6 +78,9 @@
   --ph-curve-2:       #f4b860;
   --ph-curve-3:       #b794f4;
   --ph-curve-4:       #f08db5;
+  --ph-curve-5:       #22d3ee;
+  --ph-curve-6:       #34d399;
+  --ph-curve-7:       #f472b6;
   --ph-curve-ref:     #94a3b8;
 
   /* Axes + grid */

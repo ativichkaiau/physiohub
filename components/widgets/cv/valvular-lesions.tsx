@@ -15,6 +15,9 @@ type Lesion = {
   id: LesionId;
   shortName: string;
   fullName: string;
+  // Signature colour per lesion — pressure overload (AS) crimson, volume
+  // overload (AR) purple, filling failure (MS) amber, regurgitation (MR) teal.
+  colorVar: string;
   edv: number;
   esv: number;
   peakP: number;
@@ -35,6 +38,7 @@ const LESIONS: Lesion[] = [
     id: "normal",
     shortName: "Normal",
     fullName: "Normal valves",
+    colorVar: "var(--ph-curve-1)",
     edv: 120, esv: 50, peakP: 120, aorticDiastolic: 80, endSystolicP: 90, endDiastolicP: 7,
     hasIVC: true, hasIVR: true,
     murmur: "—",
@@ -47,6 +51,7 @@ const LESIONS: Lesion[] = [
     id: "AS",
     shortName: "AS",
     fullName: "Aortic stenosis (severe, AVA < 1 cm²)",
+    colorVar: "var(--ph-curve-4)",
     edv: 120, esv: 60, peakP: 200, aorticDiastolic: 75, endSystolicP: 150, endDiastolicP: 16,
     hasIVC: true, hasIVR: true,
     murmur: "Crescendo–decrescendo systolic ejection murmur — late peak in severe disease",
@@ -59,6 +64,7 @@ const LESIONS: Lesion[] = [
     id: "AR",
     shortName: "AR",
     fullName: "Aortic regurgitation (chronic severe)",
+    colorVar: "var(--ph-curve-3)",
     edv: 200, esv: 80, peakP: 140, aorticDiastolic: 45, endSystolicP: 95, endDiastolicP: 14,
     hasIVC: false, hasIVR: true,
     murmur: "Early decrescendo diastolic blowing murmur; Austin Flint mid-diastolic rumble if severe",
@@ -71,6 +77,7 @@ const LESIONS: Lesion[] = [
     id: "MS",
     shortName: "MS",
     fullName: "Mitral stenosis (severe, MVA < 1.5 cm²)",
+    colorVar: "var(--ph-curve-2)",
     edv: 80, esv: 40, peakP: 115, aorticDiastolic: 80, endSystolicP: 90, endDiastolicP: 5,
     hasIVC: true, hasIVR: true,
     murmur: "Mid-diastolic low-pitched rumble with opening snap; loud S1 if mobile valve",
@@ -83,6 +90,7 @@ const LESIONS: Lesion[] = [
     id: "MR",
     shortName: "MR",
     fullName: "Mitral regurgitation (chronic severe)",
+    colorVar: "var(--ph-curve-5)",
     edv: 170, esv: 50, peakP: 110, aorticDiastolic: 80, endSystolicP: 95, endDiastolicP: 11,
     hasIVC: false, hasIVR: true,
     murmur: "Holosystolic blowing murmur; S3 gallop with severe regurgitant volume",
@@ -152,7 +160,7 @@ export default function ValvularLesionsWidget() {
   const normal = LESIONS[0];
 
   const series = useMemo(
-    () => [{ id: "current", label: selected.fullName, data: loopPoints(selected), colorVar: "var(--ph-curve-1)" }],
+    () => [{ id: "current", label: selected.fullName, data: loopPoints(selected), colorVar: selected.colorVar, strokeWidth: 3 }],
     [selected]
   );
   const referenceSeries = useMemo(
@@ -224,14 +232,19 @@ export default function ValvularLesionsWidget() {
                     key={lesion.id}
                     type="button"
                     onClick={() => setSelectedId(lesion.id)}
-                    className={`focus-ring rounded-ph border px-3 py-2 text-left text-sm transition ${
+                    className={`focus-ring inline-flex items-center gap-2.5 rounded-ph border px-3 py-2 text-left text-sm transition ${
                       isSelected
                         ? "border-[color-mix(in_srgb,var(--ph-accent),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-ph-accent"
                         : "border-[var(--ph-border)] bg-ph-surface2 text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
                     }`}
                   >
+                    <span
+                      aria-hidden="true"
+                      className="inline-block h-2.5 w-2.5 shrink-0 rounded-full"
+                      style={{ backgroundColor: lesion.colorVar }}
+                    />
                     <span className="font-bold">{lesion.shortName}</span>
-                    <span className="ml-2 text-xs">{lesion.fullName}</span>
+                    <span className="text-xs">{lesion.fullName}</span>
                   </button>
                 );
               })}

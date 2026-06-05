@@ -52,6 +52,26 @@ const config: CurveLabConfig = {
         x: r,
         y: clamp(poiseuilleFlow(r, 50, 1, 5), 0, 1100)
       }))
+    },
+    {
+      id: "hyperviscous",
+      label: "Hyperviscous (η=2.0 — polycythemia)",
+      colorVar: "var(--ph-curve-4)",
+      dashed: true,
+      data: makeRange(0, 5, 0.05).map((r) => ({
+        x: r,
+        y: clamp(poiseuilleFlow(r, 50, 2.0, 5), 0, 1100)
+      }))
+    },
+    {
+      id: "hypotensive",
+      label: "Hypotensive (ΔP=25 — shock)",
+      colorVar: "var(--ph-curve-2)",
+      dashed: true,
+      data: makeRange(0, 5, 0.05).map((r) => ({
+        x: r,
+        y: clamp(poiseuilleFlow(r, 25, 1, 5), 0, 1100)
+      }))
     }
   ],
   buildAnnotations: (values) => [

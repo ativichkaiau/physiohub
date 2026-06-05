@@ -56,11 +56,25 @@ const config: CurveLabConfig = {
   ],
   buildReferenceSeries: () => [
     {
+      id: "young",
+      label: "Young, healthy (C=2.5)",
+      colorVar: "var(--ph-curve-6)",
+      dashed: true,
+      data: makeRange(0, 2, 0.01).map((t) => ({ x: t, y: aorticPressure(t, 72, 2.5, 1) }))
+    },
+    {
       id: "normal",
-      label: "Normal (C=1.5, R=1, HR=72)",
+      label: "Normal middle-aged (C=1.5)",
       colorVar: "var(--ph-curve-ref)",
       dashed: true,
       data: makeRange(0, 2, 0.01).map((t) => ({ x: t, y: aorticPressure(t, 72, 1.5, 1) }))
+    },
+    {
+      id: "aged",
+      label: "Aged aorta — ISH (C=0.6, R=1.3)",
+      colorVar: "var(--ph-curve-4)",
+      dashed: true,
+      data: makeRange(0, 2, 0.01).map((t) => ({ x: t, y: aorticPressure(t, 72, 0.6, 1.3) }))
     }
   ],
   summarize: (values) => {
