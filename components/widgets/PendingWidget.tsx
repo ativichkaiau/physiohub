@@ -100,17 +100,17 @@ export default function PendingWidget() {
       </section>
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
-        <section className="ph-panel ph-chart-stage p-4" aria-label={`${diagram.title} STR template preview`}>
+        <section className="ph-panel ph-chart-stage p-4" aria-label={`${diagram.title} template preview`}>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <h2 className="ph-section-label">Template preview</h2>
             <span className="rounded-ph border border-[var(--ph-border)] px-2 py-1 text-xs uppercase text-ph-muted">
-              STR implementation pending
+              In development
             </span>
           </div>
           {diagram.archetype === "feedback-loop" ? (
             <svg role="img" aria-label="Feedback loop template" viewBox="0 0 640 420" className="ph-pathway-canvas h-auto w-full">
-              <text x="26" y="34" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
-                STR LOOP TEMPLATE
+              <text x="26" y="34" fill="var(--ph-muted)" fontSize="11" fontWeight="600" letterSpacing="2">
+                LOOP TEMPLATE
               </text>
               <FeedbackLoopEdge id="edge-a" from={{ x: 320, y: 104 }} to={{ x: 320, y: 176 }} label="drive" active={value > 60} />
               <FeedbackLoopEdge id="edge-b" from={{ x: 320, y: 244 }} to={{ x: 320, y: 316 }} label="response" active={value > 60} />

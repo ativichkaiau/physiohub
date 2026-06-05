@@ -12,7 +12,7 @@ const docs = [
   {
     title: "Theme Contract",
     path: "docs/THEME_CONTRACT.md",
-    description: "Williams Rothmans CSS variable contract."
+    description: "CSS variable contract for theming (day + night)."
   },
   {
     title: "Primitive README",
@@ -27,7 +27,7 @@ export default function DocsPage() {
       <p className="mb-3 text-xs font-semibold uppercase text-ph-accent">Handoff docs</p>
       <h1 className="text-3xl font-semibold leading-tight">Wireframe and build documentation</h1>
       <p className="mt-3 max-w-2xl text-ph-muted">
-        These files live in the workspace for product, Figma, and STR implementation handoff.
+        These files live in the workspace for product, Figma, and engineering handoff.
       </p>
       <section className="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Documentation links">
         {docs.map((doc) => (
