@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { ArchetypeBadge } from "@/components/ArchetypeBadge";
 import { ShareStateIndicator } from "@/components/ShareStateIndicator";
-import type { DiagramMeta } from "@/lib/registry";
+import { getSystemEmoji, type DiagramMeta } from "@/lib/registry";
 
 export function DiagramHeader({ diagram }: { diagram: DiagramMeta }) {
   return (
@@ -14,7 +14,8 @@ export function DiagramHeader({ diagram }: { diagram: DiagramMeta }) {
               Systems
             </Link>
             <span aria-hidden="true">/</span>
-            <Link className="focus-ring rounded-ph hover:text-ph-text" href={`/${diagram.systemId}`}>
+            <Link className="focus-ring inline-flex items-center gap-1.5 rounded-ph hover:text-ph-text" href={`/${diagram.systemId}`}>
+              <span aria-hidden="true" className="text-base leading-none">{getSystemEmoji(diagram.systemId)}</span>
               {diagram.systemName}
             </Link>
           </div>
@@ -25,10 +26,10 @@ export function DiagramHeader({ diagram }: { diagram: DiagramMeta }) {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Link
-            className="focus-ring rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2 text-sm font-semibold text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
+            className="focus-ring inline-flex items-center gap-1 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2 text-sm font-semibold text-ph-muted transition hover:border-[var(--ph-border-strong)] hover:text-ph-text"
             href={`/${diagram.systemId}`}
           >
-            Back
+            <span aria-hidden="true">←</span> Back
           </Link>
           <Suspense
             fallback={

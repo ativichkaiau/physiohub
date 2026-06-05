@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { archetypeMeta, getDiagramPath, getSystemPath, getSystems } from "@/lib/registry";
+import { archetypeMeta, getDiagramPath, getSystemEmoji, getSystemPath, getSystems } from "@/lib/registry";
 
 export default function HomePage() {
   const systems = getSystems();
@@ -43,11 +43,11 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="ph-cockpit-bullets mt-10">
-              <span className="ph-cockpit-bullet">Timeline</span>
-              <span className="ph-cockpit-bullet">Curve</span>
-              <span className="ph-cockpit-bullet">Loop</span>
-              <span className="ph-cockpit-bullet">Mechanism</span>
-              <span className="ph-cockpit-bullet">Multi-var</span>
+              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">⏱️</span>Timeline</span>
+              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">📈</span>Curve</span>
+              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">🔄</span>Loop</span>
+              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">⚙️</span>Mechanism</span>
+              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">🎛️</span>Multi-var</span>
             </div>
           </div>
 
@@ -72,12 +72,14 @@ export default function HomePage() {
                 <div className="flex items-start gap-3">
                   <span
                     aria-hidden="true"
-                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-900 text-slate-100"
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-900 text-xl leading-none"
                   >
-                    ◎
+                    {getSystemEmoji(featured.systemId)}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Featured widget</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                      ✨ Featured widget
+                    </p>
                     <p className="mt-0.5 truncate text-lg font-black">{featured.title}</p>
                   </div>
                 </div>
@@ -111,7 +113,7 @@ export default function HomePage() {
 
       <section id="systems" className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="ph-kicker">Catalog</p>
+          <p className="ph-kicker">🗂 Catalog</p>
           <h2 className="mt-2 text-2xl font-bold tracking-tight">Choose a system</h2>
         </div>
         <p className="max-w-xl text-sm text-ph-muted">
@@ -123,26 +125,51 @@ export default function HomePage() {
         {systems.map((system) => {
           const ref = system.diagrams.filter((d) => d.status === "reference").length;
           const pct = Math.max(8, (ref / system.diagrams.length) * 100);
+          const allLive = ref === system.diagrams.length;
           return (
             <Link
               key={system.id}
               href={getSystemPath(system.id)}
-              className="focus-ring ph-panel group block min-h-44 p-5 no-underline transition hover:-translate-y-0.5 hover:border-[var(--ph-border-strong)]"
+              className="focus-ring ph-panel group relative block min-h-48 overflow-hidden p-5 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-[var(--ph-border-strong)] hover:shadow-[0_8px_28px_-12px_color-mix(in_srgb,var(--ph-accent),transparent_70%)]"
             >
-              <div className="flex items-start justify-between gap-3">
-                <span className="rounded-ph border border-[color-mix(in_srgb,var(--ph-accent),transparent_70%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_92%)] px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-ph-accent">
-                  Live
-                </span>
-                <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} diagrams</span>
+              {/* Soft accent wash on hover */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[color-mix(in_srgb,var(--ph-accent),transparent_94%)] via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+              />
+              <div className="relative">
+                <div className="flex items-start justify-between gap-3">
+                  <span aria-hidden="true" className="text-3xl leading-none">
+                    {getSystemEmoji(system.id)}
+                  </span>
+                  <div className="flex flex-col items-end gap-1">
+                    <span
+                      className={
+                        allLive
+                          ? "rounded-full border border-[color-mix(in_srgb,var(--ph-ok),transparent_60%)] bg-[color-mix(in_srgb,var(--ph-ok),transparent_90%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em]"
+                          : "rounded-full border border-[color-mix(in_srgb,var(--ph-accent),transparent_60%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_92%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-ph-accent"
+                      }
+                      style={allLive ? { color: "var(--ph-ok)" } : undefined}
+                    >
+                      {allLive ? "Complete" : "Live"}
+                    </span>
+                    <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} diagrams</span>
+                  </div>
+                </div>
+                <h3 className="mt-5 text-lg font-bold tracking-tight transition-colors group-hover:text-ph-accent">
+                  {system.name}
+                </h3>
+                <p className="mt-2 text-sm text-ph-muted">{system.teaser}</p>
+                <div className="mt-5 h-1 overflow-hidden rounded-full bg-ph-surface2">
+                  <div
+                    className="h-full rounded-full bg-ph-accent transition-all duration-300"
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
+                <p className="mt-2 text-xs text-ph-muted tabular-nums">
+                  {ref} live · {system.diagrams.length - ref} in development
+                </p>
               </div>
-              <h3 className="mt-5 text-lg font-bold tracking-tight">{system.name}</h3>
-              <p className="mt-2 text-sm text-ph-muted">{system.teaser}</p>
-              <div className="mt-5 h-1 overflow-hidden rounded-full bg-ph-surface2">
-                <div className="h-full rounded-full bg-ph-accent transition-all" style={{ width: `${pct}%` }} />
-              </div>
-              <p className="mt-2 text-xs text-ph-muted tabular-nums">
-                {ref} live · {system.diagrams.length - ref} in development
-              </p>
             </Link>
           );
         })}
