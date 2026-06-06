@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArchetypeBadge } from "@/components/ArchetypeBadge";
-import { getDiagramPath, getSystem, getSystemEmoji, getSystems } from "@/lib/registry";
+import { SystemSignal } from "@/components/SystemSignal";
+import { getDiagramPath, getSystem, getSystems } from "@/lib/registry";
 
 export function generateStaticParams() {
   return getSystems().map((system) => ({ system: system.id }));
@@ -29,43 +30,43 @@ export default function SystemPage({ params }: { params: { system: string } }) {
 
   return (
     <div className="mx-auto w-full max-w-[1500px] px-4 py-5 sm:px-6 sm:py-8">
-      <section className="ph-hero mb-6 px-5 py-8 sm:px-8 sm:py-10">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <section className="ph-hero mb-6 overflow-hidden px-5 py-8 sm:px-8 sm:py-10">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center">
           <div>
             <Link href="/" className="focus-ring inline-flex items-center gap-1 rounded-ph text-sm font-medium text-ph-muted hover:text-ph-text">
               ← All systems
             </Link>
-            <div className="mt-4 flex items-center gap-3">
-              <span aria-hidden="true" className="text-4xl leading-none sm:text-5xl">
-                {getSystemEmoji(system.id)}
+            <div className="mt-4">
+              <span className="inline-flex rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-ph-muted">
+                {system.shortName}
               </span>
-              <div>
-                <p className="ph-kicker">{system.shortName}</p>
-                <h1 className="mt-1.5 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{system.name}</h1>
-              </div>
+              <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{system.name}</h1>
             </div>
             <p className="mt-4 max-w-2xl text-base text-ph-muted">{system.teaser}</p>
           </div>
-          <dl className="grid grid-cols-3 gap-x-8 gap-y-2 sm:min-w-[280px]">
-            <div>
-              <dt className="ph-kicker">📊 Diagrams</dt>
-              <dd className="mt-1.5 text-2xl font-bold tabular-nums">{system.diagrams.length}</dd>
-            </div>
-            <div>
-              <dt className="ph-kicker">✅ Live</dt>
-              <dd className="mt-1.5 text-2xl font-bold tabular-nums" style={{ color: "var(--ph-ok)" }}>{referenceCount}</dd>
-            </div>
-            <div>
-              <dt className="ph-kicker">🚧 Pending</dt>
-              <dd className="mt-1.5 text-2xl font-bold tabular-nums text-ph-muted">{system.diagrams.length - referenceCount}</dd>
-            </div>
-          </dl>
+          <div className="grid gap-3">
+            <SystemSignal systemId={system.id} className="h-44" />
+            <dl className="grid grid-cols-3 gap-3">
+              <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+                <dt className="ph-kicker">Diagrams</dt>
+                <dd className="mt-1.5 text-2xl font-bold tabular-nums">{system.diagrams.length}</dd>
+              </div>
+              <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+                <dt className="ph-kicker">Live</dt>
+                <dd className="mt-1.5 text-2xl font-bold tabular-nums" style={{ color: "var(--ph-ok)" }}>{referenceCount}</dd>
+              </div>
+              <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+                <dt className="ph-kicker">Pending</dt>
+                <dd className="mt-1.5 text-2xl font-bold tabular-nums text-ph-muted">{system.diagrams.length - referenceCount}</dd>
+              </div>
+            </dl>
+          </div>
         </div>
       </section>
 
       <section className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="ph-kicker">📂 Diagrams</p>
+          <p className="ph-kicker">Diagram bench</p>
           <h2 className="mt-2 text-xl font-bold tracking-tight">Open a widget</h2>
         </div>
         <p className="text-xs text-ph-muted">
@@ -90,7 +91,6 @@ export default function SystemPage({ params }: { params: { system: string } }) {
                 }
                 style={diagram.status === "reference" ? { color: "var(--ph-ok)" } : undefined}
               >
-                <span aria-hidden="true">{diagram.status === "reference" ? "🟢" : "🛠️"}</span>
                 {diagram.status === "reference" ? "Live" : "In dev"}
               </span>
             </div>

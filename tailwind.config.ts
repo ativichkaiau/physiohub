@@ -13,6 +13,7 @@ const config: Config = {
           bg: "var(--ph-bg)",
           surface: "var(--ph-surface)",
           surface2: "var(--ph-surface-2)",
+          surface3: "var(--ph-surface-3)",
           text: "var(--ph-text)",
           muted: "var(--ph-muted)",
           accent: "var(--ph-accent)",

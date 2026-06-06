@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { PhysiologyIntro } from "@/components/PhysiologyIntro";
+import { SystemSignal } from "@/components/SystemSignal";
 import { archetypeMeta, getDiagramPath, getSystemEmoji, getSystemPath, getSystems } from "@/lib/registry";
 
 export default function HomePage() {
@@ -23,10 +25,10 @@ export default function HomePage() {
           <div className="max-w-4xl">
             <span className="ph-cockpit-kicker">Interactive physiology atlas</span>
             <h1 className="mt-7 text-4xl font-black leading-[0.98] tracking-tight text-white sm:text-5xl lg:text-[64px]">
-              Build a working model of <span className="ph-cockpit-accent">the body</span>, one diagram at a time.
+              Clamp the variables. Watch <span className="ph-cockpit-accent">the body</span> answer back.
             </h1>
             <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-slate-300 sm:text-lg">
-              A unified atlas of scrubbable timelines, perturbable curves, feedback loops, click-to-mechanism walks, and multi-variable interactions — every diagram shareable by URL.
+              A systems bench for pressure, flow, gases, filtrate, hormones, impulse, and contraction. Scrub time, perturb curves, trace loops, and share the exact state by URL.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -35,19 +37,20 @@ export default function HomePage() {
               >
                 Start exploring
               </a>
+              <PhysiologyIntro />
               <Link
                 href="/cv"
                 className="focus-ring rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white no-underline transition hover:bg-white/10"
               >
-                Cardiovascular ↗
+                Cardiovascular
               </Link>
             </div>
             <div className="ph-cockpit-bullets mt-10">
-              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">⏱️</span>Timeline</span>
-              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">📈</span>Curve</span>
-              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">🔄</span>Loop</span>
-              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">⚙️</span>Mechanism</span>
-              <span className="ph-cockpit-bullet"><span aria-hidden="true" className="mr-1">🎛️</span>Multi-var</span>
+              <span className="ph-cockpit-bullet">Pressure</span>
+              <span className="ph-cockpit-bullet">Gas exchange</span>
+              <span className="ph-cockpit-bullet">Transport</span>
+              <span className="ph-cockpit-bullet">Feedback</span>
+              <span className="ph-cockpit-bullet">Excitability</span>
             </div>
           </div>
 
@@ -68,27 +71,28 @@ export default function HomePage() {
             </div>
 
             {featured ? (
-              <div className="mt-5 rounded-[14px] bg-slate-100 p-5 text-slate-950">
+              <div className="mt-5 rounded-[16px] border border-white/10 bg-white/[0.055] p-5 text-white">
                 <div className="flex items-start gap-3">
                   <span
                     aria-hidden="true"
-                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-900 text-xl leading-none"
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-xl leading-none"
                   >
                     {getSystemEmoji(featured.systemId)}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
-                      ✨ Featured widget
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+                      Featured widget
                     </p>
                     <p className="mt-0.5 truncate text-lg font-black">{featured.title}</p>
                   </div>
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">{featured.teaser}</p>
+                <SystemSignal systemId={featured.systemId} className="mt-4 h-28" />
+                <p className="mt-4 text-sm leading-relaxed text-slate-300">{featured.teaser}</p>
                 <Link
                   href={getDiagramPath(featured.systemId, featured.slug)}
-                  className="focus-ring mt-4 inline-flex rounded-full bg-slate-900 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white no-underline transition hover:bg-slate-800"
+                  className="focus-ring mt-4 inline-flex rounded-full bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-950 no-underline transition hover:bg-slate-200"
                 >
-                  Open widget →
+                  Open widget
                 </Link>
               </div>
             ) : null}
@@ -130,7 +134,7 @@ export default function HomePage() {
             <Link
               key={system.id}
               href={getSystemPath(system.id)}
-              className="focus-ring ph-panel group relative block min-h-48 overflow-hidden p-5 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-[var(--ph-border-strong)] hover:shadow-[0_8px_28px_-12px_color-mix(in_srgb,var(--ph-accent),transparent_70%)]"
+              className="focus-ring ph-panel group relative block min-h-64 overflow-hidden p-4 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-[var(--ph-border-strong)] hover:shadow-[0_8px_28px_-12px_color-mix(in_srgb,var(--ph-accent),transparent_70%)]"
             >
               {/* Soft accent wash on hover */}
               <span
@@ -138,11 +142,12 @@ export default function HomePage() {
                 className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[color-mix(in_srgb,var(--ph-accent),transparent_94%)] via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
               />
               <div className="relative">
+                <SystemSignal systemId={system.id} className="h-28 transition duration-200 group-hover:border-[var(--ph-border-strong)]" />
                 <div className="flex items-start justify-between gap-3">
-                  <span aria-hidden="true" className="text-3xl leading-none">
-                    {getSystemEmoji(system.id)}
+                  <span className="mt-4 inline-flex rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">
+                    {system.shortName}
                   </span>
-                  <div className="flex flex-col items-end gap-1">
+                  <div className="mt-4 flex flex-col items-end gap-1">
                     <span
                       className={
                         allLive
@@ -156,7 +161,7 @@ export default function HomePage() {
                     <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} diagrams</span>
                   </div>
                 </div>
-                <h3 className="mt-5 text-lg font-bold tracking-tight transition-colors group-hover:text-ph-accent">
+                <h3 className="mt-4 text-lg font-bold tracking-tight transition-colors group-hover:text-ph-accent">
                   {system.name}
                 </h3>
                 <p className="mt-2 text-sm text-ph-muted">{system.teaser}</p>
