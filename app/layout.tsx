@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PhysiologyIntro } from "@/components/PhysiologyIntro";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </header>
           <main>{children}</main>
+          <PhysiologyIntro showLauncher={false} />
           <footer className="border-t border-[var(--ph-border)] px-4 py-6 text-sm text-ph-muted sm:px-6">
             <div className="mx-auto flex max-w-[1500px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <span className="font-bold text-ph-text">PhysioHub</span>

@@ -2,8 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-const STORAGE_KEY = "physiohub-intro-seen-v1";
-
 const steps = [
   {
     eyebrow: "01 - Perfuse",
@@ -27,7 +25,12 @@ const steps = [
   }
 ] as const;
 
-export function PhysiologyIntro() {
+type PhysiologyIntroProps = {
+  autoOpen?: boolean;
+  showLauncher?: boolean;
+};
+
+export function PhysiologyIntro({ autoOpen = true, showLauncher = true }: PhysiologyIntroProps) {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -36,24 +39,16 @@ export function PhysiologyIntro() {
   const isLastStep = step === steps.length - 1;
 
   const close = useCallback(() => {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      /* Non-persistent storage is fine; the dialog can still close. */
-    }
     setIsOpen(false);
   }, []);
 
   useEffect(() => {
     setMounted(true);
-    try {
-      if (window.localStorage.getItem(STORAGE_KEY) !== "1") {
-        setIsOpen(true);
-      }
-    } catch {
+    if (autoOpen) {
+      setStep(0);
       setIsOpen(true);
     }
-  }, []);
+  }, [autoOpen]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -98,13 +93,15 @@ export function PhysiologyIntro() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={open}
-        className="focus-ring ph-intro-launch inline-flex items-center justify-center rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline transition"
-      >
-        Run primer
-      </button>
+      {showLauncher ? (
+        <button
+          type="button"
+          onClick={open}
+          className="focus-ring ph-intro-launch inline-flex items-center justify-center rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline transition"
+        >
+          Run primer
+        </button>
+      ) : null}
 
       {mounted && isOpen ? (
         <div className="ph-intro-overlay" role="presentation">

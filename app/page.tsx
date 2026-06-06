@@ -37,7 +37,7 @@ export default function HomePage() {
               >
                 Start exploring
               </a>
-              <PhysiologyIntro />
+              <PhysiologyIntro autoOpen={false} />
               <Link
                 href="/cv"
                 className="focus-ring rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white no-underline transition hover:bg-white/10"
