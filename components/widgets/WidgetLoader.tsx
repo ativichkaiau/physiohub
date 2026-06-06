@@ -166,6 +166,22 @@ const widgetMap: Record<string, ComponentType> = {
     loading: () => <WidgetLoading />,
     ssr: false
   }),
+  "nerv/synaptic-transmission": dynamic(
+    () => import("@/components/widgets/nerv/synaptic-transmission"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/phototransduction": dynamic(
+    () => import("@/components/widgets/nerv/phototransduction"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "endo/thyroid-hormone-synthesis": dynamic(
+    () => import("@/components/widgets/endo/thyroid-hormone-synthesis"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "endo/pituitary-hormone-map": dynamic(
+    () => import("@/components/widgets/endo/pituitary-hormone-map"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
   "renal/raas": dynamic(() => import("@/components/widgets/renal/raas"), {
     loading: () => <WidgetLoading />,
     ssr: false

@@ -370,7 +370,7 @@
           "slug": "synaptic-transmission",
           "title": "Synaptic Transmission",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Step through vesicle docking, release, receptor activation, and recycling.",
           "concept": "You are looking at chemical synaptic transmission as a sequence. Click each mechanism step to reveal molecular events. Observe where calcium entry controls release probability.",
           "references": [
@@ -383,7 +383,7 @@
           "slug": "phototransduction",
           "title": "Phototransduction",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Step through opsin activation, cGMP changes, and photoreceptor hyperpolarization.",
           "concept": "You are looking at the photoreceptor cascade. Click each biochemical step from photon capture to glutamate release. Observe why light hyperpolarizes rods and cones.",
           "references": [
@@ -758,7 +758,7 @@
           "slug": "thyroid-hormone-synthesis",
           "title": "Thyroid Hormone Synthesis",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click iodide trapping, organification, coupling, storage, and release.",
           "concept": "You are looking at thyroid hormone synthesis inside the follicle. Click each biochemical step from iodide trapping to hormone release. Observe where common drugs interrupt synthesis.",
           "references": [
@@ -810,7 +810,7 @@
           "slug": "pituitary-hormone-map",
           "title": "Pituitary Hormone Map",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click anterior and posterior pituitary hormones to reveal hypothalamic inputs and target organs.",
           "concept": "You are looking at pituitary hormone outputs and their regulatory inputs. Click each hormone axis to trace hypothalamic control, pituitary release, and peripheral target response. Observe which axes use trophic feedback and which use neural release.",
           "references": [
