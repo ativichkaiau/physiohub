@@ -56,39 +56,63 @@ const config: CurveLabConfig = {
   ],
   buildReferenceSeries: () => [
     {
+      id: "young",
+      label: "Young, healthy (C=2.5)",
+      colorVar: "var(--ph-curve-6)",
+      dashed: true,
+      data: makeRange(0, 2, 0.01).map((t) => ({ x: t, y: aorticPressure(t, 72, 2.5, 1) }))
+    },
+    {
       id: "normal",
-      label: "Normal (C=1.5, R=1, HR=72)",
+      label: "Normal middle-aged (C=1.5)",
       colorVar: "var(--ph-curve-ref)",
       dashed: true,
       data: makeRange(0, 2, 0.01).map((t) => ({ x: t, y: aorticPressure(t, 72, 1.5, 1) }))
+    },
+    {
+      id: "aged",
+      label: "Aged aorta — ISH (C=0.6, R=1.3)",
+      colorVar: "var(--ph-curve-4)",
+      dashed: true,
+      data: makeRange(0, 2, 0.01).map((t) => ({ x: t, y: aorticPressure(t, 72, 0.6, 1.3) }))
     }
   ],
   summarize: (values) => {
     const meanP = 70 + (values.resistance - 1) * 35;
     const pulse = clamp(48 / values.compliance, 18, 90);
     const tau = values.resistance * values.compliance * 0.6;
+    const sbp = meanP + pulse / 2;
+    const dbp = meanP - pulse / 2;
+    // Augmentation index proxy: stiff vessels reflect waves earlier in systole → AI rises.
+    const augIndex = clamp((1.5 - values.compliance) * 35 + (values.resistance - 1) * 8, -10, 60);
     return {
       state:
-        values.compliance < 0.8
-          ? "Stiff vessels — wide pulse pressure"
-          : values.resistance > 1.6
-            ? "High afterload — elevated MAP"
-            : values.compliance > 2.2
-              ? "Compliant vessels — narrow pulse"
-              : "Normal Windkessel",
-      body: "Compliance damps the pulse; resistance sets mean pressure and τ = R·C. Slide compliance to widen or narrow the pulse pressure; slide resistance to shift MAP and slow the diastolic decay.",
+        values.compliance < 0.7 && values.resistance > 1.3
+          ? "Isolated systolic HTN — aged aorta + high afterload"
+          : values.compliance < 0.8
+            ? "Arteriosclerosis — wide pulse pressure"
+            : values.resistance > 1.6
+              ? "Resistance HTN — elevated MAP, normal pulse"
+              : values.compliance > 2.2
+                ? "Hyper-compliant (young / vasodilated) — narrow pulse"
+                : "Normal Windkessel",
+      body: "Compliance damps the pulse; resistance sets mean pressure and τ = R·C. The aging aorta loses elastin and gains collagen — C falls → pulse pressure widens at constant MAP (isolated systolic HTN). Augmentation index rises as reflected waves return earlier into systole.",
       readouts: [
+        { label: "SBP", value: `${sbp.toFixed(0)} mmHg` },
+        { label: "DBP", value: `${dbp.toFixed(0)} mmHg` },
         { label: "MAP", value: `${meanP.toFixed(0)} mmHg` },
         { label: "Pulse P", value: `${pulse.toFixed(0)} mmHg` },
         { label: "τ (R·C)", value: `${tau.toFixed(2)} s` },
-        { label: "HR", value: `${values.hr.toFixed(0)} bpm` }
+        { label: "Aug. index", value: `${augIndex.toFixed(0)}%` }
       ],
       warning:
         values.compliance < 0.55
-          ? "Edge state: vessels are extremely stiff (e.g. aged aorta) — pulse pressure exceeds 80 mmHg."
+          ? "Edge state: arterial compliance ≤ 0.55× normal (severely aged / calcified aorta) — pulse pressure > 80 mmHg, vascular event risk."
           : values.resistance > 2.0
-            ? "Edge state: very high systemic vascular resistance — MAP > 130 mmHg."
-            : undefined
+            ? "Edge state: SVR > 2× normal — sustained HTN, LV pressure overload, hypertrophy expected."
+            : pulse > 70 && values.compliance < 1
+              ? "Edge state: wide pulse pressure (> 70 mmHg) — independent CV mortality risk in elderly cohorts."
+              : undefined
     };
   }
 };

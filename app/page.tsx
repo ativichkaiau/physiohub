@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { archetypeMeta, getDiagramPath, getSystemPath, getSystems } from "@/lib/registry";
+import { PhysiologyIntro } from "@/components/PhysiologyIntro";
+import { SystemSignal } from "@/components/SystemSignal";
+import { archetypeMeta, getDiagramPath, getSystemEmoji, getSystemPath, getSystems } from "@/lib/registry";
 
 export default function HomePage() {
   const systems = getSystems();
@@ -23,10 +25,10 @@ export default function HomePage() {
           <div className="max-w-4xl">
             <span className="ph-cockpit-kicker">Interactive physiology atlas</span>
             <h1 className="mt-7 text-4xl font-black leading-[0.98] tracking-tight text-white sm:text-5xl lg:text-[64px]">
-              Build a working model of <span className="ph-cockpit-accent">the body</span>, one diagram at a time.
+              Clamp the variables. Watch <span className="ph-cockpit-accent">the body</span> answer back.
             </h1>
             <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-slate-300 sm:text-lg">
-              A unified atlas of scrubbable timelines, perturbable curves, feedback loops, click-to-mechanism walks, and multi-variable interactions — every diagram shareable by URL.
+              A systems bench for pressure, flow, gases, filtrate, hormones, impulse, and contraction. Scrub time, perturb curves, trace loops, and share the exact state by URL.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -35,19 +37,20 @@ export default function HomePage() {
               >
                 Start exploring
               </a>
+              <PhysiologyIntro />
               <Link
                 href="/cv"
                 className="focus-ring rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white no-underline transition hover:bg-white/10"
               >
-                Cardiovascular ↗
+                Cardiovascular
               </Link>
             </div>
             <div className="ph-cockpit-bullets mt-10">
-              <span className="ph-cockpit-bullet">Timeline</span>
-              <span className="ph-cockpit-bullet">Curve</span>
-              <span className="ph-cockpit-bullet">Loop</span>
-              <span className="ph-cockpit-bullet">Mechanism</span>
-              <span className="ph-cockpit-bullet">Multi-var</span>
+              <span className="ph-cockpit-bullet">Pressure</span>
+              <span className="ph-cockpit-bullet">Gas exchange</span>
+              <span className="ph-cockpit-bullet">Transport</span>
+              <span className="ph-cockpit-bullet">Feedback</span>
+              <span className="ph-cockpit-bullet">Excitability</span>
             </div>
           </div>
 
@@ -68,25 +71,28 @@ export default function HomePage() {
             </div>
 
             {featured ? (
-              <div className="mt-5 rounded-[14px] bg-slate-100 p-5 text-slate-950">
+              <div className="mt-5 rounded-[16px] border border-white/10 bg-white/[0.055] p-5 text-white">
                 <div className="flex items-start gap-3">
                   <span
                     aria-hidden="true"
-                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-900 text-slate-100"
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-xl leading-none"
                   >
-                    ◎
+                    {getSystemEmoji(featured.systemId)}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Featured widget</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+                      Featured widget
+                    </p>
                     <p className="mt-0.5 truncate text-lg font-black">{featured.title}</p>
                   </div>
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">{featured.teaser}</p>
+                <SystemSignal systemId={featured.systemId} className="mt-4 h-28" />
+                <p className="mt-4 text-sm leading-relaxed text-slate-300">{featured.teaser}</p>
                 <Link
                   href={getDiagramPath(featured.systemId, featured.slug)}
-                  className="focus-ring mt-4 inline-flex rounded-full bg-slate-900 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white no-underline transition hover:bg-slate-800"
+                  className="focus-ring mt-4 inline-flex rounded-full bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-950 no-underline transition hover:bg-slate-200"
                 >
-                  Open widget →
+                  Open widget
                 </Link>
               </div>
             ) : null}
@@ -111,7 +117,7 @@ export default function HomePage() {
 
       <section id="systems" className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="ph-kicker">Catalog</p>
+          <p className="ph-kicker">🗂 Catalog</p>
           <h2 className="mt-2 text-2xl font-bold tracking-tight">Choose a system</h2>
         </div>
         <p className="max-w-xl text-sm text-ph-muted">
@@ -123,26 +129,52 @@ export default function HomePage() {
         {systems.map((system) => {
           const ref = system.diagrams.filter((d) => d.status === "reference").length;
           const pct = Math.max(8, (ref / system.diagrams.length) * 100);
+          const allLive = ref === system.diagrams.length;
           return (
             <Link
               key={system.id}
               href={getSystemPath(system.id)}
-              className="focus-ring ph-panel group block min-h-44 p-5 no-underline transition hover:-translate-y-0.5 hover:border-[var(--ph-border-strong)]"
+              className="focus-ring ph-panel group relative block min-h-64 overflow-hidden p-4 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-[var(--ph-border-strong)] hover:shadow-[0_8px_28px_-12px_color-mix(in_srgb,var(--ph-accent),transparent_70%)]"
             >
-              <div className="flex items-start justify-between gap-3">
-                <span className="rounded-ph border border-[color-mix(in_srgb,var(--ph-accent),transparent_70%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_92%)] px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-ph-accent">
-                  Live
-                </span>
-                <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} diagrams</span>
+              {/* Soft accent wash on hover */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[color-mix(in_srgb,var(--ph-accent),transparent_94%)] via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+              />
+              <div className="relative">
+                <SystemSignal systemId={system.id} className="h-28 transition duration-200 group-hover:border-[var(--ph-border-strong)]" />
+                <div className="flex items-start justify-between gap-3">
+                  <span className="mt-4 inline-flex rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">
+                    {system.shortName}
+                  </span>
+                  <div className="mt-4 flex flex-col items-end gap-1">
+                    <span
+                      className={
+                        allLive
+                          ? "rounded-full border border-[color-mix(in_srgb,var(--ph-ok),transparent_60%)] bg-[color-mix(in_srgb,var(--ph-ok),transparent_90%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em]"
+                          : "rounded-full border border-[color-mix(in_srgb,var(--ph-accent),transparent_60%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_92%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-ph-accent"
+                      }
+                      style={allLive ? { color: "var(--ph-ok)" } : undefined}
+                    >
+                      {allLive ? "Complete" : "Live"}
+                    </span>
+                    <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} diagrams</span>
+                  </div>
+                </div>
+                <h3 className="mt-4 text-lg font-bold tracking-tight transition-colors group-hover:text-ph-accent">
+                  {system.name}
+                </h3>
+                <p className="mt-2 text-sm text-ph-muted">{system.teaser}</p>
+                <div className="mt-5 h-1 overflow-hidden rounded-full bg-ph-surface2">
+                  <div
+                    className="h-full rounded-full bg-ph-accent transition-all duration-300"
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
+                <p className="mt-2 text-xs text-ph-muted tabular-nums">
+                  {ref} live · {system.diagrams.length - ref} in development
+                </p>
               </div>
-              <h3 className="mt-5 text-lg font-bold tracking-tight">{system.name}</h3>
-              <p className="mt-2 text-sm text-ph-muted">{system.teaser}</p>
-              <div className="mt-5 h-1 overflow-hidden rounded-full bg-ph-surface2">
-                <div className="h-full rounded-full bg-ph-accent transition-all" style={{ width: `${pct}%` }} />
-              </div>
-              <p className="mt-2 text-xs text-ph-muted tabular-nums">
-                {ref} live · {system.diagrams.length - ref} in development
-              </p>
             </Link>
           );
         })}

@@ -12,7 +12,7 @@ const diagram = getDiagramById(DIAGRAM_ID);
 
 const DURATION = 1.0;
 
-type CellId = "ventricle" | "sa-nodal";
+type CellId = "ventricle" | "atrial" | "sa-nodal";
 
 // Voltage as a function of time (s) for two canonical cardiac cells.
 // Ventricular: fast Na+ upstroke, prominent calcium plateau, ~300 ms AP.
@@ -24,6 +24,21 @@ function ventricularAP(t: number) {
   if (ms < 200) return 10 - ((10 - 5) / 195) * (ms - 5);   // phase 2 plateau
   if (ms < 320) return 5 - ((5 - -90) / 120) * (ms - 200); // phase 3 repol
   return -90;                                              // phase 4 rest
+}
+
+// Atrial: fast Na⁺ upstroke (like ventricular) but with a much smaller plateau
+// and shorter total duration (~200 ms vs ~300 ms). The truncated plateau is
+// why atrial repolarization (and its T-like wave, Ta) finishes during the QRS
+// and is normally buried — making atrial repolarization invisible on a clean
+// surface ECG.
+function atrialAP(t: number) {
+  const ms = t * 1000;
+  if (ms < 0) return -80;
+  if (ms < 2) return -80 + (100 / 2) * ms;                  // phase 0 (Na⁺)
+  if (ms < 5) return 20 - ((20 - 0) / 3) * (ms - 2);        // phase 1
+  if (ms < 100) return 0 - (10 / 95) * (ms - 5);            // brief plateau (smaller than vent)
+  if (ms < 200) return -10 + ((-80 - -10) / 100) * (ms - 100); // phase 3
+  return -80;                                               // phase 4 rest
 }
 
 // SA nodal: NO fast Na+. Slow diastolic depolarization (phase 4) → I_Ca-L upstroke (phase 0) → repol (phase 3).
@@ -107,26 +122,68 @@ function nodalPhase(t: number): Phase {
   };
 }
 
+function atrialPhase(t: number): Phase {
+  const ms = t * 1000;
+  if (ms < 2)
+    return {
+      id: "0",
+      title: "Phase 0 — fast Na⁺ upstroke",
+      ions: "INa opens; atrial cells also have fast voltage-gated Na⁺ channels — that's why the P wave is sharp.",
+      body: "The wavefront enters atrial myocardium via internodal tracts. Conduction velocity is high (~1 m/s) so both atria depolarize in ~80 ms — visible as the P wave."
+    };
+  if (ms < 5)
+    return {
+      id: "1",
+      title: "Phase 1 — brief notch",
+      ions: "Ito briefly returns the membrane partway toward 0 mV.",
+      body: "Similar to the ventricular phase 1 but smaller."
+    };
+  if (ms < 100)
+    return {
+      id: "2",
+      title: "Phase 2 — small plateau",
+      ions: "ICa-L is present but much smaller than ventricular — calcium-induced contraction is brief.",
+      body: "Atrial contraction is brief because the plateau is small. This is why atrial 'kick' is short and easily lost in atrial fibrillation."
+    };
+  if (ms < 200)
+    return {
+      id: "3",
+      title: "Phase 3 — fast repolarization",
+      ions: "IKr / IKs drive repolarization rapidly back to ~ −80 mV.",
+      body: "Atrial AP duration is short (~200 ms) — atrial repolarization finishes during the QRS, so the atrial 'T wave' (Ta) is normally invisible on surface ECG."
+    };
+  return {
+    id: "4",
+    title: "Phase 4 — resting",
+    ions: "IK1 holds the resting potential at −80 mV.",
+    body: "Atrial RMP is slightly less negative than ventricular (−80 vs −90 mV), so atrial cells are slightly more excitable."
+  };
+}
+
 const phaseFn: Record<CellId, (t: number) => Phase> = {
   ventricle: ventricularPhase,
+  atrial: atrialPhase,
   "sa-nodal": nodalPhase
 };
 
 function buildSeries(): CurveSeries[] {
   const ventricularData: CurvePoint[] = [];
+  const atrialData: CurvePoint[] = [];
   const nodalData: CurvePoint[] = [];
   for (let ms = 0; ms <= 1000; ms += 2) {
     const t = ms / 1000;
     ventricularData.push({ x: t, y: ventricularAP(t) });
+    atrialData.push({ x: t, y: atrialAP(t) });
     nodalData.push({ x: t, y: saNodalAP(t) });
   }
   return [
     { id: "ventricle", label: "Ventricular AP", colorVar: "var(--ph-curve-1)", data: ventricularData },
+    { id: "atrial", label: "Atrial AP", colorVar: "var(--ph-curve-3)", data: atrialData },
     { id: "sa-nodal", label: "SA nodal AP", colorVar: "var(--ph-curve-2)", data: nodalData }
   ];
 }
 
-const ALL_TRACES: CellId[] = ["ventricle", "sa-nodal"];
+const ALL_TRACES: CellId[] = ["ventricle", "atrial", "sa-nodal"];
 
 export default function CardiacActionPotentialsWidget() {
   const router = useRouter();
@@ -141,6 +198,7 @@ export default function CardiacActionPotentialsWidget() {
     : "ventricle") as CellId;
   const [focus, setFocus] = useState<CellId>(initialFocus);
   const [showVent, setShowVent] = useState(() => parseBoolean(searchParams.get("vent"), true));
+  const [showAtrial, setShowAtrial] = useState(() => parseBoolean(searchParams.get("atrial"), true));
   const [showNodal, setShowNodal] = useState(() => parseBoolean(searchParams.get("nodal"), true));
   const urlTimer = useRef<number | undefined>(undefined);
 
@@ -150,6 +208,7 @@ export default function CardiacActionPotentialsWidget() {
     params.set("speed", String(speed));
     params.set("focus", focus);
     params.set("vent", showVent ? "1" : "0");
+    params.set("atrial", showAtrial ? "1" : "0");
     params.set("nodal", showNodal ? "1" : "0");
     const nextQuery = params.toString();
     if (nextQuery === currentQuery) return;
@@ -158,7 +217,7 @@ export default function CardiacActionPotentialsWidget() {
       router.replace(`${pathname}?${nextQuery}`, { scroll: false });
     }, 180);
     return () => window.clearTimeout(urlTimer.current);
-  }, [time, speed, focus, showVent, showNodal, currentQuery, pathname, router]);
+  }, [time, speed, focus, showVent, showAtrial, showNodal, currentQuery, pathname, router]);
 
   useEffect(() => {
     if (!playing) return;
@@ -180,12 +239,16 @@ export default function CardiacActionPotentialsWidget() {
     () =>
       allSeries.map((series) => ({
         ...series,
-        visible: (series.id === "ventricle" && showVent) || (series.id === "sa-nodal" && showNodal)
+        visible:
+          (series.id === "ventricle" && showVent) ||
+          (series.id === "atrial" && showAtrial) ||
+          (series.id === "sa-nodal" && showNodal)
       })),
-    [allSeries, showVent, showNodal]
+    [allSeries, showVent, showAtrial, showNodal]
   );
 
   const ventV = ventricularAP(time);
+  const atrialV = atrialAP(time);
   const nodalV = saNodalAP(time);
   const phase = phaseFn[focus](time);
 
@@ -209,6 +272,7 @@ export default function CardiacActionPotentialsWidget() {
             </div>
             <div aria-live="polite" className="grid grid-cols-2 gap-2 text-sm">
               <span className="ph-readout">Vent {ventV.toFixed(0)} mV</span>
+              <span className="ph-readout">Atr {atrialV.toFixed(0)} mV</span>
               <span className="ph-readout">SA {nodalV.toFixed(0)} mV</span>
               <span className="ph-readout">t {(time * 1000).toFixed(0)} ms</span>
               <span className="ph-readout">Phase {phase.id}</span>
@@ -216,7 +280,7 @@ export default function CardiacActionPotentialsWidget() {
           </div>
 
           <Curve
-            title="Ventricular vs SA nodal action potential"
+            title="Ventricular · Atrial · SA nodal action potentials"
             xDomain={[0, DURATION]}
             yDomain={[-100, 40]}
             xLabel="time (s)"
@@ -266,7 +330,9 @@ export default function CardiacActionPotentialsWidget() {
                       : "border-[var(--ph-border)] bg-ph-surface2 text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
                   }`}
                 >
-                  <span className="font-bold">{cellId === "ventricle" ? "Ventricular" : "SA nodal"}</span>
+                  <span className="font-bold">
+                    {cellId === "ventricle" ? "Ventricular" : cellId === "atrial" ? "Atrial" : "SA nodal"}
+                  </span>
                 </button>
               ))}
             </div>
@@ -274,6 +340,7 @@ export default function CardiacActionPotentialsWidget() {
             <div className="mt-5 grid gap-2">
               <p className="text-sm font-bold">Traces</p>
               <PerturbationToggle label="Ventricular AP" checked={showVent} onChange={setShowVent} />
+              <PerturbationToggle label="Atrial AP" checked={showAtrial} onChange={setShowAtrial} />
               <PerturbationToggle label="SA nodal AP" checked={showNodal} onChange={setShowNodal} />
             </div>
           </section>

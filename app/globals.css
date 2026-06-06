@@ -32,6 +32,9 @@
   --ph-curve-2:       #b45309;   /* amber   */
   --ph-curve-3:       #6d28d9;   /* purple  */
   --ph-curve-4:       #be123c;   /* crimson */
+  --ph-curve-5:       #0891b2;   /* teal    */
+  --ph-curve-6:       #047857;   /* emerald */
+  --ph-curve-7:       #db2777;   /* magenta */
   --ph-curve-ref:     #94a3b8;   /* slate baseline */
 
   /* Axes + grid */
@@ -75,6 +78,9 @@
   --ph-curve-2:       #f4b860;
   --ph-curve-3:       #b794f4;
   --ph-curve-4:       #f08db5;
+  --ph-curve-5:       #22d3ee;
+  --ph-curve-6:       #34d399;
+  --ph-curve-7:       #f472b6;
   --ph-curve-ref:     #94a3b8;
 
   /* Axes + grid */
@@ -105,7 +111,12 @@ html {
 body {
   min-height: 100%;
   margin: 0;
-  background: var(--ph-bg);
+  background:
+    linear-gradient(var(--ph-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px),
+    linear-gradient(180deg, var(--ph-bg) 0%, color-mix(in srgb, var(--ph-bg), var(--ph-surface-2) 58%) 100%);
+  background-size: 56px 56px, 56px 56px, auto;
+  background-attachment: fixed;
   color: var(--ph-text);
   font-size: 15px;
   line-height: 1.55;
@@ -257,6 +268,250 @@ svg { display: block; }
   padding: 0.75rem;
 }
 
+.ph-intro-launch {
+  border: 1px solid color-mix(in srgb, var(--cockpit-accent), transparent 58%);
+  background: color-mix(in srgb, var(--cockpit-accent), transparent 86%);
+  color: color-mix(in srgb, var(--cockpit-accent), white 16%);
+}
+
+.ph-intro-launch:hover {
+  background: color-mix(in srgb, var(--cockpit-accent), transparent 78%);
+}
+
+.ph-system-signal {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+  background: var(--ph-surface);
+  color: var(--ph-text);
+}
+
+.ph-panel .ph-system-signal {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--ph-accent), transparent 94%), transparent 44%),
+    var(--ph-surface);
+}
+
+.ph-cockpit .ph-system-signal {
+  --ph-surface: rgba(3, 12, 18, 0.82);
+  --ph-grid: rgba(255, 255, 255, 0.07);
+  --ph-axis: rgba(226, 236, 242, 0.76);
+  --ph-muted: rgba(226, 236, 242, 0.62);
+  --ph-accent: var(--cockpit-accent);
+  --ph-curve-2: #f4c96b;
+  --ph-curve-3: #bb7df0;
+  --ph-curve-4: #f46077;
+  --ph-curve-5: #57e4d0;
+
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* =====================================================================
+   First-run physiology primer — inspired by a dark bench flow, but built
+   around physiology motifs: pressure waveforms, gas exchange, nephron
+   flow, feedback, and URL-state handoff.
+   ===================================================================== */
+.ph-intro-overlay {
+  --intro-bg: #061015;
+  --intro-bg-2: #070a12;
+  --intro-aqua: #57e4d0;
+  --intro-blue: #7ca2ff;
+  --intro-gold: #f4c96b;
+  --intro-purple: #c77bf2;
+  --intro-red: #f46077;
+
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(110deg, rgba(20, 170, 150, 0.22) 0%, rgba(7, 10, 18, 0.98) 34%, rgba(12, 18, 37, 0.98) 100%);
+  background-size: 72px 72px, 72px 72px, auto;
+  padding: 1rem;
+}
+
+.ph-intro-card {
+  position: relative;
+  width: min(100%, 1020px);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 36%),
+    rgba(6, 16, 21, 0.94);
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #f8fbf7;
+  padding: clamp(1.15rem, 3.2vw, 2.75rem);
+}
+
+.ph-intro-close {
+  position: absolute;
+  right: clamp(0.9rem, 2vw, 1.5rem);
+  top: clamp(0.9rem, 2vw, 1.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(248, 251, 247, 0.76);
+  padding: 0.45rem 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ph-intro-close:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.ph-intro-kicker {
+  color: var(--intro-gold);
+  font-size: clamp(0.68rem, 1.7vw, 0.88rem);
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.ph-intro-card h2 span {
+  color: var(--intro-gold);
+}
+
+.ph-intro-visual {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent),
+    rgba(1, 9, 13, 0.86);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 18px 52px rgba(0, 0, 0, 0.32);
+  height: clamp(12rem, 32vh, 18.5rem);
+}
+
+.ph-intro-visual svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ph-intro-svg-label {
+  fill: rgba(226, 236, 242, 0.68);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.ph-intro-map,
+.ph-intro-clamp,
+.ph-intro-loop,
+.ph-intro-share {
+  opacity: 0.38;
+  transition: opacity 260ms ease, filter 260ms ease;
+}
+
+.ph-intro-visual[data-step="0"] .ph-intro-map,
+.ph-intro-visual[data-step="1"] .ph-intro-clamp,
+.ph-intro-visual[data-step="2"] .ph-intro-loop,
+.ph-intro-visual[data-step="3"] .ph-intro-share {
+  opacity: 1;
+  filter: drop-shadow(0 0 16px rgba(87, 228, 208, 0.28));
+}
+
+.ph-intro-progress {
+  height: 0.72rem;
+  width: clamp(3rem, 8vw, 5.75rem);
+  border: 0;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.24);
+  padding: 0;
+  transition: background 180ms ease, box-shadow 180ms ease, width 180ms ease;
+}
+
+.ph-intro-progress[data-active="true"] {
+  width: clamp(4.4rem, 11vw, 7rem);
+  background: var(--intro-gold);
+  box-shadow: 0 0 26px rgba(244, 201, 107, 0.34);
+}
+
+.ph-intro-secondary,
+.ph-intro-primary {
+  min-width: 7.5rem;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.ph-intro-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(248, 251, 247, 0.82);
+}
+
+.ph-intro-secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.ph-intro-primary {
+  border: 1px solid color-mix(in srgb, var(--intro-gold), white 18%);
+  background: var(--intro-gold);
+  color: #16120a;
+  box-shadow: 0 16px 34px rgba(244, 201, 107, 0.18);
+}
+
+.ph-intro-primary:hover {
+  background: color-mix(in srgb, var(--intro-gold), white 8%);
+}
+
+@media (max-width: 520px) {
+  .ph-intro-overlay {
+    align-items: start;
+    padding: 0.75rem;
+  }
+
+  .ph-intro-card {
+    border-radius: 18px;
+    max-height: calc(100vh - 1.5rem);
+    padding-top: 3.25rem;
+  }
+
+  .ph-intro-visual {
+    margin-inline: -0.15rem;
+    height: 10rem;
+  }
+
+  .ph-intro-footer {
+    position: sticky;
+    bottom: -1.15rem;
+    margin-inline: -1.15rem;
+    background:
+      linear-gradient(180deg, rgba(6, 16, 21, 0), rgba(6, 16, 21, 0.96) 18%),
+      rgba(6, 16, 21, 0.96);
+    padding: 1rem 1.15rem 1.15rem;
+  }
+
+  .ph-intro-progress {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ph-intro-secondary,
+  .ph-intro-primary {
+    flex: 1;
+    min-width: 0;
+    padding-inline: 1rem;
+  }
+}
+
 /* Theme-aware mode pill — shows current mode label inside the cockpit
    console without needing JS. */
 .ph-mode-day,
@@ -295,21 +550,42 @@ svg { display: block; }
 }
 
 .ph-concept-panel {
+  position: relative;
   border: 1px solid var(--ph-border);
   border-radius: var(--ph-radius);
-  background: var(--ph-surface);
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--ph-accent), transparent 96%) 0%,
+      var(--ph-surface) 35%);
   box-shadow: var(--ph-shadow);
+  overflow: hidden;
+}
+
+/* Accent strip on the left of the concept panel — reads as a "highlight" stripe
+   without taking up visual real estate. */
+.ph-concept-panel::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--ph-accent), color-mix(in srgb, var(--ph-accent), transparent 70%));
+  content: "";
 }
 
 .ph-readout {
   border: 1px solid var(--ph-border);
   border-radius: var(--ph-radius);
-  background: var(--ph-surface-2);
+  background: linear-gradient(180deg, var(--ph-surface) 0%, var(--ph-surface-2) 100%);
   padding: 0.55rem 0.75rem;
   color: var(--ph-text);
   font-size: 0.88rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+  box-shadow: inset 0 1px 0 0 color-mix(in srgb, white, transparent 92%);
+  transition: border-color 160ms ease;
+}
+
+.ph-readout:hover {
+  border-color: var(--ph-border-strong);
 }
 
 .ph-chart-stage {
@@ -344,6 +620,138 @@ svg { display: block; }
 .focus-ring:focus-visible {
   outline-color: var(--ph-accent);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--ph-accent), transparent 75%);
+}
+
+/* =====================================================================
+   Subtle entrance animation — widget panels fade in on first paint.
+   ===================================================================== */
+@keyframes ph-fade-in {
+  0%   { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.ph-widget-shell > * {
+  animation: ph-fade-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.ph-widget-shell > *:nth-child(2) { animation-delay: 40ms; }
+.ph-widget-shell > *:nth-child(3) { animation-delay: 80ms; }
+
+/* =====================================================================
+   Slider polish — accent thumb + chip, smoother track. Vendor-prefixed
+   to land on both -webkit- and -moz- families.
+   ===================================================================== */
+.ph-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  height: 28px;
+  width: 100%;
+}
+.ph-slider:focus { outline: none; }
+
+.ph-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ph-surface-3) 0%, var(--ph-surface-2) 100%);
+  border: 1px solid var(--ph-border);
+}
+.ph-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ph-surface-2);
+  border: 1px solid var(--ph-border);
+}
+
+.ph-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--ph-accent) 0%, color-mix(in srgb, var(--ph-accent), black 18%) 100%);
+  border: 2px solid var(--ph-surface);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.20),
+    0 0 0 1px color-mix(in srgb, var(--ph-accent), transparent 75%);
+  cursor: grab;
+  transition: transform 120ms ease, box-shadow 160ms ease;
+}
+.ph-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.08);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.28),
+    0 0 0 6px color-mix(in srgb, var(--ph-accent), transparent 80%);
+}
+.ph-slider::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--ph-accent);
+  border: 2px solid var(--ph-surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
+  cursor: grab;
+}
+
+.ph-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 3px var(--ph-bg),
+    0 0 0 5px var(--ph-accent);
+}
+
+/* =====================================================================
+   Value chip on sliders — accent-tinted, monospace numerics so digits
+   don't jitter while you drag.
+   ===================================================================== */
+.ph-value-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid color-mix(in srgb, var(--ph-accent), transparent 70%);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ph-accent), transparent 90%);
+  padding: 0.15rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ph-accent);
+  letter-spacing: 0.01em;
+}
+
+/* =====================================================================
+   Toggle (switch) polish — soft glow when on.
+   ===================================================================== */
+.ph-toggle-track {
+  position: relative;
+  height: 22px;
+  width: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--ph-border-strong);
+  background: var(--ph-surface-2);
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.ph-toggle-track[data-checked="true"] {
+  background: linear-gradient(180deg, var(--ph-accent) 0%, color-mix(in srgb, var(--ph-accent), black 14%) 100%);
+  border-color: color-mix(in srgb, var(--ph-accent), transparent 30%);
+}
+.ph-toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--ph-surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ph-toggle-track[data-checked="true"] .ph-toggle-knob {
+  transform: translateX(16px);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.35),
+    0 0 0 4px color-mix(in srgb, var(--ph-accent), transparent 85%);
 }
 
 @media (prefers-reduced-motion: reduce) {

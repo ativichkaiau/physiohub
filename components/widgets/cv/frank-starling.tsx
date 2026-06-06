@@ -34,11 +34,25 @@ const config: CurveLabConfig = {
   ],
   buildReferenceSeries: () => [
     {
+      id: "hyperdynamic",
+      label: "Hyperdynamic (sympathetic / inotropes)",
+      colorVar: "var(--ph-curve-2)",
+      dashed: true,
+      data: makeRange(0, 20, 0.5).map((x) => ({ x, y: starlingPoint(x, 1.5, 80) }))
+    },
+    {
       id: "normal",
-      label: "Normal",
+      label: "Normal (c=1, afterload=80)",
       colorVar: "var(--ph-curve-ref)",
       dashed: true,
       data: makeRange(0, 20, 0.5).map((x) => ({ x, y: starlingPoint(x, 1, 80) }))
+    },
+    {
+      id: "hf",
+      label: "Heart failure (c=0.6)",
+      colorVar: "var(--ph-curve-4)",
+      dashed: true,
+      data: makeRange(0, 20, 0.5).map((x) => ({ x, y: starlingPoint(x, 0.6, 80) }))
     }
   ],
   buildAnnotations: (values) => [
@@ -51,16 +65,34 @@ const config: CurveLabConfig = {
   getCursorX: (values) => values.preload,
   summarize: (values) => {
     const sv = starlingPoint(values.preload, values.contractility, values.afterload);
+    const co5 = (sv * 72) / 1000; // CO at HR 72 bpm
+    const ef = sv / Math.max(60, sv + 40) * 100; // estimate EF assuming ESV ≈ 40-50 mL at this SV
     return {
-      state: values.contractility > 1.15 ? "Inotropy increased" : values.afterload > 105 ? "Afterload stress" : "Preload response",
-      body: "Slide preload along the curve and perturb contractility or afterload to see how stroke volume changes at the operating point.",
+      state:
+        values.contractility <= 0.7
+          ? "Failing heart — descending limb risk at high preload"
+          : values.contractility >= 1.3
+            ? "Hyperdynamic (β-adrenergic / dobutamine)"
+            : values.afterload > 110
+              ? "Afterload mismatch — concentric remodelling pattern"
+              : values.preload < 4
+                ? "Underfilled — preload reserve available"
+                : "Normal Frank–Starling regime",
+      body: "Stroke volume rises asymptotically with end-diastolic filling pressure. Inotropy lifts the entire curve (steeper); afterload depresses it (shallower). The healthy LV operates on the steep ascending limb (LVEDP ≈ 5–12 mmHg).",
       readouts: [
         { label: "SV", value: `${sv.toFixed(0)} mL` },
+        { label: "CO @72", value: `${co5.toFixed(1)} L/min` },
         { label: "Preload", value: `${values.preload.toFixed(0)} mmHg` },
-        { label: "Inotropy", value: `${values.contractility.toFixed(2)}x` },
-        { label: "Afterload", value: `${values.afterload.toFixed(0)} mmHg` }
+        { label: "Inotropy", value: `${values.contractility.toFixed(2)}×` },
+        { label: "Afterload", value: `${values.afterload.toFixed(0)} mmHg` },
+        { label: "Est. EF", value: `${ef.toFixed(0)}%` }
       ],
-      warning: values.contractility <= 0.55 ? "Edge state: contractility is very low, so the curve flattens toward pump failure." : undefined
+      warning:
+        values.contractility <= 0.55
+          ? "Edge state: contractility ≤ 0.55× normal — pump approaching cardiogenic shock; rising preload no longer recruits stroke volume."
+          : values.preload > 18 && values.contractility < 0.85
+            ? "Edge state: high LVEDP in a failing ventricle → pulmonary congestion likely (PCWP ≈ LVEDP)."
+            : undefined
     };
   }
 };

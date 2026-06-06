@@ -18,6 +18,9 @@ type EcgEvent = {
   conduction: string;
   body: string;
   pathology: string;
+  // Signature highlight colour per event so the strip reads as five distinct
+  // conduction events at a glance, not as one undifferentiated waveform.
+  colorVar: string;
 };
 
 // One ECG cycle over 800 ms (HR ≈ 75 bpm). Times are conventional adult values.
@@ -28,8 +31,9 @@ const EVENTS: EcgEvent[] = [
     startMs: 50,
     endMs: 130,
     conduction: "Atrial depolarization",
-    body: "The SA node fires and the wavefront sweeps across both atria via internodal tracts and Bachmann's bundle. Duration normally < 120 ms; amplitude < 2.5 mm in II.",
-    pathology: "Peaked P (P pulmonale) → right atrial enlargement; broad / notched P (P mitrale) → left atrial enlargement; absent P → atrial fibrillation."
+    colorVar: "var(--ph-curve-2)",
+    body: "The SA node fires (rate set by phase-4 If current) and the wavefront sweeps across both atria via internodal tracts and Bachmann's bundle. Duration normally 80–120 ms; amplitude < 2.5 mm in II. In lead II (used here), P is upright; inversion suggests an ectopic atrial or junctional rhythm.",
+    pathology: "Peaked P (> 2.5 mm in II) — P pulmonale → right atrial enlargement. Broad / notched P (> 120 ms) — P mitrale → left atrial enlargement. Absent P with irregularly irregular RR = atrial fibrillation. Sawtooth at ~300 bpm = atrial flutter."
   },
   {
     id: "pr",
@@ -37,8 +41,9 @@ const EVENTS: EcgEvent[] = [
     startMs: 50,
     endMs: 170,
     conduction: "AV nodal delay",
-    body: "Measured from the start of the P wave to the start of QRS. Normal 120–200 ms. The AV node deliberately delays conduction so atrial systole finishes before ventricular contraction begins.",
-    pathology: "PR > 200 ms = first-degree AV block. Progressive PR lengthening with dropped QRS = Mobitz I. Short PR with a delta wave = WPW pre-excitation."
+    colorVar: "var(--ph-curve-3)",
+    body: "Measured from the start of P to the start of QRS. Normal 120–200 ms (3–5 small boxes). The AV node deliberately delays conduction (~80 ms) so atrial systole finishes before ventricular contraction begins. Decremental conduction protects ventricles from atrial tachyarrhythmias.",
+    pathology: "PR > 200 ms = first-degree AV block (typically benign). Progressive PR lengthening then dropped beat = Mobitz I (Wenckebach, AV-node block). Fixed PR with intermittent dropped beat = Mobitz II (infranodal, risk of complete block). Short PR (< 120 ms) with delta wave = WPW pre-excitation."
   },
   {
     id: "qrs",
@@ -46,8 +51,9 @@ const EVENTS: EcgEvent[] = [
     startMs: 170,
     endMs: 260,
     conduction: "Ventricular depolarization (His–Purkinje)",
-    body: "Rapid spread through the His bundle → bundle branches → Purkinje network → ventricular myocardium. Duration normally < 120 ms. The dominant LV vector gives the upright R wave in I, V5–V6.",
-    pathology: "QRS > 120 ms = bundle branch block or ventricular escape rhythm. Poor R-wave progression V1–V4 suggests prior anteroseptal MI."
+    colorVar: "var(--ph-curve-1)",
+    body: "Rapid spread through the His bundle → bundle branches → Purkinje network → ventricular myocardium. Duration normally < 120 ms (< 3 small boxes). The dominant LV mass drives the vector toward I, V5–V6 (upright R). Q waves in lateral / inferior leads should be < 40 ms wide and < 25% of the R wave amplitude.",
+    pathology: "QRS > 120 ms = bundle branch block (RBBB has rSR' in V1, LBBB has wide R in V5–V6) or ventricular escape / VT. Poor R-wave progression V1–V4 = prior anteroseptal MI. Pathologic Q waves (>40 ms, > 25% of R) = transmural infarct. Low voltage = pericardial effusion / amyloid."
   },
   {
     id: "st",
@@ -55,8 +61,9 @@ const EVENTS: EcgEvent[] = [
     startMs: 260,
     endMs: 320,
     conduction: "Ventricular plateau (AP phase 2)",
-    body: "Both ventricles fully depolarized; calcium plateau of the action potential. Isoelectric in health — the segment sits on the baseline between the end of QRS (J point) and the start of T.",
-    pathology: "ST elevation ≥ 1 mm in two contiguous limb leads = transmural ischaemia (STEMI). Horizontal or down-sloping ST depression = subendocardial ischaemia."
+    colorVar: "var(--ph-curve-6)",
+    body: "Both ventricles fully depolarized; calcium plateau of the action potential. The J point marks the QRS–ST junction. Isoelectric in health — measured 60–80 ms after J point. ST in lead II should sit on the TP baseline.",
+    pathology: "ST elevation ≥ 1 mm in two contiguous limb leads (≥ 2 mm in V2–V3) = transmural ischaemia (STEMI) — emergent reperfusion. Horizontal / down-sloping ST depression ≥ 1 mm = subendocardial ischaemia. Diffuse concave-up ST elevation with PR depression = pericarditis. Saddle-back ST in V1–V2 = Brugada pattern (Na-channelopathy)."
   },
   {
     id: "t",
@@ -64,8 +71,9 @@ const EVENTS: EcgEvent[] = [
     startMs: 320,
     endMs: 440,
     conduction: "Ventricular repolarization (AP phase 3)",
-    body: "Net repolarization vector. Normally concordant with QRS (upright in I, II, V3–V6). QT interval (Q → end of T) reflects total ventricular AP duration.",
-    pathology: "Peaked symmetric T = hyperkalaemia. Inverted T = ischaemia or strain. QTc > 460 ms = long-QT syndrome (risk of torsades)."
+    colorVar: "var(--ph-curve-4)",
+    body: "Net repolarization vector. Normally concordant with QRS (upright in I, II, V3–V6; inverted in aVR). QT interval (Q → end of T) reflects total ventricular AP duration; it shortens at fast HR. Bazett-corrected QTc = QT / √RR (normal ≤ 440 ms men, ≤ 460 ms women).",
+    pathology: "Peaked symmetric T (≥ 2/3 R) = hyperkalaemia (K > 5.5). Inverted T = ischaemia / strain. Biphasic T in V1–V4 = Wellens' syndrome (LAD critical lesion). QTc > 500 ms = high torsades-de-pointes risk (drug-induced, congenital LQTS — KCNQ1/HERG mutations, ↓Mg, ↓K, ↓Ca). U waves prominent in hypokalaemia."
   }
 ];
 
@@ -171,9 +179,17 @@ export default function EcgIntervalsWidget() {
                     y={PAD.t}
                     width={X(ev.endMs) - X(ev.startMs)}
                     height={plotH}
-                    fill={isSelected ? "color-mix(in srgb, var(--ph-accent), transparent 80%)" : "transparent"}
-                    stroke={isSelected ? "color-mix(in srgb, var(--ph-accent), transparent 45%)" : "transparent"}
-                    strokeWidth="1.5"
+                    fill={
+                      isSelected
+                        ? `color-mix(in srgb, ${ev.colorVar}, transparent 78%)`
+                        : `color-mix(in srgb, ${ev.colorVar}, transparent 94%)`
+                    }
+                    stroke={
+                      isSelected
+                        ? `color-mix(in srgb, ${ev.colorVar}, transparent 40%)`
+                        : "transparent"
+                    }
+                    strokeWidth={isSelected ? 1.6 : 1}
                     rx="6"
                     style={{ cursor: "pointer" }}
                     onClick={() => setSelectedId(ev.id)}
@@ -185,7 +201,7 @@ export default function EcgIntervalsWidget() {
                       x={(X(ev.startMs) + X(ev.endMs)) / 2}
                       y={PAD.t - 8}
                       textAnchor="middle"
-                      fill="var(--ph-accent)"
+                      fill={ev.colorVar}
                       fontSize="11"
                       fontWeight="700"
                       letterSpacing="0.5"
@@ -220,14 +236,19 @@ export default function EcgIntervalsWidget() {
                     key={ev.id}
                     type="button"
                     onClick={() => setSelectedId(ev.id)}
-                    className={`focus-ring rounded-ph border px-3 py-2 text-left text-sm transition ${
+                    className={`focus-ring inline-flex items-center gap-2.5 rounded-ph border px-3 py-2 text-left text-sm transition ${
                       isSelected
                         ? "border-[color-mix(in_srgb,var(--ph-accent),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-ph-accent"
                         : "border-[var(--ph-border)] bg-ph-surface2 text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
                     }`}
                   >
+                    <span
+                      aria-hidden="true"
+                      className="inline-block h-2.5 w-2.5 shrink-0 rounded-full"
+                      style={{ backgroundColor: ev.colorVar }}
+                    />
                     <span className="font-bold">{ev.label}</span>
-                    <span className="ml-2 text-xs">{ev.conduction}</span>
+                    <span className="text-xs">{ev.conduction}</span>
                   </button>
                 );
               })}

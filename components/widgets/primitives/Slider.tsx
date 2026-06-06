@@ -60,18 +60,18 @@ export function Slider({
   }
 
   return (
-    <div className="grid gap-2">
+    <div className="grid gap-1.5">
       <div className="flex items-start justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-medium text-ph-text">
+        <label htmlFor={id} className="text-sm font-semibold text-ph-text">
           {label}
         </label>
-        <span aria-live="polite" className="rounded-ph bg-ph-surface2 px-2 py-1 text-xs text-ph-muted">
+        <span aria-live="polite" className="ph-value-chip">
           {displayValue}
         </span>
       </div>
       <input
         id={id}
-        className="focus-ring h-8 w-full accent-[var(--ph-accent)]"
+        className="ph-slider focus-ring"
         type="range"
         min={min}
         max={max}
@@ -83,12 +83,23 @@ export function Slider({
         onChange={(event) => onChange(Number(event.currentTarget.value))}
         onKeyDown={handleKeyboard}
       />
-      <div className="flex justify-between text-xs text-ph-muted">
+      <div className="flex justify-between text-[11px] tabular-nums text-ph-muted">
         <span>
           {formatValue(min, step)}
           {unit ? ` ${unit}` : ""}
         </span>
-        {defaultLabel ? <span>default {defaultLabel}</span> : <span />}
+        {defaultLabel ? (
+          <button
+            type="button"
+            onClick={() => onChange(clamp(defaultValue!, min, max))}
+            title="Reset to default"
+            className="focus-ring rounded-full px-1.5 py-0 text-[10px] uppercase tracking-[0.08em] text-ph-muted hover:text-ph-accent"
+          >
+            ↺ {defaultLabel}
+          </button>
+        ) : (
+          <span />
+        )}
         <span>
           {formatValue(max, step)}
           {unit ? ` ${unit}` : ""}

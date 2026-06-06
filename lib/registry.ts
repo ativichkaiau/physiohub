@@ -54,34 +54,56 @@ export const registry = parsedRegistry;
 
 export const archetypeMeta: Record<
   Archetype,
-  { label: string; shortLabel: string; glyph: string }
+  { label: string; shortLabel: string; glyph: string; emoji: string }
 > = {
   "scrubbable-timeline": {
     label: "Scrubbable Timeline",
     shortLabel: "Timeline",
-    glyph: "T"
+    glyph: "T",
+    emoji: "⏱️"
   },
   "perturbable-curve": {
     label: "Perturbable Curve",
     shortLabel: "Curve",
-    glyph: "C"
+    glyph: "C",
+    emoji: "📈"
   },
   "feedback-loop": {
     label: "Feedback Loop",
     shortLabel: "Loop",
-    glyph: "F"
+    glyph: "F",
+    emoji: "🔄"
   },
   "click-to-mechanism": {
     label: "Click-to-Mechanism",
     shortLabel: "Mechanism",
-    glyph: "M"
+    glyph: "M",
+    emoji: "⚙️"
   },
   "multi-variable-interaction": {
     label: "Multi-variable Interaction",
     shortLabel: "Multi-var",
-    glyph: "V"
+    glyph: "V",
+    emoji: "🎛️"
   }
 };
+
+// System-level emojis. Lives next to the registry so any surface (homepage,
+// system page, diagram chrome) gets the same icon for the same system.
+export const systemEmoji: Record<string, string> = {
+  cv: "❤️",
+  resp: "🫁",
+  nerv: "🧠",
+  msk: "💪",
+  gi: "🍽️",
+  endo: "⚖️",
+  renal: "🫘",
+  repro: "🌱"
+};
+
+export function getSystemEmoji(systemId: string) {
+  return systemEmoji[systemId] ?? "🔬";
+}
 
 const systemsById = new Map(parsedRegistry.systems.map((system) => [system.id, system]));
 

@@ -370,7 +370,7 @@
           "slug": "synaptic-transmission",
           "title": "Synaptic Transmission",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Step through vesicle docking, release, receptor activation, and recycling.",
           "concept": "You are looking at chemical synaptic transmission as a sequence. Click each mechanism step to reveal molecular events. Observe where calcium entry controls release probability.",
           "references": [
@@ -383,7 +383,7 @@
           "slug": "phototransduction",
           "title": "Phototransduction",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Step through opsin activation, cGMP changes, and photoreceptor hyperpolarization.",
           "concept": "You are looking at the photoreceptor cascade. Click each biochemical step from photon capture to glutamate release. Observe why light hyperpolarizes rods and cones.",
           "references": [
@@ -396,7 +396,7 @@
           "slug": "reflex-arc",
           "title": "Spinal Reflex Arc",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb stretch and watch afferent, interneuron, and motor output update.",
           "concept": "You are looking at a stretch reflex loop. Perturb muscle length or inhibit an interneuron to follow signal flow. Observe how reciprocal inhibition shapes motor output.",
           "references": [
@@ -409,7 +409,7 @@
           "slug": "receptive-fields",
           "title": "Receptive Fields",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move stimulus location and intensity to compare center-surround responses.",
           "concept": "You are looking at sensory receptor response maps. Manipulate stimulus location, size, and intensity. Observe how lateral inhibition sharpens contrast.",
           "references": [
@@ -580,7 +580,7 @@
           "slug": "peristalsis",
           "title": "Peristaltic Reflex",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub bolus movement to align oral contraction and anal relaxation.",
           "concept": "You are looking at the enteric peristaltic reflex. Scrub bolus movement and toggle neurotransmitter layers. Observe how contraction behind and relaxation ahead propel contents.",
           "references": [
@@ -593,7 +593,7 @@
           "slug": "intestinal-absorption",
           "title": "Intestinal Absorption",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click through apical entry, intracellular processing, and basolateral exit.",
           "concept": "You are looking at epithelial nutrient and electrolyte absorption. Click transporter steps to follow luminal-to-blood movement. Observe how sodium gradients power coupled uptake.",
           "references": [
@@ -606,7 +606,7 @@
           "slug": "bile-flow",
           "title": "Bile Flow and Enterohepatic Cycling",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb bile acid return and watch hepatic secretion and gallbladder contraction.",
           "concept": "You are looking at enterohepatic cycling of bile acids. Perturb meal state, ileal return, or gallbladder contraction. Observe how recycled bile acids amplify secretion.",
           "references": [
@@ -619,7 +619,7 @@
           "slug": "pancreatic-secretion",
           "title": "Pancreatic Secretion",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Balance secretin, CCK, duct bicarbonate, and acinar enzyme output.",
           "concept": "You are looking at exocrine pancreatic secretion. Manipulate duodenal acid, fat, and vagal tone to drive duct and acinar responses. Observe how bicarbonate and enzyme secretion are coordinated.",
           "references": [
@@ -632,7 +632,7 @@
           "slug": "gastric-emptying",
           "title": "Gastric Emptying",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust meal volume, fat, osmolality, and duodenal feedback to predict emptying rate.",
           "concept": "You are looking at stomach-to-duodenum flow control. Manipulate meal composition, pyloric resistance, and duodenal feedback signals. Observe how fat, acid, and hyperosmolar chyme slow gastric emptying.",
           "references": [
@@ -645,7 +645,7 @@
           "slug": "swallowing-esophageal-motility",
           "title": "Swallowing and Esophageal Motility",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub oral, pharyngeal, and esophageal phases while sphincters open and close.",
           "concept": "You are looking at coordinated swallowing from bolus propulsion to lower esophageal sphincter relaxation. Scrub time and toggle cranial nerve or smooth-muscle phases. Observe how peristalsis clears the bolus without airway entry.",
           "references": [
@@ -658,7 +658,7 @@
           "slug": "fat-absorption-micelles",
           "title": "Fat Absorption and Micelles",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click emulsification, lipase action, micelle delivery, chylomicron assembly, and lymph export.",
           "concept": "You are looking at lipid digestion and absorption across the intestinal lumen and enterocyte. Click each mechanism step to follow fat from bile-salt emulsification to chylomicron export. Observe where pancreatic enzymes and bile acids are required.",
           "references": [
@@ -671,7 +671,7 @@
           "slug": "colon-water-electrolyte",
           "title": "Colon Water and Electrolyte Handling",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Balance transit time, aldosterone, secretion, and absorption to predict stool water.",
           "concept": "You are looking at colonic water and electrolyte handling. Manipulate transit time, sodium absorption, chloride secretion, and aldosterone effect. Observe why fast transit and secretory states increase stool water.",
           "references": [
@@ -684,7 +684,7 @@
           "slug": "vomiting-reflex",
           "title": "Vomiting Reflex",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb vestibular, chemoreceptor, vagal, and cortical inputs to watch emetic output.",
           "concept": "You are looking at emesis control through brainstem integration. Perturb vestibular input, chemoreceptor trigger zone activity, vagal afferents, or cortical drive. Observe how motor outputs coordinate retching, sphincter relaxation, and expulsion.",
           "references": [
@@ -719,7 +719,7 @@
           "slug": "hpt-axis",
           "title": "HPT Axis",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb TSH, thyroid hormone, or iodine availability to see feedback.",
           "concept": "You are looking at thyroid axis feedback. Perturb TRH, TSH, thyroid hormone, or iodine supply. Observe how negative feedback and gland responsiveness shape the steady state.",
           "references": [
@@ -745,7 +745,7 @@
           "slug": "calcium-homeostasis",
           "title": "Calcium Homeostasis",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust PTH, vitamin D, kidney, gut, and bone terms to balance serum calcium.",
           "concept": "You are looking at calcium flux among bone, kidney, gut, and plasma. Manipulate PTH, vitamin D, intake, and renal handling. Observe which compartments buffer acute and chronic changes.",
           "references": [
@@ -758,7 +758,7 @@
           "slug": "thyroid-hormone-synthesis",
           "title": "Thyroid Hormone Synthesis",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click iodide trapping, organification, coupling, storage, and release.",
           "concept": "You are looking at thyroid hormone synthesis inside the follicle. Click each biochemical step from iodide trapping to hormone release. Observe where common drugs interrupt synthesis.",
           "references": [
@@ -771,7 +771,7 @@
           "slug": "insulin-glucagon",
           "title": "Insulin-Glucagon Ratio",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move fed, fasting, exercise, and stress states to compare insulin/glucagon ratio and fuel flux.",
           "concept": "You are looking at endocrine fuel partitioning across metabolic states. Manipulate meal state, exercise intensity, stress hormones, and insulin sensitivity. Observe how the insulin-glucagon ratio redirects liver, muscle, and adipose metabolism.",
           "references": [
@@ -784,7 +784,7 @@
           "slug": "leptin-ghrelin-appetite",
           "title": "Leptin-Ghrelin Appetite Loop",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb adiposity, fasting, and meal timing to watch hypothalamic hunger and satiety signals.",
           "concept": "You are looking at appetite regulation through peripheral signals and hypothalamic integration. Manipulate adipose mass, fasting duration, and meal state to alter leptin and ghrelin. Observe how satiety and hunger drives oppose each other.",
           "references": [
@@ -797,7 +797,7 @@
           "slug": "adrenal-medulla",
           "title": "Adrenal Medulla Catecholamines",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Trigger sympathetic stress and watch epinephrine, norepinephrine, glucose, and heart effects.",
           "concept": "You are looking at adrenal medulla output during acute stress. Perturb sympathetic drive, cortisol priming, and receptor sensitivity. Observe how catecholamines coordinate cardiovascular and metabolic responses.",
           "references": [
@@ -810,7 +810,7 @@
           "slug": "pituitary-hormone-map",
           "title": "Pituitary Hormone Map",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click anterior and posterior pituitary hormones to reveal hypothalamic inputs and target organs.",
           "concept": "You are looking at pituitary hormone outputs and their regulatory inputs. Click each hormone axis to trace hypothalamic control, pituitary release, and peripheral target response. Observe which axes use trophic feedback and which use neural release.",
           "references": [
@@ -823,7 +823,7 @@
           "slug": "hormone-dose-response",
           "title": "Hormone Dose-Response",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Shift receptor number, affinity, and antagonist presence to compare sensitivity and maximal response.",
           "concept": "You are looking at endocrine receptor dose-response behavior. Manipulate hormone concentration, receptor abundance, affinity, and antagonist effect. Observe how sensitivity and maximal response can change independently.",
           "references": [
@@ -845,7 +845,7 @@
           "slug": "nephron-handling",
           "title": "Nephron Handling",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click nephron segments to reveal solute transport and drug targets.",
           "concept": "You are looking at tubular handling along the nephron. Click each segment to reveal transporters and gradients. Observe where diuretics alter sodium and water movement.",
           "references": [
@@ -871,7 +871,7 @@
           "slug": "gfr-autoregulation",
           "title": "GFR Autoregulation",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move arterial pressure and arteriolar tone to compare RPF and GFR.",
           "concept": "You are looking at filtration across renal perfusion pressure. Manipulate arterial pressure, afferent tone, and efferent tone. Observe the autoregulatory plateau and its failure points.",
           "references": [
@@ -884,7 +884,7 @@
           "slug": "countercurrent",
           "title": "Countercurrent Multiplication",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust loop flow, transporter strength, and ADH to build or wash out the gradient.",
           "concept": "You are looking at medullary osmotic gradient formation. Manipulate loop flow, NKCC activity, urea recycling, and ADH. Observe how a small transverse gradient becomes a longitudinal gradient.",
           "references": [
@@ -897,7 +897,7 @@
           "slug": "acid-base",
           "title": "Acid-Base Compensation",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move pH, PaCO2, and bicarbonate to classify disorders and compensation.",
           "concept": "You are looking at acid-base state space. Manipulate bicarbonate, PaCO2, and renal compensation. Observe how primary disorders move along expected compensation lines.",
           "references": [
@@ -910,7 +910,7 @@
           "slug": "micturition-reflex",
           "title": "Micturition Reflex",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb bladder volume, stretch afferents, and sphincter tone to see voiding control.",
           "concept": "You are looking at bladder filling and voiding control. Manipulate bladder volume, pontine drive, parasympathetic outflow, and external sphincter tone. Observe how storage switches into coordinated detrusor contraction and sphincter relaxation.",
           "references": [
@@ -923,7 +923,7 @@
           "slug": "bladder-pressure-volume",
           "title": "Bladder Pressure-Volume Curve",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Slide volume, compliance, and outlet resistance to compare normal and retention states.",
           "concept": "You are looking at cystometric pressure as bladder volume rises. Manipulate compliance, detrusor tone, and outlet resistance to reshape the curve. Observe how low compliance raises pressure before capacity is reached.",
           "references": [
@@ -936,7 +936,7 @@
           "slug": "ureteral-peristalsis",
           "title": "Ureteral Peristalsis",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub a peristaltic wave from renal pelvis to bladder and compare obstruction states.",
           "concept": "You are looking at ureteral propulsion from the renal pelvis to the ureterovesical junction. Scrub time and perturb obstruction or urine flow. Observe how pressure waves move boluses while reflux is prevented.",
           "references": [
@@ -949,7 +949,7 @@
           "slug": "diuretic-sites",
           "title": "Diuretic Sites of Action",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click nephron segments to map carbonic anhydrase, loop, thiazide, ENaC, and aldosterone targets.",
           "concept": "You are looking at diuretic targets along the nephron. Click each drug class to reveal transporter blockade, electrolyte effects, and downstream compensation. Observe why segment location predicts urine and potassium effects.",
           "references": [
@@ -962,7 +962,7 @@
           "slug": "potassium-handling",
           "title": "Potassium Handling",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust aldosterone, distal flow, serum potassium, and acid-base state to predict K excretion.",
           "concept": "You are looking at potassium secretion and reabsorption across distal nephron segments. Manipulate aldosterone, distal sodium delivery, flow, and acid-base state. Observe how multiple drivers converge on urinary potassium excretion.",
           "references": [

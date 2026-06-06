@@ -140,6 +140,132 @@ const widgetMap: Record<string, ComponentType> = {
       ssr: false
     }
   ),
+  "endo/hpt-axis": dynamic(() => import("@/components/widgets/endo/hpt-axis"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "endo/leptin-ghrelin-appetite": dynamic(
+    () => import("@/components/widgets/endo/leptin-ghrelin-appetite"),
+    {
+      loading: () => <WidgetLoading />,
+      ssr: false
+    }
+  ),
+  "endo/adrenal-medulla": dynamic(() => import("@/components/widgets/endo/adrenal-medulla"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "endo/hormone-dose-response": dynamic(
+    () => import("@/components/widgets/endo/hormone-dose-response"),
+    {
+      loading: () => <WidgetLoading />,
+      ssr: false
+    }
+  ),
+  "nerv/reflex-arc": dynamic(() => import("@/components/widgets/nerv/reflex-arc"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "nerv/synaptic-transmission": dynamic(
+    () => import("@/components/widgets/nerv/synaptic-transmission"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/phototransduction": dynamic(
+    () => import("@/components/widgets/nerv/phototransduction"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "endo/thyroid-hormone-synthesis": dynamic(
+    () => import("@/components/widgets/endo/thyroid-hormone-synthesis"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "endo/pituitary-hormone-map": dynamic(
+    () => import("@/components/widgets/endo/pituitary-hormone-map"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "endo/calcium-homeostasis": dynamic(
+    () => import("@/components/widgets/endo/calcium-homeostasis"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "endo/insulin-glucagon": dynamic(
+    () => import("@/components/widgets/endo/insulin-glucagon"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/receptive-fields": dynamic(
+    () => import("@/components/widgets/nerv/receptive-fields"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/bile-flow": dynamic(() => import("@/components/widgets/gi/bile-flow"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "gi/vomiting-reflex": dynamic(() => import("@/components/widgets/gi/vomiting-reflex"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "renal/micturition-reflex": dynamic(
+    () => import("@/components/widgets/renal/micturition-reflex"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/gfr-autoregulation": dynamic(
+    () => import("@/components/widgets/renal/gfr-autoregulation"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/bladder-pressure-volume": dynamic(
+    () => import("@/components/widgets/renal/bladder-pressure-volume"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/nephron-handling": dynamic(
+    () => import("@/components/widgets/renal/nephron-handling"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/diuretic-sites": dynamic(
+    () => import("@/components/widgets/renal/diuretic-sites"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/intestinal-absorption": dynamic(
+    () => import("@/components/widgets/gi/intestinal-absorption"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/fat-absorption-micelles": dynamic(
+    () => import("@/components/widgets/gi/fat-absorption-micelles"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/peristalsis": dynamic(() => import("@/components/widgets/gi/peristalsis"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "gi/swallowing-esophageal-motility": dynamic(
+    () => import("@/components/widgets/gi/swallowing-esophageal-motility"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/pancreatic-secretion": dynamic(
+    () => import("@/components/widgets/gi/pancreatic-secretion"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/gastric-emptying": dynamic(() => import("@/components/widgets/gi/gastric-emptying"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "gi/colon-water-electrolyte": dynamic(
+    () => import("@/components/widgets/gi/colon-water-electrolyte"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/ureteral-peristalsis": dynamic(
+    () => import("@/components/widgets/renal/ureteral-peristalsis"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/countercurrent": dynamic(() => import("@/components/widgets/renal/countercurrent"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "renal/acid-base": dynamic(() => import("@/components/widgets/renal/acid-base"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "renal/potassium-handling": dynamic(
+    () => import("@/components/widgets/renal/potassium-handling"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
   "renal/raas": dynamic(() => import("@/components/widgets/renal/raas"), {
     loading: () => <WidgetLoading />,
     ssr: false
