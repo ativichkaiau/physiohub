@@ -140,6 +140,32 @@ const widgetMap: Record<string, ComponentType> = {
       ssr: false
     }
   ),
+  "endo/hpt-axis": dynamic(() => import("@/components/widgets/endo/hpt-axis"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "endo/leptin-ghrelin-appetite": dynamic(
+    () => import("@/components/widgets/endo/leptin-ghrelin-appetite"),
+    {
+      loading: () => <WidgetLoading />,
+      ssr: false
+    }
+  ),
+  "endo/adrenal-medulla": dynamic(() => import("@/components/widgets/endo/adrenal-medulla"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "endo/hormone-dose-response": dynamic(
+    () => import("@/components/widgets/endo/hormone-dose-response"),
+    {
+      loading: () => <WidgetLoading />,
+      ssr: false
+    }
+  ),
+  "nerv/reflex-arc": dynamic(() => import("@/components/widgets/nerv/reflex-arc"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
   "renal/raas": dynamic(() => import("@/components/widgets/renal/raas"), {
     loading: () => <WidgetLoading />,
     ssr: false

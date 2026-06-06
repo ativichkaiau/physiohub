@@ -396,7 +396,7 @@
           "slug": "reflex-arc",
           "title": "Spinal Reflex Arc",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb stretch and watch afferent, interneuron, and motor output update.",
           "concept": "You are looking at a stretch reflex loop. Perturb muscle length or inhibit an interneuron to follow signal flow. Observe how reciprocal inhibition shapes motor output.",
           "references": [
@@ -719,7 +719,7 @@
           "slug": "hpt-axis",
           "title": "HPT Axis",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb TSH, thyroid hormone, or iodine availability to see feedback.",
           "concept": "You are looking at thyroid axis feedback. Perturb TRH, TSH, thyroid hormone, or iodine supply. Observe how negative feedback and gland responsiveness shape the steady state.",
           "references": [
@@ -784,7 +784,7 @@
           "slug": "leptin-ghrelin-appetite",
           "title": "Leptin-Ghrelin Appetite Loop",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb adiposity, fasting, and meal timing to watch hypothalamic hunger and satiety signals.",
           "concept": "You are looking at appetite regulation through peripheral signals and hypothalamic integration. Manipulate adipose mass, fasting duration, and meal state to alter leptin and ghrelin. Observe how satiety and hunger drives oppose each other.",
           "references": [
@@ -797,7 +797,7 @@
           "slug": "adrenal-medulla",
           "title": "Adrenal Medulla Catecholamines",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Trigger sympathetic stress and watch epinephrine, norepinephrine, glucose, and heart effects.",
           "concept": "You are looking at adrenal medulla output during acute stress. Perturb sympathetic drive, cortisol priming, and receptor sensitivity. Observe how catecholamines coordinate cardiovascular and metabolic responses.",
           "references": [
@@ -823,7 +823,7 @@
           "slug": "hormone-dose-response",
           "title": "Hormone Dose-Response",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Shift receptor number, affinity, and antagonist presence to compare sensitivity and maximal response.",
           "concept": "You are looking at endocrine receptor dose-response behavior. Manipulate hormone concentration, receptor abundance, affinity, and antagonist effect. Observe how sensitivity and maximal response can change independently.",
           "references": [
