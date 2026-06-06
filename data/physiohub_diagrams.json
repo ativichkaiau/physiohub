@@ -606,7 +606,7 @@
           "slug": "bile-flow",
           "title": "Bile Flow and Enterohepatic Cycling",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb bile acid return and watch hepatic secretion and gallbladder contraction.",
           "concept": "You are looking at enterohepatic cycling of bile acids. Perturb meal state, ileal return, or gallbladder contraction. Observe how recycled bile acids amplify secretion.",
           "references": [
@@ -684,7 +684,7 @@
           "slug": "vomiting-reflex",
           "title": "Vomiting Reflex",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb vestibular, chemoreceptor, vagal, and cortical inputs to watch emetic output.",
           "concept": "You are looking at emesis control through brainstem integration. Perturb vestibular input, chemoreceptor trigger zone activity, vagal afferents, or cortical drive. Observe how motor outputs coordinate retching, sphincter relaxation, and expulsion.",
           "references": [
@@ -871,7 +871,7 @@
           "slug": "gfr-autoregulation",
           "title": "GFR Autoregulation",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move arterial pressure and arteriolar tone to compare RPF and GFR.",
           "concept": "You are looking at filtration across renal perfusion pressure. Manipulate arterial pressure, afferent tone, and efferent tone. Observe the autoregulatory plateau and its failure points.",
           "references": [
@@ -910,7 +910,7 @@
           "slug": "micturition-reflex",
           "title": "Micturition Reflex",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb bladder volume, stretch afferents, and sphincter tone to see voiding control.",
           "concept": "You are looking at bladder filling and voiding control. Manipulate bladder volume, pontine drive, parasympathetic outflow, and external sphincter tone. Observe how storage switches into coordinated detrusor contraction and sphincter relaxation.",
           "references": [
@@ -923,7 +923,7 @@
           "slug": "bladder-pressure-volume",
           "title": "Bladder Pressure-Volume Curve",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Slide volume, compliance, and outlet resistance to compare normal and retention states.",
           "concept": "You are looking at cystometric pressure as bladder volume rises. Manipulate compliance, detrusor tone, and outlet resistance to reshape the curve. Observe how low compliance raises pressure before capacity is reached.",
           "references": [

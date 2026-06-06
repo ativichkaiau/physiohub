@@ -194,6 +194,26 @@ const widgetMap: Record<string, ComponentType> = {
     () => import("@/components/widgets/nerv/receptive-fields"),
     { loading: () => <WidgetLoading />, ssr: false }
   ),
+  "gi/bile-flow": dynamic(() => import("@/components/widgets/gi/bile-flow"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "gi/vomiting-reflex": dynamic(() => import("@/components/widgets/gi/vomiting-reflex"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "renal/micturition-reflex": dynamic(
+    () => import("@/components/widgets/renal/micturition-reflex"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/gfr-autoregulation": dynamic(
+    () => import("@/components/widgets/renal/gfr-autoregulation"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/bladder-pressure-volume": dynamic(
+    () => import("@/components/widgets/renal/bladder-pressure-volume"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
   "renal/raas": dynamic(() => import("@/components/widgets/renal/raas"), {
     loading: () => <WidgetLoading />,
     ssr: false
