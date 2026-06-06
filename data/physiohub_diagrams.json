@@ -580,7 +580,7 @@
           "slug": "peristalsis",
           "title": "Peristaltic Reflex",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub bolus movement to align oral contraction and anal relaxation.",
           "concept": "You are looking at the enteric peristaltic reflex. Scrub bolus movement and toggle neurotransmitter layers. Observe how contraction behind and relaxation ahead propel contents.",
           "references": [
@@ -619,7 +619,7 @@
           "slug": "pancreatic-secretion",
           "title": "Pancreatic Secretion",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Balance secretin, CCK, duct bicarbonate, and acinar enzyme output.",
           "concept": "You are looking at exocrine pancreatic secretion. Manipulate duodenal acid, fat, and vagal tone to drive duct and acinar responses. Observe how bicarbonate and enzyme secretion are coordinated.",
           "references": [
@@ -632,7 +632,7 @@
           "slug": "gastric-emptying",
           "title": "Gastric Emptying",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust meal volume, fat, osmolality, and duodenal feedback to predict emptying rate.",
           "concept": "You are looking at stomach-to-duodenum flow control. Manipulate meal composition, pyloric resistance, and duodenal feedback signals. Observe how fat, acid, and hyperosmolar chyme slow gastric emptying.",
           "references": [
@@ -645,7 +645,7 @@
           "slug": "swallowing-esophageal-motility",
           "title": "Swallowing and Esophageal Motility",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub oral, pharyngeal, and esophageal phases while sphincters open and close.",
           "concept": "You are looking at coordinated swallowing from bolus propulsion to lower esophageal sphincter relaxation. Scrub time and toggle cranial nerve or smooth-muscle phases. Observe how peristalsis clears the bolus without airway entry.",
           "references": [
@@ -671,7 +671,7 @@
           "slug": "colon-water-electrolyte",
           "title": "Colon Water and Electrolyte Handling",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Balance transit time, aldosterone, secretion, and absorption to predict stool water.",
           "concept": "You are looking at colonic water and electrolyte handling. Manipulate transit time, sodium absorption, chloride secretion, and aldosterone effect. Observe why fast transit and secretory states increase stool water.",
           "references": [
@@ -884,7 +884,7 @@
           "slug": "countercurrent",
           "title": "Countercurrent Multiplication",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust loop flow, transporter strength, and ADH to build or wash out the gradient.",
           "concept": "You are looking at medullary osmotic gradient formation. Manipulate loop flow, NKCC activity, urea recycling, and ADH. Observe how a small transverse gradient becomes a longitudinal gradient.",
           "references": [
@@ -897,7 +897,7 @@
           "slug": "acid-base",
           "title": "Acid-Base Compensation",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move pH, PaCO2, and bicarbonate to classify disorders and compensation.",
           "concept": "You are looking at acid-base state space. Manipulate bicarbonate, PaCO2, and renal compensation. Observe how primary disorders move along expected compensation lines.",
           "references": [
@@ -936,7 +936,7 @@
           "slug": "ureteral-peristalsis",
           "title": "Ureteral Peristalsis",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub a peristaltic wave from renal pelvis to bladder and compare obstruction states.",
           "concept": "You are looking at ureteral propulsion from the renal pelvis to the ureterovesical junction. Scrub time and perturb obstruction or urine flow. Observe how pressure waves move boluses while reflux is prevented.",
           "references": [
@@ -962,7 +962,7 @@
           "slug": "potassium-handling",
           "title": "Potassium Handling",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust aldosterone, distal flow, serum potassium, and acid-base state to predict K excretion.",
           "concept": "You are looking at potassium secretion and reabsorption across distal nephron segments. Manipulate aldosterone, distal sodium delivery, flow, and acid-base state. Observe how multiple drivers converge on urinary potassium excretion.",
           "references": [
