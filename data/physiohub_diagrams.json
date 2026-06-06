@@ -409,7 +409,7 @@
           "slug": "receptive-fields",
           "title": "Receptive Fields",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move stimulus location and intensity to compare center-surround responses.",
           "concept": "You are looking at sensory receptor response maps. Manipulate stimulus location, size, and intensity. Observe how lateral inhibition sharpens contrast.",
           "references": [
@@ -745,7 +745,7 @@
           "slug": "calcium-homeostasis",
           "title": "Calcium Homeostasis",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Adjust PTH, vitamin D, kidney, gut, and bone terms to balance serum calcium.",
           "concept": "You are looking at calcium flux among bone, kidney, gut, and plasma. Manipulate PTH, vitamin D, intake, and renal handling. Observe which compartments buffer acute and chronic changes.",
           "references": [
@@ -771,7 +771,7 @@
           "slug": "insulin-glucagon",
           "title": "Insulin-Glucagon Ratio",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move fed, fasting, exercise, and stress states to compare insulin/glucagon ratio and fuel flux.",
           "concept": "You are looking at endocrine fuel partitioning across metabolic states. Manipulate meal state, exercise intensity, stress hormones, and insulin sensitivity. Observe how the insulin-glucagon ratio redirects liver, muscle, and adipose metabolism.",
           "references": [

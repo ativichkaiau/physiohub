@@ -182,6 +182,18 @@ const widgetMap: Record<string, ComponentType> = {
     () => import("@/components/widgets/endo/pituitary-hormone-map"),
     { loading: () => <WidgetLoading />, ssr: false }
   ),
+  "endo/calcium-homeostasis": dynamic(
+    () => import("@/components/widgets/endo/calcium-homeostasis"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "endo/insulin-glucagon": dynamic(
+    () => import("@/components/widgets/endo/insulin-glucagon"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/receptive-fields": dynamic(
+    () => import("@/components/widgets/nerv/receptive-fields"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
   "renal/raas": dynamic(() => import("@/components/widgets/renal/raas"), {
     loading: () => <WidgetLoading />,
     ssr: false
