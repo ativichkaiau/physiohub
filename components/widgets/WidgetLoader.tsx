@@ -214,6 +214,22 @@ const widgetMap: Record<string, ComponentType> = {
     () => import("@/components/widgets/renal/bladder-pressure-volume"),
     { loading: () => <WidgetLoading />, ssr: false }
   ),
+  "renal/nephron-handling": dynamic(
+    () => import("@/components/widgets/renal/nephron-handling"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/diuretic-sites": dynamic(
+    () => import("@/components/widgets/renal/diuretic-sites"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/intestinal-absorption": dynamic(
+    () => import("@/components/widgets/gi/intestinal-absorption"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/fat-absorption-micelles": dynamic(
+    () => import("@/components/widgets/gi/fat-absorption-micelles"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
   "renal/raas": dynamic(() => import("@/components/widgets/renal/raas"), {
     loading: () => <WidgetLoading />,
     ssr: false

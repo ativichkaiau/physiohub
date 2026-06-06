@@ -593,7 +593,7 @@
           "slug": "intestinal-absorption",
           "title": "Intestinal Absorption",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click through apical entry, intracellular processing, and basolateral exit.",
           "concept": "You are looking at epithelial nutrient and electrolyte absorption. Click transporter steps to follow luminal-to-blood movement. Observe how sodium gradients power coupled uptake.",
           "references": [
@@ -658,7 +658,7 @@
           "slug": "fat-absorption-micelles",
           "title": "Fat Absorption and Micelles",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click emulsification, lipase action, micelle delivery, chylomicron assembly, and lymph export.",
           "concept": "You are looking at lipid digestion and absorption across the intestinal lumen and enterocyte. Click each mechanism step to follow fat from bile-salt emulsification to chylomicron export. Observe where pancreatic enzymes and bile acids are required.",
           "references": [
@@ -845,7 +845,7 @@
           "slug": "nephron-handling",
           "title": "Nephron Handling",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click nephron segments to reveal solute transport and drug targets.",
           "concept": "You are looking at tubular handling along the nephron. Click each segment to reveal transporters and gradients. Observe where diuretics alter sodium and water movement.",
           "references": [
@@ -949,7 +949,7 @@
           "slug": "diuretic-sites",
           "title": "Diuretic Sites of Action",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click nephron segments to map carbonic anhydrase, loop, thiazide, ENaC, and aldosterone targets.",
           "concept": "You are looking at diuretic targets along the nephron. Click each drug class to reveal transporter blockade, electrolyte effects, and downstream compensation. Observe why segment location predicts urine and potassium effects.",
           "references": [
