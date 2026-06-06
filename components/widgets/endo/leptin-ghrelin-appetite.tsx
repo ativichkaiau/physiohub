@@ -18,6 +18,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "endo/leptin-ghrelin-appetite",
+  loop: {
+    guideSteps: [
+      { title: "1 Sample stores", verb: "leptin and ghrelin report fat mass and gastric stretch" },
+      { title: "2 Weigh signals", verb: "arcuate POMC/CART and NPY/AgRP neurons integrate" },
+      { title: "3 Set intake", verb: "feeding drive and energy expenditure shift" }
+    ],
+    guideSummary: "Long-term leptin and short-term ghrelin converge on ARC circuits; behavior changes feed back through fat mass and stomach stretch.",
+    feedbackStepTitle: "4 Update stores",
+    nodeRoles: ["Peripheral", "ARC", "Behavior"],
+    forwardHeader: "LEPTIN / GHRELIN",
+    feedbackHeader: "BODY-STORE RETURN",
+    forwardLabels: ["hunger/satiety", "POMC/NPY output"],
+    feedbackLabel: "updates stores",
+    feedbackGuideTitle: "Body-store feedback",
+    feedbackVerbActive: "food intake changes gastric stretch and long-term fat mass",
+    feedbackVerbInactive: "hypothalamic integration is fixed at midline",
+    feedbackStatusActive: "ARC integrated",
+    feedbackStatusInactive: "ARC fixed",
+    feedbackOffLabel: "ARC fixed",
+    legendForward: "peripheral appetite signals drive ARC output",
+    legendFeedback: "intake changes stores and stretch"
+  },
   controls: [
     { key: "bodyFat", label: "Body fat (% of normal)", min: 30, max: 250, step: 1, defaultValue: 100, unit: "%" },
     { key: "gastricStretch", label: "Gastric stretch (recent meal)", min: 0, max: 100, step: 1, defaultValue: 50, unit: "%" },
@@ -57,9 +79,9 @@ const config: FeedbackLabConfig = {
             ? "Edge state: critically low fat mass — leptin floor; amenorrhea, hypothalamic hypogonadism."
             : undefined,
       nodes: [
-        { label: "Adipose · leptin", value: `${leptin.toFixed(0)} ng/mL`, active: leptin > 50 || leptin < 20 },
+        { label: "Adipose + stomach signals", value: `L ${leptin.toFixed(0)} / G ${ghrelin.toFixed(0)}`, active: leptin > 50 || leptin < 20 || ghrelin > 80 || ghrelin < 30 },
         { label: "Arcuate nucleus integrator", value: `Drive ${orexigenicDrive.toFixed(0)}`, active: toggles.loop },
-        { label: "Stomach · ghrelin", value: `${ghrelin.toFixed(0)} pg/mL`, active: ghrelin > 80 || ghrelin < 30 }
+        { label: "Feeding + energy expenditure", value: `${meals.toFixed(1)} meals/day`, active: orexigenicDrive > 100 || orexigenicDrive < 40 }
       ],
       readouts: [
         { label: "Leptin", value: `${leptin.toFixed(0)} ng/mL` },

@@ -9,6 +9,28 @@ function pH(hco3: number, paco2: number) {
 
 const config: FeedbackLabConfig = {
   diagramId: "resp/respiratory-acid-base",
+  loop: {
+    guideSteps: [
+      { title: "1 Disturb pH", verb: "CO2 load, ventilation, and HCO3 set Henderson-Hasselbalch" },
+      { title: "2 Buffer/compensate", verb: "bicarbonate stores and kidney change the base term" },
+      { title: "3 Ventilate", verb: "alveolar ventilation shifts PaCO2 and pH" }
+    ],
+    guideSummary: "Respiratory and renal arms compensate different sides of the same pH equation: PaCO2 and HCO3.",
+    feedbackStepTitle: "4 Compensate",
+    nodeRoles: ["Acid/base input", "Kidney/buffer", "Ventilation"],
+    forwardHeader: "CO2 / HCO3 EFFECT",
+    feedbackHeader: "RENAL COMPENSATION",
+    forwardLabels: ["CO2 load", "pH response"],
+    feedbackLabel: "HCO3 adjust",
+    feedbackGuideTitle: "Renal bicarbonate compensation",
+    feedbackVerbActive: "kidney shifts HCO3 to oppose chronic PaCO2 change",
+    feedbackVerbInactive: "HCO3 is fixed; pH moves more with PaCO2",
+    feedbackStatusActive: "Renal comp on",
+    feedbackStatusInactive: "Renal comp off",
+    feedbackOffLabel: "renal comp OFF",
+    legendForward: "CO2 and HCO3 set pH",
+    legendFeedback: "renal HCO3 compensation opposes pH drift"
+  },
   controls: [
     { key: "co2Production", label: "CO2 production", min: 100, max: 500, step: 10, defaultValue: 200, unit: "mL/min" },
     { key: "alveolarVentilation", label: "Alveolar ventilation", min: 1.5, max: 12, step: 0.1, defaultValue: 4.2, unit: "L/min" },

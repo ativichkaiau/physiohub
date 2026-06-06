@@ -111,7 +111,22 @@ export default function HpaAxisWidget() {
               Edge state: negative feedback is disabled, so cortisol stays high after perturbation.
             </p>
           ) : null}
-          <FeedbackLoopGuide nodes={hpaNodes} feedbackActive={feedback} feedbackLabel="Cortisol brake" />
+          <FeedbackLoopGuide
+            nodes={hpaNodes}
+            feedbackActive={feedback}
+            steps={[
+              { title: "1 Stress drive", verb: "hypothalamus converts stress input into CRH" },
+              { title: "2 ACTH relay", verb: "pituitary corticotrophs relay CRH as ACTH" },
+              { title: "3 Cortisol output", verb: "adrenal cortex secretes glucocorticoid" }
+            ]}
+            summary="CRH → ACTH → cortisol is the forward axis; cortisol suppresses CRH and ACTH upstream."
+            feedbackStepTitle="4 Suppress"
+            feedbackTitle="Cortisol brake"
+            feedbackVerbActive="cortisol suppresses hypothalamus and anterior pituitary"
+            feedbackVerbInactive="cortisol cannot suppress upstream CRH/ACTH drive"
+            feedbackStatusActive="Axis closed"
+            feedbackStatusInactive="Feedback open"
+          />
           <svg role="img" aria-label="HPA axis feedback loop" viewBox="0 0 760 600" className="ph-pathway-canvas h-auto w-full">
             <text x="150" y="34" textAnchor="middle" fill="var(--ph-danger)" fontSize="11" fontWeight="800" letterSpacing="1.4">
               ◀ CORTISOL BRAKE

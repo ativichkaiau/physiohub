@@ -22,6 +22,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "gi/vomiting-reflex",
+  loop: {
+    guideSteps: [
+      { title: "1 Afferents", verb: "gut, CTZ, vestibular, and cortical inputs converge" },
+      { title: "2 Gate reflex", verb: "NTS/DMV vomiting centre sums receptor-specific drive" },
+      { title: "3 Execute", verb: "somatic, vagal, and respiratory outputs run emesis" }
+    ],
+    guideSummary: "This is an emetic reflex circuit; the left arm represents receptor blockade/damping, not physiologic negative feedback.",
+    feedbackStepTitle: "4 Block",
+    nodeRoles: ["Inputs", "NTS/DMV", "Motor program"],
+    forwardHeader: "EMETIC REFLEX",
+    feedbackHeader: "ANTIEMETIC BLOCKADE",
+    forwardLabels: ["afferent drive", "motor program"],
+    feedbackLabel: "receptor block",
+    feedbackGuideTitle: "Antiemetic blockade",
+    feedbackVerbActive: "antiemetic blockade dampens afferent signalling",
+    feedbackVerbInactive: "no blockade: afferent drive reaches the vomiting centre",
+    feedbackStatusActive: "Blocked",
+    feedbackStatusInactive: "Reflex unblocked",
+    feedbackOffLabel: "blockade OFF",
+    legendForward: "afferent drive triggers emetic motor output",
+    legendFeedback: "drug blockade reduces receptor signalling"
+  },
   controls: [
     { key: "vagal", label: "Vagal / visceral afferent (gut)", min: 0, max: 200, step: 1, defaultValue: 20, unit: "%" },
     { key: "ctz", label: "CTZ stimulus (toxins, chemo, opioids)", min: 0, max: 200, step: 1, defaultValue: 0, unit: "%" },
@@ -78,7 +100,7 @@ const config: FeedbackLabConfig = {
         { label: "Dominant", value: dominantAfferent },
         { label: "Antiemetic", value: toggles.antiemetic ? "on" : "off" }
       ],
-      feedbackActive: !toggles.antiemetic,
+      feedbackActive: toggles.antiemetic,
       forwardActive: centreFiring > 40
     };
   }

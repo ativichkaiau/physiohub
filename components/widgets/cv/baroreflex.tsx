@@ -14,6 +14,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "cv/baroreflex",
+  loop: {
+    guideSteps: [
+      { title: "1 Transduce", verb: "wall stretch changes IX/X firing" },
+      { title: "2 Compare", verb: "NTS compares firing with MAP set point" },
+      { title: "3 Correct", verb: "vagal and sympathetic tone shift HR/SVR" }
+    ],
+    guideSummary: "Baroreceptor afferents go to NTS; efferents change HR/SVR; corrected MAP quiets the error.",
+    feedbackStepTitle: "4 Correct",
+    nodeRoles: ["Afferent", "Medulla", "Efferent"],
+    forwardHeader: "IX/X → AUTONOMICS",
+    feedbackHeader: "MAP ERROR RETURN",
+    forwardLabels: ["IX/X afferents", "vagal/SNS"],
+    feedbackLabel: "normalizes MAP",
+    feedbackGuideTitle: "MAP error correction",
+    feedbackVerbActive: "corrected pressure reduces baroreceptor error",
+    feedbackVerbInactive: "autonomic correction is severed; HR/SVR stay pressure-passive",
+    feedbackStatusActive: "Reflex closed",
+    feedbackStatusInactive: "Reflex open",
+    feedbackOffLabel: "reflex open",
+    legendForward: "afferent/efferent arc",
+    legendFeedback: "corrected MAP reduces error"
+  },
   controls: [
     { key: "map", label: "Mean arterial pressure", min: 55, max: 180, step: 1, defaultValue: 95, unit: "mmHg" },
     { key: "setPoint", label: "Set-point (chronic resetting)", min: 75, max: 130, step: 1, defaultValue: 95, unit: "mmHg" },

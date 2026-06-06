@@ -123,3 +123,5 @@ Props:
 - `FeedbackLoopEdge`: `id`, `from`, `to`, `label?`, `kind?`, `inhibitory?`, `active?`, `via?`, `labelPosition?`
 
 Use `role` for the learner-facing loop grammar (`Sense`, `Integrate`, `Respond`, or physiology-specific labels such as `Drive`, `Relay`, `Output`). Use `kind="stimulate"` for arrow-ended forward signals and `kind="inhibit"` for blunt-ended negative feedback brakes; `inhibitory` remains as a compatibility alias.
+
+Shared feedback-loop labs should pass diagram-specific loop metadata instead of generic labels. Name the sensor/afferent, controller, effector, forward signal labels, and return arm. Use an inhibitory return for endocrine brakes such as cortisol or T4/T3, but use a stimulatory return for positive loops such as lactation.

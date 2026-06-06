@@ -4,7 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReportError } from "@/components/ReportError";
 import { getDiagramById } from "@/lib/registry";
-import { FeedbackLoopGuide } from "@/components/widgets/common/FeedbackLoopGuide";
+import {
+  FeedbackLoopGuide,
+  type FeedbackGuideReturnKind,
+  type FeedbackGuideStep
+} from "@/components/widgets/common/FeedbackLoopGuide";
 import {
   FeedbackLoopEdge,
   FeedbackLoopNode,
@@ -34,10 +38,31 @@ export type FeedbackLabState = {
   forwardActive?: boolean;
 };
 
+export type FeedbackLoopMeta = {
+  guideSteps?: [FeedbackGuideStep, FeedbackGuideStep, FeedbackGuideStep];
+  guideSummary?: string;
+  feedbackKind?: FeedbackGuideReturnKind;
+  feedbackStepTitle?: string;
+  nodeRoles?: [string, string, string];
+  forwardHeader?: string;
+  feedbackHeader?: string;
+  forwardLabels?: [string, string];
+  feedbackLabel?: string;
+  feedbackGuideTitle?: string;
+  feedbackVerbActive?: string;
+  feedbackVerbInactive?: string;
+  feedbackStatusActive?: string;
+  feedbackStatusInactive?: string;
+  feedbackOffLabel?: string;
+  legendForward?: string;
+  legendFeedback?: string;
+};
+
 export type FeedbackLabConfig = {
   diagramId: string;
   controls: CurveLabControl[];
   toggles: FeedbackToggle[];
+  loop?: FeedbackLoopMeta;
   evaluate: (values: Record<string, number>, toggles: Record<string, boolean>) => FeedbackLabState;
 };
 
@@ -109,6 +134,14 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
 
   const model = config.evaluate(values, toggles);
   const safeSvgId = config.diagramId.replace(/[^a-zA-Z0-9_-]/g, "-");
+  const loop = config.loop ?? {};
+  const nodeRoles = loop.nodeRoles ?? ["Sense", "Integrate", "Respond"];
+  const forwardLabels = loop.forwardLabels ?? ["signal", "signal"];
+  const feedbackLabel = loop.feedbackLabel ?? "return arm";
+  const feedbackKind = loop.feedbackKind ?? "inhibit";
+  const feedbackColor = feedbackKind === "stimulate" ? "var(--ph-ok)" : "var(--ph-danger)";
+  const feedbackLegend = loop.legendFeedback ?? (feedbackKind === "stimulate" ? "return signal (reinforces upstream drive)" : "feedback brake (reduces upstream drive)");
+  const feedbackSign = feedbackKind === "stimulate" ? "+" : "−";
 
   function updateValue(key: string, value: number) {
     setValues((current) => ({ ...current, [key]: value }));
@@ -145,15 +178,27 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
               {model.warning}
             </p>
           ) : null}
-          <FeedbackLoopGuide nodes={model.nodes} feedbackActive={model.feedbackActive} />
+          <FeedbackLoopGuide
+            nodes={model.nodes}
+            feedbackActive={model.feedbackActive}
+            steps={loop.guideSteps}
+            summary={loop.guideSummary}
+            feedbackKind={feedbackKind}
+            feedbackStepTitle={loop.feedbackStepTitle}
+            feedbackTitle={loop.feedbackGuideTitle ?? feedbackLabel}
+            feedbackVerbActive={loop.feedbackVerbActive}
+            feedbackVerbInactive={loop.feedbackVerbInactive}
+            feedbackStatusActive={loop.feedbackStatusActive}
+            feedbackStatusInactive={loop.feedbackStatusInactive}
+          />
           <svg role="img" aria-label={`${diagram.title} feedback loop`} viewBox="0 0 760 600" className="ph-pathway-canvas h-auto w-full">
             {/* Column headers: forward path on the right, feedback on the left */}
             <g>
-              <text x="150" y="34" textAnchor="middle" fill="var(--ph-danger)" fontSize="11" fontWeight="800" letterSpacing="1.4">
-                ◀ OUTPUT BRAKE
+              <text x="150" y="34" textAnchor="middle" fill={feedbackColor} fontSize="11" fontWeight="800" letterSpacing="1.4">
+                ◀ {loop.feedbackHeader ?? "RETURN ARM"}
               </text>
               <text x="600" y="34" textAnchor="middle" fill="var(--ph-ok)" fontSize="11" fontWeight="800" letterSpacing="1.4">
-                FORWARD SIGNAL ▼
+                {loop.forwardHeader ?? "FORWARD ARM"} ▼
               </text>
             </g>
 
@@ -163,7 +208,7 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
               kind="stimulate"
               from={{ x: 420, y: 131 }}
               to={{ x: 420, y: 227 }}
-              label="activates"
+              label={forwardLabels[0]}
               active={model.forwardActive}
               labelPosition={{ x: 530, y: 179 }}
             />
@@ -172,29 +217,29 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
               kind="stimulate"
               from={{ x: 420, y: 301 }}
               to={{ x: 420, y: 397 }}
-              label="activates"
+              label={forwardLabels[1]}
               active={model.forwardActive}
               labelPosition={{ x: 530, y: 349 }}
             />
 
-            {/* Negative feedback — red, returns up the left to the top node */}
+            {/* Return arm: inhibitory brakes use blunt terminals; positive loops use arrows. */}
             <FeedbackLoopEdge
               id={`${safeSvgId}-feedback-1`}
-              kind="inhibit"
+              kind={feedbackKind}
               from={{ x: 305, y: 432 }}
               to={{ x: 305, y: 92 }}
               via={[
                 { x: 140, y: 432 },
                 { x: 140, y: 92 }
               ]}
-              label="brakes upstream"
+              label={feedbackLabel}
               active={model.feedbackActive}
               labelPosition={{ x: 140, y: 262 }}
             />
             {/* Secondary feedback branch onto the middle node */}
             <FeedbackLoopEdge
               id={`${safeSvgId}-feedback-2`}
-              kind="inhibit"
+              kind={feedbackKind}
               from={{ x: 305, y: 432 }}
               to={{ x: 305, y: 262 }}
               via={[
@@ -204,15 +249,15 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
               active={model.feedbackActive}
             />
 
-            <FeedbackLoopNode id={`${safeSvgId}-node-1`} index={1} role="Sense" label={model.nodes[0].label} value={model.nodes[0].value} x={420} y={92} active={model.nodes[0].active} />
-            <FeedbackLoopNode id={`${safeSvgId}-node-2`} index={2} role="Integrate" label={model.nodes[1].label} value={model.nodes[1].value} x={420} y={262} active={model.nodes[1].active} />
-            <FeedbackLoopNode id={`${safeSvgId}-node-3`} index={3} role="Respond" label={model.nodes[2].label} value={model.nodes[2].value} x={420} y={432} active={model.nodes[2].active} />
+            <FeedbackLoopNode id={`${safeSvgId}-node-1`} index={1} role={nodeRoles[0]} label={model.nodes[0].label} value={model.nodes[0].value} x={420} y={92} active={model.nodes[0].active} />
+            <FeedbackLoopNode id={`${safeSvgId}-node-2`} index={2} role={nodeRoles[1]} label={model.nodes[1].label} value={model.nodes[1].value} x={420} y={262} active={model.nodes[1].active} />
+            <FeedbackLoopNode id={`${safeSvgId}-node-3`} index={3} role={nodeRoles[2]} label={model.nodes[2].label} value={model.nodes[2].value} x={420} y={432} active={model.nodes[2].active} />
 
             {!model.feedbackActive ? (
               <g>
                 <rect x="60" y="250" width="150" height="26" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
                 <text x="135" y="268" textAnchor="middle" fill="var(--ph-warn)" fontSize="12" fontWeight="800">
-                  feedback OFF
+                  {loop.feedbackOffLabel ?? (feedbackKind === "stimulate" ? "return OFF" : "feedback OFF")}
                 </text>
               </g>
             ) : null}
@@ -227,15 +272,30 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
                 <marker id={`${safeSvgId}-legend-arrow`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                   <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ph-ok)" />
                 </marker>
+                <marker id={`${safeSvgId}-legend-feedback-arrow`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill={feedbackColor} />
+                </marker>
               </defs>
               <text x="62" y="46" fill="var(--ph-text)" fontSize="12" fontWeight="700">
-                <tspan fontWeight="900" fill="var(--ph-ok)">+ </tspan>forward signal (drives the next step)
+                <tspan fontWeight="900" fill="var(--ph-ok)">+ </tspan>{loop.legendForward ?? "forward signal (drives the next step)"}
               </text>
               {/* inhibit key */}
-              <line x1="392" y1="42" x2="424" y2="42" stroke="var(--ph-danger)" strokeWidth="3.4" strokeDasharray="7 5" strokeLinecap="round" />
-              <line x1="424" y1="35" x2="424" y2="49" stroke="var(--ph-danger)" strokeWidth="4" strokeLinecap="round" />
+              <line
+                x1="392"
+                y1="42"
+                x2="424"
+                y2="42"
+                stroke={feedbackColor}
+                strokeWidth="3.4"
+                strokeDasharray={feedbackKind === "inhibit" ? "7 5" : undefined}
+                strokeLinecap="round"
+                markerEnd={feedbackKind === "stimulate" ? `url(#${safeSvgId}-legend-feedback-arrow)` : undefined}
+              />
+              {feedbackKind === "inhibit" ? (
+                <line x1="424" y1="35" x2="424" y2="49" stroke={feedbackColor} strokeWidth="4" strokeLinecap="round" />
+              ) : null}
               <text x="434" y="46" fill="var(--ph-text)" fontSize="12" fontWeight="700">
-                <tspan fontWeight="900" fill="var(--ph-danger)">− </tspan>feedback brake (reduces upstream drive)
+                <tspan fontWeight="900" fill={feedbackColor}>{feedbackSign} </tspan>{feedbackLegend}
               </text>
             </g>
           </svg>

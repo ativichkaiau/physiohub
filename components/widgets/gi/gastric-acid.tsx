@@ -5,6 +5,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "gi/gastric-acid",
+  loop: {
+    guideSteps: [
+      { title: "1 Stimulate", verb: "meal and vagus activate G cells" },
+      { title: "2 Amplify", verb: "gastrin recruits ECL histamine" },
+      { title: "3 Secrete acid", verb: "parietal H/K ATPase raises luminal H+" }
+    ],
+    guideSummary: "Gastrin and histamine amplify acid output; low pH activates D-cell somatostatin as the brake.",
+    feedbackStepTitle: "4 Suppress",
+    nodeRoles: ["G cell/vagus", "ECL", "Parietal"],
+    forwardHeader: "GASTRIN → HISTAMINE",
+    feedbackHeader: "SOMATOSTATIN BRAKE",
+    forwardLabels: ["gastrin", "histamine"],
+    feedbackLabel: "SST brake",
+    feedbackGuideTitle: "D-cell somatostatin brake",
+    feedbackVerbActive: "low luminal pH suppresses gastrin and acid drive",
+    feedbackVerbInactive: "low-pH somatostatin brake is removed",
+    feedbackStatusActive: "Acid brake on",
+    feedbackStatusInactive: "Brake off",
+    feedbackOffLabel: "SST OFF",
+    legendForward: "gastrin/histamine stimulate parietal acid",
+    legendFeedback: "somatostatin suppresses upstream drive"
+  },
   controls: [
     { key: "meal", label: "Meal stimulation", min: 0, max: 100, step: 1, defaultValue: 45, unit: "%" },
     { key: "ph", label: "Luminal pH", min: 1, max: 6, step: 0.1, defaultValue: 3 }

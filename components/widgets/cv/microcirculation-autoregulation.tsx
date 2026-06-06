@@ -28,6 +28,28 @@ const TISSUE_PARAMS: Record<TissueId, { lower: number; upper: number; myogenicWe
 
 const config: FeedbackLabConfig = {
   diagramId: "cv/microcirculation-autoregulation",
+  loop: {
+    guideSteps: [
+      { title: "1 Detect", verb: "stretch, PO2, CO2, and metabolites change" },
+      { title: "2 Set tone", verb: "smooth muscle integrates myogenic + metabolic drive" },
+      { title: "3 Hold flow", verb: "arteriolar radius stabilizes capillary perfusion" }
+    ],
+    guideSummary: "Autoregulation is local: pressure/demand cues set arteriolar tone, keeping tissue flow near a plateau.",
+    feedbackStepTitle: "4 Stabilize",
+    nodeRoles: ["Local cue", "Arteriole", "Tissue bed"],
+    forwardHeader: "LOCAL FLOW CONTROL",
+    feedbackHeader: "FLOW PLATEAU",
+    forwardLabels: ["cue signal", "radius change"],
+    feedbackLabel: "stabilizes flow",
+    feedbackGuideTitle: "Autoregulatory plateau",
+    feedbackVerbActive: "flow correction reduces the original metabolic or stretch error",
+    feedbackVerbInactive: "flow becomes pressure-passive outside local control",
+    feedbackStatusActive: "Plateau active",
+    feedbackStatusInactive: "Pressure-passive",
+    feedbackOffLabel: "pressure passive",
+    legendForward: "local cue changes arteriolar radius",
+    legendFeedback: "flow stabilization reduces the error"
+  },
   controls: [
     { key: "pressure", label: "Perfusion pressure", min: 30, max: 220, step: 1, defaultValue: 90, unit: "mmHg" },
     { key: "demand", label: "Tissue O₂ demand", min: 20, max: 250, step: 1, defaultValue: 80, unit: "% of resting" },

@@ -20,6 +20,29 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "gi/bile-flow",
+  loop: {
+    guideSteps: [
+      { title: "1 Detect meal", verb: "duodenal I-cells sense fat and amino acids" },
+      { title: "2 Empty bile", verb: "CCK contracts gallbladder and relaxes Oddi" },
+      { title: "3 Recycle pool", verb: "terminal ileum returns bile acids to liver" }
+    ],
+    guideSummary: "CCK controls post-meal delivery; enterohepatic recycling controls the bile-acid pool size.",
+    feedbackKind: "stimulate",
+    feedbackStepTitle: "4 Recycle",
+    nodeRoles: ["I-cell", "Gallbladder", "Ileum/liver"],
+    forwardHeader: "CCK → BILE DELIVERY",
+    feedbackHeader: "ENTEROHEPATIC RETURN",
+    forwardLabels: ["CCK", "bile delivery"],
+    feedbackLabel: "ileal return",
+    feedbackGuideTitle: "Enterohepatic recycling",
+    feedbackVerbActive: "ileal bile-acid return preserves the hepatic bile pool",
+    feedbackVerbInactive: "bile acids are lost; hepatic synthesis cannot fully compensate",
+    feedbackStatusActive: "Recycling intact",
+    feedbackStatusInactive: "Pool depleted",
+    feedbackOffLabel: "recycling OFF",
+    legendForward: "CCK drives gallbladder/Oddi coordination",
+    legendFeedback: "ileal bile-acid return restores the pool"
+  },
   controls: [
     { key: "fattyMeal", label: "Fatty meal stimulus (CCK drive)", min: 0, max: 200, step: 1, defaultValue: 30, unit: "%" },
     { key: "sphincterTone", label: "Sphincter of Oddi tone", min: 0, max: 200, step: 1, defaultValue: 100, unit: "%" },
@@ -56,9 +79,9 @@ const config: FeedbackLabConfig = {
             ? "Edge state: high-pressure sphincter with strong CCK drive — pancreatitis risk from backflow."
             : undefined,
       nodes: [
-        { label: "Duodenum · CCK release (I-cells)", value: `CCK ${cck.toFixed(0)} pg/mL`, active: cck > 80 },
-        { label: "Gallbladder · contraction", value: `Emptying ${gbEmptying.toFixed(0)}%`, active: gbEmptying > 30 },
-        { label: "Bile flow into duodenum", value: `${duodenalBile.toFixed(0)} mL/h`, active: duodenalBile > 200 }
+        { label: "Duodenum · CCK release", value: `CCK ${cck.toFixed(0)} pg/mL`, active: cck > 80 },
+        { label: "Gallbladder + Oddi", value: `Emptying ${gbEmptying.toFixed(0)}%`, active: gbEmptying > 30 },
+        { label: "Bile delivery + ileal return", value: `${duodenalBile.toFixed(0)} mL/h`, active: duodenalBile > 200 || ileumReturn < 70 }
       ],
       readouts: [
         { label: "CCK", value: `${cck.toFixed(0)} pg/mL` },

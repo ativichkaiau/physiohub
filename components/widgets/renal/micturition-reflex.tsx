@@ -23,6 +23,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "renal/micturition-reflex",
+  loop: {
+    guideSteps: [
+      { title: "1 Fill/stretch", verb: "detrusor stretch afferents rise with volume" },
+      { title: "2 Coordinate", verb: "sacral cord and PMC coordinate voiding reflex" },
+      { title: "3 Void/store", verb: "detrusor and sphincters execute storage or voiding" }
+    ],
+    guideSummary: "Bladder filling drives a sacral-pontine reflex that cortical control can gate until voiding is appropriate.",
+    feedbackStepTitle: "4 Gate",
+    nodeRoles: ["Pelvic afferent", "PMC/S2-S4", "Outlet"],
+    forwardHeader: "PELVIC AFFERENT → PMC",
+    feedbackHeader: "CORTICAL/SPINAL GATE",
+    forwardLabels: ["pelvic nerve", "parasymp/pudendal"],
+    feedbackLabel: "continence gate",
+    feedbackGuideTitle: "Cortical continence gate",
+    feedbackVerbActive: "descending control coordinates storage versus voiding",
+    feedbackVerbInactive: "descending gate is released or the cord pathway is disconnected",
+    feedbackStatusActive: "Gate linked",
+    feedbackStatusInactive: "Gate released",
+    feedbackOffLabel: "gate released",
+    legendForward: "pelvic afferents trigger voiding circuitry",
+    legendFeedback: "descending gate controls continence"
+  },
   controls: [
     { key: "volume", label: "Bladder volume", min: 0, max: 800, step: 5, defaultValue: 250, unit: "mL" },
     { key: "voluntary", label: "Voluntary cortical inhibition", min: 0, max: 200, step: 1, defaultValue: 100, unit: "%" },
@@ -80,7 +102,7 @@ const config: FeedbackLabConfig = {
         { label: "Afferent", value: afferent.toFixed(0) },
         { label: "Voiding", value: voiding ? "yes" : "no" }
       ],
-      feedbackActive: toggles.cordIntact,
+      feedbackActive: toggles.cordIntact && values.voluntary > 20,
       forwardActive: afferent > 40 || values.volume > 300
     };
   }

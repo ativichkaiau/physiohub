@@ -19,6 +19,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "endo/hpt-axis",
+  loop: {
+    guideSteps: [
+      { title: "1 Drive", verb: "hypothalamic TRH sets pituitary demand" },
+      { title: "2 Relay", verb: "TSH tells thyroid follicles to synthesize hormone" },
+      { title: "3 Output", verb: "T4/T3 raise circulating thyroid hormone tone" }
+    ],
+    guideSummary: "TRH → TSH → T4/T3 is a hormonal axis; free T4/T3 suppress TRH and especially TSH.",
+    feedbackStepTitle: "4 Suppress",
+    nodeRoles: ["TRH drive", "TSH relay", "T4/T3 output"],
+    forwardHeader: "TRH → TSH → T4",
+    feedbackHeader: "T4/T3 BRAKE",
+    forwardLabels: ["TRH", "TSH"],
+    feedbackLabel: "T4/T3 brake",
+    feedbackGuideTitle: "Free T4/T3 brake",
+    feedbackVerbActive: "thyroid hormone suppresses TRH and predominantly TSH",
+    feedbackVerbInactive: "TSH no longer responds to thyroid hormone status",
+    feedbackStatusActive: "Axis closed",
+    feedbackStatusInactive: "Feedback open",
+    feedbackOffLabel: "feedback open",
+    legendForward: "hypothalamic-pituitary-thyroid drive",
+    legendFeedback: "T4/T3 suppress upstream drive"
+  },
   controls: [
     { key: "thyroidFn", label: "Thyroid output", min: 10, max: 200, step: 1, defaultValue: 100, unit: "% of normal" },
     { key: "levothyroxine", label: "Levothyroxine (T4) dose", min: 0, max: 200, step: 1, defaultValue: 0, unit: "μg/day equiv." },

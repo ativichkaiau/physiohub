@@ -20,6 +20,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "endo/adrenal-medulla",
+  loop: {
+    guideSteps: [
+      { title: "1 Command", verb: "brainstem/hypothalamus sets sympathetic outflow" },
+      { title: "2 Secrete", verb: "preganglionic ACh drives chromaffin catecholamines" },
+      { title: "3 Mobilize", verb: "Epi/NE raise HR, BP, bronchodilation, and glucose" }
+    ],
+    guideSummary: "This is a sympathoadrenal effector chain with vagal/baroreflex restraint, not a classic endocrine set-point loop.",
+    feedbackStepTitle: "4 Restrain",
+    nodeRoles: ["CNS drive", "Chromaffin", "Targets"],
+    forwardHeader: "ACh → CATECHOLAMINES",
+    feedbackHeader: "VAGAL RESTRAINT",
+    forwardLabels: ["preganglionic ACh", "Epi / NE"],
+    feedbackLabel: "vagal restraint",
+    feedbackGuideTitle: "Baroreflex/vagal restraint",
+    feedbackVerbActive: "high pressure can restrain HR through vagal tone",
+    feedbackVerbInactive: "counter-regulation is absent; catecholamine effects run hotter",
+    feedbackStatusActive: "Counter-reg on",
+    feedbackStatusInactive: "Counter-reg off",
+    feedbackOffLabel: "counter-reg OFF",
+    legendForward: "sympathetic ACh drives chromaffin secretion",
+    legendFeedback: "vagal restraint limits the response"
+  },
   controls: [
     { key: "stressor", label: "Stressor intensity", min: 0, max: 200, step: 1, defaultValue: 20, unit: "%" },
     { key: "cortisol", label: "Cortisol (PNMT induction)", min: 30, max: 200, step: 1, defaultValue: 100, unit: "% normal" },

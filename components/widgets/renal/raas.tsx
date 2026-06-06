@@ -5,6 +5,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "renal/raas",
+  loop: {
+    guideSteps: [
+      { title: "1 Sense kidney", verb: "JG cells and macula densa detect low pressure/NaCl" },
+      { title: "2 Convert RAAS", verb: "renin and ACE generate angiotensin II" },
+      { title: "3 Retain volume", verb: "aldosterone and Ang II restore ECF and pressure" }
+    ],
+    guideSummary: "RAAS is a renal perfusion rescue loop: low renal signal raises renin; restored pressure/NaCl suppresses renin.",
+    feedbackStepTitle: "4 Restore",
+    nodeRoles: ["Kidney sensor", "Renin/ACE", "Volume targets"],
+    forwardHeader: "RENIN → ANG II",
+    feedbackHeader: "PERFUSION RETURN",
+    forwardLabels: ["renin", "Ang II / aldo"],
+    feedbackLabel: "restores perf",
+    feedbackGuideTitle: "Perfusion/NaCl restoration",
+    feedbackVerbActive: "restored renal pressure and NaCl suppress renin release",
+    feedbackVerbInactive: "ACE block blunts Ang II, so restoration is incomplete",
+    feedbackStatusActive: "ACE arm active",
+    feedbackStatusInactive: "ACE blocked",
+    feedbackOffLabel: "ACE blocked",
+    legendForward: "renin and ACE generate Ang II/aldosterone",
+    legendFeedback: "restored perfusion reduces renin drive"
+  },
   controls: [
     { key: "perfusion", label: "Renal perfusion", min: 45, max: 130, step: 1, defaultValue: 95, unit: "mmHg" },
     { key: "nacl", label: "Macula densa NaCl", min: 10, max: 100, step: 1, defaultValue: 55, unit: "%" }

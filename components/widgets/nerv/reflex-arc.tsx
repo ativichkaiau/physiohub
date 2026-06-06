@@ -13,6 +13,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "nerv/reflex-arc",
+  loop: {
+    guideSteps: [
+      { title: "1 Stretch", verb: "muscle spindle Ia afferents fire" },
+      { title: "2 Synapse", verb: "segmental cord activates alpha motor neurons" },
+      { title: "3 Contract", verb: "extrafusal muscle shortens and resists stretch" }
+    ],
+    guideSummary: "The stretch reflex is a segmental arc modulated by descending UMN inhibition.",
+    feedbackStepTitle: "4 Modulate",
+    nodeRoles: ["Ia afferent", "Spinal cord", "LMN/muscle"],
+    forwardHeader: "Ia → ALPHA MOTOR",
+    feedbackHeader: "DESCENDING CONTROL",
+    forwardLabels: ["Ia afferent", "alpha motor"],
+    feedbackLabel: "UMN restraint",
+    feedbackGuideTitle: "Descending UMN modulation",
+    feedbackVerbActive: "descending tracts modulate segmental reflex gain",
+    feedbackVerbInactive: "descending restraint is absent or the reflex arc is severed",
+    feedbackStatusActive: "UMN linked",
+    feedbackStatusInactive: "UMN/arc off",
+    feedbackOffLabel: "UMN OFF",
+    legendForward: "Ia afferent excites alpha motor neuron",
+    legendFeedback: "descending control tunes reflex gain"
+  },
   controls: [
     { key: "stretch", label: "Muscle stretch (stimulus)", min: 0, max: 200, step: 1, defaultValue: 100, unit: "% MVC" },
     { key: "descending", label: "Descending UMN inhibition", min: 0, max: 200, step: 1, defaultValue: 100, unit: "%" },
@@ -70,7 +92,7 @@ const config: FeedbackLabConfig = {
         { label: "DTR grade", value: drtGrade },
         { label: "UMN inhibition", value: `${values.descending.toFixed(0)}%` }
       ],
-      feedbackActive: toggles.loop,
+      feedbackActive: toggles.loop && values.descending > 20,
       forwardActive: values.stretch > 110 || values.stretch < 60
     };
   }

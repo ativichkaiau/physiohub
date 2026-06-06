@@ -5,6 +5,28 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "resp/ventilation-control",
+  loop: {
+    guideSteps: [
+      { title: "1 Sense gases", verb: "central and carotid chemoreceptors read CO2/H+, O2" },
+      { title: "2 Set drive", verb: "brainstem respiratory centers integrate chemical drive" },
+      { title: "3 Ventilate", verb: "respiratory muscles change VA and PaCO2" }
+    ],
+    guideSummary: "Chemoreflex control is a gas-homeostasis loop: ventilation changes PaCO2/O2, which changes chemoreceptor drive.",
+    feedbackStepTitle: "4 Correct gases",
+    nodeRoles: ["Chemistry", "Brainstem", "Pump"],
+    forwardHeader: "CHEMOREFLEX DRIVE",
+    feedbackHeader: "GAS CORRECTION",
+    forwardLabels: ["afferent drive", "motor drive"],
+    feedbackLabel: "corrects gases",
+    feedbackGuideTitle: "PaCO2/O2 correction",
+    feedbackVerbActive: "changed ventilation feeds back by correcting PaCO2 and O2",
+    feedbackVerbInactive: "chemical sensing is disabled; ventilation no longer tracks gases",
+    feedbackStatusActive: "Chemoreflex closed",
+    feedbackStatusInactive: "Chemoreflex open",
+    feedbackOffLabel: "chemo open",
+    legendForward: "chemoreceptors drive respiratory muscles",
+    legendFeedback: "corrected gases reduce chemoreceptor drive"
+  },
   controls: [
     { key: "paco2", label: "PaCO2", min: 20, max: 80, step: 1, defaultValue: 40, unit: "mmHg" },
     { key: "pao2", label: "PaO2", min: 35, max: 120, step: 1, defaultValue: 95, unit: "mmHg" },
