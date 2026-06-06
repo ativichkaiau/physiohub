@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReportError } from "@/components/ReportError";
 import { getDiagramByRoute } from "@/lib/registry";
+import { FeedbackLoopGuide, type FeedbackGuideNode } from "@/components/widgets/common/FeedbackLoopGuide";
 import {
   Curve,
   FeedbackLoopEdge,
@@ -91,6 +92,11 @@ export default function PendingWidget() {
   if (!diagram) {
     return null;
   }
+  const previewNodes: [FeedbackGuideNode, FeedbackGuideNode, FeedbackGuideNode] = [
+    { label: "Sensor", value: `${Math.round(value)}%`, active: value > 60 },
+    { label: "Integrator", value: "set point", active: value > 60 },
+    { label: "Effector", value: enabled ? "feedback on" : "feedback off", active: enabled }
+  ];
 
   return (
     <section className="ph-widget-shell">
@@ -108,29 +114,35 @@ export default function PendingWidget() {
             </span>
           </div>
           {diagram.archetype === "feedback-loop" ? (
-            <svg role="img" aria-label="Feedback loop template" viewBox="0 0 760 520" className="ph-pathway-canvas h-auto w-full">
-              <text x="26" y="34" fill="var(--ph-muted)" fontSize="11" fontWeight="600" letterSpacing="2">
-                LOOP TEMPLATE
-              </text>
-              <FeedbackLoopEdge id="edge-a" from={{ x: 430, y: 112 }} to={{ x: 430, y: 196 }} label="drive" active={value > 60} labelPosition={{ x: 486, y: 154 }} />
-              <FeedbackLoopEdge id="edge-b" from={{ x: 430, y: 264 }} to={{ x: 430, y: 348 }} label="response" active={value > 60} labelPosition={{ x: 496, y: 306 }} />
-              <FeedbackLoopEdge
-                id="edge-c"
-                from={{ x: 327, y: 382 }}
-                to={{ x: 327, y: 78 }}
-                via={[
-                  { x: 148, y: 382 },
-                  { x: 148, y: 78 }
-                ]}
-                label="feedback"
-                inhibitory
-                active={enabled}
-                labelPosition={{ x: 148, y: 232 }}
-              />
-              <FeedbackLoopNode id="node-a" label="Sensor" value={`${Math.round(value)}%`} x={430} y={78} active={value > 60} />
-              <FeedbackLoopNode id="node-b" label="Integrator" value="set point" x={430} y={230} />
-              <FeedbackLoopNode id="node-c" label="Effector" value={enabled ? "feedback on" : "feedback off"} x={430} y={382} active={enabled} />
-            </svg>
+            <>
+              <FeedbackLoopGuide nodes={previewNodes} feedbackActive={enabled} />
+              <svg role="img" aria-label="Feedback loop template" viewBox="0 0 760 600" className="ph-pathway-canvas h-auto w-full">
+                <text x="150" y="34" textAnchor="middle" fill="var(--ph-danger)" fontSize="11" fontWeight="800" letterSpacing="1.4">
+                  ◀ OUTPUT BRAKE
+                </text>
+                <text x="600" y="34" textAnchor="middle" fill="var(--ph-ok)" fontSize="11" fontWeight="800" letterSpacing="1.4">
+                  FORWARD SIGNAL ▼
+                </text>
+                <FeedbackLoopEdge id="edge-a" kind="stimulate" from={{ x: 420, y: 131 }} to={{ x: 420, y: 227 }} label="activates" active={value > 60} labelPosition={{ x: 530, y: 179 }} />
+                <FeedbackLoopEdge id="edge-b" kind="stimulate" from={{ x: 420, y: 301 }} to={{ x: 420, y: 397 }} label="activates" active={value > 60} labelPosition={{ x: 530, y: 349 }} />
+                <FeedbackLoopEdge
+                  id="edge-c"
+                  kind="inhibit"
+                  from={{ x: 305, y: 432 }}
+                  to={{ x: 305, y: 92 }}
+                  via={[
+                    { x: 140, y: 432 },
+                    { x: 140, y: 92 }
+                  ]}
+                  label="brakes upstream"
+                  active={enabled}
+                  labelPosition={{ x: 140, y: 262 }}
+                />
+                <FeedbackLoopNode id="node-a" index={1} role="Sense" label={previewNodes[0].label} value={previewNodes[0].value} x={420} y={92} active={previewNodes[0].active} />
+                <FeedbackLoopNode id="node-b" index={2} role="Integrate" label={previewNodes[1].label} value={previewNodes[1].value} x={420} y={262} active={previewNodes[1].active} />
+                <FeedbackLoopNode id="node-c" index={3} role="Respond" label={previewNodes[2].label} value={previewNodes[2].value} x={420} y={432} active={previewNodes[2].active} />
+              </svg>
+            </>
           ) : (
             <Curve
               title={`${diagram.title} template curve`}

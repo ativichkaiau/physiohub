@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReportError } from "@/components/ReportError";
 import { getDiagramById } from "@/lib/registry";
+import { FeedbackLoopGuide, type FeedbackGuideNode } from "@/components/widgets/common/FeedbackLoopGuide";
 import {
   FeedbackLoopEdge,
   FeedbackLoopNode,
@@ -72,6 +73,11 @@ export default function HpaAxisWidget() {
       : stress > 65 || acthBolus > 35
         ? "Perturbed"
         : "Steady state";
+  const hpaNodes: [FeedbackGuideNode, FeedbackGuideNode, FeedbackGuideNode] = [
+    { label: "Hypothalamus", value: `CRH ${axis.crh.toFixed(1)} pg/mL`, active: stress > 50 || axis.crh > 16 },
+    { label: "Anterior pituitary", value: `ACTH ${axis.acth.toFixed(0)} pg/mL`, active: axis.acth > 60 },
+    { label: "Adrenal cortex", value: `Cortisol ${axis.cortisol.toFixed(1)} ug/dL`, active: axis.cortisol > 22 }
+  ];
 
   return (
     <section className="ph-widget-shell">
@@ -105,66 +111,86 @@ export default function HpaAxisWidget() {
               Edge state: negative feedback is disabled, so cortisol stays high after perturbation.
             </p>
           ) : null}
-          <svg role="img" aria-label="HPA axis node graph" viewBox="0 0 760 560" className="ph-pathway-canvas h-auto w-full">
-            <text x="28" y="38" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
-              HORMONE AXIS
+          <FeedbackLoopGuide nodes={hpaNodes} feedbackActive={feedback} feedbackLabel="Cortisol brake" />
+          <svg role="img" aria-label="HPA axis feedback loop" viewBox="0 0 760 600" className="ph-pathway-canvas h-auto w-full">
+            <text x="150" y="34" textAnchor="middle" fill="var(--ph-danger)" fontSize="11" fontWeight="800" letterSpacing="1.4">
+              ◀ CORTISOL BRAKE
             </text>
-            <text x="732" y="38" textAnchor="end" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
-              CORTISOL BRAKE
+            <text x="600" y="34" textAnchor="middle" fill="var(--ph-ok)" fontSize="11" fontWeight="800" letterSpacing="1.4">
+              HORMONE AXIS ▼
             </text>
             <FeedbackLoopEdge
               id="hpa-crh"
-              from={{ x: 430, y: 122 }}
-              to={{ x: 430, y: 212 }}
+              kind="stimulate"
+              from={{ x: 420, y: 131 }}
+              to={{ x: 420, y: 227 }}
               label="CRH"
               active={stress > 35}
-              labelPosition={{ x: 486, y: 166 }}
+              labelPosition={{ x: 524, y: 179 }}
             />
             <FeedbackLoopEdge
               id="hpa-acth"
-              from={{ x: 430, y: 280 }}
-              to={{ x: 430, y: 370 }}
+              kind="stimulate"
+              from={{ x: 420, y: 301 }}
+              to={{ x: 420, y: 397 }}
               label="ACTH"
               active={acthBolus > 0 || stress > 45}
-              labelPosition={{ x: 492, y: 324 }}
+              labelPosition={{ x: 524, y: 349 }}
             />
             <FeedbackLoopEdge
               id="hpa-cortisol"
-              from={{ x: 327, y: 404 }}
-              to={{ x: 327, y: 88 }}
+              kind="inhibit"
+              from={{ x: 305, y: 432 }}
+              to={{ x: 305, y: 92 }}
               via={[
-                { x: 132, y: 404 },
-                { x: 132, y: 88 }
+                { x: 140, y: 432 },
+                { x: 140, y: 92 }
               ]}
-              label="feedback"
-              inhibitory
+              label="cortisol brake"
               active={feedback}
-              labelPosition={{ x: 132, y: 250 }}
+              labelPosition={{ x: 140, y: 262 }}
             />
             <FeedbackLoopEdge
               id="hpa-pit-feedback"
-              from={{ x: 327, y: 404 }}
-              to={{ x: 327, y: 246 }}
+              kind="inhibit"
+              from={{ x: 305, y: 432 }}
+              to={{ x: 305, y: 262 }}
               via={[
-                { x: 198, y: 404 },
-                { x: 198, y: 246 }
+                { x: 215, y: 432 },
+                { x: 215, y: 262 }
               ]}
-              label="pituitary brake"
-              inhibitory
               active={feedback}
-              labelPosition={{ x: 198, y: 326 }}
             />
-            <FeedbackLoopNode id="hypothalamus" label="Hypothalamus" value={`CRH ${axis.crh.toFixed(1)} pg/mL`} x={430} y={88} active={stress > 50 && feedback} />
-            <FeedbackLoopNode id="pituitary" label="Anterior pituitary" value={`ACTH ${axis.acth.toFixed(0)} pg/mL`} x={430} y={246} active={axis.acth > 60} />
-            <FeedbackLoopNode id="adrenal" label="Adrenal cortex" value={`Cortisol ${axis.cortisol.toFixed(1)} ug/dL`} x={430} y={404} active={axis.cortisol > 22} />
+            <FeedbackLoopNode id="hypothalamus" index={1} role="Drive" label={hpaNodes[0].label} value={hpaNodes[0].value} x={420} y={92} active={hpaNodes[0].active} />
+            <FeedbackLoopNode id="pituitary" index={2} role="Relay" label={hpaNodes[1].label} value={hpaNodes[1].value} x={420} y={262} active={hpaNodes[1].active} />
+            <FeedbackLoopNode id="adrenal" index={3} role="Output" label={hpaNodes[2].label} value={hpaNodes[2].value} x={420} y={432} active={hpaNodes[2].active} />
             {!feedback ? (
               <g>
-                <rect x="342" y="488" width="176" height="30" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
-                <text x="430" y="508" textAnchor="middle" fill="var(--ph-warn)" fontSize="13" fontWeight="800">
-                  Feedback arm disabled
+                <rect x="60" y="250" width="150" height="26" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
+                <text x="135" y="268" textAnchor="middle" fill="var(--ph-warn)" fontSize="12" fontWeight="800">
+                  feedback OFF
                 </text>
               </g>
             ) : null}
+
+            <g transform="translate(40 520)">
+              <rect x="0" y="0" width="680" height="58" rx="10" fill="color-mix(in srgb, var(--ph-surface-2), transparent 25%)" stroke="var(--ph-border)" />
+              <text x="16" y="22" fill="var(--ph-muted)" fontSize="10" fontWeight="800" letterSpacing="1.4">HOW TO READ</text>
+              <line x1="16" y1="42" x2="52" y2="42" stroke="var(--ph-ok)" strokeWidth="3.4" strokeLinecap="round" markerEnd="url(#hpa-legend-arrow)" />
+              <defs>
+                <marker id="hpa-legend-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ph-ok)" />
+                </marker>
+              </defs>
+              <text x="62" y="46" fill="var(--ph-text)" fontSize="12" fontWeight="700">
+                <tspan fontWeight="900" fill="var(--ph-ok)">+ </tspan>hormone signal (drives the next gland)
+              </text>
+              <line x1="392" y1="42" x2="424" y2="42" stroke="var(--ph-danger)" strokeWidth="3.4" strokeDasharray="7 5" strokeLinecap="round" />
+              <line x1="424" y1="35" x2="424" y2="49" stroke="var(--ph-danger)" strokeWidth="4" strokeLinecap="round" />
+              <text x="434" y="46" fill="var(--ph-text)" fontSize="12" fontWeight="700">
+                <tspan fontWeight="900" fill="var(--ph-danger)">− </tspan>cortisol brake (suppresses upstream drive)
+              </text>
+            </g>
           </svg>
         </section>
 

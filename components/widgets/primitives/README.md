@@ -99,6 +99,7 @@ Node and edge primitives for endocrine, renal, metabolic, and reflex loop diagra
 <svg viewBox="0 0 640 420">
   <FeedbackLoopEdge
     id="acth-edge"
+    kind="stimulate"
     from={{ x: 320, y: 110 }}
     to={{ x: 320, y: 190 }}
     label="ACTH"
@@ -106,17 +107,19 @@ Node and edge primitives for endocrine, renal, metabolic, and reflex loop diagra
   />
   <FeedbackLoopEdge
     id="cortisol-feedback"
+    kind="inhibit"
     from={{ x: 217, y: 350 }}
     to={{ x: 217, y: 80 }}
     via={[{ x: 110, y: 350 }, { x: 110, y: 80 }]}
-    inhibitory
-    label="feedback"
+    label="cortisol brake"
   />
-  <FeedbackLoopNode id="pituitary" label="Anterior pituitary" value="ACTH 20 pg/mL" x={320} y={220} />
+  <FeedbackLoopNode id="pituitary" role="Relay" label="Anterior pituitary" value="ACTH 20 pg/mL" x={320} y={220} />
 </svg>
 ```
 
 Props:
 
-- `FeedbackLoopNode`: `id`, `label`, `value?`, `x`, `y`, `active?`
-- `FeedbackLoopEdge`: `id`, `from`, `to`, `label?`, `inhibitory?`, `active?`, `via?`, `labelPosition?`
+- `FeedbackLoopNode`: `id`, `label`, `value?`, `x`, `y`, `active?`, `index?`, `role?`
+- `FeedbackLoopEdge`: `id`, `from`, `to`, `label?`, `kind?`, `inhibitory?`, `active?`, `via?`, `labelPosition?`
+
+Use `role` for the learner-facing loop grammar (`Sense`, `Integrate`, `Respond`, or physiology-specific labels such as `Drive`, `Relay`, `Output`). Use `kind="stimulate"` for arrow-ended forward signals and `kind="inhibit"` for blunt-ended negative feedback brakes; `inhibitory` remains as a compatibility alias.

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReportError } from "@/components/ReportError";
 import { getDiagramById } from "@/lib/registry";
+import { FeedbackLoopGuide } from "@/components/widgets/common/FeedbackLoopGuide";
 import {
   FeedbackLoopEdge,
   FeedbackLoopNode,
@@ -144,66 +145,99 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
               {model.warning}
             </p>
           ) : null}
-          <svg role="img" aria-label={`${diagram.title} node graph`} viewBox="0 0 760 560" className="ph-pathway-canvas h-auto w-full">
-            <text x="28" y="38" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
-              SIGNAL PATHWAY
-            </text>
-            <text x="732" y="38" textAnchor="end" fill="var(--ph-muted)" fontSize="11" fontWeight="800" letterSpacing="2.4">
-              NEGATIVE FEEDBACK
-            </text>
+          <FeedbackLoopGuide nodes={model.nodes} feedbackActive={model.feedbackActive} />
+          <svg role="img" aria-label={`${diagram.title} feedback loop`} viewBox="0 0 760 600" className="ph-pathway-canvas h-auto w-full">
+            {/* Column headers: forward path on the right, feedback on the left */}
+            <g>
+              <text x="150" y="34" textAnchor="middle" fill="var(--ph-danger)" fontSize="11" fontWeight="800" letterSpacing="1.4">
+                ◀ OUTPUT BRAKE
+              </text>
+              <text x="600" y="34" textAnchor="middle" fill="var(--ph-ok)" fontSize="11" fontWeight="800" letterSpacing="1.4">
+                FORWARD SIGNAL ▼
+              </text>
+            </g>
+
+            {/* Forward (stimulatory) edges — green, top to bottom */}
             <FeedbackLoopEdge
               id={`${safeSvgId}-edge-1`}
-              from={{ x: 430, y: 122 }}
-              to={{ x: 430, y: 212 }}
-              label="drive"
+              kind="stimulate"
+              from={{ x: 420, y: 131 }}
+              to={{ x: 420, y: 227 }}
+              label="activates"
               active={model.forwardActive}
-              labelPosition={{ x: 488, y: 166 }}
+              labelPosition={{ x: 530, y: 179 }}
             />
             <FeedbackLoopEdge
               id={`${safeSvgId}-edge-2`}
-              from={{ x: 430, y: 280 }}
-              to={{ x: 430, y: 370 }}
-              label="response"
+              kind="stimulate"
+              from={{ x: 420, y: 301 }}
+              to={{ x: 420, y: 397 }}
+              label="activates"
               active={model.forwardActive}
-              labelPosition={{ x: 496, y: 324 }}
+              labelPosition={{ x: 530, y: 349 }}
             />
+
+            {/* Negative feedback — red, returns up the left to the top node */}
             <FeedbackLoopEdge
               id={`${safeSvgId}-feedback-1`}
-              from={{ x: 327, y: 404 }}
-              to={{ x: 327, y: 88 }}
+              kind="inhibit"
+              from={{ x: 305, y: 432 }}
+              to={{ x: 305, y: 92 }}
               via={[
-                { x: 132, y: 404 },
-                { x: 132, y: 88 }
+                { x: 140, y: 432 },
+                { x: 140, y: 92 }
               ]}
-              label="feedback"
-              inhibitory
+              label="brakes upstream"
               active={model.feedbackActive}
-              labelPosition={{ x: 132, y: 250 }}
+              labelPosition={{ x: 140, y: 262 }}
             />
+            {/* Secondary feedback branch onto the middle node */}
             <FeedbackLoopEdge
               id={`${safeSvgId}-feedback-2`}
-              from={{ x: 327, y: 404 }}
-              to={{ x: 327, y: 246 }}
+              kind="inhibit"
+              from={{ x: 305, y: 432 }}
+              to={{ x: 305, y: 262 }}
               via={[
-                { x: 198, y: 404 },
-                { x: 198, y: 246 }
+                { x: 215, y: 432 },
+                { x: 215, y: 262 }
               ]}
-              label="set point brake"
-              inhibitory
               active={model.feedbackActive}
-              labelPosition={{ x: 198, y: 326 }}
             />
-            <FeedbackLoopNode id={`${safeSvgId}-node-1`} label={model.nodes[0].label} value={model.nodes[0].value} x={430} y={88} active={model.nodes[0].active} />
-            <FeedbackLoopNode id={`${safeSvgId}-node-2`} label={model.nodes[1].label} value={model.nodes[1].value} x={430} y={246} active={model.nodes[1].active} />
-            <FeedbackLoopNode id={`${safeSvgId}-node-3`} label={model.nodes[2].label} value={model.nodes[2].value} x={430} y={404} active={model.nodes[2].active} />
+
+            <FeedbackLoopNode id={`${safeSvgId}-node-1`} index={1} role="Sense" label={model.nodes[0].label} value={model.nodes[0].value} x={420} y={92} active={model.nodes[0].active} />
+            <FeedbackLoopNode id={`${safeSvgId}-node-2`} index={2} role="Integrate" label={model.nodes[1].label} value={model.nodes[1].value} x={420} y={262} active={model.nodes[1].active} />
+            <FeedbackLoopNode id={`${safeSvgId}-node-3`} index={3} role="Respond" label={model.nodes[2].label} value={model.nodes[2].value} x={420} y={432} active={model.nodes[2].active} />
+
             {!model.feedbackActive ? (
               <g>
-                <rect x="338" y="488" width="184" height="30" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
-                <text x="430" y="508" textAnchor="middle" fill="var(--ph-warn)" fontSize="13" fontWeight="800">
-                  Feedback path inactive
+                <rect x="60" y="250" width="150" height="26" rx="8" fill="color-mix(in srgb, var(--ph-warn), transparent 86%)" stroke="color-mix(in srgb, var(--ph-warn), transparent 50%)" />
+                <text x="135" y="268" textAnchor="middle" fill="var(--ph-warn)" fontSize="12" fontWeight="800">
+                  feedback OFF
                 </text>
               </g>
             ) : null}
+
+            {/* Legend */}
+            <g transform="translate(40 520)">
+              <rect x="0" y="0" width="680" height="58" rx="10" fill="color-mix(in srgb, var(--ph-surface-2), transparent 25%)" stroke="var(--ph-border)" />
+              <text x="16" y="22" fill="var(--ph-muted)" fontSize="10" fontWeight="800" letterSpacing="1.4">HOW TO READ</text>
+              {/* stimulate key */}
+              <line x1="16" y1="42" x2="52" y2="42" stroke="var(--ph-ok)" strokeWidth="3.4" strokeLinecap="round" markerEnd={`url(#${safeSvgId}-legend-arrow)`} />
+              <defs>
+                <marker id={`${safeSvgId}-legend-arrow`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ph-ok)" />
+                </marker>
+              </defs>
+              <text x="62" y="46" fill="var(--ph-text)" fontSize="12" fontWeight="700">
+                <tspan fontWeight="900" fill="var(--ph-ok)">+ </tspan>forward signal (drives the next step)
+              </text>
+              {/* inhibit key */}
+              <line x1="392" y1="42" x2="424" y2="42" stroke="var(--ph-danger)" strokeWidth="3.4" strokeDasharray="7 5" strokeLinecap="round" />
+              <line x1="424" y1="35" x2="424" y2="49" stroke="var(--ph-danger)" strokeWidth="4" strokeLinecap="round" />
+              <text x="434" y="46" fill="var(--ph-text)" fontSize="12" fontWeight="700">
+                <tspan fontWeight="900" fill="var(--ph-danger)">− </tspan>feedback brake (reduces upstream drive)
+              </text>
+            </g>
           </svg>
         </section>
 
