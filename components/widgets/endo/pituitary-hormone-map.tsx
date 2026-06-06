@@ -148,8 +148,9 @@ export default function PituitaryHormoneMapWidget() {
 
   useEffect(() => {
     const next = searchParams.get("hormone") as HormoneId | null;
-    if (next && HORMONES.find((h) => h.id === next) && next !== selectedId) setSelectedId(next);
-  }, [searchParams, selectedId]);
+    if (next && HORMONES.find((h) => h.id === next)) setSelectedId(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const selected = HORMONES.find((h) => h.id === selectedId)!;
   const W = 760;

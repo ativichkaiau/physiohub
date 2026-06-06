@@ -85,8 +85,9 @@ export default function PhototransductionWidget() {
 
   useEffect(() => {
     const next = Number(searchParams.get("step") ?? 1) as StepId;
-    if (STEPS.some((s) => s.id === next) && next !== stepId) setStepId(next);
-  }, [searchParams, stepId]);
+    if (STEPS.some((s) => s.id === next)) setStepId(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const step = STEPS.find((s) => s.id === stepId)!;
   const W = 720;

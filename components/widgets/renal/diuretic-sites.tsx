@@ -148,8 +148,9 @@ export default function DiureticSitesWidget() {
 
   useEffect(() => {
     const next = searchParams.get("drug") as DrugId | null;
-    if (next && DRUGS.find((d) => d.id === next) && next !== selectedId) setSelectedId(next);
-  }, [searchParams, selectedId]);
+    if (next && DRUGS.find((d) => d.id === next)) setSelectedId(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const selected = DRUGS.find((d) => d.id === selectedId)!;
   const W = 780;
