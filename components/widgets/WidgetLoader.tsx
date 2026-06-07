@@ -125,6 +125,38 @@ const widgetMap: Record<string, ComponentType> = {
     loading: () => <WidgetLoading />,
     ssr: false
   }),
+  "msk/excitation-contraction": dynamic(() => import("@/components/widgets/msk/excitation-contraction"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "msk/motor-unit-recruitment": dynamic(() => import("@/components/widgets/msk/motor-unit-recruitment"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "msk/bone-remodeling": dynamic(() => import("@/components/widgets/msk/bone-remodeling"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "msk/force-velocity": dynamic(() => import("@/components/widgets/msk/force-velocity"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "msk/twitch-summation": dynamic(() => import("@/components/widgets/msk/twitch-summation"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "msk/fiber-type-metabolism": dynamic(() => import("@/components/widgets/msk/fiber-type-metabolism"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "msk/muscle-spindle": dynamic(() => import("@/components/widgets/msk/muscle-spindle"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "msk/joint-lever-mechanics": dynamic(() => import("@/components/widgets/msk/joint-lever-mechanics"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
   "gi/gastric-acid": dynamic(() => import("@/components/widgets/gi/gastric-acid"), {
     loading: () => <WidgetLoading />,
     ssr: false
@@ -271,6 +303,22 @@ const widgetMap: Record<string, ComponentType> = {
     ssr: false
   }),
   "repro/menstrual-cycle": dynamic(() => import("@/components/widgets/repro/menstrual-cycle"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "repro/spermatogenesis": dynamic(() => import("@/components/widgets/repro/spermatogenesis"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "repro/pregnancy-hormones": dynamic(() => import("@/components/widgets/repro/pregnancy-hormones"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "repro/lactation": dynamic(() => import("@/components/widgets/repro/lactation"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "repro/erection-ejaculation": dynamic(() => import("@/components/widgets/repro/erection-ejaculation"), {
     loading: () => <WidgetLoading />,
     ssr: false
   })

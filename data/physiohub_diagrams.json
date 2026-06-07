@@ -456,7 +456,7 @@
           "slug": "excitation-contraction",
           "title": "Excitation-Contraction Coupling",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub from sarcolemmal AP to calcium release and cross-bridge activation.",
           "concept": "You are looking at the timeline linking membrane excitation to contraction. Scrub time and toggle calcium compartments. Observe how SR calcium release precedes force development.",
           "references": [
@@ -469,7 +469,7 @@
           "slug": "motor-unit-recruitment",
           "title": "Motor Unit Recruitment",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Change drive and fatigue to watch recruitment order and force output evolve.",
           "concept": "You are looking at motor unit recruitment and summation. Manipulate neural drive, firing rate, and fatigue. Observe how force increases before fatigue reshapes the response.",
           "references": [
@@ -481,7 +481,7 @@
           "slug": "bone-remodeling",
           "title": "Bone Remodeling Loop",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb load, PTH, and vitamin D to track osteoblast and osteoclast balance.",
           "concept": "You are looking at coupled bone formation and resorption. Perturb mechanical load or endocrine signals to alter remodeling. Observe how long time constants differ from acute calcium regulation.",
           "references": [
@@ -493,7 +493,7 @@
           "slug": "force-velocity",
           "title": "Force-Velocity Relationship",
           "archetype": "perturbable-curve",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Slide load to see shortening velocity fall and eccentric force rise.",
           "concept": "You are looking at muscle shortening velocity as load changes. Manipulate load, fiber type, and activation to reshape concentric and eccentric regions. Observe why maximum power occurs between zero load and isometric force.",
           "references": [
@@ -506,7 +506,7 @@
           "slug": "twitch-summation",
           "title": "Twitch Summation and Tetanus",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub stimulus trains to compare twitch, summation, unfused tetanus, and fused tetanus.",
           "concept": "You are looking at force development during repeated muscle stimulation. Manipulate stimulus frequency and calcium reuptake to compare isolated twitch and tetanic states. Observe how residual calcium supports summation.",
           "references": [
@@ -519,7 +519,7 @@
           "slug": "fiber-type-metabolism",
           "title": "Muscle Fiber Type Metabolism",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Compare type I, IIa, and IIx fibers across fatigue, force, oxygen use, and ATP source.",
           "concept": "You are looking at fiber-type tradeoffs in skeletal muscle. Manipulate workload, oxygen availability, and recruitment pattern to compare oxidative and glycolytic behavior. Observe how fatigue resistance and peak force diverge.",
           "references": [
@@ -532,7 +532,7 @@
           "slug": "muscle-spindle",
           "title": "Muscle Spindle and Gamma Loop",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb stretch and gamma drive to watch Ia afferents and alpha motor output respond.",
           "concept": "You are looking at proprioceptive stretch feedback. Manipulate muscle length, velocity, and gamma motor drive to change spindle firing. Observe how alpha motor output and intrafusal sensitivity interact.",
           "references": [
@@ -545,7 +545,7 @@
           "slug": "joint-lever-mechanics",
           "title": "Joint Lever Mechanics",
           "archetype": "multi-variable-interaction",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Move joint angle, moment arm, load, and muscle force to understand torque production.",
           "concept": "You are looking at a limb segment as a lever system. Manipulate joint angle, external load, moment arm, and muscle force. Observe how torque changes even when muscle force is constant.",
           "references": [
@@ -997,7 +997,7 @@
           "slug": "spermatogenesis",
           "title": "Spermatogenesis",
           "archetype": "click-to-mechanism",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Click through mitosis, meiosis, spermiogenesis, and Sertoli support.",
           "concept": "You are looking at sperm development across the seminiferous epithelium. Click stages to track germ cell maturation and support cells. Observe where FSH, LH, and testosterone act.",
           "references": [
@@ -1010,7 +1010,7 @@
           "slug": "pregnancy-hormones",
           "title": "Pregnancy Hormones",
           "archetype": "scrubbable-timeline",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Scrub gestational week to compare hCG, progesterone, estrogen, and placental shift.",
           "concept": "You are looking at hormonal changes across pregnancy. Scrub gestational age and toggle maternal or placental sources. Observe the luteal-placental shift and hCG peak.",
           "references": [
@@ -1023,7 +1023,7 @@
           "slug": "lactation",
           "title": "Lactation Reflex",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Perturb suckling and watch prolactin, oxytocin, production, and letdown.",
           "concept": "You are looking at neuroendocrine control of lactation. Perturb suckling frequency or hormone availability. Observe how milk production and letdown are controlled by different hormones.",
           "references": [
@@ -1036,7 +1036,7 @@
           "slug": "erection-ejaculation",
           "title": "Erection and Ejaculation Reflexes",
           "archetype": "feedback-loop",
-          "status": "planned",
+          "status": "reference",
           "teaser": "Toggle parasympathetic and sympathetic arms to separate erection from emission.",
           "concept": "You are looking at autonomic control of male sexual function. Toggle parasympathetic, sympathetic, and somatic arms. Observe why erection and ejaculation use distinct pathways.",
           "references": [
