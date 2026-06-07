@@ -226,6 +226,22 @@ const widgetMap: Record<string, ComponentType> = {
     () => import("@/components/widgets/nerv/receptive-fields"),
     { loading: () => <WidgetLoading />, ssr: false }
   ),
+  "nerv/resting-membrane-potential": dynamic(
+    () => import("@/components/widgets/nerv/resting-membrane-potential"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/nerve-conduction-velocity": dynamic(
+    () => import("@/components/widgets/nerv/nerve-conduction-velocity"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/pupillary-light-reflex": dynamic(
+    () => import("@/components/widgets/nerv/pupillary-light-reflex"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/autonomic-nervous-system": dynamic(
+    () => import("@/components/widgets/nerv/autonomic-nervous-system"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
   "gi/bile-flow": dynamic(() => import("@/components/widgets/gi/bile-flow"), {
     loading: () => <WidgetLoading />,
     ssr: false
