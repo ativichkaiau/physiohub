@@ -224,14 +224,14 @@ export default function ShockStatesWidget() {
       // segment around the canonical (SVR, CO) of that phenotype, in its own
       // signature colour. The user's current state and the trajectory from
       // normal sit on top in the cockpit indigo.
-      ...profiles.map((profile) => ({
-        id: `marker-${profile.id}`,
-        label: profile.label,
-        colorVar: profile.colorVar,
-        strokeWidth: profile.id === profile.id ? 5 : 3,
+      ...profiles.map((candidate) => ({
+        id: `marker-${candidate.id}`,
+        label: candidate.label,
+        colorVar: candidate.colorVar,
+        strokeWidth: candidate.id === profile.id ? 5 : 3,
         data: [
-          { x: profile.base.svr - 60, y: profile.base.co },
-          { x: profile.base.svr + 60, y: profile.base.co }
+          { x: candidate.base.svr - 60, y: candidate.base.co },
+          { x: candidate.base.svr + 60, y: candidate.base.co }
         ]
       })),
       {
