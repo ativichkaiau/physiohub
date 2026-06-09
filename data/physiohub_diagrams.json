@@ -296,6 +296,82 @@
               "pages": "1031-1037"
             }
           ]
+        },
+        {
+          "id": "cv/jvp-waveform",
+          "slug": "jvp-waveform",
+          "title": "Jugular Venous Pressure Waveform",
+          "archetype": "scrubbable-timeline",
+          "status": "reference",
+          "teaser": "Scrub the a-c-x-v-y waves to map atrial events and read tamponade, TR, and cannon a waves.",
+          "concept": "You are looking at the jugular venous pressure waveform across one cardiac cycle. Scrub to align each deflection with right atrial events. Observe how cannon a waves, giant v waves, and altered descents point to specific diagnoses.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "128-134"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e",
+              "pages": "516-522"
+            }
+          ]
+        },
+        {
+          "id": "cv/heart-sounds",
+          "slug": "heart-sounds",
+          "title": "Heart Sounds and Splitting",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Click S1, S2 splits, S3, and S4 to map valve timing onto the phonocardiogram.",
+          "concept": "You are looking at the heart sounds and the splitting of S2 on a phonocardiogram. Click each sound to reveal its mechanism and timing. Observe how physiologic, wide, fixed, and paradoxical splitting localise the lesion.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "128-134"
+            },
+            {
+              "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
+              "pages": "271-279"
+            }
+          ]
+        },
+        {
+          "id": "cv/murmur-maneuvers",
+          "slug": "murmur-maneuvers",
+          "title": "Murmurs and Bedside Maneuvers",
+          "archetype": "multi-variable-interaction",
+          "status": "reference",
+          "teaser": "Move preload and afterload to see which murmurs get louder, and why HCM and MVP behave oppositely.",
+          "concept": "You are looking at how bedside maneuvers change murmur intensity. Manipulate preload and afterload to mimic Valsalva, handgrip, squatting, and standing. Observe why HCM and MVP get louder with reduced LV volume while most murmurs do the opposite.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "134-138"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e",
+              "pages": "548-555"
+            }
+          ]
+        },
+        {
+          "id": "cv/arrhythmia-mechanisms",
+          "slug": "arrhythmia-mechanisms",
+          "title": "Arrhythmia Mechanisms",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Click automaticity, EAD/DAD triggered activity, and reentry to classify common arrhythmias.",
+          "concept": "You are looking at the three mechanisms of arrhythmia: abnormal automaticity, triggered activity, and reentry. Click a mechanism to reveal its cellular basis and clinical examples. Observe how EADs, DADs, and reentry circuits map onto specific rhythms.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "105-114"
+            },
+            {
+              "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
+              "pages": "143-151"
+            }
+          ]
         }
       ]
     },
@@ -493,6 +569,82 @@
             {
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "818-850"
+            }
+          ]
+        },
+        {
+          "id": "resp/flow-volume-loops",
+          "slug": "flow-volume-loops",
+          "title": "Flow-Volume Loops",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Switch among normal, obstructive, restrictive, and upper-airway patterns to read the loop shape.",
+          "concept": "You are looking at the maximal flow-volume loop. Choose a disease pattern to reshape the expiratory and inspiratory limbs. Observe how scooping, hyperinflation, witch's-hat narrowing, and plateaus separate obstructive, restrictive, and upper-airway lesions.",
+          "references": [
+            {
+              "source": "West Respiratory Physiology, 11e",
+              "pages": "16-22"
+            },
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "186-194"
+            }
+          ]
+        },
+        {
+          "id": "resp/co2-transport",
+          "slug": "co2-transport",
+          "title": "CO2 Transport and Chloride Shift",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Click each step to follow CO2 as bicarbonate, carbamino, and dissolved gas through the red cell.",
+          "concept": "You are looking at how blood carries carbon dioxide. Click each step from tissue loading through carbonic anhydrase, the chloride shift, and lung reversal. Observe how the Haldane effect links oxygenation to CO2 carriage.",
+          "references": [
+            {
+              "source": "West Respiratory Physiology, 11e",
+              "pages": "82-90"
+            },
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "210-216"
+            }
+          ]
+        },
+        {
+          "id": "resp/aa-gradient-hypoxemia",
+          "slug": "aa-gradient-hypoxemia",
+          "title": "A-a Gradient and Hypoxemia",
+          "archetype": "multi-variable-interaction",
+          "status": "reference",
+          "teaser": "Adjust FiO2, ventilation, shunt, and V/Q to compute the A-a gradient and separate the five causes.",
+          "concept": "You are looking at the alveolar gas equation and the causes of hypoxemia. Manipulate FiO2, alveolar ventilation, shunt, and V/Q mismatch, then give 100% oxygen. Observe how the A-a gradient and the oxygen response distinguish shunt from V/Q mismatch, hypoventilation, and low inspired O2.",
+          "references": [
+            {
+              "source": "West Respiratory Physiology, 11e",
+              "pages": "60-75"
+            },
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "200-210"
+            }
+          ]
+        },
+        {
+          "id": "resp/west-zones",
+          "slug": "west-zones",
+          "title": "West Lung Zones",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Click each zone to compare alveolar, arterial, and venous pressures and the apex-to-base V/Q gradient.",
+          "concept": "You are looking at the gravity-dependent distribution of pulmonary blood flow. Click each West zone to compare alveolar, arterial, and venous pressures. Observe how the apex-to-base V/Q gradient shapes regional gas exchange.",
+          "references": [
+            {
+              "source": "West Respiratory Physiology, 11e",
+              "pages": "42-58"
+            },
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "194-200"
             }
           ]
         }

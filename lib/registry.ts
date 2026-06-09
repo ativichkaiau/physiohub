@@ -31,7 +31,7 @@ const SystemSchema = z.object({
   shortName: z.string().min(1),
   status: z.enum(["live", "planned"]),
   teaser: z.string().min(1),
-  diagrams: z.array(DiagramSchema).min(5).max(15)
+  diagrams: z.array(DiagramSchema).min(5).max(20)
 });
 
 const RegistrySchema = z.object({

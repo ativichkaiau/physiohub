@@ -70,6 +70,22 @@ const widgetMap: Record<string, ComponentType> = {
       ssr: false
     }
   ),
+  "cv/jvp-waveform": dynamic(() => import("@/components/widgets/cv/jvp-waveform"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "cv/heart-sounds": dynamic(() => import("@/components/widgets/cv/heart-sounds"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "cv/murmur-maneuvers": dynamic(() => import("@/components/widgets/cv/murmur-maneuvers"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "cv/arrhythmia-mechanisms": dynamic(() => import("@/components/widgets/cv/arrhythmia-mechanisms"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
   "resp/o2-hb": dynamic(() => import("@/components/widgets/resp/o2-hb"), {
     loading: () => <WidgetLoading />,
     ssr: false
@@ -110,6 +126,22 @@ const widgetMap: Record<string, ComponentType> = {
     ssr: false
   }),
   "resp/respiratory-acid-base": dynamic(() => import("@/components/widgets/resp/respiratory-acid-base"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/flow-volume-loops": dynamic(() => import("@/components/widgets/resp/flow-volume-loops"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/co2-transport": dynamic(() => import("@/components/widgets/resp/co2-transport"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/aa-gradient-hypoxemia": dynamic(() => import("@/components/widgets/resp/aa-gradient-hypoxemia"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/west-zones": dynamic(() => import("@/components/widgets/resp/west-zones"), {
     loading: () => <WidgetLoading />,
     ssr: false
   }),
