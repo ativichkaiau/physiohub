@@ -242,6 +242,22 @@ const widgetMap: Record<string, ComponentType> = {
     () => import("@/components/widgets/nerv/autonomic-nervous-system"),
     { loading: () => <WidgetLoading />, ssr: false }
   ),
+  "nerv/pain-gate-control": dynamic(
+    () => import("@/components/widgets/nerv/pain-gate-control"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/sleep-stages-eeg": dynamic(
+    () => import("@/components/widgets/nerv/sleep-stages-eeg"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/cochlear-transduction": dynamic(
+    () => import("@/components/widgets/nerv/cochlear-transduction"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/spinal-cord-tracts": dynamic(
+    () => import("@/components/widgets/nerv/spinal-cord-tracts"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
   "gi/bile-flow": dynamic(() => import("@/components/widgets/gi/bile-flow"), {
     loading: () => <WidgetLoading />,
     ssr: false
@@ -337,7 +353,23 @@ const widgetMap: Record<string, ComponentType> = {
   "repro/erection-ejaculation": dynamic(() => import("@/components/widgets/repro/erection-ejaculation"), {
     loading: () => <WidgetLoading />,
     ssr: false
-  })
+  }),
+  "repro/hpg-axis": dynamic(() => import("@/components/widgets/repro/hpg-axis"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "repro/menopause-transition": dynamic(
+    () => import("@/components/widgets/repro/menopause-transition"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "repro/sexual-differentiation": dynamic(
+    () => import("@/components/widgets/repro/sexual-differentiation"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "repro/contraception-methods": dynamic(
+    () => import("@/components/widgets/repro/contraception-methods"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  )
 };
 
 const PendingWidget = dynamic(() => import("@/components/widgets/PendingWidget"), {

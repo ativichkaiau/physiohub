@@ -671,6 +671,82 @@
               "pages": "79-95"
             }
           ]
+        },
+        {
+          "id": "nerv/pain-gate-control",
+          "slug": "pain-gate-control",
+          "title": "Pain Pathways and Gate Control",
+          "archetype": "feedback-loop",
+          "status": "reference",
+          "teaser": "Perturb noxious, tactile, and descending input to open or close the dorsal-horn pain gate.",
+          "concept": "You are looking at nociceptive transmission and the gate-control theory. Manipulate noxious stimulus intensity, Aβ tactile input, and descending modulation. Observe how the spinal gate and opioid pathways dampen the projection neuron before pain reaches the cortex.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "83-92"
+            },
+            {
+              "source": "Kandel Principles of Neural Science, 6e",
+              "pages": "470-495"
+            }
+          ]
+        },
+        {
+          "id": "nerv/sleep-stages-eeg",
+          "slug": "sleep-stages-eeg",
+          "title": "Sleep Stages and EEG",
+          "archetype": "scrubbable-timeline",
+          "status": "reference",
+          "teaser": "Scrub one sleep cycle to align EEG bands, spindles, K-complexes, and REM atonia.",
+          "concept": "You are looking at the EEG signatures of wake and sleep stages across one cycle. Scrub through the night to move between Awake, N1, N2, N3, and REM. Observe how frequency falls and amplitude rises into slow-wave sleep, then REM mimics wake.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "160-166"
+            },
+            {
+              "source": "Kandel Principles of Neural Science, 6e",
+              "pages": "1080-1097"
+            }
+          ]
+        },
+        {
+          "id": "nerv/cochlear-transduction",
+          "slug": "cochlear-transduction",
+          "title": "Cochlear Transduction",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Click each station from eardrum to CN VIII to follow sound into a neural signal.",
+          "concept": "You are looking at how sound becomes a nerve signal. Click each station from the tympanic membrane through the ossicles, basilar membrane tonotopy, and hair cells to CN VIII. Observe where conductive versus sensorineural hearing loss arises.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "118-126"
+            },
+            {
+              "source": "Kandel Principles of Neural Science, 6e",
+              "pages": "598-622"
+            }
+          ]
+        },
+        {
+          "id": "nerv/spinal-cord-tracts",
+          "slug": "spinal-cord-tracts",
+          "title": "Spinal Cord Tracts",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Click a tract or lesion to map decussation level onto Brown-Séquard and syringomyelia deficits.",
+          "concept": "You are looking at the major ascending and descending spinal tracts on a cord cross-section. Click a tract or lesion to reveal its modality, decussation level, and deficit pattern. Observe why Brown-Séquard splits sensory loss into ipsilateral and contralateral findings.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "75-83"
+            },
+            {
+              "source": "Kandel Principles of Neural Science, 6e",
+              "pages": "380-403"
+            }
+          ]
         }
       ]
     },
@@ -1561,6 +1637,82 @@
             {
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1118-1133"
+            }
+          ]
+        },
+        {
+          "id": "repro/hpg-axis",
+          "slug": "hpg-axis",
+          "title": "Hypothalamic-Pituitary-Gonadal Axis",
+          "archetype": "feedback-loop",
+          "status": "reference",
+          "teaser": "Perturb GnRH pulse, gonadal function, and exogenous steroids to follow LH, FSH, and feedback.",
+          "concept": "You are looking at the HPG axis as a feedback loop. Manipulate GnRH pulse frequency, gonadal function, and exogenous steroids. Observe why pulsatile GnRH is required, how continuous agonist suppresses the axis, and how steroids and inhibin feed back.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "447-456"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e",
+              "pages": "1098-1110"
+            }
+          ]
+        },
+        {
+          "id": "repro/menopause-transition",
+          "slug": "menopause-transition",
+          "title": "Menopause Transition",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Slide age and menopause timing to compare FSH, estradiol, inhibin, and ovarian reserve.",
+          "concept": "You are looking at reproductive hormones across the lifespan. Manipulate age and the menopause set point. Observe why FSH rises first as the clinical marker, AMH and inhibin fall earliest, and estradiol falls last to drive vasomotor symptoms.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "474-479"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e",
+              "pages": "1158-1166"
+            }
+          ]
+        },
+        {
+          "id": "repro/sexual-differentiation",
+          "slug": "sexual-differentiation",
+          "title": "Sexual Differentiation",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Click each step from SRY to external genitalia to trace male and default-female pathways.",
+          "concept": "You are looking at how the bipotential embryo differentiates. Click each step from SRY through AMH, testosterone, and DHT, or follow the default female pathway. Observe how disorders like CAIS, 5α-reductase deficiency, and CAH map onto specific steps.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e",
+              "pages": "456-462"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e",
+              "pages": "1080-1097"
+            }
+          ]
+        },
+        {
+          "id": "repro/contraception-methods",
+          "slug": "contraception-methods",
+          "title": "Contraception Methods",
+          "archetype": "click-to-mechanism",
+          "status": "reference",
+          "teaser": "Click each method to compare its site of action, mechanism, efficacy, and key cautions.",
+          "concept": "You are looking at contraceptive methods mapped to their site of action. Click a method to reveal whether it blocks ovulation, thickens mucus, alters the endometrium, or interrupts transport. Observe how efficacy and contraindications follow the mechanism.",
+          "references": [
+            {
+              "source": "Katzung Basic and Clinical Pharmacology, 15e",
+              "pages": "715-735"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e",
+              "pages": "1166-1175"
             }
           ]
         }
