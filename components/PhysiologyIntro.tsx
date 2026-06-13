@@ -49,9 +49,24 @@ export function PhysiologyIntro({ autoOpen = true, showLauncher = true }: Physio
 
   useEffect(() => {
     setMounted(true);
-    if (autoOpen) {
+    if (!autoOpen) return;
+    // Auto-open only on a visitor's first load; persist so reloads (and
+    // client-side navigation back to the home page) don't re-trigger it.
+    // The "Run primer" launcher always reopens it on demand.
+    let seen = false;
+    try {
+      seen = window.localStorage.getItem("ph-intro-seen") === "1";
+    } catch {
+      seen = false;
+    }
+    if (!seen) {
       setStep(0);
       setIsOpen(true);
+      try {
+        window.localStorage.setItem("ph-intro-seen", "1");
+      } catch {
+        // ignore (private mode / storage disabled)
+      }
     }
   }, [autoOpen]);
 

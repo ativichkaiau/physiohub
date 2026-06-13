@@ -331,8 +331,9 @@ svg { display: block; }
   background:
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(110deg, rgba(20, 170, 150, 0.22) 0%, rgba(7, 10, 18, 0.98) 34%, rgba(12, 18, 37, 0.98) 100%);
-  background-size: 72px 72px, 72px 72px, auto;
+    linear-gradient(110deg, rgba(20, 170, 150, 0.22) 0%, rgba(7, 10, 18, 0.98) 34%, rgba(12, 18, 37, 0.98) 100%),
+    #04060a;
+  background-size: 72px 72px, 72px 72px, auto, auto;
   padding: 1rem;
 }
 
