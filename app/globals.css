@@ -413,6 +413,7 @@ svg { display: block; }
 .ph-intro-map,
 .ph-intro-clamp,
 .ph-intro-loop,
+.ph-intro-drug,
 .ph-intro-share {
   opacity: 0.38;
   transition: opacity 260ms ease, filter 260ms ease;
@@ -421,7 +422,8 @@ svg { display: block; }
 .ph-intro-visual[data-step="0"] .ph-intro-map,
 .ph-intro-visual[data-step="1"] .ph-intro-clamp,
 .ph-intro-visual[data-step="2"] .ph-intro-loop,
-.ph-intro-visual[data-step="3"] .ph-intro-share {
+.ph-intro-visual[data-step="3"] .ph-intro-drug,
+.ph-intro-visual[data-step="4"] .ph-intro-share {
   opacity: 1;
   filter: drop-shadow(0 0 16px rgba(87, 228, 208, 0.28));
 }

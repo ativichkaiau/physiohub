@@ -4,24 +4,29 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const steps = [
   {
-    eyebrow: "01 - Perfuse",
+    eyebrow: "01 — Perfuse",
     title: "Prime the systems map",
-    body: "Choose a live system."
+    body: "Pick any live system — cardiovascular, respiratory, renal, endocrine, neuro, and more. Each opens a bench of interactive widgets instead of static figures."
   },
   {
-    eyebrow: "02 - Clamp",
+    eyebrow: "02 — Clamp",
     title: "Move one variable",
-    body: "Clamp one variable and watch the mechanism move."
+    body: "Drag a slider and the whole mechanism answers in real time — raise preload, drop a pH, widen an ion gradient, or stretch a sarcomere."
   },
   {
-    eyebrow: "03 - Compensate",
-    title: "Trace the loop",
-    body: "Trace the sensor-controller-effector loop."
+    eyebrow: "03 — Compensate",
+    title: "Close the feedback loop",
+    body: "Toggle a reflex on or off and watch the controlled variable drift from — or snap back to — its set point, the way the body actually compensates."
   },
   {
-    eyebrow: "04 - Handoff",
+    eyebrow: "04 — Titrate",
+    title: "Push drugs through the model",
+    body: "Pharmacology rides on the physiology: add agonists and antagonists to a dose–response curve, map diuretics onto the nephron, or compare adrenergic and cholinergic receptors."
+  },
+  {
+    eyebrow: "05 — Handoff",
     title: "Share the exact state",
-    body: "Share the URL to reopen the same state."
+    body: "Every control writes to the URL. Copy the link to reopen the identical state — built for teaching, revision notes, and sending a tricky case to a classmate."
   }
 ] as const;
 
@@ -76,6 +81,7 @@ export function PhysiologyIntro({ autoOpen = true, showLauncher = true }: Physio
     if (step === 0) return "Systems online";
     if (step === 1) return "Variable clamped";
     if (step === 2) return "Loop closed";
+    if (step === 3) return "Dose titrated";
     return "URL state copied";
   }, [step]);
 
@@ -214,6 +220,17 @@ function IntroVisual({ label }: { label: string }) {
         <circle cx="418" cy="272" r="16" fill="var(--intro-purple)" />
         <path d="M222 272H296M328 272H402M418 255C358 220 264 220 206 255" fill="none" stroke="rgba(239,246,255,0.72)" strokeLinecap="round" strokeWidth="5" />
         <path d="M201 237H174M174 237V263" fill="none" stroke="var(--intro-red)" strokeLinecap="round" strokeWidth="4" />
+      </g>
+
+      <g className="ph-intro-drug">
+        <text x="446" y="240" className="ph-intro-svg-label">DRUG DOSE</text>
+        {/* mini dose–response axes */}
+        <path d="M446 300V250M446 300H536" fill="none" stroke="rgba(239,246,255,0.5)" strokeLinecap="round" strokeWidth="2.5" />
+        {/* full agonist sigmoid */}
+        <path d="M448 298C476 298 482 258 502 256C520 254 528 254 534 254" fill="none" stroke="var(--intro-aqua)" strokeLinecap="round" strokeWidth="4" />
+        {/* competitive antagonist — right-shifted, dashed */}
+        <path d="M448 299C492 299 500 276 520 268C528 265 531 264 534 263" fill="none" stroke="var(--intro-red)" strokeLinecap="round" strokeWidth="3" strokeDasharray="5 4" />
+        <circle cx="503" cy="256" r="5.5" fill="var(--intro-gold)" />
       </g>
 
       <g className="ph-intro-share">

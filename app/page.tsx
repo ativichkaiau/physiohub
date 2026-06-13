@@ -3,6 +3,39 @@ import { PhysiologyIntro } from "@/components/PhysiologyIntro";
 import { SystemSignal } from "@/components/SystemSignal";
 import { archetypeMeta, getDiagramPath, getSystemEmoji, getSystemPath, getSystems } from "@/lib/registry";
 
+const howto = [
+  {
+    icon: "🎚",
+    title: "Clamp a variable",
+    body: "Drag a slider to set preload, an ion concentration, or a drug dose. The model recomputes the instant you move it."
+  },
+  {
+    icon: "🔀",
+    title: "Perturb & compare",
+    body: "Flip a toggle to block a receptor, cut a nerve, or disable a reflex, then read the result against the dashed reference trace."
+  },
+  {
+    icon: "⏱",
+    title: "Scrub the timeline",
+    body: "On time-based diagrams — the cardiac cycle, an action potential — drag the scrub bar to step through each phase."
+  },
+  {
+    icon: "🚦",
+    title: "Read the zones",
+    body: "Bands grade the axes: green is physiologic, amber suboptimal, red dangerous. Phase bands name each region of a curve."
+  },
+  {
+    icon: "🔁",
+    title: "Trace the loop",
+    body: "Feedback widgets plot the controlled variable over time — switch the loop off to watch it drift, on to watch it correct."
+  },
+  {
+    icon: "🔗",
+    title: "Share by URL",
+    body: "Every control writes to the address bar. Copy the link to reopen the identical state for a lecture or a classmate."
+  }
+];
+
 export default function HomePage() {
   const systems = getSystems();
   const diagramCount = systems.reduce((total, system) => total + system.diagrams.length, 0);
@@ -16,6 +49,14 @@ export default function HomePage() {
   const featured = systems
     .flatMap((s) => s.diagrams.map((d) => ({ ...d, systemId: s.id })))
     .find((d) => d.status === "reference");
+
+  // Pharmacology entry points — drugs act on the same live models.
+  const drugLinks = [
+    { label: "💊 Dose–response", href: getDiagramPath("endo", "hormone-dose-response") },
+    { label: "💧 Diuretic sites", href: getDiagramPath("renal", "diuretic-sites") },
+    { label: "⚡ Autonomic receptors", href: getDiagramPath("nerv", "autonomic-nervous-system") },
+    { label: "🔬 Nephron drug targets", href: getDiagramPath("renal", "nephron-handling") }
+  ];
 
   return (
     <div className="mx-auto w-full max-w-[1500px] px-4 py-6 sm:px-6 sm:py-10">
@@ -112,6 +153,52 @@ export default function HomePage() {
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section aria-label="How to use the bench" className="mb-10">
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="ph-kicker">🛠 How to use</p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight">Work the bench</h2>
+          </div>
+          <p className="max-w-xl text-sm text-ph-muted">
+            Every widget is a live model — move a control, read the response, and share the exact state by URL. No sign-in, nothing to install.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {howto.map((item) => (
+            <div key={item.title} className="ph-panel p-4">
+              <span className="text-2xl leading-none" aria-hidden="true">
+                {item.icon}
+              </span>
+              <h3 className="mt-3 text-base font-bold tracking-tight">{item.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-ph-muted">{item.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="ph-panel mt-3 p-4 sm:p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="ph-kicker">💊 Pharmacology built in</p>
+              <p className="mt-2 max-w-xl text-sm text-ph-muted">
+                Drugs act on the very same models — titrate a dose, block a receptor, or pick a nephron target and watch the curve move.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {drugLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="focus-ring inline-flex rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-3 py-1.5 text-xs font-bold text-ph-text no-underline transition hover:border-[var(--ph-border-strong)] hover:text-ph-accent"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
