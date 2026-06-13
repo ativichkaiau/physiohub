@@ -15,11 +15,12 @@ function aorticPressure(t: number, hr: number, compliance: number, resistance: n
   const T = 60 / hr;
   const tCycle = t % T;
   const ts = 0.32 * T;
-  const meanP = 70 + (resistance - 1) * 35;     // MAP rises with R
-  const pulse = clamp(48 / compliance, 18, 90); // pulse pressure inverse to C
-  const peakP = meanP + pulse / 2;
-  const endDiastolicP = meanP - pulse / 2;
-  const tau = resistance * compliance * 0.6;    // s — physiologic τ ≈ 1.5 s at normal R·C
+  const meanP = 93 + (resistance - 1) * 35;     // normal MAP ≈ 93 mmHg, rises with R
+  const pulse = clamp(60 / compliance, 16, 100); // pulse pressure inverse to C (~40 at C=1.5)
+  // Arterial MAP = DBP + ⅓·PP (NOT the SBP/DBP midpoint), so derive SBP/DBP accordingly.
+  const peakP = meanP + (2 * pulse) / 3;         // systolic
+  const endDiastolicP = meanP - pulse / 3;       // diastolic
+  const tau = resistance * compliance * 0.6;     // s — physiologic τ ≈ 1.5 s at normal R·C
 
   if (tCycle < ts) {
     // Systolic half-sine ejection from endDiastolicP up to peakP and back to notch
@@ -35,7 +36,7 @@ const config: CurveLabConfig = {
   diagramId: "cv/vascular-compliance",
   title: "Arterial pressure waveform — Windkessel model",
   xDomain: [0, 2],
-  yDomain: [30, 180],
+  yDomain: [30, 210],
   xLabel: "time (s)",
   yLabel: "Arterial pressure (mmHg)",
   controls: [
@@ -78,11 +79,11 @@ const config: CurveLabConfig = {
     }
   ],
   summarize: (values) => {
-    const meanP = 70 + (values.resistance - 1) * 35;
-    const pulse = clamp(48 / values.compliance, 18, 90);
+    const meanP = 93 + (values.resistance - 1) * 35;
+    const pulse = clamp(60 / values.compliance, 16, 100);
     const tau = values.resistance * values.compliance * 0.6;
-    const sbp = meanP + pulse / 2;
-    const dbp = meanP - pulse / 2;
+    const sbp = meanP + (2 * pulse) / 3;
+    const dbp = meanP - pulse / 3;
     // Augmentation index proxy: stiff vessels reflect waves earlier in systole → AI rises.
     const augIndex = clamp((1.5 - values.compliance) * 35 + (values.resistance - 1) * 8, -10, 60);
     return {

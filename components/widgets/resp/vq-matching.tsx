@@ -4,18 +4,24 @@ import { CurveLabWidget, type CurveLabConfig } from "@/components/widgets/common
 import { clamp, makeRange } from "@/components/widgets/widgetUtils";
 
 function pao2(ratio: number, fio2: number) {
-  return clamp(42 + fio2 * 2.2 * (ratio / (ratio + 0.38)), 35, 155);
+  // Inspired PO2 = FiO2 · (P_B − P_H2O). The alveolar gas point slides from
+  // mixed-venous (V/Q → 0, ~40 mmHg) toward inspired gas (V/Q → ∞), passing
+  // through ~100 mmHg at V/Q ≈ 1 on room air — the classic O2–CO2 diagram.
+  const pio2 = (fio2 / 100) * (760 - 47);
+  return clamp(40 + (pio2 - 40) * (ratio / (ratio + 0.8)), 40, pio2);
 }
 
 function paco2(ratio: number) {
-  return clamp(48 / (ratio + 0.22), 12, 72);
+  // V/Q → 0 approaches mixed-venous PCO2 (~45); V/Q → ∞ approaches inspired
+  // (~0); ~40 mmHg at V/Q ≈ 1.
+  return clamp(45 / (1 + 0.125 * ratio), 2, 46);
 }
 
 const config: CurveLabConfig = {
   diagramId: "resp/vq-matching",
   title: "Ventilation-perfusion matching",
   xDomain: [0, 4],
-  yDomain: [0, 160],
+  yDomain: [0, 200],
   xLabel: "V/Q ratio",
   yLabel: "Alveolar gas",
   controls: [

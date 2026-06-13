@@ -16,7 +16,11 @@ function saturation(po2: number, p50: number) {
 }
 
 function computeP50(ph: number, pco2: number, temp: number, bpg: number) {
-  return clamp(26.8 + (7.4 - ph) * 12 + (pco2 - 40) * 0.12 + (temp - 37) * 0.8 + (bpg - 1) * 4.5, 15, 52);
+  // Bohr effect: Δlog(P50)/ΔpH ≈ −0.48, so a 0.2-unit pH fall raises P50 by
+  // ~5–6 mmHg → ≈25 mmHg per pH unit near the set point. CO2 contributes a
+  // smaller direct (carbamino) shift; temperature ≈ +1.3 mmHg/°C; 2,3-BPG
+  // ≈ +4.5 mmHg per unit. Normal P50 ≈ 26.8 mmHg.
+  return clamp(26.8 + (7.4 - ph) * 25 + (pco2 - 40) * 0.1 + (temp - 37) * 1.3 + (bpg - 1) * 4.5, 15, 52);
 }
 
 function buildCurve(p50: number): CurvePoint[] {

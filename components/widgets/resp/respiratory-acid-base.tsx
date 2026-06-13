@@ -39,8 +39,10 @@ const config: FeedbackLabConfig = {
   toggles: [{ key: "renalComp", label: "Renal compensation present", defaultValue: true }],
   evaluate: (values, toggles) => {
     const paco2 = clamp(40 * (values.co2Production / 200) / Math.max(values.alveolarVentilation / 4.2, 0.2), 12, 100);
+    // Chronic renal compensation ≈ 3.5 mEq/L of HCO3 per 10 mmHg change in
+    // PaCO2 (0.35 per mmHg) — the standard for chronic respiratory acid-base.
     const compensatedHco3 = toggles.renalComp
-      ? clamp(values.bicarbonate + (paco2 - 40) * 0.28, 6, 48)
+      ? clamp(values.bicarbonate + (paco2 - 40) * 0.35, 6, 48)
       : values.bicarbonate;
     const phValue = pH(compensatedHco3, paco2);
     const drive = clamp(50 + (paco2 - 40) * 1.8 + (7.4 - phValue) * 110, 10, 160);
