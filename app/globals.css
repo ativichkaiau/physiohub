@@ -23,32 +23,33 @@
   --ph-muted:         #475569;
   --ph-muted-2:       #64748b;
 
-  /* Brand — academic indigo */
-  --ph-accent:        #1d4ed8;
-  --ph-accent-2:      #b45309;
+  /* Brand — vivid blue for selection / current / focus, kept distinct from the
+     green-yellow-red data palette so highlights stay unambiguous. */
+  --ph-accent:        #2563eb;
+  --ph-accent-2:      #ea580c;
 
-  /* Plot colours — color-blind aware journal palette */
-  --ph-curve-1:       #1d4ed8;   /* indigo  */
-  --ph-curve-2:       #b45309;   /* amber   */
-  --ph-curve-3:       #6d28d9;   /* purple  */
-  --ph-curve-4:       #be123c;   /* crimson */
+  /* Plot colours — vibrant green → yellow → red led, with distinct supports */
+  --ph-curve-1:       #15a34a;   /* green   */
+  --ph-curve-2:       #f59e0b;   /* amber / yellow */
+  --ph-curve-3:       #dc2626;   /* red     */
+  --ph-curve-4:       #ea580c;   /* orange  */
   --ph-curve-5:       #0891b2;   /* teal    */
-  --ph-curve-6:       #047857;   /* emerald */
+  --ph-curve-6:       #7c3aed;   /* violet  */
   --ph-curve-7:       #db2777;   /* magenta */
   --ph-curve-ref:     #94a3b8;   /* slate baseline */
 
   /* Axes + grid */
   --ph-axis:          #334155;
-  --ph-grid:          rgba(15, 23, 42, 0.06);
+  --ph-grid:          rgba(15, 23, 42, 0.085);
 
   /* Borders */
-  --ph-border:        rgba(15, 23, 42, 0.10);
-  --ph-border-strong: rgba(15, 23, 42, 0.20);
+  --ph-border:        rgba(15, 23, 42, 0.12);
+  --ph-border-strong: rgba(15, 23, 42, 0.22);
 
-  /* Status */
-  --ph-warn:          #b45309;
-  --ph-danger:        #b91c1c;
-  --ph-ok:            #166534;
+  /* Status — vivid traffic light */
+  --ph-warn:          #e0820a;   /* amber */
+  --ph-danger:        #dc2626;   /* red   */
+  --ph-ok:            #15a34a;   /* green */
 
   --ph-radius:        8px;
   --ph-shadow:        0 1px 2px rgba(15, 23, 42, 0.05),
@@ -69,30 +70,30 @@
   --ph-muted:         #9aa6b6;
   --ph-muted-2:       #7282a0;
 
-  /* Brand — slightly lifted indigo so it carries on dark */
-  --ph-accent:        #7aa7ff;
-  --ph-accent-2:      #f4b860;
+  /* Brand — bright blue, distinct from the green-yellow-red data palette */
+  --ph-accent:        #60a5fa;
+  --ph-accent-2:      #fb923c;
 
-  /* Plot colours — lifted variants of the journal palette */
-  --ph-curve-1:       #7aa7ff;
-  --ph-curve-2:       #f4b860;
-  --ph-curve-3:       #b794f4;
-  --ph-curve-4:       #f08db5;
-  --ph-curve-5:       #22d3ee;
-  --ph-curve-6:       #34d399;
-  --ph-curve-7:       #f472b6;
+  /* Plot colours — vibrant, lifted for dark surfaces */
+  --ph-curve-1:       #4ade80;   /* green   */
+  --ph-curve-2:       #fbbf24;   /* amber   */
+  --ph-curve-3:       #f87171;   /* red     */
+  --ph-curve-4:       #fb923c;   /* orange  */
+  --ph-curve-5:       #22d3ee;   /* teal    */
+  --ph-curve-6:       #a78bfa;   /* violet  */
+  --ph-curve-7:       #f472b6;   /* magenta */
   --ph-curve-ref:     #94a3b8;
 
   /* Axes + grid */
   --ph-axis:          #cbd5e1;
-  --ph-grid:          rgba(230, 236, 243, 0.07);
+  --ph-grid:          rgba(230, 236, 243, 0.1);
 
   /* Borders */
-  --ph-border:        rgba(230, 236, 243, 0.10);
-  --ph-border-strong: rgba(230, 236, 243, 0.22);
+  --ph-border:        rgba(230, 236, 243, 0.12);
+  --ph-border-strong: rgba(230, 236, 243, 0.24);
 
-  /* Status */
-  --ph-warn:          #f4b860;
+  /* Status — vivid traffic light */
+  --ph-warn:          #fbbf24;
   --ph-danger:        #f87171;
   --ph-ok:            #4ade80;
 
@@ -555,19 +556,20 @@ svg { display: block; }
   border-radius: var(--ph-radius);
   background:
     linear-gradient(135deg,
-      color-mix(in srgb, var(--ph-accent), transparent 96%) 0%,
-      var(--ph-surface) 35%);
+      color-mix(in srgb, var(--ph-ok), transparent 90%) 0%,
+      color-mix(in srgb, var(--ph-warn), transparent 94%) 45%,
+      var(--ph-surface) 78%);
   box-shadow: var(--ph-shadow);
   overflow: hidden;
 }
 
-/* Accent strip on the left of the concept panel — reads as a "highlight" stripe
-   without taking up visual real estate. */
+/* Traffic-light strip on the left of every diagram's concept panel — a literal
+   green → amber → red cue that warms up the otherwise pale surface. */
 .ph-concept-panel::before {
   position: absolute;
   inset: 0 auto 0 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--ph-accent), color-mix(in srgb, var(--ph-accent), transparent 70%));
+  width: 4px;
+  background: linear-gradient(180deg, var(--ph-ok) 0%, var(--ph-warn) 52%, var(--ph-danger) 100%);
   content: "";
 }
 
@@ -580,12 +582,17 @@ svg { display: block; }
   font-size: 0.88rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  box-shadow: inset 0 1px 0 0 color-mix(in srgb, white, transparent 92%);
-  transition: border-color 160ms ease;
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, white, transparent 92%),
+    inset 3px 0 0 0 color-mix(in srgb, var(--ph-accent), transparent 60%);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .ph-readout:hover {
   border-color: var(--ph-border-strong);
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, white, transparent 92%),
+    inset 3px 0 0 0 var(--ph-accent);
 }
 
 .ph-chart-stage {
