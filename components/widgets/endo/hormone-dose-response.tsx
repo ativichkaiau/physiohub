@@ -27,6 +27,11 @@ const config: CurveLabConfig = {
   yDomain: [0, 110],
   xLabel: "log [dose] (× EC50, log10)",
   yLabel: "Response (% of max)",
+  bands: [
+    { axis: "x", from: -2, to: -1, tone: "phase", label: "sub-threshold" },
+    { axis: "x", from: -1, to: 1, tone: "phase", label: "responsive (linear)" },
+    { axis: "x", from: 1, to: 3, tone: "phase", label: "saturated" }
+  ],
   controls: [
     { key: "ec50", label: "EC50 (potency)", min: 0.1, max: 50, step: 0.1, defaultValue: 1, unit: "× normal" },
     { key: "hill", label: "Hill coefficient (n)", min: 0.5, max: 4, step: 0.1, defaultValue: 1, unit: "" },

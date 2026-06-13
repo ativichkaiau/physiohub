@@ -21,6 +21,10 @@ const config: CurveLabConfig = {
   yDomain: [-0.7, 1.8],
   xLabel: "external load (% maximal isometric force)",
   yLabel: "velocity (relative)",
+  bands: [
+    { axis: "x", from: 0, to: 100, tone: "phase", label: "concentric (shortening)" },
+    { axis: "x", from: 100, to: 160, tone: "phase", label: "eccentric (lengthening)" }
+  ],
   controls: [
     { key: "load", label: "Load marker", min: 0, max: 160, step: 1, defaultValue: 65, unit: "% Fmax" },
     { key: "activation", label: "Activation / recruitment", min: 45, max: 150, step: 1, defaultValue: 100, unit: "% normal" }

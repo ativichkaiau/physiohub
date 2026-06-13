@@ -364,6 +364,13 @@ export default function WiggersWidget() {
               yLabel="mmHg"
               series={pressureSeries}
               cursorX={time}
+              bands={[
+                { axis: "x", from: 0, to: 0.1, tone: "phase", label: "atrial" },
+                { axis: "x", from: 0.1, to: 0.2, tone: "phase", label: "IVC" },
+                { axis: "x", from: 0.2, to: 0.43, tone: "phase", label: "ejection" },
+                { axis: "x", from: 0.43, to: 0.5, tone: "phase", label: "IVR" },
+                { axis: "x", from: 0.5, to: DURATION, tone: "phase", label: "filling" }
+              ]}
               annotations={[
                 { x: 0.16, y: 12, label: "QRS" },
                 { x: 0.45, y: 92, label: "dicrotic notch" }

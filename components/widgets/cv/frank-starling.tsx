@@ -19,6 +19,10 @@ const config: CurveLabConfig = {
   yDomain: [0, 150],
   xLabel: "Ventricular filling pressure",
   yLabel: "Stroke volume",
+  bands: [
+    { axis: "x", from: 0, to: 12, tone: "phase", label: "ascending limb (preload reserve)" },
+    { axis: "x", from: 12, to: 20, tone: "phase", label: "plateau" }
+  ],
   controls: [
     { key: "preload", label: "Preload marker", min: 0, max: 20, step: 1, defaultValue: 10, unit: "mmHg" },
     { key: "contractility", label: "Contractility", min: 0.5, max: 1.8, step: 0.01, defaultValue: 1 },

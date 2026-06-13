@@ -30,6 +30,11 @@ const config: CurveLabConfig = {
   yDomain: [0, 160],
   xLabel: "Sarcomere length",
   yLabel: "Tension",
+  bands: [
+    { axis: "x", from: 1.2, to: 2.0, tone: "phase", label: "ascending limb" },
+    { axis: "x", from: 2.0, to: 2.25, tone: "phase", label: "plateau" },
+    { axis: "x", from: 2.25, to: 3.6, tone: "phase", label: "descending limb" }
+  ],
   controls: [
     { key: "length", label: "Sarcomere length", min: 1.2, max: 3.6, step: 0.01, defaultValue: 2.2, unit: "um" },
     { key: "calcium", label: "Calcium availability", min: 0, max: 100, step: 1, defaultValue: 100, unit: "%" }
