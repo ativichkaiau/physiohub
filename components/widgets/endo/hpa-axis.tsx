@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReportError } from "@/components/ReportError";
 import { getDiagramById } from "@/lib/registry";
 import { FeedbackLoopGuide, type FeedbackGuideNode } from "@/components/widgets/common/FeedbackLoopGuide";
+import { FeedbackDynamicsTrack } from "@/components/widgets/common/FeedbackDynamicsTrack";
 import {
   FeedbackLoopEdge,
   FeedbackLoopNode,
@@ -111,6 +112,7 @@ export default function HpaAxisWidget() {
               Edge state: negative feedback is disabled, so cortisol stays high after perturbation.
             </p>
           ) : null}
+          <FeedbackDynamicsTrack feedbackActive={feedback} feedbackKind="inhibit" variableLabel="Cortisol" />
           <FeedbackLoopGuide
             nodes={hpaNodes}
             feedbackActive={feedback}

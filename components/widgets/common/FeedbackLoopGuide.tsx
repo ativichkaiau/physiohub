@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 export type FeedbackGuideNode = {
   label: string;
   value?: string;
@@ -25,84 +27,59 @@ type FeedbackLoopGuideProps = {
   feedbackStatusInactive?: string;
 };
 
-const roleItems: [FeedbackGuideStep, FeedbackGuideStep, FeedbackGuideStep] = [
-  { title: "1 Sense", verb: "detects the change" },
-  { title: "2 Integrate", verb: "compares against the set point" },
-  { title: "3 Respond", verb: "changes the effector" }
-];
-
 export function FeedbackLoopGuide({
   nodes,
   feedbackActive,
-  steps = roleItems,
   summary,
   feedbackKind = "inhibit",
   feedbackStepTitle,
-  feedbackTitle,
-  feedbackVerbActive,
-  feedbackVerbInactive,
   feedbackStatusActive = "Feedback on",
   feedbackStatusInactive = "Feedback off"
 }: FeedbackLoopGuideProps) {
-  const items = steps.map((item, index) => ({
-    ...item,
-    label: nodes[index].label,
-    value: nodes[index].value,
-    active: nodes[index].active
-  }));
   const isPositiveReturn = feedbackKind === "stimulate";
   const resolvedSummary =
     summary ??
     (isPositiveReturn
-      ? "Follow 1 → 2 → 3, then the output reinforces upstream drive."
-      : "Follow 1 → 2 → 3, then the output suppresses upstream drive.");
-  const resolvedFeedbackStepTitle = feedbackStepTitle ?? (isPositiveReturn ? "4 Reinforce" : "4 Brake");
-  const resolvedFeedbackTitle = feedbackTitle ?? (isPositiveReturn ? "Positive feedback" : "Negative feedback");
-  const resolvedFeedbackVerbActive =
-    feedbackVerbActive ?? (isPositiveReturn ? "output reinforces upstream drive" : "output inhibits upstream drive");
-  const resolvedFeedbackVerbInactive =
-    feedbackVerbInactive ?? (isPositiveReturn ? "return arm is disabled; reinforcement stops" : "brake is disabled; loop runs open");
+      ? "Sense → integrate → respond, then the output reinforces upstream drive."
+      : "Sense → integrate → respond, then the output brakes upstream drive.");
+  const resolvedFeedbackWord = (feedbackStepTitle ?? (isPositiveReturn ? "4 Reinforce" : "4 Brake")).replace(/^\d+\s*/, "");
   const feedbackTone = feedbackActive ? (isPositiveReturn ? "var(--ph-ok)" : "var(--ph-danger)") : "var(--ph-warn)";
+  const feedbackStatus = feedbackActive ? feedbackStatusActive : feedbackStatusInactive;
 
   return (
-    <div className="mb-4 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3" aria-label="How to read this feedback loop">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <h2 className="ph-section-label">Read the loop</h2>
-        <span className="text-xs font-medium text-ph-muted">{resolvedSummary}</span>
-      </div>
-      <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-        {items.map((item) => (
-          <div
-            key={item.title}
-            className={
-              item.active
-                ? "rounded-ph border border-[color-mix(in_srgb,var(--ph-accent),transparent_48%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_90%)] p-3"
-                : "rounded-ph border border-[var(--ph-border)] bg-ph-surface p-3"
-            }
-          >
-            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-ph-muted">{item.title}</p>
-            <p className="mt-1 text-sm font-bold leading-tight text-ph-text">{item.label}</p>
-            <p className="mt-1 text-xs text-ph-muted">{item.verb}</p>
-            {item.value ? <p className="mt-2 text-xs font-bold tabular-nums text-ph-accent">{item.value}</p> : null}
-          </div>
+    <div className="mb-4 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2.5" aria-label="How to read this feedback loop">
+      <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1.5 text-sm">
+        {nodes.map((node, index) => (
+          <Fragment key={`${node.label}-${index}`}>
+            {index > 0 ? <span aria-hidden className="text-ph-muted">→</span> : null}
+            <span className="inline-flex items-center gap-1.5">
+              <span
+                className={
+                  node.active
+                    ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--ph-accent)] text-[11px] font-black text-white"
+                    : "inline-flex h-5 w-5 items-center justify-center rounded-full border border-[var(--ph-border)] bg-ph-surface text-[11px] font-black text-ph-muted"
+                }
+              >
+                {index + 1}
+              </span>
+              <span className="font-semibold text-ph-text">{node.label}</span>
+            </span>
+          </Fragment>
         ))}
-        <div
-          className="rounded-ph border p-3"
-          style={{
-            borderColor: `color-mix(in srgb, ${feedbackTone}, transparent ${feedbackActive ? "48%" : "45%"})`,
-            background: `color-mix(in srgb, ${feedbackTone}, transparent ${feedbackActive ? "91%" : "89%"})`
-          }}
-        >
-          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-ph-muted">{resolvedFeedbackStepTitle}</p>
-          <p className="mt-1 text-sm font-bold leading-tight text-ph-text">{resolvedFeedbackTitle}</p>
-          <p className="mt-1 text-xs text-ph-muted">
-            {feedbackActive ? resolvedFeedbackVerbActive : resolvedFeedbackVerbInactive}
-          </p>
-          <p className="mt-2 text-xs font-bold tabular-nums" style={{ color: feedbackTone }}>
-            {feedbackActive ? feedbackStatusActive : feedbackStatusInactive}
-          </p>
-        </div>
+        <span aria-hidden className="text-ph-muted">→</span>
+        <span className="inline-flex items-center gap-1.5">
+          <span
+            className="inline-flex h-5 items-center justify-center rounded-full px-2 text-[11px] font-black text-white"
+            style={{ background: feedbackTone }}
+          >
+            4 {resolvedFeedbackWord}
+          </span>
+          <span className="text-xs font-bold" style={{ color: feedbackTone }}>
+            {feedbackStatus}
+          </span>
+        </span>
       </div>
+      <p className="mt-2 text-xs text-ph-muted">{resolvedSummary}</p>
     </div>
   );
 }

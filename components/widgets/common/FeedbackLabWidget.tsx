@@ -9,6 +9,7 @@ import {
   type FeedbackGuideReturnKind,
   type FeedbackGuideStep
 } from "@/components/widgets/common/FeedbackLoopGuide";
+import { FeedbackDynamicsTrack } from "@/components/widgets/common/FeedbackDynamicsTrack";
 import {
   FeedbackLoopEdge,
   FeedbackLoopNode,
@@ -56,6 +57,7 @@ export type FeedbackLoopMeta = {
   feedbackOffLabel?: string;
   legendForward?: string;
   legendFeedback?: string;
+  controlledLabel?: string;
 };
 
 export type FeedbackLabConfig = {
@@ -178,6 +180,11 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
               {model.warning}
             </p>
           ) : null}
+          <FeedbackDynamicsTrack
+            feedbackActive={model.feedbackActive}
+            feedbackKind={feedbackKind}
+            variableLabel={loop.controlledLabel}
+          />
           <FeedbackLoopGuide
             nodes={model.nodes}
             feedbackActive={model.feedbackActive}

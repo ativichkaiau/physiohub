@@ -643,6 +643,18 @@ svg { display: block; }
 .ph-widget-shell > *:nth-child(2) { animation-delay: 40ms; }
 .ph-widget-shell > *:nth-child(3) { animation-delay: 80ms; }
 
+/* Feedback dynamics trace — draws itself in on each toggle flip. The path
+   uses pathLength="1" so the dash math is normalized regardless of length. */
+@keyframes ph-trace-draw {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+.ph-trace-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: ph-trace-draw 0.85s ease-out;
+}
+
 /* =====================================================================
    Slider polish — accent thumb + chip, smoother track. Vendor-prefixed
    to land on both -webkit- and -moz- families.
