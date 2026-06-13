@@ -19,7 +19,11 @@ import { clamp, makeRange } from "@/components/widgets/widgetUtils";
  *     where efferent vasoconstriction maintains GFR.
  */
 function gfrAt(map: number, nsaid: number, acei: number) {
-  const lower = 80 - acei * 0.3 + nsaid * 0.5;
+  // NSAIDs block afferent vasodilatory prostaglandins and ACEi/ARBs block
+  // efferent angiotensin-II constriction — BOTH cripple GFR maintenance at LOW
+  // perfusion pressure, so each raises the lower autoregulatory limit (the
+  // mechanism of NSAID- and ACEi-induced AKI in hypovolemia / renal-artery stenosis).
+  const lower = 80 + acei * 0.3 + nsaid * 0.5;
   const upper = 180 - nsaid * 0.3;
   let gfr: number;
   if (map < lower - 5) {

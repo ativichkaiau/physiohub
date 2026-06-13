@@ -58,7 +58,9 @@ const config: CurveLabConfig = {
   ],
   buildAnnotations: (values) => [
     { x: values.ko, y: ghkVm(values.ko, values.ki, values.ratio), label: "operating point" },
-    { x: 4, y: -90, label: "normal" }
+    // Normal resting Vm sits ABOVE E_K (~ −90) because of the Na+ leak — mark it
+    // at the GHK value (~ −71), not at E_K.
+    { x: 4, y: ghkVm(4, 140, 0.04), label: "normal rest" }
   ],
   getCursorX: (values) => values.ko,
   summarize: (values) => {

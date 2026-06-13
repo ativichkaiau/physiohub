@@ -35,13 +35,17 @@ function reabsorption(input: number, aldosterone: number, enacDensity: number, m
 
 function stoolVolume(input: number, aldosterone: number, enacDensity: number, motility: number, cftrActivation: number) {
   const reabsorbed = reabsorption(input, aldosterone, enacDensity, motility);
-  const secreted = (cftrActivation / 100) * 500; // ml/day at full CFTR activation (cholera)
-  return clamp(input - reabsorbed + secreted, 50, 6000);
+  // Cholera toxin locks CFTR open → massive Cl⁻ (and water) secretion. Full
+  // activation drives multi-litre secretory diarrhoea, the prototype of
+  // life-threatening volume loss — far beyond what reabsorption can recover.
+  const secreted = (cftrActivation / 100) * 3500;
+  return clamp(input - reabsorbed + secreted, 50, 8000);
 }
 
 function stoolK(motility: number, aldosterone: number, stoolVol: number) {
-  // K secretion ∝ aldosterone × Na delivery × distal flow.
-  return clamp(((aldosterone / 100) * 12 + (motility / 100) * 18) * (stoolVol / 150), 5, 220);
+  // Fecal K secretion ∝ aldosterone × distal flow. Normal fecal K ~8–10
+  // mEq/day (~10% of K excretion); it climbs steeply with secretory diarrhoea.
+  return clamp(((aldosterone / 100) * 4 + (motility / 100) * 6) * (stoolVol / 150), 3, 220);
 }
 
 export default function ColonWaterElectrolyteWidget() {
@@ -157,7 +161,7 @@ export default function ColonWaterElectrolyteWidget() {
           <Curve
             title="Stool volume vs aldosterone — colon's volume-defending lever"
             xDomain={[0, 250]}
-            yDomain={[0, 2000]}
+            yDomain={[0, 4000]}
             xLabel="aldosterone (% normal)"
             yLabel="stool volume (mL/day)"
             series={series}

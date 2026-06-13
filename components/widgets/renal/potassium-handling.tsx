@@ -30,7 +30,9 @@ function renalExcretion(plasmaK: number, aldo: number, distalNa: number, flow: n
   const aldoFactor = aldo / 100;
   const naFactor = distalNa / 100;
   const flowFactor = flow / 100;
-  const drive = (plasmaK - 3) * 25;
+  // Slope set so normal K (4 mEq/L) with normal aldo/Na/flow gives ~60 mEq/day
+  // — matching average dietary K intake/excretion.
+  const drive = (plasmaK - 3) * 60;
   return clamp(drive * aldoFactor * naFactor * flowFactor, 5, 350);
 }
 
@@ -117,14 +119,16 @@ export default function PotassiumHandlingWidget() {
   }, [aldo, distalNa, flow, plasmaK, excretion]);
 
   const phenotype = (() => {
+    // Emergencies first, then etiology-specific patterns, then generic mild
+    // ranges — otherwise the specific labels (Conn's, Addison's) are unreachable.
     if (plasmaK >= 6) return "Severe hyperkalemia — emergent: Ca gluconate first (membrane), then insulin+dextrose / β-agonist (shift), then remove";
-    if (plasmaK > 5.5) return "Hyperkalemia — check ECG, drugs (ACEi/ARB/spiro/NSAID), AKI";
     if (plasmaK < 3) return "Severe hypokalemia — risk of arrhythmia, weakness, ileus; check Mg, replace K and Mg";
-    if (plasmaK < 3.5) return "Hypokalemia — most common cause: diuretics (loop / thiazide) or GI loss";
     if (aldo > 200 && plasmaK < 3.5) return "Hyperaldosteronism (Conn's) — HTN + hypokalemia + metabolic alkalosis";
     if (aldo < 25 && plasmaK > 5.5) return "Addison's pattern — hypotension + hyperkalemia + acidosis";
     if (acidShift > 50 && plasmaK > 5.0) return "Acidosis-driven K shift — protons move into cells in exchange for K (DKA, lactic acidosis)";
     if (insulin > 130 && plasmaK < 4) return "Insulin shift — K into cells (treat post-DKA, refeeding); watch for hypokalemia";
+    if (plasmaK > 5.5) return "Hyperkalemia — check ECG, drugs (ACEi/ARB/spiro/NSAID), AKI";
+    if (plasmaK < 3.5) return "Hypokalemia — most common cause: diuretics (loop / thiazide) or GI loss";
     return "Normokalemic, balanced handling";
   })();
 
