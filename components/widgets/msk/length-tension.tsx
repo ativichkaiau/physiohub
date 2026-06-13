@@ -3,9 +3,20 @@
 import { CurveLabWidget, type CurveLabConfig } from "@/components/widgets/common/CurveLabWidget";
 import { clamp, makeRange } from "@/components/widgets/widgetUtils";
 
+// Classic Gordon–Huxley–Julian active length–tension: a flat PLATEAU of
+// optimal actin–myosin overlap (~2.0–2.25 µm), a steep ascending limb below,
+// and a linear descending limb to zero force at ~3.65 µm (no overlap).
+function activeOverlap(length: number) {
+  if (length <= 1.27) return 0;            // double overlap, no active force
+  if (length < 1.67) return ((length - 1.27) / (1.67 - 1.27)) * 0.84;
+  if (length < 2.0) return 0.84 + ((length - 1.67) / (2.0 - 1.67)) * 0.16; // ascending limb + shoulder
+  if (length <= 2.25) return 1.0;          // plateau — maximal overlap
+  if (length < 3.65) return 1 - (length - 2.25) / (3.65 - 2.25);           // descending limb
+  return 0;
+}
+
 function activeTension(length: number, calcium: number) {
-  const overlap = Math.exp(-((length - 2.2) ** 2) / 0.22);
-  return 100 * overlap * (calcium / 100);
+  return 100 * activeOverlap(length) * (calcium / 100);
 }
 
 function passiveTension(length: number) {

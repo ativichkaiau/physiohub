@@ -6,9 +6,12 @@ import { clamp, makeRange } from "@/components/widgets/widgetUtils";
 function velocity(load: number, activation: number) {
   const fmax = activation;
   if (load >= fmax) {
+    // Eccentric (lengthening) — negative velocity; force exceeds Fmax.
     return clamp(-0.55 * (load - fmax) / Math.max(20, fmax), -0.6, 0);
   }
-  return clamp(1.42 * (fmax - load) / (load + 32), 0, 1.8);
+  // Hill hyperbola: V = b·(Fmax − F)/(F + a) with a/Fmax ≈ 0.25. Vmax occurs
+  // only at zero load (~1.6 here) and declines monotonically — no flat top.
+  return clamp((0.4 * (fmax - load)) / (load + 0.25 * fmax), 0, 1.8);
 }
 
 const config: CurveLabConfig = {
