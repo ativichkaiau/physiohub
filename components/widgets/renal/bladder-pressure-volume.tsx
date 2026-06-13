@@ -34,6 +34,11 @@ const config: CurveLabConfig = {
   yDomain: [0, 120],
   xLabel: "Bladder volume (mL)",
   yLabel: "Intravesical pressure (cm H₂O)",
+  bands: [
+    { axis: "y", from: 0, to: 30, tone: "ok", label: "safe storage" },
+    { axis: "y", from: 30, to: 40, tone: "warn" },
+    { axis: "y", from: 40, to: 120, tone: "danger", label: "upper-tract risk" }
+  ],
   controls: [
     { key: "volume", label: "Volume marker", min: 0, max: 800, step: 5, defaultValue: 300, unit: "mL" },
     { key: "compliance", label: "Detrusor compliance", min: 5, max: 80, step: 1, defaultValue: 40, unit: "mL/cm H₂O" },

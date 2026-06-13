@@ -19,6 +19,19 @@ export type CurveAnnotation = {
   label: string;
 };
 
+/**
+ * A shaded physiologic-range zone behind the plot. `tone` maps to the traffic
+ * light: ok = physiologic (green), warn = suboptimal (amber), danger = red.
+ * `axis` is the axis the from/to range applies to (default "x").
+ */
+export type CurveBand = {
+  axis?: "x" | "y";
+  from: number;
+  to: number;
+  tone: "ok" | "warn" | "danger";
+  label?: string;
+};
+
 export type CurveProps = {
   title: string;
   xDomain: [number, number];
@@ -28,6 +41,7 @@ export type CurveProps = {
   series: CurveSeries[];
   referenceSeries?: CurveSeries[];
   annotations?: CurveAnnotation[];
+  bands?: CurveBand[];
   cursorX?: number;
   height?: number;
 };
@@ -140,6 +154,7 @@ export function Curve({
   series,
   referenceSeries = [],
   annotations = [],
+  bands = [],
   cursorX,
   height = 260
 }: CurveProps) {
@@ -274,6 +289,42 @@ export function Curve({
             fill="color-mix(in srgb, var(--ph-surface), var(--ph-surface-2) 46%)"
             stroke="var(--ph-border-strong)"
           />
+          {/* Physiologic-range zones: green = normal, amber = suboptimal, red = dangerous */}
+          {bands.map((band, index) => {
+            const axis = band.axis ?? "x";
+            const lo = Math.min(band.from, band.to);
+            const hi = Math.max(band.from, band.to);
+            const fill = `color-mix(in srgb, var(--ph-${band.tone}), transparent 85%)`;
+            const labelFill = `color-mix(in srgb, var(--ph-${band.tone}), var(--ph-text) 35%)`;
+            if (axis === "x") {
+              const x0 = scale(clampNumber(lo, xDomain[0], xDomain[1]), xDomain, [plot.left, plot.right]);
+              const x1 = scale(clampNumber(hi, xDomain[0], xDomain[1]), xDomain, [plot.left, plot.right]);
+              if (Math.abs(x1 - x0) < 0.5) return null;
+              return (
+                <g key={`zone-${index}`} clipPath={`url(#${chartId}-clip)`}>
+                  <rect x={Math.min(x0, x1)} y={plot.top} width={Math.abs(x1 - x0)} height={plot.bottom - plot.top} fill={fill} />
+                  {band.label ? (
+                    <text x={(x0 + x1) / 2} y={plot.top + 12} textAnchor="middle" fontSize="8.5" fontWeight="800" letterSpacing="0.4" fill={labelFill}>
+                      {band.label.toUpperCase()}
+                    </text>
+                  ) : null}
+                </g>
+              );
+            }
+            const y0 = scale(clampNumber(lo, yDomain[0], yDomain[1]), yDomain, [plot.bottom, plot.top]);
+            const y1 = scale(clampNumber(hi, yDomain[0], yDomain[1]), yDomain, [plot.bottom, plot.top]);
+            if (Math.abs(y1 - y0) < 0.5) return null;
+            return (
+              <g key={`zone-${index}`} clipPath={`url(#${chartId}-clip)`}>
+                <rect x={plot.left} y={Math.min(y0, y1)} width={plot.right - plot.left} height={Math.abs(y1 - y0)} fill={fill} />
+                {band.label ? (
+                  <text x={plot.right - 8} y={(y0 + y1) / 2 + 3} textAnchor="end" fontSize="8.5" fontWeight="800" letterSpacing="0.4" fill={labelFill}>
+                    {band.label.toUpperCase()}
+                  </text>
+                ) : null}
+              </g>
+            );
+          })}
           {yTicks.slice(0, -1).map((tick, index) => {
             if (index % 2 !== 0) return null;
             const nextTick = yTicks[index + 1];

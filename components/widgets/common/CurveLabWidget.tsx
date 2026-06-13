@@ -9,6 +9,7 @@ import {
   PerturbationToggle,
   Slider,
   type CurveAnnotation,
+  type CurveBand,
   type CurveSeries
 } from "@/components/widgets/primitives";
 import { parseBoolean, parseNumber } from "@/components/widgets/widgetUtils";
@@ -39,6 +40,7 @@ export type CurveLabConfig = {
   yLabel: string;
   controls: CurveLabControl[];
   overlayLabel?: string;
+  bands?: CurveBand[];
   buildSeries: (values: Record<string, number>) => CurveSeries[];
   buildReferenceSeries?: (values: Record<string, number>) => CurveSeries[];
   buildAnnotations?: (values: Record<string, number>) => CurveAnnotation[];
@@ -155,6 +157,7 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
             series={series}
             referenceSeries={referenceSeries}
             annotations={config.buildAnnotations?.(values) ?? []}
+            bands={config.bands}
             cursorX={config.getCursorX?.(values)}
             height={420}
           />

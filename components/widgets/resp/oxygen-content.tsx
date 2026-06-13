@@ -130,6 +130,11 @@ export default function OxygenContentWidget() {
             referenceSeries={referenceSeries}
             cursorX={sat}
             annotations={[{ x: sat, y: content, label: `CaO2 ${content.toFixed(1)}` }]}
+            bands={[
+              { axis: "y", from: 16, to: 24, tone: "ok", label: "normal content" },
+              { axis: "y", from: 10, to: 16, tone: "warn" },
+              { axis: "y", from: 0, to: 10, tone: "danger" }
+            ]}
             height={420}
           />
         </section>

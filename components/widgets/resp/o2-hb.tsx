@@ -125,6 +125,11 @@ export default function O2HbWidget() {
             }
             cursorX={p50}
             annotations={[{ x: p50, y: saturation(p50, p50), label: `P50 ${p50.toFixed(1)}` }]}
+            bands={[
+              { axis: "y", from: 90, to: 100, tone: "ok", label: "normal SaO₂" },
+              { axis: "y", from: 75, to: 90, tone: "warn" },
+              { axis: "y", from: 0, to: 75, tone: "danger" }
+            ]}
             height={420}
           />
         </section>

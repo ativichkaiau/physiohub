@@ -48,6 +48,11 @@ const config: CurveLabConfig = {
   yDomain: [0, 16],
   xLabel: "Right atrial pressure",
   yLabel: "Flow",
+  bands: [
+    { axis: "y", from: 4, to: 8, tone: "ok", label: "normal CO" },
+    { axis: "y", from: 2.5, to: 4, tone: "warn" },
+    { axis: "y", from: 0, to: 2.5, tone: "danger" }
+  ],
   controls: [
     { key: "volume", label: "Blood volume", min: 0, max: 100, step: 1, defaultValue: 50, unit: "%" },
     { key: "contractility", label: "Contractility", min: 0.5, max: 1.8, step: 0.01, defaultValue: 1 },

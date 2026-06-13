@@ -33,6 +33,13 @@ const config: CurveLabConfig = {
   yDomain: [-110, -20],
   xLabel: "Extracellular [K⁺]ₒ (mM)",
   yLabel: "Membrane potential Vm (mV)",
+  bands: [
+    { axis: "x", from: 3.5, to: 5.0, tone: "ok", label: "normal K⁺" },
+    { axis: "x", from: 3.0, to: 3.5, tone: "warn" },
+    { axis: "x", from: 5.0, to: 6.0, tone: "warn" },
+    { axis: "x", from: 0.5, to: 3.0, tone: "danger" },
+    { axis: "x", from: 6.0, to: 12, tone: "danger" }
+  ],
   controls: [
     { key: "ko", label: "Extracellular K⁺ (cursor)", min: 0.5, max: 12, step: 0.1, defaultValue: 4, unit: "mM" },
     { key: "ratio", label: "P_Na / P_K (Na⁺ leak)", min: 0.01, max: 0.3, step: 0.005, defaultValue: 0.04, unit: "" },

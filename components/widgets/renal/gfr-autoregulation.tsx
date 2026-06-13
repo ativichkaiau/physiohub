@@ -45,6 +45,13 @@ const config: CurveLabConfig = {
   yDomain: [0, 220],
   xLabel: "Mean arterial pressure (mmHg)",
   yLabel: "GFR (mL/min)",
+  bands: [
+    { axis: "x", from: 80, to: 180, tone: "ok", label: "autoregulated" },
+    { axis: "x", from: 60, to: 80, tone: "warn" },
+    { axis: "x", from: 180, to: 200, tone: "warn" },
+    { axis: "x", from: 40, to: 60, tone: "danger" },
+    { axis: "x", from: 200, to: 220, tone: "danger" }
+  ],
   controls: [
     { key: "map", label: "MAP marker", min: 40, max: 220, step: 1, defaultValue: 95, unit: "mmHg" },
     { key: "nsaid", label: "NSAID (PGE2 block)", min: 0, max: 100, step: 1, defaultValue: 0, unit: "%" },

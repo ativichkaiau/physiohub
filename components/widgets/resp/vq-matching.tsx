@@ -24,6 +24,13 @@ const config: CurveLabConfig = {
   yDomain: [0, 200],
   xLabel: "V/Q ratio",
   yLabel: "Alveolar gas",
+  bands: [
+    { axis: "x", from: 0.8, to: 1.2, tone: "ok", label: "matched" },
+    { axis: "x", from: 0.3, to: 0.8, tone: "warn" },
+    { axis: "x", from: 1.2, to: 2.0, tone: "warn" },
+    { axis: "x", from: 0, to: 0.3, tone: "danger", label: "shunt" },
+    { axis: "x", from: 2.0, to: 4.0, tone: "danger", label: "dead space" }
+  ],
   controls: [
     { key: "ventilation", label: "Ventilation", min: 0, max: 100, step: 1, defaultValue: 50, unit: "%" },
     { key: "perfusion", label: "Perfusion", min: 5, max: 100, step: 1, defaultValue: 50, unit: "%" },
