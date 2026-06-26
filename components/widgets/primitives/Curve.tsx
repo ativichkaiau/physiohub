@@ -250,7 +250,7 @@ export function Curve({
           role="img"
           aria-label={title}
           viewBox={`0 0 ${width} ${height}`}
-          className="h-auto w-full min-w-[620px]"
+          className="h-auto w-full md:min-w-[620px]"
           preserveAspectRatio="xMidYMid meet"
         >
           <title>{title}</title>

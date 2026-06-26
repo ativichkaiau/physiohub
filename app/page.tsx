@@ -71,17 +71,17 @@ export default function HomePage() {
             <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-slate-300 sm:text-lg">
               A systems bench for pressure, flow, gases, filtrate, hormones, impulse, and contraction. Scrub time, perturb curves, trace loops, and share the exact state by URL.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href="#systems"
-                className="focus-ring rounded-full bg-white px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-950 no-underline transition hover:bg-[color-mix(in_srgb,white,var(--cockpit-accent)_14%)]"
+                className="focus-ring inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-950 no-underline transition hover:bg-[color-mix(in_srgb,white,var(--cockpit-accent)_14%)] sm:w-auto"
               >
                 Start exploring
               </a>
-              <PhysiologyIntro autoOpen />
+              <PhysiologyIntro autoOpen launcherClassName="w-full sm:w-auto" />
               <Link
                 href="/cv"
-                className="focus-ring rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white no-underline transition hover:bg-white/10"
+                className="focus-ring inline-flex w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white no-underline transition hover:bg-white/10 sm:w-auto"
               >
                 Cardiovascular
               </Link>

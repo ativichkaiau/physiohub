@@ -33,9 +33,10 @@ const steps = [
 type PhysiologyIntroProps = {
   autoOpen?: boolean;
   showLauncher?: boolean;
+  launcherClassName?: string;
 };
 
-export function PhysiologyIntro({ autoOpen = true, showLauncher = true }: PhysiologyIntroProps) {
+export function PhysiologyIntro({ autoOpen = true, showLauncher = true, launcherClassName = "" }: PhysiologyIntroProps) {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -118,7 +119,7 @@ export function PhysiologyIntro({ autoOpen = true, showLauncher = true }: Physio
         <button
           type="button"
           onClick={open}
-          className="focus-ring ph-intro-launch inline-flex items-center justify-center rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline transition"
+          className={`focus-ring ph-intro-launch inline-flex items-center justify-center rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline transition ${launcherClassName}`}
         >
           Run primer
         </button>
