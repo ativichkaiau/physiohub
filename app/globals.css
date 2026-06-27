@@ -25,6 +25,7 @@
   /* Brand */
   --ph-accent:        #315dca;
   --ph-accent-2:      #e66458;
+  --ph-brand:         #0d9488;
 
   /* Plot colours */
   --ph-curve-1:       #168b72;
@@ -81,6 +82,7 @@
   /* Brand */
   --ph-accent:        #80a6ff;
   --ph-accent-2:      #ff8374;
+  --ph-brand:         #2dd4bf;
 
   /* Plot colours */
   --ph-curve-1:       #57d6b2;
@@ -248,11 +250,11 @@ svg { display: block; }
 }
 
 .ph-brand-mark {
-  border: 1px solid color-mix(in srgb, var(--ph-accent), black 14%);
+  border: 1px solid color-mix(in srgb, var(--ph-brand), black 14%);
   background: linear-gradient(
     145deg,
-    color-mix(in srgb, var(--ph-accent), white 14%),
-    color-mix(in srgb, var(--ph-accent), black 12%)
+    color-mix(in srgb, var(--ph-brand), white 14%),
+    color-mix(in srgb, var(--ph-brand), black 12%)
   );
   box-shadow:
     4px 4px 10px rgba(74, 89, 112, 0.22),
@@ -292,7 +294,7 @@ svg { display: block; }
   border-color: var(--ph-border);
   background: var(--ph-surface);
   box-shadow: var(--ph-clay-shadow-sm);
-  color: var(--ph-accent);
+  color: var(--ph-brand);
 }
 
 .ph-app-footer {
