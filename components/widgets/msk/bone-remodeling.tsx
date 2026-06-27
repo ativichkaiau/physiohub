@@ -5,6 +5,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "msk/bone-remodeling",
+  readingGuide:
+    "Formation (osteoblasts) and resorption (osteoclasts) are COUPLED. Mechanical load and endocrine signals tip the balance; PTH, vitamin D, and estrogen shift it one way or the other. Note the long time constant — this loop reshapes bone over weeks, unlike minute-to-minute calcium control.",
   loop: {
     guideSteps: [
       { title: "1 Sense strain", verb: "osteocytes detect load, disuse, and microdamage" },

@@ -20,6 +20,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "gi/bile-flow",
+  readingGuide:
+    "Bile acids are recycled, not spent. A meal contracts the gallbladder; the bile acids do their job, then return from the ileum to the liver to be re-secreted — enterohepatic cycling AMPLIFIES the pool. Follow the loop and watch how blocking ileal return collapses bile secretion.",
   loop: {
     guideSteps: [
       { title: "1 Detect meal", verb: "duodenal I-cells sense fat and amino acids" },

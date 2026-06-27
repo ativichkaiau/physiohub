@@ -223,6 +223,10 @@ export default function EcgIntervalsWidget() {
             <text x={6} y={Y(1) + 4} fontSize="10" fill="var(--ph-muted)">1 mV</text>
             <text x={6} y={Y(0) + 4} fontSize="10" fill="var(--ph-muted)">0</text>
           </svg>
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Each piece of the ECG is one electrical event. Click P (atrial depolarization), the PR segment (AV-node delay), QRS (ventricular depolarization), the ST segment (plateau), and T (repolarization). A long PR is nodal delay; a wide QRS is slow ventricular spread — read the tracing as a timeline of conduction.
+          </p>
         </section>
 
         <aside className="grid gap-4">

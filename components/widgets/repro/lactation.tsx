@@ -5,6 +5,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "repro/lactation",
+  readingGuide:
+    "Two hormones, two jobs: prolactin MAKES milk (suckling sustains it by lifting dopamine inhibition), oxytocin EJECTS it (the letdown reflex). Follow the suckling stimulus to each hormone — production and ejection run on separate loops, which is why stress can block letdown without stopping production.",
   loop: {
     guideSteps: [
       { title: "1 Suckling", verb: "nipple mechanoreceptors send afferents to hypothalamus" },

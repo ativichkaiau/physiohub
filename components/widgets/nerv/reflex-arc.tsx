@@ -13,6 +13,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "nerv/reflex-arc",
+  readingGuide:
+    "Trace signal flow around the stretch reflex: stretch → Ia afferent → spinal cord → alpha motor neuron → contraction. An inhibitory interneuron simultaneously RELAXES the antagonist (reciprocal inhibition). Watch the agonist excitation and antagonist inhibition that together shape a clean movement.",
   loop: {
     guideSteps: [
       { title: "1 Stretch", verb: "muscle spindle Ia afferents fire" },

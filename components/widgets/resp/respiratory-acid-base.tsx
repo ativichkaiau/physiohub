@@ -9,6 +9,8 @@ function pH(hco3: number, paco2: number) {
 
 const config: FeedbackLabConfig = {
   diagramId: "resp/respiratory-acid-base",
+  readingGuide:
+    "PaCO2 sets the respiratory side of pH. More CO2 (more production or less ventilation) means acidosis, so chemoreceptors drive ventilation UP to blow it off; the kidney then slowly trims bicarbonate to compensate. Follow the loop from CO2 to pH to ventilatory drive — fast lungs, slow kidney.",
   loop: {
     guideSteps: [
       { title: "1 Disturb pH", verb: "CO2 load, ventilation, and HCO3 set Henderson-Hasselbalch" },

@@ -62,6 +62,7 @@ export type FeedbackLoopMeta = {
 
 export type FeedbackLabConfig = {
   diagramId: string;
+  readingGuide?: string;
   controls: CurveLabControl[];
   toggles: FeedbackToggle[];
   loop?: FeedbackLoopMeta;
@@ -306,6 +307,12 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
               </text>
             </g>
           </svg>
+          {config.readingGuide ? (
+            <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+              <span className="font-black uppercase tracking-[0.14em] text-ph-text">In plain terms · </span>
+              {config.readingGuide}
+            </p>
+          ) : null}
         </section>
 
         <aside className="grid gap-4">

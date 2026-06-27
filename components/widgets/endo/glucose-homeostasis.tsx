@@ -5,6 +5,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "endo/glucose-homeostasis",
+  readingGuide:
+    "Plasma glucose is the controlled variable, defended from both sides. After a meal, insulin pushes glucose INTO liver, muscle, and fat; during fasting, glucagon pulls it back OUT of the liver. Follow the loop from glucose sensor to hormone to tissue flux, and toggle a limb to watch glucose drift off its set point.",
   loop: {
     guideSteps: [
       { title: "1 Sense glucose", verb: "beta cells sample rising plasma glucose" },

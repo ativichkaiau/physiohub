@@ -5,6 +5,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "renal/raas",
+  readingGuide:
+    "This loop defends blood pressure and volume. Low pressure, low macula-densa NaCl, or sympathetic tone release renin → angiotensin II (vasoconstriction) plus aldosterone (sodium and water retention) → pressure and volume rise. Follow the cascade from sensor to renin to the two effector arms.",
   loop: {
     guideSteps: [
       { title: "1 Sense kidney", verb: "JG cells and macula densa detect low pressure/NaCl" },

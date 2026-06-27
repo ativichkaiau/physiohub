@@ -5,6 +5,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "repro/erection-ejaculation",
+  readingGuide:
+    "Two autonomic arms, deliberately separate. PARASYMPATHETIC (pelvic, nitric oxide) drives erection — filling; SYMPATHETIC (hypogastric) drives emission and somatic nerves drive ejaculation. Point and Shoot: Parasympathetic Points, Sympathetic Shoots. Toggle each arm to see which function it owns.",
   loop: {
     guideSteps: [
       { title: "1 Arousal", verb: "cortical and tactile afferents enter spinal centers" },

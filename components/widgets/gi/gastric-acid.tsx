@@ -5,6 +5,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "gi/gastric-acid",
+  readingGuide:
+    "Parietal-cell acid is the output, driven by three stimulators (vagus/ACh, gastrin, histamine) and reined in by two brakes (somatostatin and low luminal pH). Trace the drivers down to the proton pump, then the negative feedback up — acid itself triggers somatostatin, which shuts secretion off.",
   loop: {
     guideSteps: [
       { title: "1 Stimulate", verb: "meal and vagus activate G cells" },

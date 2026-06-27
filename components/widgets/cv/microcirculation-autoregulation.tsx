@@ -28,6 +28,8 @@ const TISSUE_PARAMS: Record<TissueId, { lower: number; upper: number; myogenicWe
 
 const config: FeedbackLabConfig = {
   diagramId: "cv/microcirculation-autoregulation",
+  readingGuide:
+    "Tissue blood flow is defended locally. When metabolism rises or pressure falls, metabolites build up and arterioles DILATE to restore flow; when pressure surges, myogenic stretch CONSTRICTS them. Follow the loop from demand to vessel caliber to flow — it holds delivery nearly constant across a wide pressure range.",
   loop: {
     guideSteps: [
       { title: "1 Detect", verb: "stretch, PO2, CO2, and metabolites change" },

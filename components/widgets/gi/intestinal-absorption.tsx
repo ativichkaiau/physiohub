@@ -169,6 +169,10 @@ export default function IntestinalAbsorptionWidget() {
               Daily fluid balance: ~9 L enters small bowel · ~7 L reabsorbed proximally · ~1.5 L enters colon · ~150 mL excreted in stool
             </text>
           </svg>
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Click each transporter to follow nutrients from lumen to blood. The engine is the basolateral sodium pump: it keeps intracellular sodium low, so the inward sodium gradient powers secondary-active uptake of glucose (SGLT1), amino acids, and more at the apical side. No sodium gradient means no coupled absorption.
+          </p>
         </section>
 
         <aside className="grid gap-4">

@@ -19,6 +19,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "endo/hpt-axis",
+  readingGuide:
+    "Free thyroid hormone is the controlled variable. The hypothalamus (TRH) and pituitary (TSH) drive the thyroid; thyroid hormone then BRAKES TRH and TSH. Read the loop downward, then the brake upward — a failing gland lets TSH climb (primary hypothyroidism), while pituitary failure drops TSH instead.",
   loop: {
     guideSteps: [
       { title: "1 Drive", verb: "hypothalamic TRH sets pituitary demand" },

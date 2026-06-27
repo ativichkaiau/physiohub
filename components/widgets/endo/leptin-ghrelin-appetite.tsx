@@ -18,6 +18,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "endo/leptin-ghrelin-appetite",
+  readingGuide:
+    "Two opposing signals meet in the hypothalamus: leptin from fat (long-term satiety, rises with fat mass) and ghrelin from the empty stomach (short-term hunger, rises with fasting). Follow each to the appetite center — they push the hunger-versus-satiety balance in opposite directions.",
   loop: {
     guideSteps: [
       { title: "1 Sample stores", verb: "leptin and ghrelin report fat mass and gastric stretch" },

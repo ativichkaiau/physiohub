@@ -20,6 +20,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "endo/adrenal-medulla",
+  readingGuide:
+    "Acute stress is the input. Sympathetic preganglionic fibers fire the medulla to dump catecholamines, which raise heart rate, blood pressure, and blood glucose — a feed-forward surge, amplified when cortisol has primed the synthetic enzymes. Trace drive → catecholamine output → cardiovascular and metabolic effects.",
   loop: {
     guideSteps: [
       { title: "1 Command", verb: "brainstem/hypothalamus sets sympathetic outflow" },

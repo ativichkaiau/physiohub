@@ -19,6 +19,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "nerv/pupillary-light-reflex",
+  readingGuide:
+    "Pupil size is the controlled variable. Light → CN II afferent → midbrain → CN III efferent → constriction → less retinal light: negative feedback. Trace each limb; an afferent (CN II) lesion gives a relative afferent defect (RAPD), while an efferent (CN III) lesion leaves a fixed dilated pupil.",
   loop: {
     guideSteps: [
       { title: "1 Detect", verb: "retina encodes light into optic-nerve firing" },

@@ -23,6 +23,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "renal/micturition-reflex",
+  readingGuide:
+    "Bladder volume is the trigger. Filling stretches the wall, afferents reach the pons, and parasympathetic detrusor contraction fires WITH external sphincter relaxation = coordinated voiding. Below threshold the system stores (sphincter tight). Follow the switch from storage to voiding, which a cord lesion can uncouple.",
   loop: {
     guideSteps: [
       { title: "1 Fill/stretch", verb: "detrusor stretch afferents rise with volume" },

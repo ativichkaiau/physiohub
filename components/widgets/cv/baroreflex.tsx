@@ -14,6 +14,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "cv/baroreflex",
+  readingGuide:
+    "Mean arterial pressure is the controlled variable. A pressure rise stretches the baroreceptors, so the brainstem turns sympathetic tone DOWN and vagal tone UP — heart rate and vascular tone fall and pressure drops back. Break a feedback arm (toggle) and the dynamics track shows pressure failing to return. This is the fast, minute-to-minute pressure buffer.",
   loop: {
     guideSteps: [
       { title: "1 Transduce", verb: "wall stretch changes IX/X firing" },

@@ -118,6 +118,10 @@ export default function MurmurManeuversWidget() {
             })}
             <p className="text-xs text-ph-muted">★ = louder with reduced LV volume (HCM, MVP)</p>
           </div>
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Maneuvers work by changing LV volume. Most murmurs get LOUDER with more flow (squatting and handgrip raise preload and afterload). The exceptions are HCM and MVP, which get louder when LV volume FALLS (Valsalva, standing) — less blood means more obstruction and earlier prolapse. Move preload and afterload to mimic each maneuver.
+          </p>
         </section>
 
         <aside className="grid gap-4">

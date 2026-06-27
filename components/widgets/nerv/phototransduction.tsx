@@ -278,6 +278,10 @@ export default function PhototransductionWidget() {
               </text>
             </g>
           </svg>
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Click the cascade from photon to synapse. Light activates rhodopsin → transducin → phosphodiesterase, which DESTROYS cGMP; that closes the sodium channels, so the cell HYPERPOLARIZES and releases LESS glutamate. The counterintuitive rule: light turns the photoreceptor off, and darkness is the depolarized, glutamate-releasing state.
+          </p>
         </section>
 
         <aside className="grid gap-4">

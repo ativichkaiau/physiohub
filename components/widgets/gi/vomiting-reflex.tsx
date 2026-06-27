@@ -22,6 +22,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "gi/vomiting-reflex",
+  readingGuide:
+    "The brainstem vomiting center integrates four inputs — vestibular, chemoreceptor trigger zone, vagal gut afferents, and cortex — then fires one coordinated motor program (retching, sphincter relaxation, expulsion). Follow each input to the center and the center to the outputs; antiemetics block specific input arms.",
   loop: {
     guideSteps: [
       { title: "1 Afferents", verb: "gut, CTZ, vestibular, and cortical inputs converge" },

@@ -110,6 +110,10 @@ export default function AaGradientHypoxemiaWidget() {
             </div>
             <p className="mt-1 text-xs text-ph-muted tabular-nums">normal ~95 · hypoxemia &lt;80 · severe &lt;60 mmHg</p>
           </div>
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Two numbers sort out hypoxemia: the A-a gradient and the response to 100% oxygen. A NORMAL gradient means hypoventilation or low inspired oxygen (the lung itself is fine). A WIDE gradient means V/Q mismatch or shunt — and 100% oxygen separates them: V/Q mismatch corrects, a true shunt does NOT. Work the controls and watch the gradient.
+          </p>
         </section>
 
         <aside className="grid gap-4">

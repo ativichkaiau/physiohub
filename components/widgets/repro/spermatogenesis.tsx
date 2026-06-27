@@ -203,6 +203,10 @@ export default function SpermatogenesisWidget() {
               <text x="16" y="44" fontSize="12" fontWeight="800" fill="var(--ph-text)">{state}</text>
             </g>
           </svg>
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Click stages from the basement membrane inward as germ cells mature: spermatogonia → spermatocytes (meiosis) → spermatids → sperm shed into the lumen. Sertoli cells nurse them (FSH acts here and builds the blood-testis barrier); Leydig cells outside make testosterone under LH. Maturation moves from outside in.
+          </p>
         </section>
 
         <aside className="grid gap-4">

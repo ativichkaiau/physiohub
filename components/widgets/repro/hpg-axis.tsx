@@ -17,6 +17,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "repro/hpg-axis",
+  readingGuide:
+    "GnRH PULSES drive LH and FSH, which drive the gonads; gonadal steroids and inhibin feed BACK on the hypothalamus and pituitary. The catch: only pulsatile GnRH works — a continuous agonist paradoxically SUPPRESSES the axis (the basis of GnRH-agonist therapy). Watch how pulse frequency changes the output.",
   loop: {
     guideSteps: [
       { title: "1 GnRH", verb: "hypothalamus fires pulsatile GnRH" },

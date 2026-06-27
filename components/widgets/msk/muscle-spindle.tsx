@@ -5,6 +5,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "msk/muscle-spindle",
+  readingGuide:
+    "The spindle reports muscle stretch. Lengthening fires the Ia afferent, which excites the alpha motor neuron to contract the muscle and oppose the stretch. Gamma drive pre-tightens the spindle so it stays sensitive even as the muscle shortens — follow length → spindle → alpha output, with gamma setting the gain.",
   loop: {
     guideSteps: [
       { title: "1 Stretch", verb: "intrafusal fibers increase Ia firing" },

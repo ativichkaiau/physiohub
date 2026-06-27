@@ -16,6 +16,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
  */
 const config: FeedbackLabConfig = {
   diagramId: "nerv/pain-gate-control",
+  readingGuide:
+    "The projection neuron is the gate. Noxious C-fiber input OPENS it (pain ascends); large Aβ touch input and descending opioid pathways CLOSE it (rubbing or analgesia dampens pain). Follow the competing inputs converging on the projection neuron — the gate is whichever input wins.",
   loop: {
     guideSteps: [
       { title: "1 Nociceptor", verb: "Aδ/C fibres fire to noxious stimulus" },

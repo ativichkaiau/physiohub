@@ -5,6 +5,8 @@ import { clamp } from "@/components/widgets/widgetUtils";
 
 const config: FeedbackLabConfig = {
   diagramId: "resp/ventilation-control",
+  readingGuide:
+    "Minute ventilation is the output, set by chemoreceptors. Rising CO2 (plus falling O2 and falling pH) drives central and peripheral receptors to INCREASE ventilation, which blows off CO2 and pulls the drive back down — negative feedback. CO2 is the dominant minute-to-minute stimulus; trace it to ventilation and back.",
   loop: {
     guideSteps: [
       { title: "1 Sense gases", verb: "central and carotid chemoreceptors read CO2/H+, O2" },
