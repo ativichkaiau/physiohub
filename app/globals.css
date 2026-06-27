@@ -139,8 +139,8 @@ body {
   min-height: 100%;
   margin: 0;
   background:
-    radial-gradient(135% 115% at -5% -10%, color-mix(in srgb, #34d399, transparent 80%), transparent 48%),
-    radial-gradient(120% 120% at 105% 12%, color-mix(in srgb, #8f8cf2, transparent 82%), transparent 52%),
+    radial-gradient(140% 120% at -8% -12%, color-mix(in srgb, #2ed3a0, transparent 64%), transparent 56%),
+    radial-gradient(125% 125% at 108% 8%, color-mix(in srgb, #8b86f5, transparent 66%), transparent 60%),
     linear-gradient(var(--ph-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px),
     var(--ph-bg);
