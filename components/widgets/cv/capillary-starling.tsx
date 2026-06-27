@@ -36,6 +36,8 @@ const config: CurveLabConfig = {
   yDomain: [-25, 25],
   xLabel: "distance along capillary (arterial → venous)",
   yLabel: "Net Jv (mmHg equivalent)",
+  readingGuide:
+    "Two forces compete along the capillary: hydrostatic pressure pushes fluid OUT (the steeper, falling line) while oncotic pressure pulls it back IN (the flatter line). Net flux starts outward at the arterial end and crosses below zero near the venous end — the 'switch point' is where filtration becomes reabsorption.",
   controls: [
     { key: "pcArt", label: "Pc — arterial end", min: 20, max: 55, step: 1, defaultValue: 35, unit: "mmHg" },
     { key: "pi", label: "Pi — interstitial hydrostatic", min: -5, max: 10, step: 1, defaultValue: 0, unit: "mmHg" },

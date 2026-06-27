@@ -25,6 +25,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 1000],
   xLabel: "vessel radius (mm)",
   yLabel: "Flow (mL/min)",
+  readingGuide:
+    "Flow rises with the fourth power of radius, so the curve rockets upward — doubling the radius multiplies flow about 16×. That steepness near small radii is why arteriolar tone, not the big arteries, sets resistance. Pressure gradient and viscosity only slide the whole curve up or down.",
   controls: [
     { key: "radius", label: "Vessel radius (cursor)", min: 0.2, max: 5, step: 0.05, defaultValue: 2, unit: "mm" },
     { key: "dp", label: "Pressure gradient (ΔP)", min: 10, max: 150, step: 1, defaultValue: 50, unit: "mmHg" },

@@ -40,6 +40,7 @@ export type CurveLabConfig = {
   yLabel: string;
   controls: CurveLabControl[];
   overlayLabel?: string;
+  readingGuide?: string;
   bands?: CurveBand[];
   buildSeries: (values: Record<string, number>) => CurveSeries[];
   buildReferenceSeries?: (values: Record<string, number>) => CurveSeries[];
@@ -161,6 +162,12 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
             cursorX={config.getCursorX?.(values)}
             height={420}
           />
+          {config.readingGuide ? (
+            <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+              <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+              {config.readingGuide}
+            </p>
+          ) : null}
         </section>
 
         <aside className="grid gap-4">

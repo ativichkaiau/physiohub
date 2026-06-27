@@ -39,6 +39,8 @@ const config: CurveLabConfig = {
   yDomain: [30, 210],
   xLabel: "time (s)",
   yLabel: "Arterial pressure (mmHg)",
+  readingGuide:
+    "Each beat fills the aorta, then pressure decays as blood runs off to the periphery (time constant τ = R × C). A stiffer aorta (low compliance) makes the systolic peak higher and diastole fall faster — that widening gap between peak and trough is the rising pulse pressure of stiff-vessel hypertension.",
   controls: [
     { key: "compliance", label: "Arterial compliance", min: 0.4, max: 3, step: 0.05, defaultValue: 1.5, unit: "× normal" },
     { key: "resistance", label: "Peripheral resistance", min: 0.6, max: 2.2, step: 0.05, defaultValue: 1, unit: "× normal" },

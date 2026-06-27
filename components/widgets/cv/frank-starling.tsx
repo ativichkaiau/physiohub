@@ -19,6 +19,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 150],
   xLabel: "Ventricular filling pressure",
   yLabel: "Stroke volume",
+  readingGuide:
+    "Slide preload and watch the operating dot climb the curve — stroke volume rises steeply on the ascending limb (preload reserve), then flattens at the plateau. Inotropy lifts the whole curve; afterload presses it down. A failing ventricle sits low and flat, so adding preload barely helps.",
   bands: [
     { axis: "x", from: 0, to: 12, tone: "phase", label: "ascending limb (preload reserve)" },
     { axis: "x", from: 12, to: 20, tone: "phase", label: "plateau" }

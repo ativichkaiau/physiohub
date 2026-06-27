@@ -48,6 +48,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 16],
   xLabel: "Right atrial pressure",
   yLabel: "Flow",
+  readingGuide:
+    "The heart can only pump what the veins return, so the circulation settles where the two curves cross — that intersection is the actual cardiac output (height) and right atrial pressure (position). More blood volume slides venous return up and to the right; stronger contractility lifts the cardiac-output curve; the operating dot tracks wherever they now meet.",
   bands: [
     { axis: "y", from: 4, to: 8, tone: "ok", label: "normal CO" },
     { axis: "y", from: 2.5, to: 4, tone: "warn" },
