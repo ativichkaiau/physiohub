@@ -33,7 +33,7 @@ export function ThemeToggle() {
   }
 
   const currentLabel = mounted ? (theme === "dark" ? "Night" : "Day") : "Day";
-  const currentIcon = mounted ? (theme === "dark" ? "☾" : "☀") : "☀";
+  const currentIcon = mounted ? (theme === "dark" ? "🌙" : "☀️") : "☀️";
   const nextLabel = theme === "dark" ? "day" : "night";
 
   return (
@@ -42,18 +42,12 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={`Switch to ${nextLabel} mode`}
       title={`Switch to ${nextLabel} mode`}
-      className="focus-ring ph-theme-toggle ph-clay-button inline-flex items-center gap-2 rounded-ph px-2.5 py-1.5 text-left"
+      className="focus-ring ph-theme-toggle ph-clay-button inline-flex items-center gap-2 rounded-full px-3.5 py-2"
     >
-      <span className="hidden flex-col leading-tight sm:flex">
-        <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-ph-muted">Mode</span>
-        <span className="text-xs font-bold tracking-tight text-ph-text">{currentLabel}</span>
-      </span>
-      <span
-        aria-hidden="true"
-        className="grid h-7 w-7 place-items-center rounded-full bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-sm text-ph-accent"
-      >
+      <span aria-hidden="true" className="text-base leading-none">
         {currentIcon}
       </span>
+      <span className="text-xs font-bold tracking-tight text-ph-text">{currentLabel}</span>
     </button>
   );
 }

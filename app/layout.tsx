@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PrimaryNav } from "@/components/PrimaryNav";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
@@ -34,17 +33,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="ph-app-header-inner mx-auto flex w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">
               <Link href="/" className="focus-ring flex min-w-0 items-center gap-2.5 rounded-ph no-underline">
                 <span className="ph-brand-mark grid h-10 w-10 shrink-0 place-items-center rounded-[13px] text-base font-black">V</span>
-                <span className="flex flex-col leading-none">
-                  <span className="text-lg font-black tracking-tight sm:text-xl">
-                    VESTRIPPN<span style={{ color: "var(--ph-accent-blue)" }}>3.0</span>
-                  </span>
-                  <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">PhysioHub</span>
+                <span className="text-lg font-black tracking-tight sm:text-xl">
+                  VESTRIPPN<span style={{ color: "var(--ph-accent-blue)" }}>3.0</span>
                 </span>
               </Link>
-              <nav className="flex items-center gap-2 text-sm font-medium text-ph-muted" aria-label="Primary">
-                <PrimaryNav />
+              <div className="flex items-center gap-3 sm:gap-4">
+                <span className="hidden text-sm font-semibold text-ph-muted sm:inline">PhysioHub</span>
+                <span aria-hidden="true" className="hidden h-5 w-px bg-[var(--ph-border-strong)] sm:inline-block" />
+                <span aria-hidden="true" className="hidden text-[10px] font-bold uppercase tracking-[0.2em] text-ph-muted-2 sm:inline">
+                  Mode
+                </span>
                 <ThemeToggle />
-              </nav>
+              </div>
             </div>
           </header>
           <main>{children}</main>
@@ -53,7 +53,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="font-bold text-ph-text">
                 VESTRIPPN3.0 <span className="font-semibold text-ph-muted">· PhysioHub</span>
               </span>
-              <span>Interactive physiology · URL-synced state · No backend</span>
+              <span className="flex items-center gap-3">
+                <Link href="/docs" className="focus-ring rounded-ph font-semibold hover:text-ph-text">
+                  Docs
+                </Link>
+                <span aria-hidden="true">Interactive physiology · URL-synced state · No backend</span>
+              </span>
             </div>
           </footer>
         </div>
