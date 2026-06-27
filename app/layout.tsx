@@ -6,8 +6,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "PhysioHub",
-    template: "%s · PhysioHub"
+    default: "VESTRIPPN3.0",
+    template: "%s · VESTRIPPN3.0"
   },
   description: "Interactive physiology diagrams for medical students — scrubbable timelines, perturbable curves, feedback loops, click-to-mechanism walks, and multi-variable interactions."
 };
@@ -33,10 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <header className="ph-app-header">
             <div className="ph-app-header-inner mx-auto flex w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">
               <Link href="/" className="focus-ring flex min-w-0 items-center gap-2.5 rounded-ph no-underline">
-                <span className="ph-brand-mark grid h-9 w-9 shrink-0 place-items-center rounded-ph text-xs font-black">PH</span>
-                <span>
-                  <span className="block text-[9px] font-bold uppercase tracking-[0.16em] text-ph-muted">TR-VII</span>
-                  <span className="block text-sm font-black tracking-tight sm:text-base">PhysioHub</span>
+                <span className="ph-brand-mark grid h-10 w-10 shrink-0 place-items-center rounded-[13px] text-base font-black">V</span>
+                <span className="text-lg font-black tracking-tight sm:text-xl">
+                  VESTRIPPN<span className="text-ph-accent">3.0</span>
                 </span>
               </Link>
               <nav className="flex items-center gap-2 text-sm font-medium text-ph-muted" aria-label="Primary">
@@ -48,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main>{children}</main>
           <footer className="ph-app-footer px-4 py-6 text-sm text-ph-muted sm:px-6">
             <div className="mx-auto flex max-w-[1500px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <span className="font-bold text-ph-text">PhysioHub</span>
+              <span className="font-bold text-ph-text">VESTRIPPN3.0</span>
               <span>Interactive physiology · URL-synced state · No backend</span>
             </div>
           </footer>

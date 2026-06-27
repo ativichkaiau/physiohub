@@ -25,6 +25,7 @@
   /* Brand */
   --ph-accent:        #315dca;
   --ph-accent-2:      #e66458;
+  --ph-brand:         #0d9488;
 
   /* Plot colours */
   --ph-curve-1:       #168b72;
@@ -81,6 +82,7 @@
   /* Brand */
   --ph-accent:        #80a6ff;
   --ph-accent-2:      #ff8374;
+  --ph-brand:         #2dd4bf;
 
   /* Plot colours */
   --ph-curve-1:       #57d6b2;
@@ -248,28 +250,23 @@ svg { display: block; }
 }
 
 .ph-brand-mark {
-  border: 1px solid color-mix(in srgb, var(--ph-accent), transparent 62%);
-  background: color-mix(in srgb, var(--ph-accent), var(--ph-surface) 72%);
+  border: 1px solid color-mix(in srgb, var(--ph-brand), black 14%);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--ph-brand), white 14%),
+    color-mix(in srgb, var(--ph-brand), black 12%)
+  );
   box-shadow:
     4px 4px 10px rgba(74, 89, 112, 0.22),
     -4px -4px 10px var(--ph-clay-highlight),
-    inset 1px 1px 0 var(--ph-clay-highlight);
-  color: color-mix(in srgb, var(--ph-accent), black 16%);
-}
-
-:root[data-theme="dark"] .ph-brand-mark {
+    inset 1px 1px 0 rgba(255, 255, 255, 0.42);
   color: #ffffff;
 }
 
 .ph-nav-shell {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  border: 1px solid var(--ph-border);
-  border-radius: var(--ph-radius);
-  background: var(--ph-surface-2);
-  box-shadow: var(--ph-clay-inset);
-  padding: 0.25rem;
+  gap: 0.4rem;
 }
 
 .ph-nav-tab {
@@ -281,8 +278,10 @@ svg { display: block; }
   border-radius: calc(var(--ph-radius) - 2px);
   padding: 0.45rem 0.85rem;
   color: var(--ph-muted);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
   text-decoration: none;
   transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
@@ -295,7 +294,7 @@ svg { display: block; }
   border-color: var(--ph-border);
   background: var(--ph-surface);
   box-shadow: var(--ph-clay-shadow-sm);
-  color: var(--ph-accent);
+  color: var(--ph-brand);
 }
 
 .ph-app-footer {
