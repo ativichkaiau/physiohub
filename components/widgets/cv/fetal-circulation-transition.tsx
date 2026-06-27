@@ -133,7 +133,7 @@ export default function FetalCirculationTransitionWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label={`${selected.fullName} schematic`}>
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{selected.fullName} — {selected.highlight}</p>
             <p className="mt-1.5 text-sm text-ph-muted">{selected.body}</p>
             <p className="mt-2 text-sm">
@@ -350,7 +350,7 @@ export default function FetalCirculationTransitionWidget() {
                 type="button"
                 onClick={() => selectedIndex > 0 && setSelectedId(STAGES[selectedIndex - 1].id)}
                 disabled={selectedIndex === 0}
-                className="focus-ring rounded-ph border border-[var(--ph-border)] bg-ph-surface px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ph-muted disabled:opacity-40 hover:border-[var(--ph-border-strong)] hover:text-ph-text"
+                className="focus-ring ph-clay-button px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ph-muted disabled:opacity-40 hover:border-[var(--ph-border-strong)] hover:text-ph-text"
               >
                 ← Prev
               </button>
@@ -358,7 +358,7 @@ export default function FetalCirculationTransitionWidget() {
                 type="button"
                 onClick={() => selectedIndex < STAGES.length - 1 && setSelectedId(STAGES[selectedIndex + 1].id)}
                 disabled={selectedIndex === STAGES.length - 1}
-                className="focus-ring rounded-ph border border-[var(--ph-border)] bg-ph-surface px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ph-muted disabled:opacity-40 hover:border-[var(--ph-border-strong)] hover:text-ph-text"
+                className="focus-ring ph-clay-button px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ph-muted disabled:opacity-40 hover:border-[var(--ph-border-strong)] hover:text-ph-text"
               >
                 Next →
               </button>

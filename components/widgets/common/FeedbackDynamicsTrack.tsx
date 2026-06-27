@@ -82,7 +82,7 @@ export function FeedbackDynamicsTrack({
   const distX = X0 + T0 * (X1 - X0);
 
   return (
-    <div className="mb-4 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+    <div className="mb-4 ph-clay-well p-3">
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
         <h2 className="ph-section-label">What the loop does over time</h2>
         <span

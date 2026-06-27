@@ -31,7 +31,7 @@ export default function DiagramPage({ params }: { params: { system: string; diag
   }
 
   return (
-    <>
+    <div className="ph-system-theme" data-system={diagram.systemId}>
       <DiagramHeader diagram={diagram} />
       <Suspense
         fallback={
@@ -42,6 +42,6 @@ export default function DiagramPage({ params }: { params: { system: string; diag
       >
         <WidgetLoader diagramId={diagram.id} />
       </Suspense>
-    </>
+    </div>
   );
 }

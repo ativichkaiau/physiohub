@@ -262,7 +262,7 @@ export default function CardiacActionPotentialsWidget() {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Cardiac action potentials">
           <div className="mb-3 grid gap-3 md:grid-cols-[minmax(0,1fr)_260px]">
-            <div aria-live="polite" className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+            <div aria-live="polite" className="ph-clay-well p-3">
               <p className="ph-section-label">{phase.title}</p>
               <p className="mt-1.5 text-sm text-ph-muted">{phase.body}</p>
               <p className="mt-2 text-sm">

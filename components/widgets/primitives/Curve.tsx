@@ -223,7 +223,7 @@ export function Curve({
   })();
 
   return (
-    <figure className="min-w-0 max-w-full rounded-ph border border-[var(--ph-border)] bg-[color-mix(in_srgb,var(--ph-surface),var(--ph-surface-2)_28%)] p-3 shadow-[inset_0_1px_0_color-mix(in_srgb,white,transparent_94%)] sm:p-4">
+    <figure className="ph-curve-frame min-w-0 max-w-full p-3 sm:p-4">
       <figcaption className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <span className="ph-section-label max-w-full truncate text-ph-text">{title}</span>
         {legendItems.length ? (

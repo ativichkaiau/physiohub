@@ -119,7 +119,7 @@ export function PhysiologyIntro({ autoOpen = true, showLauncher = true, launcher
         <button
           type="button"
           onClick={open}
-          className={`focus-ring ph-intro-launch inline-flex items-center justify-center rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline transition ${launcherClassName}`}
+          className={`focus-ring ph-intro-launch inline-flex items-center justify-center rounded-ph px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline transition ${launcherClassName}`}
         >
           Run primer
         </button>

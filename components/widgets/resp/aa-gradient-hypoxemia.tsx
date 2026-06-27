@@ -87,7 +87,7 @@ export default function AaGradientHypoxemiaWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="A-a gradient and hypoxemia">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{cause}</p>
             <p className="mt-1.5 text-sm text-ph-muted">
               Alveolar gas equation: PAO₂ = FiO₂·(P_B − 47) − PaCO₂/0.8. The A-a gradient (PAO₂ − PaO₂) separates the causes of hypoxemia: low FiO₂ and hypoventilation give a NORMAL A-a gradient; shunt, V/Q mismatch, and diffusion impairment WIDEN it. The 100% O₂ test is the key discriminator — V/Q mismatch corrects, a true shunt does not.
@@ -103,7 +103,7 @@ export default function AaGradientHypoxemiaWidget() {
           ) : null}
 
           {/* simple PaO2 bar */}
-          <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface p-3">
+          <div className="ph-clay-well p-3">
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-ph-muted">PaO₂ ladder</p>
             <div className="h-4 overflow-hidden rounded-full bg-ph-surface2">
               <div className="h-full rounded-full transition-all" style={{ width: `${clamp((paO2 / 600) * 100, 3, 100)}%`, background: paO2 < 60 ? "var(--ph-danger)" : paO2 < 80 ? "var(--ph-warn)" : "var(--ph-ok)" }} />

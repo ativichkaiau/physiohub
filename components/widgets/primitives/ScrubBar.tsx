@@ -82,7 +82,7 @@ export function ScrubBar({
         {onPlayingChange ? (
           <button
             type="button"
-            className="focus-ring rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2 text-sm hover:border-[var(--ph-border-strong)]"
+            className="focus-ring ph-scrub-action ph-clay-button px-3 py-2 text-sm"
             onClick={() => onPlayingChange(!playing)}
             aria-pressed={playing}
           >
@@ -93,7 +93,7 @@ export function ScrubBar({
           <label className="flex items-center gap-2 text-sm text-ph-muted">
             Speed
             <select
-              className="focus-ring rounded-ph border border-[var(--ph-border)] bg-ph-surface px-2 py-2 text-ph-text"
+              className="focus-ring ph-clay-button px-2 py-2 text-ph-text"
               value={speed}
               onChange={(event) => onSpeedChange(Number(event.currentTarget.value))}
             >

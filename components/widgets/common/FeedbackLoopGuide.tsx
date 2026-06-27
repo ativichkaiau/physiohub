@@ -47,7 +47,7 @@ export function FeedbackLoopGuide({
   const feedbackStatus = feedbackActive ? feedbackStatusActive : feedbackStatusInactive;
 
   return (
-    <div className="mb-4 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2.5" aria-label="How to read this feedback loop">
+    <div className="mb-4 ph-clay-well px-3 py-2.5" aria-label="How to read this feedback loop">
       <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1.5 text-sm">
         {nodes.map((node, index) => (
           <Fragment key={`${node.label}-${index}`}>

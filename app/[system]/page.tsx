@@ -29,15 +29,18 @@ export default function SystemPage({ params }: { params: { system: string } }) {
   const referenceCount = system.diagrams.filter((diagram) => diagram.status === "reference").length;
 
   return (
-    <div className="mx-auto w-full max-w-[1500px] px-4 py-5 sm:px-6 sm:py-8">
-      <section className="ph-hero mb-6 overflow-hidden px-5 py-8 sm:px-8 sm:py-10">
+    <div
+      className="ph-system-theme mx-auto w-full max-w-[1500px] px-4 py-6 sm:px-6 sm:py-9"
+      data-system={system.id}
+    >
+      <section className="ph-hero ph-system-hero mb-8 overflow-hidden px-5 py-8 sm:px-8 sm:py-10">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center">
           <div>
             <Link href="/" className="focus-ring inline-flex items-center gap-1 rounded-ph text-sm font-medium text-ph-muted hover:text-ph-text">
               ← All systems
             </Link>
             <div className="mt-4">
-              <span className="inline-flex rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-ph-muted">
+              <span className="ph-clay-chip inline-flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-ph-accent">
                 {system.shortName}
               </span>
               <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{system.name}</h1>
@@ -47,15 +50,15 @@ export default function SystemPage({ params }: { params: { system: string } }) {
           <div className="grid gap-3">
             <SystemSignal systemId={system.id} className="h-44" />
             <dl className="grid grid-cols-3 gap-3">
-              <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+              <div className="ph-stat-tile p-3">
                 <dt className="ph-kicker">Diagrams</dt>
                 <dd className="mt-1.5 text-2xl font-bold tabular-nums">{system.diagrams.length}</dd>
               </div>
-              <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+              <div className="ph-stat-tile p-3">
                 <dt className="ph-kicker">Live</dt>
                 <dd className="mt-1.5 text-2xl font-bold tabular-nums" style={{ color: "var(--ph-ok)" }}>{referenceCount}</dd>
               </div>
-              <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+              <div className="ph-stat-tile p-3">
                 <dt className="ph-kicker">Pending</dt>
                 <dd className="mt-1.5 text-2xl font-bold tabular-nums text-ph-muted">{system.diagrams.length - referenceCount}</dd>
               </div>
@@ -79,15 +82,15 @@ export default function SystemPage({ params }: { params: { system: string } }) {
           <Link
             key={diagram.id}
             href={getDiagramPath(system.id, diagram.slug)}
-            className="focus-ring ph-panel group relative block min-h-52 overflow-hidden p-4 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-[var(--ph-border-strong)] hover:bg-ph-surface2 hover:shadow-[0_8px_28px_-12px_color-mix(in_srgb,var(--ph-accent),transparent_75%)] sm:p-5"
+            className="focus-ring ph-panel ph-diagram-card group relative block min-h-52 overflow-hidden p-4 no-underline transition duration-200 sm:p-5"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <ArchetypeBadge archetype={diagram.archetype} compact />
               <span
                 className={
                   diagram.status === "reference"
-                    ? "inline-flex items-center gap-1 rounded-full border border-[color-mix(in_srgb,var(--ph-ok),transparent_60%)] bg-[color-mix(in_srgb,var(--ph-ok),transparent_90%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em]"
-                    : "inline-flex items-center gap-1 rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-ph-muted"
+                    ? "ph-status-chip inline-flex items-center gap-1 rounded-full border border-[color-mix(in_srgb,var(--ph-ok),transparent_60%)] bg-[color-mix(in_srgb,var(--ph-ok),transparent_90%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em]"
+                    : "ph-status-chip inline-flex items-center gap-1 rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-ph-muted"
                 }
                 style={diagram.status === "reference" ? { color: "var(--ph-ok)" } : undefined}
               >

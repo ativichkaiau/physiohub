@@ -126,7 +126,7 @@ export default function CrossBridgeWidget() {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Cross-bridge cycle mechanism">
           <div className="mb-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_260px]">
-            <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+            <div className="ph-clay-well p-3">
               <p className="ph-section-label">Step {step} / 5 - {meta.title}</p>
               <p className="mt-1 text-sm text-ph-muted">{meta.body}</p>
             </div>
@@ -140,7 +140,7 @@ export default function CrossBridgeWidget() {
               Edge state: final step reached. Next restarts the cycle unless autoplay is enabled.
             </p>
           ) : null}
-          <svg role="img" aria-label="Cross-bridge cycle schematic" viewBox="0 0 720 430" className="h-auto w-full rounded-ph border border-[var(--ph-border)] bg-ph-surface">
+          <svg role="img" aria-label="Cross-bridge cycle schematic" viewBox="0 0 720 430" className="ph-pathway-canvas h-auto w-full">
             <line x1="70" y1="300" x2="650" y2="300" stroke="var(--ph-axis)" strokeWidth="18" strokeLinecap="round" />
             {[120, 190, 260, 330, 400, 470, 540, 610].map((x) => (
               <circle key={x} cx={x} cy="300" r="17" fill="var(--ph-surface-2)" stroke="var(--ph-curve-2)" strokeWidth="2" />
@@ -201,7 +201,7 @@ export default function CrossBridgeWidget() {
             <div className="mt-4 grid grid-cols-2 gap-2">
               <button
                 type="button"
-                className="focus-ring rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2 text-sm disabled:opacity-45"
+                className="focus-ring ph-clay-button px-3 py-2 text-sm disabled:opacity-45"
                 disabled={step === 1}
                 onClick={() => setSafeStep(step - 1)}
               >
@@ -209,7 +209,7 @@ export default function CrossBridgeWidget() {
               </button>
               <button
                 type="button"
-                className="focus-ring rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2 text-sm"
+                className="focus-ring ph-clay-button px-3 py-2 text-sm"
                 onClick={() => setSafeStep(step === 5 ? 1 : step + 1)}
               >
                 {step === 5 ? "Restart" : "Next"}
@@ -221,7 +221,7 @@ export default function CrossBridgeWidget() {
                   type="button"
                   key={item.id}
                   aria-pressed={item.id === step}
-                  className="focus-ring rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2 text-sm text-ph-muted data-[active=true]:border-[var(--ph-accent)] data-[active=true]:text-ph-text"
+                  className="focus-ring ph-clay-button px-3 py-2 text-sm text-ph-muted data-[active=true]:border-[var(--ph-accent)] data-[active=true]:text-ph-text"
                   data-active={item.id === step}
                   onClick={() => {
                     setAutoplay(false);

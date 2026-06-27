@@ -211,7 +211,7 @@ export default function CoronaryPerfusionWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Coronary perfusion plots">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{state}</p>
             <p className="mt-1.5 text-sm text-ph-muted">
               Coronary flow ∝ (aortic − intramyocardial pressure) / resistance. LV systolic pressure compresses intramural vessels, so most coronary flow happens in diastole — and tachycardia, high LVEDP, and stenosis all attack that diastolic perfusion window.

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PrimaryNav } from "@/components/PrimaryNav";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
@@ -29,25 +30,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-sans">
         <div className="min-h-screen text-ph-text">
-          <header className="sticky top-0 z-40 border-b border-[var(--ph-border)] bg-[color-mix(in_srgb,var(--ph-bg),transparent_6%)] backdrop-blur">
-            <div className="mx-auto flex h-16 w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">
+          <header className="ph-app-header">
+            <div className="ph-app-header-inner mx-auto flex w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">
               <Link href="/" className="focus-ring flex min-w-0 items-center gap-2.5 rounded-ph no-underline">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-ph-accent text-sm font-bold text-white">PH</span>
-                <span className="text-base font-bold tracking-tight">PhysioHub</span>
+                <span className="ph-brand-mark grid h-9 w-9 shrink-0 place-items-center rounded-ph text-xs font-black">PH</span>
+                <span>
+                  <span className="block text-[9px] font-bold uppercase tracking-[0.16em] text-ph-muted">TR-VII</span>
+                  <span className="block text-sm font-black tracking-tight sm:text-base">PhysioHub</span>
+                </span>
               </Link>
-              <nav className="flex items-center gap-1.5 text-sm font-medium text-ph-muted" aria-label="Primary">
-                <Link className="focus-ring rounded-ph px-3 py-2 hover:bg-ph-surface2 hover:text-ph-text" href="/">
-                  Systems
-                </Link>
-                <Link className="focus-ring hidden rounded-ph px-3 py-2 hover:bg-ph-surface2 hover:text-ph-text sm:inline-flex" href="/docs">
-                  Docs
-                </Link>
+              <nav className="flex items-center gap-2 text-sm font-medium text-ph-muted" aria-label="Primary">
+                <PrimaryNav />
                 <ThemeToggle />
               </nav>
             </div>
           </header>
           <main>{children}</main>
-          <footer className="border-t border-[var(--ph-border)] px-4 py-6 text-sm text-ph-muted sm:px-6">
+          <footer className="ph-app-footer px-4 py-6 text-sm text-ph-muted sm:px-6">
             <div className="mx-auto flex max-w-[1500px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <span className="font-bold text-ph-text">PhysioHub</span>
               <span>Interactive physiology · URL-synced state · No backend</span>

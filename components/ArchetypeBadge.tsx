@@ -10,7 +10,7 @@ export function ArchetypeBadge({
   const meta = archetypeMeta[archetype];
 
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-2.5 py-1 text-xs font-semibold text-ph-muted">
+    <span className="ph-archetype-badge inline-flex items-center gap-1.5 rounded-ph border border-[var(--ph-border)] px-2.5 py-1 text-xs font-semibold text-ph-muted">
       <span aria-hidden="true" className="text-base leading-none">
         {meta.emoji}
       </span>

@@ -13,7 +13,7 @@ export function PerturbationToggle({ label, checked, description, onChange }: Pe
       type="button"
       role="switch"
       aria-checked={checked}
-      className="focus-ring flex w-full items-start justify-between gap-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2.5 text-left transition hover:border-[var(--ph-border-strong)] hover:bg-ph-surface3"
+      className="focus-ring ph-clay-toggle flex w-full items-start justify-between gap-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2.5 text-left transition hover:border-[var(--ph-border-strong)] hover:bg-ph-surface3"
       onClick={() => onChange(!checked)}
     >
       <span>

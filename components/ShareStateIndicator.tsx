@@ -26,7 +26,7 @@ export function ShareStateIndicator() {
   return (
     <button
       type="button"
-      className="focus-ring inline-flex items-center gap-2 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 px-3 py-2 text-sm text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
+      className="focus-ring ph-share-state ph-clay-button inline-flex items-center gap-2 px-3 py-2 text-sm text-ph-muted"
       onClick={copyState}
     >
       <span

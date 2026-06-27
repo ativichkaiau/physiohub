@@ -125,7 +125,7 @@ export default function CountercurrentWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Countercurrent multiplier">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{phenotype}</p>
             <p className="mt-1.5 text-sm text-ph-muted">
               The corticomedullary gradient (300 → ~1200 mOsm/kg) is built by the TAL pump (NKCC2) and urea recycling (ADH-driven UT-A1). Vasa recta hairpins preserve it via countercurrent EXCHANGE. ADH translocates AQP2 in the collecting duct, letting water exit until urine osmolality equals the medulla.

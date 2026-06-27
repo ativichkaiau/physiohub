@@ -42,7 +42,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={`Switch to ${nextLabel} mode`}
       title={`Switch to ${nextLabel} mode`}
-      className="focus-ring inline-flex items-center gap-2 rounded-full border border-[var(--ph-border)] bg-ph-surface px-3 py-1.5 text-left transition hover:border-[var(--ph-border-strong)]"
+      className="focus-ring ph-theme-toggle ph-clay-button inline-flex items-center gap-2 rounded-ph px-2.5 py-1.5 text-left"
     >
       <span className="hidden flex-col leading-tight sm:flex">
         <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-ph-muted">Mode</span>

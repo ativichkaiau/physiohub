@@ -59,29 +59,29 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-[1500px] px-4 py-6 sm:px-6 sm:py-10">
-      <section className="ph-cockpit mb-8 px-6 py-9 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+    <div className="mx-auto w-full max-w-[1500px] px-4 py-7 sm:px-6 sm:py-10">
+      <section className="ph-cockpit mb-10 px-6 py-9 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center">
           {/* Left — marquee */}
           <div className="max-w-4xl">
             <span className="ph-cockpit-kicker">Interactive physiology atlas</span>
-            <h1 className="mt-7 text-4xl font-black leading-[0.98] tracking-tight text-white sm:text-5xl lg:text-[64px]">
+            <h1 className="mt-7 text-4xl font-black leading-[0.98] text-ph-text sm:text-5xl lg:text-[64px]">
               Clamp the variables. Watch <span className="ph-cockpit-accent">the body</span> answer back.
             </h1>
-            <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-slate-300 sm:text-lg">
+            <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-ph-muted sm:text-lg">
               A systems bench for pressure, flow, gases, filtrate, hormones, impulse, and contraction. Scrub time, perturb curves, trace loops, and share the exact state by URL.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href="#systems"
-                className="focus-ring inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-950 no-underline transition hover:bg-[color-mix(in_srgb,white,var(--cockpit-accent)_14%)] sm:w-auto"
+                className="focus-ring ph-clay-button inline-flex w-full items-center justify-center rounded-ph px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline sm:w-auto"
               >
                 Start exploring
               </a>
               <PhysiologyIntro autoOpen launcherClassName="w-full sm:w-auto" />
               <Link
                 href="/cv"
-                className="focus-ring inline-flex w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white no-underline transition hover:bg-white/10 sm:w-auto"
+                className="focus-ring ph-clay-button inline-flex w-full items-center justify-center rounded-ph px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline sm:w-auto"
               >
                 Cardiovascular
               </Link>
@@ -99,12 +99,11 @@ export default function HomePage() {
           <aside className="ph-cockpit-console p-5 lg:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">Live catalog</p>
-                <h2 className="mt-1.5 text-2xl font-black text-white">Atlas Console</h2>
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-ph-muted">Live catalog</p>
+                <h2 className="mt-1.5 text-2xl font-black text-ph-text">Atlas Console</h2>
               </div>
               <span
-                className="rounded-full border border-[color-mix(in_srgb,var(--cockpit-accent),transparent_55%)] bg-[color-mix(in_srgb,var(--cockpit-accent),transparent_82%)] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em]"
-                style={{ color: "color-mix(in srgb, var(--cockpit-accent), white 18%)" }}
+                className="ph-clay-chip px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-ph-accent"
               >
                 <span className="ph-mode-day">Day mode</span>
                 <span className="ph-mode-night">Night mode</span>
@@ -112,26 +111,26 @@ export default function HomePage() {
             </div>
 
             {featured ? (
-              <div className="mt-5 rounded-[16px] border border-white/10 bg-white/[0.055] p-5 text-white">
+              <div className="ph-system-theme mt-5" data-system={featured.systemId}>
                 <div className="flex items-start gap-3">
                   <span
                     aria-hidden="true"
-                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-xl leading-none"
+                    className="ph-clay-stat grid h-10 w-10 shrink-0 place-items-center text-xl leading-none"
                   >
                     {getSystemEmoji(featured.systemId)}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-ph-muted">
                       Featured widget
                     </p>
                     <p className="mt-0.5 truncate text-lg font-black">{featured.title}</p>
                   </div>
                 </div>
                 <SystemSignal systemId={featured.systemId} className="mt-4 h-28" />
-                <p className="mt-4 text-sm leading-relaxed text-slate-300">{featured.teaser}</p>
+                <p className="mt-4 text-sm leading-relaxed text-ph-muted">{featured.teaser}</p>
                 <Link
                   href={getDiagramPath(featured.systemId, featured.slug)}
-                  className="focus-ring mt-4 inline-flex rounded-full bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-950 no-underline transition hover:bg-slate-200"
+                  className="focus-ring ph-clay-button mt-4 inline-flex rounded-ph px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] no-underline"
                 >
                   Open widget
                 </Link>
@@ -140,16 +139,16 @@ export default function HomePage() {
 
             <div className="mt-4 grid grid-cols-3 gap-3">
               <div className="ph-cockpit-stat">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">Systems</p>
-                <p className="mt-2 text-2xl font-black tabular-nums text-white">{systems.length}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">Systems</p>
+                <p className="mt-2 text-2xl font-black tabular-nums text-ph-text">{systems.length}</p>
               </div>
               <div className="ph-cockpit-stat">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">Diagrams</p>
-                <p className="mt-2 text-2xl font-black tabular-nums text-white">{diagramCount}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">Diagrams</p>
+                <p className="mt-2 text-2xl font-black tabular-nums text-ph-text">{diagramCount}</p>
               </div>
               <div className="ph-cockpit-stat">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">Live</p>
-                <p className="mt-2 text-2xl font-black tabular-nums text-white">{referenceCount}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">Live</p>
+                <p className="mt-2 text-2xl font-black tabular-nums text-ph-text">{referenceCount}</p>
               </div>
             </div>
           </aside>
@@ -170,7 +169,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {howto.map((item) => (
             <div key={item.title} className="ph-panel p-4">
-              <span className="text-2xl leading-none" aria-hidden="true">
+              <span className="ph-clay-stat grid h-10 w-10 place-items-center text-xl leading-none" aria-hidden="true">
                 {item.icon}
               </span>
               <h3 className="mt-3 text-base font-bold tracking-tight">{item.title}</h3>
@@ -192,7 +191,7 @@ export default function HomePage() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="focus-ring inline-flex rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-3 py-1.5 text-xs font-bold text-ph-text no-underline transition hover:border-[var(--ph-border-strong)] hover:text-ph-accent"
+                  className="focus-ring ph-clay-button inline-flex rounded-ph px-3 py-1.5 text-xs font-bold no-underline"
                 >
                   {link.label}
                 </Link>
@@ -221,12 +220,12 @@ export default function HomePage() {
             <Link
               key={system.id}
               href={getSystemPath(system.id)}
-              className="focus-ring ph-panel group relative block min-h-64 overflow-hidden p-4 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-[var(--ph-border-strong)] hover:shadow-[0_8px_28px_-12px_color-mix(in_srgb,var(--ph-accent),transparent_70%)]"
+              data-system={system.id}
+              className="focus-ring ph-panel ph-system-card group relative block min-h-64 overflow-hidden p-4 no-underline transition duration-200"
             >
-              {/* Soft accent wash on hover */}
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[color-mix(in_srgb,var(--ph-accent),transparent_94%)] via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-ph-accent opacity-80"
               />
               <div className="relative">
                 <SystemSignal systemId={system.id} className="h-28 transition duration-200 group-hover:border-[var(--ph-border-strong)]" />

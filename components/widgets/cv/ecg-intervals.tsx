@@ -143,7 +143,7 @@ export default function EcgIntervalsWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Interactive ECG strip">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{selected.label} — {selected.conduction}</p>
             <p className="mt-1.5 text-sm text-ph-muted">{selected.body}</p>
             <p className="mt-2 text-sm">

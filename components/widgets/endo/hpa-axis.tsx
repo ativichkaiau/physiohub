@@ -90,7 +90,7 @@ export default function HpaAxisWidget() {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="HPA axis feedback loop">
           <div className="mb-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_260px]">
-            <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+            <div className="ph-clay-well p-3">
               <p className="ph-section-label">{axisState}</p>
               <p className="mt-1 text-sm text-ph-muted">
                 {brokenFeedback

@@ -134,7 +134,7 @@ export default function ColonWaterElectrolyteWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Colon water and electrolyte handling">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{phenotype}</p>
             <p className="mt-1.5 text-sm text-ph-muted">
               The colon receives ~1.5 L/day and excretes ~150 mL. Aldosterone-regulated ENaC drives Na (and water) reabsorption; K is SECRETED distally; crypts secrete Cl via CFTR (overactivated in cholera, deficient in CF). Bacterial fermentation of fibre → SCFAs (butyrate is the colonocyte&apos;s main fuel).

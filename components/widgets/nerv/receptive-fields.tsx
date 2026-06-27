@@ -132,7 +132,7 @@ export default function ReceptiveFieldsWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Receptive field response">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{state}</p>
             <p className="mt-1.5 text-sm text-ph-muted">
               Retinal ganglion (and LGN, V1) cells have antagonistic centre–surround receptive fields modelled as a Difference of Gaussians. A bright bar excites on-centre cells whose centres it covers and INHIBITS the cells whose surrounds it falls in — producing edge enhancement and Mach bands. Strong lateral inhibition sharpens edges at the cost of contrast sensitivity in uniform regions.

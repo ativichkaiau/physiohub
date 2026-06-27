@@ -126,7 +126,7 @@ export function TimelineLabWidget({ config }: { config: TimelineLabConfig }) {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label={`${diagram.title} timeline`}>
           <div className="mb-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_260px]">
-            <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+            <div className="ph-control-summary p-3">
               <p className="ph-section-label">{phase.title}</p>
               <p className="mt-1 text-sm text-ph-muted">{phase.body}</p>
             </div>
@@ -151,7 +151,7 @@ export function TimelineLabWidget({ config }: { config: TimelineLabConfig }) {
         </section>
 
         <aside className="grid gap-4">
-          <section className="ph-panel p-4" aria-label="Controls">
+          <section className="ph-panel ph-control-deck p-4" aria-label="Controls">
             <h2 className="ph-section-label mb-4">Controls</h2>
             <ScrubBar
               label="Timeline scrubber"

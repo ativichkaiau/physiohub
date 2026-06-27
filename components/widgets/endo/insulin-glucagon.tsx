@@ -159,7 +159,7 @@ export default function InsulinGlucagonWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Insulin-glucagon dual regulation">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{phenotype}</p>
             <p className="mt-1.5 text-sm text-ph-muted">
               Insulin (β-cells) and glucagon (α-cells) are RECIPROCALLY regulated by plasma glucose at the islet. The RATIO sets hepatic glucose output, peripheral uptake, lipolysis, and ketogenesis — not the absolute level. Insulin dominates after meals (anabolic); glucagon dominates between meals (catabolic). T1DM = no insulin; T2DM = insulin resistance + late β-cell failure.

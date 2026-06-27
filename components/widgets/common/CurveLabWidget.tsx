@@ -131,7 +131,7 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label={`${diagram.title} interactive curve`}>
           <div className="mb-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_260px]">
-            <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+            <div className="ph-control-summary p-3">
               <p className="ph-section-label">{summary.state}</p>
               <p className="mt-1 text-sm text-ph-muted">{summary.body}</p>
             </div>
@@ -164,7 +164,7 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
         </section>
 
         <aside className="grid gap-4">
-          <section className="ph-panel p-4" aria-label="Controls">
+          <section className="ph-panel ph-control-deck p-4" aria-label="Controls">
             <h2 className="ph-section-label mb-4">Controls</h2>
             <div className="grid gap-4">
               {config.controls.map((control) => (

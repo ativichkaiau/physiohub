@@ -124,7 +124,7 @@ export default function PancreaticSecretionWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Pancreatic secretion HCO3 vs Cl reciprocal">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{phenotype}</p>
             <p className="mt-1.5 text-sm text-ph-muted">
               Acinar cells make enzymes (CCK + vagal); ductal cells make HCO₃⁻ (secretin). As flow rises, [HCO₃⁻] rises and [Cl⁻] falls reciprocally — the duct&apos;s Cl⁻/HCO₃⁻ exchanger has less time to swap HCO₃⁻ back at high flow.

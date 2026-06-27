@@ -102,7 +102,7 @@ export default function OxygenContentWidget() {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Oxygen content and delivery">
           <div className="mb-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_260px]">
-            <div className="rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+            <div className="ph-clay-well p-3">
               <p className="ph-section-label">{state}</p>
               <p className="mt-1 text-sm text-ph-muted">
                 Most oxygen content is bound to hemoglobin. PaO2 has a small dissolved contribution, but it strongly determines saturation upstream.

@@ -93,7 +93,7 @@ export default function MurmurManeuversWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Murmur intensity by maneuver">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{maneuver}</p>
             <p className="mt-1.5 text-sm text-ph-muted">
               Most murmurs get LOUDER with more flow across the lesion. The classic exceptions are HCM and MVP, which get LOUDER with LESS LV volume (Valsalva strain, standing). Squatting and handgrip raise LV volume/afterload and do the opposite — the bedside trick to separate HCM/MVP from aortic stenosis.

@@ -183,7 +183,7 @@ export default function AutonomicNervousSystemWidget() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label="Autonomic target map">
-          <div aria-live="polite" className="mb-3 rounded-ph border border-[var(--ph-border)] bg-ph-surface2 p-3">
+          <div aria-live="polite" className="mb-3 ph-clay-well p-3">
             <p className="ph-section-label">{selected.fullName}</p>
             <div className="mt-2 grid gap-2 sm:grid-cols-2">
               <div className="rounded-ph border border-[color-mix(in_srgb,var(--ph-danger),transparent_60%)] bg-[color-mix(in_srgb,var(--ph-danger),transparent_92%)] p-2.5">
