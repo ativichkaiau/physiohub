@@ -28,6 +28,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
       </head>
       <body className="font-sans">
+        <div className="ph-blobs" aria-hidden="true">
+          <span className="ph-blob ph-blob-1" />
+          <span className="ph-blob ph-blob-2" />
+          <span className="ph-blob ph-blob-3" />
+          <span className="ph-blob ph-blob-4" />
+          <span className="ph-blob ph-blob-5" />
+        </div>
         <div className="min-h-screen text-ph-text">
           <header className="ph-app-header">
             <div className="ph-app-header-inner mx-auto flex w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">

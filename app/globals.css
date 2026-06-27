@@ -139,8 +139,8 @@ body {
   min-height: 100%;
   margin: 0;
   background:
-    radial-gradient(140% 120% at -8% -12%, color-mix(in srgb, #2ed3a0, transparent 64%), transparent 56%),
-    radial-gradient(125% 125% at 108% 8%, color-mix(in srgb, #8b86f5, transparent 66%), transparent 60%),
+    radial-gradient(125% 100% at -5% -8%, color-mix(in srgb, #43dca8, transparent 85%), transparent 45%),
+    radial-gradient(115% 100% at 106% 4%, color-mix(in srgb, #948dfa, transparent 85%), transparent 48%),
     linear-gradient(var(--ph-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px),
     var(--ph-bg);
@@ -154,7 +154,59 @@ body {
   font-feature-settings: "ss01", "cv11";
 }
 
-/* Dark mode is pure black — drop the pastel wash, keep only a whisper of grid. */
+/* =====================================================================
+   Soft pastel light blobs — floating colour glows behind the content.
+   Light mode only; the canvas stays pure black in dark mode.
+   ===================================================================== */
+.ph-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ph-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  opacity: 0.62;
+  will-change: transform;
+  animation: ph-blob-float 28s ease-in-out infinite;
+}
+
+.ph-blob-1 {
+  width: 560px; height: 560px; top: -130px; left: -130px;
+  background: radial-gradient(circle, #43dca8, transparent 72%);
+}
+.ph-blob-2 {
+  width: 640px; height: 640px; top: -160px; right: -150px;
+  background: radial-gradient(circle, #948dfa, transparent 72%);
+  animation-delay: -5s;
+}
+.ph-blob-3 {
+  width: 500px; height: 500px; top: 32%; right: -170px;
+  background: radial-gradient(circle, #6fb0ff, transparent 72%);
+  animation-delay: -11s;
+}
+.ph-blob-4 {
+  width: 520px; height: 520px; bottom: -180px; left: 2%;
+  background: radial-gradient(circle, #ffb07f, transparent 74%);
+  opacity: 0.5;
+  animation-delay: -17s;
+}
+.ph-blob-5 {
+  width: 430px; height: 430px; bottom: -140px; right: 22%;
+  background: radial-gradient(circle, #4dd6c6, transparent 74%);
+  animation-delay: -22s;
+}
+
+@keyframes ph-blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(28px, -26px) scale(1.07); }
+}
+
+/* Dark stays pure black — no wash, no blobs. */
 :root[data-theme="dark"] body {
   background:
     linear-gradient(var(--ph-grid) 1px, transparent 1px),
@@ -163,6 +215,7 @@ body {
   background-size: 56px 56px, 56px 56px, auto;
   background-attachment: fixed;
 }
+:root[data-theme="dark"] .ph-blobs { display: none; }
 
 button, input, select { font: inherit; }
 a { color: inherit; }
