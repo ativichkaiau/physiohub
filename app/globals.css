@@ -1095,6 +1095,34 @@ svg { display: block; }
     0 0 0 4px color-mix(in srgb, var(--ph-accent), transparent 85%);
 }
 
+/* =====================================================================
+   Day / night transition. Where the View Transitions API is available the
+   toggle drives a circular reveal of the new theme (JS animates the clip
+   path); we disable the default crossfade and stack new over old so the
+   reveal reads cleanly. Browsers without it fall back to .ph-theme-anim,
+   a short colour crossfade applied to everything during the switch.
+   ===================================================================== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
+
+.ph-theme-anim,
+.ph-theme-anim *,
+.ph-theme-anim *::before,
+.ph-theme-anim *::after {
+  transition:
+    background-color 460ms ease,
+    border-color 460ms ease,
+    color 460ms ease,
+    box-shadow 460ms ease,
+    fill 460ms ease,
+    stroke 460ms ease !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

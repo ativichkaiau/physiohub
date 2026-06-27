@@ -1,9 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 type Theme = "light" | "dark";
 const STORAGE_KEY = "physiohub-theme";
+
+type DocumentWithViewTransition = Document & {
+  startViewTransition?: (callback: () => void) => { ready: Promise<void> };
+};
 
 /**
  * Theme pill in the cockpit's navigation. Two-line label (kicker + current
@@ -21,8 +25,7 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  function toggle() {
-    const next: Theme = theme === "dark" ? "light" : "dark";
+  function applyTheme(next: Theme) {
     document.documentElement.setAttribute("data-theme", next);
     setTheme(next);
     try {
@@ -30,6 +33,53 @@ export function ThemeToggle() {
     } catch {
       /* localStorage unavailable (private mode, etc.) — toggle still works for this session. */
     }
+  }
+
+  function toggle(event: MouseEvent<HTMLButtonElement>) {
+    const next: Theme = theme === "dark" ? "light" : "dark";
+    const root = document.documentElement;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const doc = document as DocumentWithViewTransition;
+
+    // applyTheme runs at most once; the safety net below guarantees it runs
+    // even if a View Transition aborts (e.g. a backgrounded / offscreen tab).
+    let applied = false;
+    const apply = () => {
+      if (applied) return;
+      applied = true;
+      applyTheme(next);
+    };
+
+    // Circular sunrise / sunset reveal that grows from the toggle button.
+    if (!reduce && typeof doc.startViewTransition === "function") {
+      const x = event.clientX || window.innerWidth - 40;
+      const y = event.clientY || 32;
+      const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+      try {
+        const transition = doc.startViewTransition(apply);
+        transition.ready
+          .then(() => {
+            root.animate(
+              { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`] },
+              { duration: 480, easing: "ease-in-out", pseudoElement: "::view-transition-new(root)" }
+            );
+          })
+          .catch(() => {});
+        // If the transition can't run, its callback may never fire — apply anyway.
+        window.setTimeout(apply, 80);
+        return;
+      } catch {
+        apply();
+        return;
+      }
+    }
+
+    // Fallback: a brief global colour crossfade.
+    if (!reduce) {
+      root.classList.add("ph-theme-anim");
+      window.setTimeout(() => root.classList.remove("ph-theme-anim"), 480);
+    }
+    apply();
   }
 
   const currentLabel = mounted ? (theme === "dark" ? "Night" : "Day") : "Day";
