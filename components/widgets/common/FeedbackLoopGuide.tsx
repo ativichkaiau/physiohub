@@ -57,7 +57,7 @@ export function FeedbackLoopGuide({
                 className={
                   node.active
                     ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--ph-accent)] text-[11px] font-black text-white"
-                    : "inline-flex h-5 w-5 items-center justify-center rounded-full border border-[var(--ph-border)] bg-ph-surface text-[11px] font-black text-ph-muted"
+                    : "inline-flex h-5 w-5 items-center justify-center ph-clay-chip text-[11px] font-black text-ph-muted"
                 }
               >
                 {index + 1}

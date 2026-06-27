@@ -242,7 +242,7 @@ export default function ThyroidHormoneSynthesisWidget() {
                     className={`focus-ring rounded-ph border px-3 py-2 text-left text-sm transition ${
                       isSelected
                         ? "border-[color-mix(in_srgb,var(--ph-accent),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-ph-accent"
-                        : "border-[var(--ph-border)] bg-ph-surface2 text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
+                        : "ph-clay-button text-ph-muted"
                     }`}
                   >
                     <span className="font-bold tabular-nums">{s.id}.</span> <span className="font-bold">{s.shortName}</span>

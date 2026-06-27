@@ -90,7 +90,7 @@ export default function SystemPage({ params }: { params: { system: string } }) {
                 className={
                   diagram.status === "reference"
                     ? "ph-status-chip inline-flex items-center gap-1 rounded-full border border-[color-mix(in_srgb,var(--ph-ok),transparent_60%)] bg-[color-mix(in_srgb,var(--ph-ok),transparent_90%)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em]"
-                    : "ph-status-chip inline-flex items-center gap-1 rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-ph-muted"
+                    : "ph-status-chip inline-flex items-center gap-1 ph-clay-chip px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-ph-muted"
                 }
                 style={diagram.status === "reference" ? { color: "var(--ph-ok)" } : undefined}
               >

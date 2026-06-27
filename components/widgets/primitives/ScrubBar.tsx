@@ -61,7 +61,7 @@ export function ScrubBar({
         <label htmlFor={id} className="text-sm font-medium text-ph-text">
           {label}
         </label>
-        <span aria-live="polite" className="rounded-ph bg-ph-surface2 px-2 py-1 text-xs text-ph-muted">
+        <span aria-live="polite" className="ph-clay-chip px-2 py-1 text-xs text-ph-muted">
           {valueLabel}
         </span>
       </div>

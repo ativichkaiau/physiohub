@@ -230,7 +230,7 @@ export default function HomePage() {
               <div className="relative">
                 <SystemSignal systemId={system.id} className="h-28 transition duration-200 group-hover:border-[var(--ph-border-strong)]" />
                 <div className="flex items-start justify-between gap-3">
-                  <span className="mt-4 inline-flex rounded-full border border-[var(--ph-border)] bg-ph-surface2 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">
+                  <span className="mt-4 inline-flex ph-clay-chip px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">
                     {system.shortName}
                   </span>
                   <div className="mt-4 flex flex-col items-end gap-1">
@@ -251,7 +251,7 @@ export default function HomePage() {
                   {system.name}
                 </h3>
                 <p className="mt-2 text-sm text-ph-muted">{system.teaser}</p>
-                <div className="mt-5 h-1 overflow-hidden rounded-full bg-ph-surface2">
+                <div className="mt-5 h-1 overflow-hidden rounded-full ph-clay-track">
                   <div
                     className="h-full rounded-full bg-ph-accent transition-all duration-300"
                     style={{ width: `${pct}%` }}

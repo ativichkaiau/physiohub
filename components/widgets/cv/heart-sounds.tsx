@@ -163,7 +163,7 @@ export default function HeartSoundsWidget() {
                   className={`focus-ring inline-flex items-center gap-2.5 rounded-ph border px-3 py-2 text-left text-sm transition ${
                     s.id === selectedId
                       ? "border-[color-mix(in_srgb,var(--ph-accent),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-ph-accent"
-                      : "border-[var(--ph-border)] bg-ph-surface2 text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
+                      : "ph-clay-button text-ph-muted"
                   }`}>
                   <span aria-hidden="true" className="inline-block h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: s.colorVar }} />
                   <span className="font-bold">{s.shortName}</span>

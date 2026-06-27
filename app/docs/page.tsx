@@ -34,7 +34,7 @@ export default function DocsPage() {
           <div key={doc.path} className="ph-panel p-5">
             <h2 className="text-lg font-bold">{doc.title}</h2>
             <p className="mt-2 text-sm text-ph-muted">{doc.description}</p>
-            <code className="mt-4 inline-flex max-w-full break-all rounded-ph bg-ph-surface2 px-2 py-1 text-sm text-ph-accent">
+            <code className="mt-4 inline-flex max-w-full break-all ph-clay-well px-2 py-1 text-sm text-ph-accent">
               {doc.path}
             </code>
           </div>

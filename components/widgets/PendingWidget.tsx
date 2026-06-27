@@ -264,7 +264,7 @@ export default function PendingWidget() {
         <section className="ph-panel ph-chart-stage p-4" aria-label={`${diagram.title} template preview`}>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <h2 className="ph-section-label">Template preview</h2>
-            <span className="rounded-ph border border-[var(--ph-border)] px-2 py-1 text-xs uppercase text-ph-muted">
+            <span className="ph-clay-chip px-2 py-1 text-xs uppercase text-ph-muted">
               In development
             </span>
           </div>

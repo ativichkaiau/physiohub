@@ -105,7 +105,7 @@ export default function AaGradientHypoxemiaWidget() {
           {/* simple PaO2 bar */}
           <div className="ph-clay-well p-3">
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-ph-muted">PaO₂ ladder</p>
-            <div className="h-4 overflow-hidden rounded-full bg-ph-surface2">
+            <div className="h-4 overflow-hidden rounded-full ph-clay-track">
               <div className="h-full rounded-full transition-all" style={{ width: `${clamp((paO2 / 600) * 100, 3, 100)}%`, background: paO2 < 60 ? "var(--ph-danger)" : paO2 < 80 ? "var(--ph-warn)" : "var(--ph-ok)" }} />
             </div>
             <p className="mt-1 text-xs text-ph-muted tabular-nums">normal ~95 · hypoxemia &lt;80 · severe &lt;60 mmHg</p>

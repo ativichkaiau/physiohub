@@ -226,6 +226,12 @@ svg { display: block; }
   box-shadow: var(--ph-clay-shadow-sm);
 }
 
+/* Recessed groove for progress / meter tracks — the fill sits inside it. */
+.ph-clay-track {
+  background: var(--ph-surface-3);
+  box-shadow: var(--ph-clay-pressed);
+}
+
 /* ====== App shell ====== */
 .ph-app-header {
   position: sticky;

@@ -109,7 +109,7 @@ export default function MurmurManeuversWidget() {
                     <span className="font-bold text-ph-text">{r.name}{isException ? " ★" : ""}</span>
                     <span className="ph-readout tabular-nums">{r.value.toFixed(0)}</span>
                   </div>
-                  <div className="h-3 overflow-hidden rounded-full bg-ph-surface2">
+                  <div className="h-3 overflow-hidden rounded-full ph-clay-track">
                     <div className="h-full rounded-full transition-all" style={{ width: `${r.value}%`, background: isException ? "var(--ph-curve-4)" : "var(--ph-curve-1)" }} />
                   </div>
                   <p className="mt-1 text-xs text-ph-muted">{r.note}</p>
