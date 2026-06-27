@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="ph-brand-mark grid h-10 w-10 shrink-0 place-items-center rounded-[13px] text-base font-black">V</span>
                 <span className="flex flex-col leading-none">
                   <span className="text-lg font-black tracking-tight sm:text-xl">
-                    VESTRIPPN<span className="text-ph-accent">3.0</span>
+                    VESTRIPPN<span style={{ color: "var(--ph-accent-blue)" }}>3.0</span>
                   </span>
                   <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">PhysioHub</span>
                 </span>

@@ -11,21 +11,22 @@
 :root {
   color-scheme: light;
 
-  /* Surfaces */
-  --ph-bg:            #e8edf4;
-  --ph-surface:       #eef3f8;
-  --ph-surface-2:     #e3e9f1;
-  --ph-surface-3:     #d7e0eb;
+  /* Surfaces — bright, airy pastel canvas */
+  --ph-bg:            #edf2fa;
+  --ph-surface:       #fbfcff;
+  --ph-surface-2:     #f1f5fc;
+  --ph-surface-3:     #e7eef8;
 
   /* Text */
-  --ph-text:          #172033;
-  --ph-muted:         #526076;
+  --ph-text:          #121826;
+  --ph-muted:         #51607a;
   --ph-muted-2:       #6a778b;
 
-  /* Brand */
-  --ph-accent:        #315dca;
+  /* Brand — emerald-teal primary, blue reserved for the "3.0" wordmark */
+  --ph-accent:        #0e9e7a;
   --ph-accent-2:      #e66458;
-  --ph-brand:         #0d9488;
+  --ph-accent-blue:   #3a63d4;
+  --ph-brand:         #0e9e7a;
 
   /* Plot colours */
   --ph-curve-1:       #168b72;
@@ -39,7 +40,7 @@
 
   /* Axes + grid */
   --ph-axis:          #344055;
-  --ph-grid:          rgba(52, 64, 85, 0.08);
+  --ph-grid:          rgba(52, 64, 85, 0.05);
 
   /* Borders */
   --ph-border:        rgba(63, 78, 101, 0.16);
@@ -51,17 +52,17 @@
   --ph-ok:            #168b72;
 
   --ph-radius:        8px;
-  --ph-clay-shadow:   10px 10px 24px rgba(108, 123, 145, 0.24),
-                      -10px -10px 24px rgba(255, 255, 255, 0.84),
-                      inset 1px 1px 0 rgba(255, 255, 255, 0.72);
-  --ph-clay-shadow-sm: 5px 5px 12px rgba(108, 123, 145, 0.20),
-                       -5px -5px 12px rgba(255, 255, 255, 0.76),
-                       inset 1px 1px 0 rgba(255, 255, 255, 0.66);
-  --ph-clay-inset:    inset 4px 4px 10px rgba(108, 123, 145, 0.18),
-                      inset -4px -4px 10px rgba(255, 255, 255, 0.74);
-  --ph-clay-pressed:  inset 3px 3px 8px rgba(91, 108, 132, 0.22),
-                      inset -2px -2px 7px rgba(255, 255, 255, 0.62);
-  --ph-clay-highlight: rgba(255, 255, 255, 0.72);
+  --ph-clay-shadow:   11px 11px 28px rgba(99, 117, 145, 0.13),
+                      -10px -10px 24px rgba(255, 255, 255, 0.92),
+                      inset 1px 1px 0 rgba(255, 255, 255, 0.85);
+  --ph-clay-shadow-sm: 5px 5px 14px rgba(99, 117, 145, 0.11),
+                       -5px -5px 12px rgba(255, 255, 255, 0.88),
+                       inset 1px 1px 0 rgba(255, 255, 255, 0.75);
+  --ph-clay-inset:    inset 4px 4px 11px rgba(99, 117, 145, 0.10),
+                      inset -4px -4px 10px rgba(255, 255, 255, 0.85);
+  --ph-clay-pressed:  inset 3px 3px 8px rgba(90, 107, 132, 0.13),
+                      inset -2px -2px 7px rgba(255, 255, 255, 0.72);
+  --ph-clay-highlight: rgba(255, 255, 255, 0.85);
   --ph-shadow:        var(--ph-clay-shadow);
 }
 
@@ -80,9 +81,10 @@
   --ph-muted-2:       #858e9f;
 
   /* Brand */
-  --ph-accent:        #80a6ff;
+  --ph-accent:        #2fd4a7;
   --ph-accent-2:      #ff8374;
-  --ph-brand:         #2dd4bf;
+  --ph-accent-blue:   #7aa2ff;
+  --ph-brand:         #2fd4a7;
 
   /* Plot colours */
   --ph-curve-1:       #57d6b2;
@@ -137,10 +139,12 @@ body {
   min-height: 100%;
   margin: 0;
   background:
+    radial-gradient(135% 115% at -5% -10%, color-mix(in srgb, #34d399, transparent 80%), transparent 48%),
+    radial-gradient(120% 120% at 105% 12%, color-mix(in srgb, #8f8cf2, transparent 82%), transparent 52%),
     linear-gradient(var(--ph-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px),
     var(--ph-bg);
-  background-size: 56px 56px, 56px 56px, auto;
+  background-size: auto, auto, 56px 56px, 56px 56px, auto;
   background-attachment: fixed;
   color: var(--ph-text);
   font-size: 15px;
