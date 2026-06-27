@@ -183,6 +183,10 @@ export default function PotassiumHandlingWidget() {
             ]}
             height={420}
           />
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Read plasma potassium left-to-right. Excretion is a steep sigmoid — small rises in plasma K (and the aldosterone they trigger) sharply increase distal secretion, so the kidney dumps potassium fast. The flat low end is why potassium falls slowly, while the steep middle is why hyperkalemia can be corrected quickly.
+          </p>
         </section>
 
         <aside className="grid gap-4">

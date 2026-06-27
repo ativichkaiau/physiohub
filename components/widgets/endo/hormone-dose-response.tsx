@@ -27,6 +27,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 110],
   xLabel: "log [dose] (× EC50, log10)",
   yLabel: "Response (% of max)",
+  readingGuide:
+    "Plotting response against log-dose turns a hyperbola into an S-curve. The midpoint (EC50) is potency — a competitive antagonist shifts it right (need more drug for the same effect). The ceiling is efficacy (Emax) — a partial agonist or non-competitive blocker lowers it at any dose. Steepness is the Hill coefficient (cooperativity).",
   bands: [
     { axis: "x", from: -2, to: -1, tone: "phase", label: "sub-threshold" },
     { axis: "x", from: -1, to: 1, tone: "phase", label: "responsive (linear)" },

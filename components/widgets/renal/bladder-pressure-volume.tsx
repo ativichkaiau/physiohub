@@ -34,6 +34,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 120],
   xLabel: "Bladder volume (mL)",
   yLabel: "Intravesical pressure (cm H₂O)",
+  readingGuide:
+    "Follow filling left-to-right: pressure stays low and flat over a wide volume range thanks to receptive relaxation (compliance) — the bladder accommodates without rising pressure. The steep rise at the end is the limit; a stiff, low-compliance bladder rises early and threatens back-pressure on the kidneys.",
   bands: [
     { axis: "y", from: 0, to: 30, tone: "ok", label: "safe storage" },
     { axis: "y", from: 30, to: 40, tone: "warn" },

@@ -24,6 +24,7 @@ export type TimelineLabConfig = {
   series: CurveSeries[];
   phases: TimelinePhase[];
   readout: (time: number) => Array<{ label: string; value: string }>;
+  readingGuide?: string;
 };
 
 function parseTraces(value: string | null, series: CurveSeries[]) {
@@ -148,6 +149,12 @@ export function TimelineLabWidget({ config }: { config: TimelineLabConfig }) {
             cursorX={time}
             height={420}
           />
+          {config.readingGuide ? (
+            <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+              <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+              {config.readingGuide}
+            </p>
+          ) : null}
         </section>
 
         <aside className="grid gap-4">

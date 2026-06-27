@@ -23,6 +23,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 90],
   xLabel: "joint angle (degrees)",
   yLabel: "torque",
+  readingGuide:
+    "Torque is muscle force times the moment arm, and the moment arm changes with joint angle — so identical force makes different torque through the range of motion. The peak marks the angle of greatest mechanical advantage; torque falls where the tendon pulls closer to the joint axis.",
   controls: [
     { key: "angle", label: "Joint angle marker", min: 0, max: 150, step: 1, defaultValue: 90, unit: "deg" },
     { key: "muscleForce", label: "Muscle force capacity", min: 200, max: 1800, step: 25, defaultValue: 900, unit: "N" },

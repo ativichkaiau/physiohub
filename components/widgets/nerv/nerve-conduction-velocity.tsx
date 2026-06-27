@@ -32,6 +32,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 140],
   xLabel: "Axon diameter (µm)",
   yLabel: "Conduction velocity (m/s)",
+  readingGuide:
+    "Bigger axons conduct faster, and myelinated fibers (saltatory, node-to-node) sit on a much steeper line than bare ones — a thin myelinated fiber can outrun a far thicker unmyelinated one. Diameter and myelination together set the fiber class (Aα down to C).",
   controls: [
     { key: "diameter", label: "Axon diameter (cursor)", min: 0.2, max: 20, step: 0.1, defaultValue: 12, unit: "µm" },
     { key: "myelination", label: "Myelination", min: 0, max: 100, step: 1, defaultValue: 100, unit: "%" },

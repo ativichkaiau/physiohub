@@ -18,6 +18,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 7],
   xLabel: "transpulmonary pressure (cm H2O)",
   yLabel: "lung volume (L)",
+  readingGuide:
+    "The slope is compliance (ΔV/ΔP). Inflation and deflation trace different paths (hysteresis) because surfactant lowers surface tension. A stiff fibrotic lung is flat (low compliance); an emphysematous lung is steep and over-distended. The foot of the curve is where collapsed alveoli pop open.",
   controls: [
     { key: "elastance", label: "Elastance", min: 0.4, max: 3, step: 0.05, defaultValue: 1, unit: "x" },
     { key: "surfactant", label: "Surfactant effect", min: 0.2, max: 1.4, step: 0.05, defaultValue: 1, unit: "x" },

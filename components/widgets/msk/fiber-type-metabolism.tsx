@@ -26,6 +26,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 120],
   xLabel: "exercise intensity",
   yLabel: "relative contribution",
+  readingGuide:
+    "Read left-to-right as effort rises. At low intensity slow oxidative (Type I) fibers dominate on fat and aerobic metabolism; as intensity climbs, fast glycolytic (Type II) fibers are recruited and the mix tips toward anaerobic glycolysis. Where the curves cross is roughly the lactate threshold.",
   controls: [
     { key: "intensity", label: "Intensity marker", min: 0, max: 100, step: 1, defaultValue: 55, unit: "%" },
     { key: "oxygen", label: "Oxygen delivery", min: 20, max: 120, step: 1, defaultValue: 90, unit: "%" },

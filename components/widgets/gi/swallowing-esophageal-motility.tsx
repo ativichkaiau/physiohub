@@ -56,6 +56,8 @@ const config: TimelineLabConfig = {
   duration: DURATION,
   xLabel: "time (s)",
   yLabel: "pressure (mmHg) · position (cm)",
+  readingGuide:
+    "Scrub one swallow top-to-bottom. The upper sphincter (UES) opens then snaps shut, a primary wave sweeps down the body, and the lower sphincter (LES) relaxes ahead of the bolus then re-tightens. The pressure peaks should march downward in sequence — a wave that fails to progress is dysmotility.",
   yDomain: [-5, 50],
   series: [
     { id: "ues", label: "UES pressure (mmHg)", data: ues, colorVar: "var(--ph-curve-4)" },

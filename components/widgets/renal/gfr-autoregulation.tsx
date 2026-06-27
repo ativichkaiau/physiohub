@@ -45,6 +45,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 220],
   xLabel: "Mean arterial pressure (mmHg)",
   yLabel: "GFR (mL/min)",
+  readingGuide:
+    "The flat plateau is autoregulation — myogenic tone and tubuloglomerular feedback hold GFR nearly constant across a wide MAP band (~80–180 mmHg). Outside that band the kidney can't compensate and GFR follows pressure. NSAIDs and ACE inhibitors narrow or shift the plateau.",
   bands: [
     { axis: "x", from: 80, to: 180, tone: "ok", label: "autoregulated" },
     { axis: "x", from: 60, to: 80, tone: "warn" },

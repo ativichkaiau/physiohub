@@ -18,6 +18,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 14],
   xLabel: "tidal volume (mL)",
   yLabel: "alveolar ventilation (L/min)",
+  readingGuide:
+    "Every breath first refills a fixed dead space, so only tidal volume ABOVE that reaches alveoli. Below dead space, alveolar ventilation is zero — which is why rapid shallow breathing ventilates poorly even at the same minute volume. Bigger, slower breaths are more efficient.",
   controls: [
     { key: "tidalVolume", label: "Tidal volume", min: 150, max: 1000, step: 10, defaultValue: 500, unit: "mL" },
     { key: "rate", label: "Respiratory rate", min: 4, max: 40, step: 1, defaultValue: 12, unit: "/min" },

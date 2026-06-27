@@ -21,6 +21,8 @@ const config: CurveLabConfig = {
   yDomain: [-0.7, 1.8],
   xLabel: "external load (% maximal isometric force)",
   yLabel: "velocity (relative)",
+  readingGuide:
+    "Heavier loads move slower — follow the curve down and right. Velocity is maximal at zero load; force is maximal at zero velocity (isometric); past that the muscle lengthens (eccentric, negative velocity). Power = force × velocity peaks in the middle, not at either extreme.",
   bands: [
     { axis: "x", from: 0, to: 100, tone: "phase", label: "concentric (shortening)" },
     { axis: "x", from: 100, to: 160, tone: "phase", label: "eccentric (lengthening)" }

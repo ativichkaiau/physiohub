@@ -30,6 +30,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 160],
   xLabel: "Sarcomere length",
   yLabel: "Tension",
+  readingGuide:
+    "Active tension peaks where actin–myosin overlap is optimal (the plateau); too short and filaments collide (ascending limb), too long and overlap is lost (descending limb). Passive tension (elastic recoil) climbs only at long lengths — total tension is the sum of the two.",
   bands: [
     { axis: "x", from: 1.2, to: 2.0, tone: "phase", label: "ascending limb" },
     { axis: "x", from: 2.0, to: 2.25, tone: "phase", label: "plateau" },

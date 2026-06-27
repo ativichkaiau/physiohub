@@ -41,6 +41,8 @@ const config: TimelineLabConfig = {
   duration: DURATION,
   xLabel: "time (s)",
   yLabel: "intensity (% / cm)",
+  readingGuide:
+    "Scrub the bolus down the gut. Just ahead of it the wall relaxes (receptive, caudad) while just behind it contracts (orad) — that contract-above / relax-below pattern is the peristaltic reflex, and it is what drives the bolus forward. Watch the two waves travel together.",
   yDomain: [-20, 110],
   series: [
     { id: "orad", label: "Orad contraction (Sub-P, ACh)", data: oradContraction, colorVar: "var(--ph-curve-4)" },

@@ -54,6 +54,8 @@ const config: TimelineLabConfig = {
   duration: 28,
   xLabel: "cycle day",
   yLabel: "relative level",
+  readingGuide:
+    "Read across the cycle. Follicular phase: FSH grows a follicle and estrogen rises. The estrogen surge flips feedback positive → the LH spike that triggers ovulation (~day 14). Luteal phase: the corpus luteum makes progesterone; with no pregnancy it dies, hormones fall, and menses begins.",
   yDomain: [0, 120],
   series: [
     { id: "e2", label: "Estrogen", data: estrogen, colorVar: "var(--ph-curve-1)" },

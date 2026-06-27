@@ -41,6 +41,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 130],
   xLabel: "Age (years)",
   yLabel: "Relative hormone level",
+  readingGuide:
+    "Read across the lifespan. Estrogen holds through the reproductive years then falls at menopause as ovarian follicles run out; with the negative-feedback brake gone, FSH and LH climb sharply. The crossover — estrogen down, gonadotropins up — is the hormonal signature of menopause.",
   controls: [
     { key: "age", label: "Age (cursor)", min: 20, max: 60, step: 0.5, defaultValue: 48, unit: "yr" },
     { key: "menoAge", label: "Menopause age", min: 38, max: 58, step: 1, defaultValue: 51, unit: "yr" }

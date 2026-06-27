@@ -26,6 +26,8 @@ const config: TimelineLabConfig = {
   duration: 6,
   xLabel: "time (s)",
   yLabel: "volume (L) / flow (L/s)",
+  readingGuide:
+    "Scrub the breathing maneuver. Tidal breaths ride on top of the functional residual capacity; a maximal inspiration then forced expiration sweeps out the vital capacity, but residual volume can never be exhaled. The plateau at the bottom is RV — spirometry measures everything above it, never RV itself.",
   yDomain: [-4.5, 6.5],
   series: [
     {

@@ -165,6 +165,10 @@ export default function ReceptiveFieldsWidget() {
             ]}
             height={420}
           />
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Read firing across positions in space. A center-surround field fires hardest when light hits its center and is silenced by light in the surround — so a small spot on the center peaks the response while diffuse light barely moves it. That is why these cells report CONTRAST and edges, not absolute brightness.
+          </p>
         </section>
 
         <aside className="grid gap-4">

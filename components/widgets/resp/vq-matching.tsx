@@ -24,6 +24,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 200],
   xLabel: "V/Q ratio",
   yLabel: "Alveolar gas",
+  readingGuide:
+    "V/Q sets the alveolar gas mix. At V/Q = 0 (shunt) alveolar gas equals venous blood; at V/Q = ∞ (dead space) it equals inspired air; healthy lung sits near 0.8–1.0. Slide along the line to see why the high-V/Q apex and low-V/Q base differ in PO₂ and PCO₂.",
   bands: [
     { axis: "x", from: 0.8, to: 1.2, tone: "ok", label: "matched" },
     { axis: "x", from: 0.3, to: 0.8, tone: "warn" },

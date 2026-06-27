@@ -137,6 +137,10 @@ export default function OxygenContentWidget() {
             ]}
             height={420}
           />
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Oxygen content is almost all hemoglobin-bound, not dissolved — so content rides with saturation and hemoglobin level. Anemia drops the whole line even when PO2 and saturation are normal, which is why a pink, well-saturated patient can still be oxygen-starved. Read content on the y-axis to judge delivery, not PO2 alone.
+          </p>
         </section>
 
         <aside className="grid gap-4">

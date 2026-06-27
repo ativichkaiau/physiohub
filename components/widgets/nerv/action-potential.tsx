@@ -40,6 +40,8 @@ const config: TimelineLabConfig = {
   duration: 5,
   xLabel: "time (ms)",
   yLabel: "mV / relative conductance",
+  readingGuide:
+    "Scrub through the spike and watch the conductances drive the voltage. Fast Na⁺ channels open → rapid upstroke; they inactivate as slower K⁺ channels open → repolarization; lingering K⁺ conductance → the after-hyperpolarization. The refractory period is the window where Na⁺ channels are still inactivated.",
   yDomain: [-100, 50],
   series: [
     { id: "vm", label: "Membrane voltage", data: voltage, colorVar: "var(--ph-curve-1)" },

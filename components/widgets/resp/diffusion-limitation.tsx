@@ -20,6 +20,8 @@ const config: CurveLabConfig = {
   yDomain: [35, 110],
   xLabel: "capillary transit time (s)",
   yLabel: "capillary PO2 equivalent",
+  readingGuide:
+    "Follow the blood along the capillary in time. Normally O₂ equilibrates with alveolar gas within the first third of transit (perfusion-limited, large reserve). A thickened membrane or short transit time (exercise) delays equilibration toward the venous end — that is diffusion limitation. Where the curve plateaus shows the reserve.",
   controls: [
     { key: "thickness", label: "Membrane thickness", min: 0.5, max: 4, step: 0.05, defaultValue: 1, unit: "x" },
     { key: "surfaceArea", label: "Surface area", min: 20, max: 120, step: 1, defaultValue: 100, unit: "%" },

@@ -21,6 +21,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 150],
   xLabel: "descending drive",
   yLabel: "relative force contribution",
+  readingGuide:
+    "Force grows two ways as drive rises: first by recruiting more motor units (small and slow before large and fast — the size principle), then by firing them faster (rate coding). Read the early rise as recruitment and the later, steeper rise as rate coding.",
   controls: [
     { key: "drive", label: "Descending drive", min: 0, max: 100, step: 1, defaultValue: 45, unit: "%" },
     { key: "rateGain", label: "Rate-coding gain", min: 30, max: 160, step: 1, defaultValue: 100, unit: "%" },

@@ -157,6 +157,10 @@ export default function AcidBaseWidget() {
             ]}
             height={420}
           />
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            This is the Davenport plot: pH along the bottom, bicarbonate up the side, with curved PaCO2 isobars. Metabolic problems move you up or down a bicarbonate line; respiratory problems move you ALONG an isobar; compensation then slides you back toward normal pH. Read which way you left the central box to name the disorder.
+          </p>
         </section>
 
         <aside className="grid gap-4">

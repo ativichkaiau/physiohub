@@ -45,6 +45,8 @@ const config: TimelineLabConfig = {
   duration: 40,
   xLabel: "gestational age (weeks)",
   yLabel: "relative level",
+  readingGuide:
+    "Read across pregnancy. hCG peaks early to rescue the corpus luteum, then falls as the placenta takes over and makes rising estrogen and progesterone, which climb steadily to term. Note the early hCG hump versus the late steroid ramp — that is the handoff from ovary to placenta.",
   yDomain: [0, 130],
   series: [
     { id: "hcg", label: "hCG", data: hcg, colorVar: "var(--ph-curve-3)" },

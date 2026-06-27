@@ -51,6 +51,8 @@ const config: TimelineLabConfig = {
   duration: DURATION,
   xLabel: "time (s)",
   yLabel: "pressure (cm H₂O) · jet velocity",
+  readingGuide:
+    "Scrub the pacemaker wave from renal pelvis to bladder. A contraction sweeps urine down as a bolus, pressure peaks travel in sequence, and the ureterovesical jet fires when the wave reaches the bladder. An obstructing stone backs pressure up behind the block — watch the proximal pressure climb.",
   yDomain: [-10, 100],
   series: [
     { id: "proximal", label: "Proximal ureter (pelvis)", data: proximal, colorVar: "var(--ph-curve-4)" },

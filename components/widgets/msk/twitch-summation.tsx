@@ -33,6 +33,8 @@ const config: TimelineLabConfig = {
   duration,
   xLabel: "time (ms)",
   yLabel: "relative force / Ca",
+  readingGuide:
+    "A single stimulus gives one twitch that rises and fully relaxes. Stimulate again before relaxation finishes and the next twitch builds on the last — force sums. Faster stimulation fuses the twitches into smooth tetanus because Ca²⁺ never falls back between beats. Watch force climb as the gaps shrink.",
   yDomain: [0, 140],
   series: [
     { id: "single", label: "Single twitch", data: singleTwitch, colorVar: "var(--ph-curve-ref)" },

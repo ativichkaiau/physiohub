@@ -156,6 +156,10 @@ export default function GastricEmptyingWidget() {
             ]}
             height={420}
           />
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Follow the curve down: the stomach empties what remains in proportion to how full it is, so retention falls roughly exponentially. Fats, acid, and hypertonic chyme trigger duodenal brakes that flatten the curve (slower emptying); liquids empty faster than solids. Half-emptying time is where the curve crosses 50%.
+          </p>
         </section>
 
         <aside className="grid gap-4">

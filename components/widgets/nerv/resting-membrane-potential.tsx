@@ -33,6 +33,8 @@ const config: CurveLabConfig = {
   yDomain: [-110, -20],
   xLabel: "Extracellular [K⁺]ₒ (mM)",
   yLabel: "Membrane potential Vm (mV)",
+  readingGuide:
+    "Resting Vm sits near the potassium equilibrium because the membrane is most permeable to K⁺. Raising extracellular K⁺ shrinks that gradient, so Vm depolarizes (climbs toward 0) along a near-logarithmic curve — which is exactly why hyperkalemia is dangerous: it parks the membrane near threshold.",
   bands: [
     { axis: "x", from: 3.5, to: 5.0, tone: "ok", label: "normal K⁺" },
     { axis: "x", from: 3.0, to: 3.5, tone: "warn" },

@@ -17,6 +17,8 @@ const config: CurveLabConfig = {
   yDomain: [0, 55],
   xLabel: "airway radius (mm)",
   yLabel: "relative resistance",
+  readingGuide:
+    "Resistance rises with the fourth power of falling radius (Poiseuille), so the curve climbs steeply as airways narrow — small changes in bronchial caliber dominate the work of breathing. Normally most resistance sits in medium bronchi, not the tiny ones, because they are arranged in parallel.",
   controls: [
     { key: "radius", label: "Airway radius", min: 0.5, max: 8, step: 0.1, defaultValue: 3, unit: "mm" },
     { key: "lungVolume", label: "Lung volume", min: 1, max: 6, step: 0.1, defaultValue: 3, unit: "L" },

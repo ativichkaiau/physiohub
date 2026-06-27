@@ -198,6 +198,10 @@ export default function InsulinGlucagonWidget() {
             ]}
             height={420}
           />
+          <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            Read plasma glucose left-to-right. Low glucose drives glucagon, so the liver pours glucose OUT (glycogenolysis, gluconeogenesis); high glucose drives insulin, so peripheral tissues take glucose UP and hepatic output shuts off. The crossover near 90 mg/dL is the set point the pair defends.
+          </p>
         </section>
 
         <aside className="grid gap-4">

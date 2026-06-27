@@ -34,6 +34,8 @@ const config: TimelineLabConfig = {
   duration,
   xLabel: "time (ms)",
   yLabel: "relative signal",
+  readingGuide:
+    "Scrub to watch the cascade fire in order: action potential → T-tubule depolarization → Ca²⁺ release from the SR → cross-bridge force. Force always LAGS the calcium, which lags the action potential — that delay is excitation–contraction coupling. Relaxation waits for Ca²⁺ to be pumped back.",
   yDomain: [-90, 120],
   series: [
     { id: "vm", label: "Sarcolemma AP", data: membrane, colorVar: "var(--ph-curve-4)" },
