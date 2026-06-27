@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -200,7 +201,7 @@ export default function InsulinGlucagonWidget() {
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Read plasma glucose left-to-right. Low glucose drives glucagon, so the liver pours glucose OUT (glycogenolysis, gluconeogenesis); high glucose drives insulin, so peripheral tissues take glucose UP and hepatic output shuts off. The crossover near 90 mg/dL is the set point the pair defends.
+            <Highlighted text={"Read plasma glucose left-to-right. Low glucose drives glucagon, so the liver pours glucose OUT (glycogenolysis, gluconeogenesis); high glucose drives insulin, so peripheral tissues take glucose UP and hepatic output shuts off. The crossover near 90 mg/dL is the set point the pair defends."} />
           </p>
         </section>
 

@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -211,7 +212,7 @@ export default function HpaAxisWidget() {
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">In plain terms · </span>
-            Cortisol is the controlled variable. Stress drives the hypothalamus (CRH) and pituitary (ACTH), the adrenal cortex makes cortisol, and cortisol then BRAKES CRH and ACTH. Dexamethasone tests the brake — it suppresses a normal axis but not an autonomous tumor. Toggle feedback off to watch cortisol stay high after a perturbation.
+            <Highlighted text={"Cortisol is the controlled variable. Stress drives the hypothalamus (CRH) and pituitary (ACTH), the adrenal cortex makes cortisol, and cortisol then BRAKES CRH and ACTH. Dexamethasone tests the brake — it suppresses a normal axis but not an autonomous tumor. Toggle feedback off to watch cortisol stay high after a perturbation."} />
           </p>
         </section>
 

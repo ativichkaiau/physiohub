@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -220,10 +221,7 @@ export default function PvLoopWidget() {
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            The loop runs counter-clockwise: fill along the bottom (mitral valve open) → squeeze up the right side at fixed
-            volume (isovolumetric contraction) → eject across the top (aortic valve open) → relax down the left side
-            (isovolumetric relaxation). The loop&rsquo;s width is stroke volume and the enclosed area is stroke work; the
-            ESPVR line is the contractility ceiling each beat reaches.
+            <Highlighted text={"The loop runs counter-clockwise: fill along the bottom (mitral valve open) → squeeze up the right side at fixed volume (isovolumetric contraction) → eject across the top (aortic valve open) → relax down the left side (isovolumetric relaxation). The loop’s width is stroke volume and the enclosed area is stroke work; the ESPVR line is the contractility ceiling each beat reaches."} />
           </p>
         </section>
 

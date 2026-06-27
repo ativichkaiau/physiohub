@@ -10,6 +10,7 @@ import {
   type FeedbackGuideStep
 } from "@/components/widgets/common/FeedbackLoopGuide";
 import { FeedbackDynamicsTrack } from "@/components/widgets/common/FeedbackDynamicsTrack";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 import {
   FeedbackLoopEdge,
   FeedbackLoopNode,
@@ -310,7 +311,7 @@ export function FeedbackLabWidget({ config }: { config: FeedbackLabConfig }) {
           {config.readingGuide ? (
             <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
               <span className="font-black uppercase tracking-[0.14em] text-ph-text">In plain terms · </span>
-              {config.readingGuide}
+              <Highlighted text={config.readingGuide} />
             </p>
           ) : null}
         </section>

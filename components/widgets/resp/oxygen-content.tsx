@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -139,7 +140,7 @@ export default function OxygenContentWidget() {
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Oxygen content is almost all hemoglobin-bound, not dissolved — so content rides with saturation and hemoglobin level. Anemia drops the whole line even when PO2 and saturation are normal, which is why a pink, well-saturated patient can still be oxygen-starved. Read content on the y-axis to judge delivery, not PO2 alone.
+            <Highlighted text={"Oxygen content is almost all hemoglobin-bound, not dissolved — so content rides with saturation and hemoglobin level. Anemia drops the whole line even when PO2 and saturation are normal, which is why a pink, well-saturated patient can still be oxygen-starved. Read content on the y-axis to judge delivery, not PO2 alone."} />
           </p>
         </section>
 

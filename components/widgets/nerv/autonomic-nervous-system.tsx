@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -235,7 +236,7 @@ export default function AutonomicNervousSystemWidget() {
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Click a target organ to compare the two divisions and their receptors. Sympathetic and parasympathetic usually oppose each other, but watch the exceptions: sweat glands are sympathetic yet cholinergic, the adrenal medulla is a modified sympathetic ganglion, and most blood vessels take sympathetic tone only.
+            <Highlighted text={"Click a target organ to compare the two divisions and their receptors. Sympathetic and parasympathetic usually oppose each other, but watch the exceptions: sweat glands are sympathetic yet cholinergic, the adrenal medulla is a modified sympathetic ganglion, and most blood vessels take sympathetic tone only."} />
           </p>
         </section>
 

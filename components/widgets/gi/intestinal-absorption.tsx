@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -171,7 +172,7 @@ export default function IntestinalAbsorptionWidget() {
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Click each transporter to follow nutrients from lumen to blood. The engine is the basolateral sodium pump: it keeps intracellular sodium low, so the inward sodium gradient powers secondary-active uptake of glucose (SGLT1), amino acids, and more at the apical side. No sodium gradient means no coupled absorption.
+            <Highlighted text={"Click each transporter to follow nutrients from lumen to blood. The engine is the basolateral sodium pump: it keeps intracellular sodium low, so the inward sodium gradient powers secondary-active uptake of glucose (SGLT1), amino acids, and more at the apical side. No sodium gradient means no coupled absorption."} />
           </p>
         </section>
 

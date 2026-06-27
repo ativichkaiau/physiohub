@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -205,7 +206,7 @@ export default function FatAbsorptionMicellesWidget() {
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Follow one fat globule from lumen to lymph. Bile salts EMULSIFY it, pancreatic lipase chops triglycerides into fatty acids and monoglycerides, micelles ferry those to the brush border, the enterocyte re-esterifies them into chylomicrons, which leave by LYMPH not blood. Click where pancreatic enzymes and bile acids are required.
+            <Highlighted text={"Follow one fat globule from lumen to lymph. Bile salts EMULSIFY it, pancreatic lipase chops triglycerides into fatty acids and monoglycerides, micelles ferry those to the brush border, the enterocyte re-esterifies them into chylomicrons, which leave by LYMPH not blood. Click where pancreatic enzymes and bile acids are required."} />
           </p>
         </section>
 

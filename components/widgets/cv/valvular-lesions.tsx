@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -221,7 +222,7 @@ export default function ValvularLesionsWidget() {
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Each valve lesion deforms the pressure-volume loop in a signature way. Toggle a lesion: aortic stenosis raises ejection pressure (a tall loop), aortic regurgitation widens it (volume overload), mitral stenosis starves filling (a small loop), mitral regurgitation leaks during systole (no true isovolumetric phase). Watch forward stroke volume shrink.
+            <Highlighted text={"Each valve lesion deforms the pressure-volume loop in a signature way. Toggle a lesion: aortic stenosis raises ejection pressure (a tall loop), aortic regurgitation widens it (volume overload), mitral stenosis starves filling (a small loop), mitral regurgitation leaks during systole (no true isovolumetric phase). Watch forward stroke volume shrink."} />
           </p>
         </section>
 

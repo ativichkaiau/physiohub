@@ -234,6 +234,16 @@ svg { display: block; }
   box-shadow: var(--ph-clay-pressed);
 }
 
+/* Reading-guide keyword highlighting — entities in the brand accent,
+   direction/polarity words in the warm accent. */
+.ph-hl {
+  font-weight: 800;
+  color: var(--ph-accent);
+}
+.ph-hl-dir {
+  color: var(--ph-accent-2);
+}
+
 /* ====== App shell ====== */
 .ph-app-header {
   position: sticky;

@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -164,7 +165,7 @@ export default function PancreaticSecretionWidget() {
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Watch the two ion lines swap as flow rises. At low flow the ductal juice is chloride-rich; as secretin drives flow UP, bicarbonate climbs and chloride falls in a reciprocal trade (the same total anion). High-flow pancreatic juice is alkaline bicarbonate that neutralizes duodenal acid.
+            <Highlighted text={"Watch the two ion lines swap as flow rises. At low flow the ductal juice is chloride-rich; as secretin drives flow UP, bicarbonate climbs and chloride falls in a reciprocal trade (the same total anion). High-flow pancreatic juice is alkaline bicarbonate that neutralizes duodenal acid."} />
           </p>
         </section>
 

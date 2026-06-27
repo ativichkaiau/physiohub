@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -255,9 +256,7 @@ export default function CoronaryPerfusionWidget() {
           </div>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Line up the two stacked traces in time. During systole the contracting ventricle squeezes its own vessels, so
-            left-coronary flow (bottom) dips even while aortic pressure (top) is high — most perfusion happens in diastole.
-            Anything that shortens diastole (tachycardia) or drops diastolic pressure starves the subendocardium first.
+            <Highlighted text={"Line up the two stacked traces in time. During systole the contracting ventricle squeezes its own vessels, so left-coronary flow (bottom) dips even while aortic pressure (top) is high — most perfusion happens in diastole. Anything that shortens diastole (tachycardia) or drops diastolic pressure starves the subendocardium first."} />
           </p>
         </section>
 

@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -198,7 +199,7 @@ export default function SleepStagesEegWidget() {
           </div>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Scrub one night and watch the EEG slow down. Wake is fast low-voltage beta; through N1 and N2 (spindles, K-complexes) into N3 the waves grow SLOW and TALL (delta, deep sleep); REM then mimics wake on the EEG but with muscle atonia and dreaming. Frequency falls and amplitude rises into deep sleep, then flips at REM.
+            <Highlighted text={"Scrub one night and watch the EEG slow down. Wake is fast low-voltage beta; through N1 and N2 (spindles, K-complexes) into N3 the waves grow SLOW and TALL (delta, deep sleep); REM then mimics wake on the EEG but with muscle atonia and dreaming. Frequency falls and amplitude rises into deep sleep, then flips at REM."} />
           </p>
         </section>
 

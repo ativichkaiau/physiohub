@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -125,7 +126,7 @@ export default function Co2TransportWidget() {
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Click the journey of CO2 from tissue to lung. Most of it rides as bicarbonate: carbonic anhydrase in the red cell converts CO2 to bicarbonate, which leaves in exchange for chloride (the chloride shift); some binds hemoglobin as carbamino. In the lung it all reverses. The Haldane effect: oxygenated blood carries LESS CO2, so loading oxygen helps unload CO2.
+            <Highlighted text={"Click the journey of CO2 from tissue to lung. Most of it rides as bicarbonate: carbonic anhydrase in the red cell converts CO2 to bicarbonate, which leaves in exchange for chloride (the chloride shift); some binds hemoglobin as carbamino. In the lung it all reverses. The Haldane effect: oxygenated blood carries LESS CO2, so loading oxygen helps unload CO2."} />
           </p>
         </section>
 

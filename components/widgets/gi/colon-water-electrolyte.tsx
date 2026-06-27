@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -173,7 +174,7 @@ export default function ColonWaterElectrolyteWidget() {
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Aldosterone is the colon volume-defending lever. As aldosterone rises left-to-right, the colon reabsorbs more sodium and water, so stool volume FALLS — the curve slopes down. That is why high-aldosterone states dry the stool and why aldosterone blockers loosen it.
+            <Highlighted text={"Aldosterone is the colon volume-defending lever. As aldosterone rises left-to-right, the colon reabsorbs more sodium and water, so stool volume FALLS — the curve slopes down. That is why high-aldosterone states dry the stool and why aldosterone blockers loosen it."} />
           </p>
         </section>
 

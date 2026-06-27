@@ -13,6 +13,7 @@ import {
   type CurveSeries
 } from "@/components/widgets/primitives";
 import { parseBoolean, parseNumber } from "@/components/widgets/widgetUtils";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 export type CurveLabControl = {
   key: string;
@@ -165,7 +166,7 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
           {config.readingGuide ? (
             <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
               <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-              {config.readingGuide}
+              <Highlighted text={config.readingGuide} />
             </p>
           ) : null}
         </section>

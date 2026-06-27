@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -122,7 +123,7 @@ export default function WestZonesWidget() {
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Click each zone from apex to base of the upright lung. Gravity stacks the pressures: at the APEX (zone 1) alveolar pressure can exceed arterial and pinch the capillaries (high V/Q, wasted ventilation); at the BASE (zone 3) blood flow is highest (low V/Q). That apex-to-base V/Q gradient is why the top behaves like dead space and the bottom like shunt.
+            <Highlighted text={"Click each zone from apex to base of the upright lung. Gravity stacks the pressures: at the APEX (zone 1) alveolar pressure can exceed arterial and pinch the capillaries (high V/Q, wasted ventilation); at the BASE (zone 3) blood flow is highest (low V/Q). That apex-to-base V/Q gradient is why the top behaves like dead space and the bottom like shunt."} />
           </p>
         </section>
 

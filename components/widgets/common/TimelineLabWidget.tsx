@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReportError } from "@/components/ReportError";
 import { getDiagramById } from "@/lib/registry";
 import { Curve, PerturbationToggle, ScrubBar, type CurveSeries } from "@/components/widgets/primitives";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 import { parseNumber } from "@/components/widgets/widgetUtils";
 
 export type TimelinePhase = {
@@ -152,7 +153,7 @@ export function TimelineLabWidget({ config }: { config: TimelineLabConfig }) {
           {config.readingGuide ? (
             <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
               <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-              {config.readingGuide}
+              <Highlighted text={config.readingGuide} />
             </p>
           ) : null}
         </section>

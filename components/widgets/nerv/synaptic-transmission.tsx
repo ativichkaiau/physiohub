@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -270,7 +271,7 @@ export default function SynapticTransmissionWidget() {
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Click each step of chemical transmission: the action potential arrives → voltage-gated CALCIUM enters → vesicles fuse and release transmitter → receptors open → reuptake or breakdown resets it. Calcium entry is the trigger and sets release probability — that is the step most drugs and toxins target.
+            <Highlighted text={"Click each step of chemical transmission: the action potential arrives → voltage-gated CALCIUM enters → vesicles fuse and release transmitter → receptors open → reuptake or breakdown resets it. Calcium entry is the trigger and sets release probability — that is the step most drugs and toxins target."} />
           </p>
         </section>
 

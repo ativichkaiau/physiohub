@@ -1,4 +1,5 @@
 "use client";
+import { Highlighted } from "@/components/widgets/common/Highlighted";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -321,7 +322,7 @@ export default function FetalCirculationTransitionWidget() {
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
             <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
-            Click through the switch from placenta to lungs. In utero, oxygen-rich blood bypasses the lungs through the ductus venosus, foramen ovale, and ductus arteriosus. The first breath drops pulmonary resistance and raises left-heart pressure, which reverses flow and snaps the shunts shut — follow each pressure reversal.
+            <Highlighted text={"Click through the switch from placenta to lungs. In utero, oxygen-rich blood bypasses the lungs through the ductus venosus, foramen ovale, and ductus arteriosus. The first breath drops pulmonary resistance and raises left-heart pressure, which reverses flow and snaps the shunts shut — follow each pressure reversal."} />
           </p>
         </section>
 
