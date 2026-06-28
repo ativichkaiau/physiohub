@@ -1,5 +1,6 @@
 "use client";
 import { Highlighted } from "@/components/widgets/common/Highlighted";
+import { StepWalker } from "@/components/widgets/common/StepWalker";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -119,7 +120,6 @@ export default function FetalCirculationTransitionWidget() {
   }, [currentQuery]);
 
   const selected = STAGES.find((s) => s.id === selectedId)!;
-  const selectedIndex = STAGES.findIndex((s) => s.id === selectedId);
 
   // SVG layout
   const W = 700;
@@ -327,48 +327,12 @@ export default function FetalCirculationTransitionWidget() {
         </section>
 
         <aside className="grid gap-4">
-          <section className="ph-panel p-4" aria-label="Transition stages">
-            <h2 className="ph-section-label mb-4">Step through the transition</h2>
-            <div className="grid gap-2">
-              {STAGES.map((stage, idx) => {
-                const isSelected = stage.id === selectedId;
-                return (
-                  <button
-                    key={stage.id}
-                    type="button"
-                    onClick={() => setSelectedId(stage.id)}
-                    className={`focus-ring rounded-ph border px-3 py-2 text-left text-sm transition ${
-                      isSelected
-                        ? "border-[color-mix(in_srgb,var(--ph-accent),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-ph-accent"
-                        : "ph-clay-button text-ph-muted"
-                    }`}
-                  >
-                    <span className="font-bold tabular-nums">{idx + 1}.</span>{" "}
-                    <span className="font-bold">{stage.shortName}</span>
-                    <span className="ml-2 text-xs">{stage.fullName}</span>
-                  </button>
-                );
-              })}
-            </div>
-            <div className="mt-4 flex justify-between gap-2">
-              <button
-                type="button"
-                onClick={() => selectedIndex > 0 && setSelectedId(STAGES[selectedIndex - 1].id)}
-                disabled={selectedIndex === 0}
-                className="focus-ring ph-clay-button px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ph-muted disabled:opacity-40 hover:border-[var(--ph-border-strong)] hover:text-ph-text"
-              >
-                ← Prev
-              </button>
-              <button
-                type="button"
-                onClick={() => selectedIndex < STAGES.length - 1 && setSelectedId(STAGES[selectedIndex + 1].id)}
-                disabled={selectedIndex === STAGES.length - 1}
-                className="focus-ring ph-clay-button px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ph-muted disabled:opacity-40 hover:border-[var(--ph-border-strong)] hover:text-ph-text"
-              >
-                Next →
-              </button>
-            </div>
-          </section>
+          <StepWalker
+            label="Step through the transition"
+            steps={STAGES}
+            value={selectedId}
+            onChange={(id) => setSelectedId(id as StageId)}
+          />
 
           <section className="ph-panel p-4" aria-label="References">
             <h2 className="ph-section-label mb-3">References</h2>

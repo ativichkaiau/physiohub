@@ -1,5 +1,6 @@
 "use client";
 import { Highlighted } from "@/components/widgets/common/Highlighted";
+import { StepWalker } from "@/components/widgets/common/StepWalker";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -259,46 +260,12 @@ export default function NephronHandlingWidget() {
         </section>
 
         <aside className="grid gap-4">
-          <section className="ph-panel p-4" aria-label="Step selector">
-            <h2 className="ph-section-label mb-4">Walk the nephron</h2>
-            <div className="grid gap-2">
-              {STEPS.map((s) => {
-                const isSelected = s.id === stepId;
-                return (
-                  <button
-                    key={s.id}
-                    type="button"
-                    onClick={() => setStepId(s.id)}
-                    className={`focus-ring rounded-ph border px-3 py-2 text-left text-sm transition ${
-                      isSelected
-                        ? "border-[color-mix(in_srgb,var(--ph-accent),transparent_45%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] text-ph-accent"
-                        : "ph-clay-button text-ph-muted"
-                    }`}
-                  >
-                    <span className="font-bold tabular-nums">{s.id}.</span> <span className="font-bold">{s.shortName}</span>
-                  </button>
-                );
-              })}
-            </div>
-            <div className="mt-4 flex justify-between gap-2">
-              <button
-                type="button"
-                onClick={() => stepId > 1 && setStepId((stepId - 1) as StepId)}
-                disabled={stepId === 1}
-                className="focus-ring ph-clay-button px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ph-muted disabled:opacity-40 hover:border-[var(--ph-border-strong)] hover:text-ph-text"
-              >
-                ← Prev
-              </button>
-              <button
-                type="button"
-                onClick={() => stepId < 6 && setStepId((stepId + 1) as StepId)}
-                disabled={stepId === 6}
-                className="focus-ring ph-clay-button px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ph-muted disabled:opacity-40 hover:border-[var(--ph-border-strong)] hover:text-ph-text"
-              >
-                Next →
-              </button>
-            </div>
-          </section>
+          <StepWalker
+            label="Walk the nephron"
+            steps={STEPS}
+            value={stepId}
+            onChange={(id) => setStepId(id as StepId)}
+          />
 
           <section className="ph-panel p-4" aria-label="References">
             <h2 className="ph-section-label mb-3">References</h2>

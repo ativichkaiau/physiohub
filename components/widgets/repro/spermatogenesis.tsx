@@ -1,5 +1,6 @@
 "use client";
 import { Highlighted } from "@/components/widgets/common/Highlighted";
+import { StepWalker } from "@/components/widgets/common/StepWalker";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -211,28 +212,15 @@ export default function SpermatogenesisWidget() {
         </section>
 
         <aside className="grid gap-4">
+          <StepWalker
+            label="Stages"
+            steps={stages}
+            value={step}
+            onChange={(id) => setStep(id as StepId)}
+          />
           <section className="ph-panel p-4" aria-label="Stage controls">
-            <h2 className="ph-section-label mb-4">Stages</h2>
-            <div className="grid gap-2">
-              {stages.map((item) => {
-                const selected = item.id === step;
-                return (
-                  <button
-                    type="button"
-                    key={item.id}
-                    onClick={() => setStep(item.id)}
-                    className={
-                      selected
-                        ? "focus-ring rounded-ph border border-[color-mix(in_srgb,var(--ph-accent),transparent_40%)] bg-[color-mix(in_srgb,var(--ph-accent),transparent_85%)] px-3 py-2 text-left text-sm font-bold text-ph-accent"
-                        : "focus-ring ph-clay-button px-3 py-2 text-left text-sm font-semibold text-ph-muted hover:border-[var(--ph-border-strong)] hover:text-ph-text"
-                    }
-                  >
-                    {item.id}. {item.shortName}
-                  </button>
-                );
-              })}
-            </div>
-            <div className="mt-5 grid gap-4">
+            <h2 className="ph-section-label mb-4">Controls</h2>
+            <div className="grid gap-4">
               <Slider label="FSH / Sertoli support" value={fsh} min={0} max={150} step={1} unit="%" defaultValue={90} onChange={setFsh} />
               <Slider label="Intratesticular testosterone" value={testosterone} min={0} max={160} step={1} unit="%" defaultValue={100} onChange={setTestosterone} />
               <PerturbationToggle label="Blood-testis barrier intact" checked={barrier} onChange={setBarrier} />
