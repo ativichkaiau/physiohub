@@ -90,19 +90,99 @@ function isMonotonicX(data: CurvePoint[]) {
   return rising || falling;
 }
 
+type Pixel = { x: number; y: number };
+
+function toPixels(data: CurvePoint[], xDomain: [number, number], yDomain: [number, number], plot: PlotBox): Pixel[] {
+  return data.map((p) => ({
+    x: scale(p.x, xDomain, [plot.left, plot.right]),
+    y: scale(p.y, yDomain, [plot.bottom, plot.top])
+  }));
+}
+
+function straightPath(pts: Pixel[]) {
+  return pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`).join(" ");
+}
+
+// Monotone cubic Hermite spline (Fritsch–Carlson) → cubic Béziers. Smooth and
+// guaranteed not to overshoot, so sigmoids/exponentials and sparse hand-drawn
+// waveforms render as real curves rather than connected line segments.
+function monotonePath(input: Pixel[]) {
+  const pts = input[0].x <= input[input.length - 1].x ? input : [...input].reverse();
+  const n = pts.length;
+  if (n < 3) return straightPath(pts);
+  const dx: number[] = [];
+  const slope: number[] = [];
+  for (let i = 0; i < n - 1; i += 1) {
+    dx[i] = pts[i + 1].x - pts[i].x;
+    slope[i] = dx[i] !== 0 ? (pts[i + 1].y - pts[i].y) / dx[i] : 0;
+  }
+  const m: number[] = new Array(n);
+  m[0] = slope[0];
+  m[n - 1] = slope[n - 2];
+  for (let i = 1; i < n - 1; i += 1) {
+    m[i] = slope[i - 1] * slope[i] <= 0 ? 0 : (slope[i - 1] + slope[i]) / 2;
+  }
+  for (let i = 0; i < n - 1; i += 1) {
+    if (slope[i] === 0) {
+      m[i] = 0;
+      m[i + 1] = 0;
+      continue;
+    }
+    const a = m[i] / slope[i];
+    const b = m[i + 1] / slope[i];
+    const s = a * a + b * b;
+    if (s > 9) {
+      const t = 3 / Math.sqrt(s);
+      m[i] = t * a * slope[i];
+      m[i + 1] = t * b * slope[i];
+    }
+  }
+  let d = `M ${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;
+  for (let i = 0; i < n - 1; i += 1) {
+    const h = dx[i] / 3;
+    const c1x = pts[i].x + h;
+    const c1y = pts[i].y + m[i] * h;
+    const c2x = pts[i + 1].x - h;
+    const c2y = pts[i + 1].y - m[i + 1] * h;
+    d += ` C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${pts[i + 1].x.toFixed(2)} ${pts[i + 1].y.toFixed(2)}`;
+  }
+  return d;
+}
+
+// Uniform Catmull-Rom → cubic Béziers for non-monotonic data (loops such as the
+// pressure–volume and flow–volume loops, where x is not a single-valued function).
+function catmullRomPath(pts: Pixel[]) {
+  const n = pts.length;
+  if (n < 3) return straightPath(pts);
+  let d = `M ${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;
+  for (let i = 0; i < n - 1; i += 1) {
+    const p0 = pts[i - 1] ?? pts[i];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[i + 2] ?? pts[i + 1];
+    const c1x = p1.x + (p2.x - p0.x) / 6;
+    const c1y = p1.y + (p2.y - p0.y) / 6;
+    const c2x = p2.x - (p3.x - p1.x) / 6;
+    const c2y = p2.y - (p3.y - p1.y) / 6;
+    d += ` C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
+  }
+  return d;
+}
+
 function pathFromPoints(
   data: CurvePoint[],
   xDomain: [number, number],
   yDomain: [number, number],
   plot: PlotBox
 ) {
-  return data
-    .map((point, index) => {
-      const x = scale(point.x, xDomain, [plot.left, plot.right]);
-      const y = scale(point.y, yDomain, [plot.bottom, plot.top]);
-      return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
-    })
-    .join(" ");
+  if (data.length < 2) {
+    if (data.length === 0) return "";
+    const x = scale(data[0].x, xDomain, [plot.left, plot.right]);
+    const y = scale(data[0].y, yDomain, [plot.bottom, plot.top]);
+    return `M ${x.toFixed(2)} ${y.toFixed(2)}`;
+  }
+  const pts = toPixels(data, xDomain, yDomain, plot);
+  return isMonotonicX(data) ? monotonePath(pts) : catmullRomPath(pts);
 }
 
 function areaPathFromPoints(
