@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <span className="ph-blob ph-blob-4" />
           <span className="ph-blob ph-blob-5" />
         </div>
-        <div className="min-h-screen text-ph-text">
+        <div className="ph-app-content min-h-screen text-ph-text">
           <header className="ph-app-header">
             <div className="ph-app-header-inner mx-auto flex w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">
               <Link href="/" className="focus-ring flex min-w-0 items-center gap-2.5 rounded-ph no-underline">

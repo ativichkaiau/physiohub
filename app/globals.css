@@ -16,6 +16,8 @@
   --ph-surface:       #fbfcff;
   --ph-surface-2:     #f1f5fc;
   --ph-surface-3:     #e7eef8;
+  --ph-card:          rgba(251, 252, 255, 0.76);
+  --ph-card-soft:     rgba(241, 245, 252, 0.70);
 
   /* Text */
   --ph-text:          #121826;
@@ -74,6 +76,8 @@
   --ph-surface:       #0f1117;
   --ph-surface-2:     #08090d;
   --ph-surface-3:     #191c24;
+  --ph-card:          rgba(15, 17, 23, 0.74);
+  --ph-card-soft:     rgba(8, 9, 13, 0.68);
 
   /* Text */
   --ph-text:          #f1f3f6;
@@ -161,9 +165,14 @@ body {
 .ph-blobs {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
+}
+
+.ph-app-content {
+  position: relative;
+  z-index: 1;
 }
 
 .ph-blob {
@@ -206,7 +215,7 @@ body {
   50%      { transform: translate(28px, -26px) scale(1.07); }
 }
 
-/* Dark stays pure black — no wash, no blobs. */
+/* Dark keeps the OLED canvas while allowing the physiology fields through. */
 :root[data-theme="dark"] body {
   background:
     linear-gradient(var(--ph-grid) 1px, transparent 1px),
@@ -215,7 +224,19 @@ body {
   background-size: 56px 56px, 56px 56px, auto;
   background-attachment: fixed;
 }
-:root[data-theme="dark"] .ph-blobs { display: none; }
+:root[data-theme="dark"] .ph-blobs {
+  display: block;
+  opacity: 0.72;
+}
+
+:root[data-theme="dark"] .ph-blobs .ph-blob {
+  filter: blur(82px) saturate(118%);
+  opacity: 0.42;
+}
+
+:root[data-theme="dark"] .ph-blobs .ph-blob-4 {
+  opacity: 0.32;
+}
 
 button, input, select { font: inherit; }
 a { color: inherit; }
@@ -1146,6 +1167,43 @@ svg { display: block; }
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.35),
     0 0 0 4px color-mix(in srgb, var(--ph-accent), transparent 85%);
+}
+
+/* =====================================================================
+   Translucent clay cards let the physiology colour fields show through
+   without reducing chart contrast inside the recessed plot wells.
+   ===================================================================== */
+.ph-panel,
+.ph-hero,
+.ph-grid-panel,
+.ph-cockpit,
+.ph-cockpit-console,
+.ph-cockpit-stat,
+.ph-concept-panel,
+.ph-stat-tile,
+.ph-clay-stat,
+.ph-intro-card {
+  background-color: var(--ph-card);
+  backdrop-filter: blur(18px) saturate(124%);
+  -webkit-backdrop-filter: blur(18px) saturate(124%);
+}
+
+.ph-cockpit-console,
+.ph-stat-tile {
+  background-color: var(--ph-card-soft);
+}
+
+:root[data-theme="dark"] .ph-panel,
+:root[data-theme="dark"] .ph-hero,
+:root[data-theme="dark"] .ph-grid-panel,
+:root[data-theme="dark"] .ph-cockpit,
+:root[data-theme="dark"] .ph-cockpit-console,
+:root[data-theme="dark"] .ph-cockpit-stat,
+:root[data-theme="dark"] .ph-concept-panel,
+:root[data-theme="dark"] .ph-stat-tile,
+:root[data-theme="dark"] .ph-clay-stat,
+:root[data-theme="dark"] .ph-intro-card {
+  border-color: color-mix(in srgb, var(--ph-border-strong), transparent 18%);
 }
 
 /* =====================================================================
