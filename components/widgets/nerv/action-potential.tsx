@@ -44,7 +44,7 @@ const config: TimelineLabConfig = {
     "Scrub through the spike and watch the conductances drive the voltage. Fast Na⁺ channels open → rapid upstroke; they inactivate as slower K⁺ channels open → repolarization; lingering K⁺ conductance → the after-hyperpolarization. The refractory period is the window where Na⁺ channels are still inactivated.",
   yDomain: [-100, 50],
   series: [
-    { id: "vm", label: "Membrane voltage", data: voltage, colorVar: "var(--ph-curve-1)" },
+    { id: "vm", label: "Membrane voltage", data: voltage, colorVar: "var(--ph-curve-1)", sharp: true },
     { id: "na", label: "Na conductance", data: sodium, colorVar: "var(--ph-curve-2)" },
     { id: "k", label: "K conductance", data: potassium, colorVar: "var(--ph-curve-3)" }
   ],

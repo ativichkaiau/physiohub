@@ -11,6 +11,9 @@ export type CurveSeries = {
   strokeWidth?: number;
   dashed?: boolean;
   visible?: boolean;
+  /** Opt out of spline smoothing — draw straight segments so sharp peaks
+   * (ECG R wave, action-potential upstroke) stay needle-sharp. */
+  sharp?: boolean;
 };
 
 export type CurveAnnotation = {
@@ -173,7 +176,8 @@ function pathFromPoints(
   data: CurvePoint[],
   xDomain: [number, number],
   yDomain: [number, number],
-  plot: PlotBox
+  plot: PlotBox,
+  sharp = false
 ) {
   if (data.length < 2) {
     if (data.length === 0) return "";
@@ -182,6 +186,7 @@ function pathFromPoints(
     return `M ${x.toFixed(2)} ${y.toFixed(2)}`;
   }
   const pts = toPixels(data, xDomain, yDomain, plot);
+  if (sharp) return straightPath(pts);
   return isMonotonicX(data) ? monotonePath(pts) : catmullRomPath(pts);
 }
 
@@ -491,7 +496,7 @@ export function Curve({
             {visibleReferenceSeries.map((item) => (
               <path
                 key={item.id}
-                d={pathFromPoints(item.data, xDomain, yDomain, plot)}
+                d={pathFromPoints(item.data, xDomain, yDomain, plot, item.sharp)}
                 fill="none"
                 stroke={item.colorVar ?? "var(--ph-curve-ref)"}
                 strokeDasharray={item.dashed ? "8 7" : "4 5"}
@@ -504,7 +509,7 @@ export function Curve({
             ))}
             {visibleSeries.map((item, index) => {
               const stroke = item.colorVar ?? `var(--ph-curve-${Math.min(index + 1, 4)})`;
-              const d = pathFromPoints(item.data, xDomain, yDomain, plot);
+              const d = pathFromPoints(item.data, xDomain, yDomain, plot, item.sharp);
               return (
                 <g key={item.id}>
                   <path

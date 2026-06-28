@@ -311,6 +311,7 @@ export default function WiggersWidget() {
         label: traceLabels.ecg,
         data: ecgTrace,
         colorVar: "var(--ph-accent)",
+        sharp: true,
         visible: traces.has("ecg")
       }
     ],

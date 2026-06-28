@@ -178,9 +178,9 @@ function buildSeries(): CurveSeries[] {
     nodalData.push({ x: t, y: saNodalAP(t) });
   }
   return [
-    { id: "ventricle", label: "Ventricular AP", colorVar: "var(--ph-curve-1)", data: ventricularData },
-    { id: "atrial", label: "Atrial AP", colorVar: "var(--ph-curve-3)", data: atrialData },
-    { id: "sa-nodal", label: "SA nodal AP", colorVar: "var(--ph-curve-2)", data: nodalData }
+    { id: "ventricle", label: "Ventricular AP", colorVar: "var(--ph-curve-1)", data: ventricularData, sharp: true },
+    { id: "atrial", label: "Atrial AP", colorVar: "var(--ph-curve-3)", data: atrialData, sharp: true },
+    { id: "sa-nodal", label: "SA nodal AP", colorVar: "var(--ph-curve-2)", data: nodalData, sharp: true }
   ];
 }
 
