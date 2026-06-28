@@ -58,15 +58,17 @@ const pressureTraces: Record<"ao" | "lv" | "la", CurvePoint[]> = {
   ]
 };
 
+// EDV ≈ 120 mL (after the atrial kick), ESV ≈ 50 mL → SV ≈ 70 mL, EF ≈ 58%
+// (a normal ejection fraction, consistent with the PV-loop widget).
 const volumeTrace: CurvePoint[] = [
-  { x: 0, y: 118 },
-  { x: 0.1, y: 130 },
-  { x: 0.2, y: 130 },
-  { x: 0.3, y: 104 },
-  { x: 0.42, y: 70 },
-  { x: 0.5, y: 70 },
-  { x: 0.65, y: 104 },
-  { x: 0.8, y: 118 }
+  { x: 0, y: 108 },
+  { x: 0.1, y: 120 },
+  { x: 0.2, y: 120 },
+  { x: 0.3, y: 95 },
+  { x: 0.42, y: 50 },
+  { x: 0.5, y: 50 },
+  { x: 0.65, y: 92 },
+  { x: 0.8, y: 108 }
 ];
 
 const ecgTrace: CurvePoint[] = [

@@ -70,7 +70,7 @@ const EVENTS: EcgEvent[] = [
     id: "t",
     label: "T wave",
     startMs: 320,
-    endMs: 440,
+    endMs: 525,
     conduction: "Ventricular repolarization (AP phase 3)",
     colorVar: "var(--ph-curve-4)",
     body: "Net repolarization vector. Normally concordant with QRS (upright in I, II, V3–V6; inverted in aVR). QT interval (Q → end of T) reflects total ventricular AP duration; it shortens at fast HR. Bazett-corrected QTc = QT / √RR (normal ≤ 440 ms men, ≤ 460 ms women).",
@@ -85,7 +85,8 @@ const ECG_POINTS: Array<[number, number]> = [
   [165, 0],
   [175, -0.12], [185, 0.30], [195, 0.95], [205, -0.25], [215, -0.08], [235, 0],
   [260, 0],
-  [290, 0.04], [330, 0.32], [380, 0.42], [420, 0.10], [440, 0],
+  [300, 0.03], [330, 0.05],
+  [370, 0.16], [430, 0.42], [485, 0.28], [525, 0],
   [800, 0]
 ];
 

@@ -54,8 +54,11 @@ const config: CurveLabConfig = {
   ],
   summarize: (values) => {
     const v10 = lungVolume(10, values.elastance, values.surfactant, values.chestWallLoad);
-    const v15 = lungVolume(15, values.elastance, values.surfactant, values.chestWallLoad);
-    const compliance = (v15 - v10) / 5;
+    // Compliance = slope over the tidal range around FRC (the steep part of the
+    // curve), not the flat upper plateau — normal ≈ 0.2 L/cmH2O.
+    const vLow = lungVolume(2, values.elastance, values.surfactant, values.chestWallLoad);
+    const vHigh = lungVolume(8, values.elastance, values.surfactant, values.chestWallLoad);
+    const compliance = (vHigh - vLow) / 6;
     return {
       state:
         values.elastance > 1.8
