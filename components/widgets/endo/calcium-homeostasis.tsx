@@ -12,8 +12,9 @@ const DIAGRAM_ID = "endo/calcium-homeostasis";
 const diagram = getDiagramById(DIAGRAM_ID);
 
 /**
- * Calcium homeostasis revolves around a tight set point (~9.5 mg/dL ionised
- * calcium ≈ 10 mg/dL total) defended by three hormones:
+ * Calcium homeostasis revolves around a tight set point — total serum calcium
+ * ~9.5 mg/dL (ionised ~4.5–5.3 mg/dL, i.e. 1.1–1.3 mmol/L) — defended by
+ * three hormones:
  *   - PTH (parathyroid, fast): rises steeply as Ca falls. Bone resorption,
  *     renal Ca reabsorption (DCT), renal PO4 excretion, and 1α-hydroxylation
  *     of vit D in the kidney.

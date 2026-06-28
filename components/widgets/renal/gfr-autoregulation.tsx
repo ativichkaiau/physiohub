@@ -99,7 +99,9 @@ const config: CurveLabConfig = {
   getCursorX: (values) => values.map,
   summarize: (values) => {
     const gfr = gfrAt(values.map, values.nsaid, values.acei);
-    const lower = 80 - values.acei * 0.3 + values.nsaid * 0.5;
+    // Must match gfrAt: ACEi blunts efferent constriction, raising the lower
+    // autoregulatory limit (GFR falls at low MAP) — same sign as NSAIDs here.
+    const lower = 80 + values.acei * 0.3 + values.nsaid * 0.5;
     const upper = 180 - values.nsaid * 0.3;
     const onPlateau = values.map >= lower && values.map <= upper;
     return {
