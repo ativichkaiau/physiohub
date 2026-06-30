@@ -32,10 +32,14 @@ function emptyingFraction(time: number, halfTime: number, lagPhase: number) {
 }
 
 function halfTime(antralPump: number, pyloric: number, duoFeedback: number, fatPercent: number) {
-  // Normal liquid t1/2 ≈ 12 min, solid ≈ 45 min. Fat extends solid to 60–90.
+  // Normal solid t1/2 ≈ 45 min; fat extends it toward 60–90. Pyloric tone and
+  // duodenal feedback are referenced to their NORMAL default (50) so that a
+  // physiologic meal sits near base — values above 50 slow emptying, below
+  // speed it. (Centering on 0 made the default mixed meal read ~97 min, which
+  // is already in the gastroparesis range — wrong for a "normal" label.)
   const base = 45 + fatPercent * 0.45;
   return clamp(
-    base * (100 / Math.max(20, antralPump)) * (1 + pyloric / 200) * (1 + duoFeedback / 150),
+    base * (100 / Math.max(20, antralPump)) * (1 + (pyloric - 50) / 200) * (1 + (duoFeedback - 50) / 150),
     8,
     200
   );
@@ -73,7 +77,9 @@ export default function GastricEmptyingWidget() {
 
   const series = useMemo<CurveSeries[]>(() => {
     const range = makeRange(0, 240, 2);
-    const liquid = halfTime(antralPump, 30, 30, 0);
+    // Liquids empty much faster than solids (no trituration) — t½ ≈ 12–15 min,
+    // scaling with antral pump strength. Not the solid base model.
+    const liquid = clamp(15 * (100 / Math.max(20, antralPump)), 6, 45);
     return [
       {
         id: "current",

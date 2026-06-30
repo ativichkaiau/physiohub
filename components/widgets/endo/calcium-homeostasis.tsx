@@ -32,8 +32,12 @@ function pthAt(ca: number, vitD: number, ckd: number) {
   // ca in mg/dL; vitD as % of normal 25-OH-D; ckd as % loss of kidney function 0–90.
   const setPoint = 9.5 - (vitD < 60 ? (60 - vitD) * 0.02 : 0) + ckd * 0.012;
   const slope = 6;
-  const basal = 30 + ckd * 1.8;
-  return clamp(basal + 250 * (1 / (1 + Math.exp((ca - setPoint) * slope))), 5, 1200);
+  // Suppressed floor ~12 and amplitude ~85 keep PTH at the set point near
+  // mid-normal (~55 pg/mL), not half-of-an-oversized-range (the old 30+250/2
+  // gave a misleading 155 pg/mL at normocalcaemia). CKD lifts the floor
+  // (secondary HPTH).
+  const basal = 12 + ckd * 1.8;
+  return clamp(basal + 85 * (1 / (1 + Math.exp((ca - setPoint) * slope))), 5, 1200);
 }
 
 function calcitoninAt(ca: number) {
