@@ -17,6 +17,9 @@ function coCurve(rap: number, contractility: number) {
 // RAP > collapse point (≈ -2 mmHg); BELOW that, the great veins collapse
 // against subatmospheric transmural pressure and VR PLATEAUS. The previous
 // model let VR rise indefinitely with negative RAP, which doesn't happen.
+// Resistance to venous return ≈ 1.4 mmHg·min/L (Guyton: RVR = Pmsf/CO = 7/5),
+// so the normal VR curve passes through (RAP 0, 5 L/min) and intersects the CO
+// curve at Guyton's canonical operating point (CO 5, RAP 0).
 function vrCurve(rap: number, volume: number, resistance: number) {
   const meanSystemicFilling = 7 + (volume - 50) * 0.1;
   const collapsePoint = -2;
@@ -58,7 +61,7 @@ const config: CurveLabConfig = {
   controls: [
     { key: "volume", label: "Blood volume", min: 0, max: 100, step: 1, defaultValue: 50, unit: "%" },
     { key: "contractility", label: "Contractility", min: 0.5, max: 1.8, step: 0.01, defaultValue: 1 },
-    { key: "resistance", label: "Venous resistance", min: 0.7, max: 2.2, step: 0.01, defaultValue: 1.2 }
+    { key: "resistance", label: "Venous resistance", min: 0.7, max: 2.2, step: 0.01, defaultValue: 1.4 }
   ],
   buildSeries: (values) => [
     {
@@ -87,7 +90,7 @@ const config: CurveLabConfig = {
       label: "Normal VR",
       colorVar: "var(--ph-curve-ref)",
       dashed: true,
-      data: makeRange(-4, 12, 0.3).map((x) => ({ x, y: vrCurve(x, 50, 1.2) }))
+      data: makeRange(-4, 12, 0.3).map((x) => ({ x, y: vrCurve(x, 50, 1.4) }))
     }
   ],
   buildAnnotations: (values) => {
