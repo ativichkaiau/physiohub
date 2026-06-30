@@ -42,7 +42,10 @@ const config: FeedbackLabConfig = {
     const load = (values.metabolicRate - 100) * 0.25;
     const drive = toggles.chemoreflex ? clamp(35 + central + peripheral + load, 10, 180) : 35 + load;
     const minuteVentilation = clamp(5 + drive / 11, 2, 22);
-    const predictedPaco2 = clamp((40 * values.metabolicRate) / Math.max(minuteVentilation / 6, 0.4) / 100, 18, 90);
+    // PaCO2 = 40 × (CO2 production / ventilation), each normalised to baseline
+    // (metabolic 100 %, VE ≈ 8.2 L/min) so a normal state predicts ~40 mmHg.
+    // (Dividing VE by 6 made the normal default predict ~29 — spurious hypocapnia.)
+    const predictedPaco2 = clamp((40 * (values.metabolicRate / 100)) / Math.max(minuteVentilation / 8.2, 0.3), 18, 90);
     return {
       state: !toggles.chemoreflex
         ? "Open loop"

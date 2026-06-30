@@ -23,7 +23,11 @@ function computeAxis(stress: number, acthBolus: number, feedback: boolean, dexam
   const feedbackBrake = feedback ? dexEffect + 0.28 * acthBolus : 0;
   const crh = clamp(8 + stress * 0.18 - feedbackBrake, 1, 28);
   const acth = clamp(20 + crh * 2.2 + acthBolus - (feedback ? dexEffect * 3 : 0), 4, 130);
-  const cortisol = clamp(12 + acth * 0.14 + stress * 0.05 + (dexamethasone ? 10 : 0), 4, 44);
+  // Dexamethasone is a synthetic glucocorticoid that does NOT cross-react with
+  // the cortisol assay — the dex suppression test reads ENDOGENOUS cortisol,
+  // which falls via suppressed ACTH in a normal axis (and stays high in an
+  // autonomous/feedback-off tumour). So dex must not be added to cortisol here.
+  const cortisol = clamp(12 + acth * 0.14 + stress * 0.05, 4, 44);
   const suppression = feedback ? clamp(cortisol / 44, 0, 1) : 0;
   return { crh, acth, cortisol, suppression };
 }
