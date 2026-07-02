@@ -178,36 +178,42 @@ body {
 .ph-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(64px);
-  opacity: 0.62;
+  filter: blur(58px) saturate(128%);
+  opacity: 0.72;
   will-change: transform;
   animation: ph-blob-float 28s ease-in-out infinite;
 }
 
 .ph-blob-1 {
   width: 560px; height: 560px; top: -130px; left: -130px;
-  background: radial-gradient(circle, #43dca8, transparent 72%);
+  background: radial-gradient(circle, #1fe0a0, transparent 72%);
 }
 .ph-blob-2 {
   width: 640px; height: 640px; top: -160px; right: -150px;
-  background: radial-gradient(circle, #948dfa, transparent 72%);
+  background: radial-gradient(circle, #9a7bff, transparent 72%);
   animation-delay: -5s;
 }
 .ph-blob-3 {
-  width: 500px; height: 500px; top: 32%; right: -170px;
-  background: radial-gradient(circle, #6fb0ff, transparent 72%);
+  width: 500px; height: 500px; top: 30%; right: -170px;
+  background: radial-gradient(circle, #3fb4ff, transparent 72%);
   animation-delay: -11s;
 }
 .ph-blob-4 {
   width: 520px; height: 520px; bottom: -180px; left: 2%;
-  background: radial-gradient(circle, #ffb07f, transparent 74%);
-  opacity: 0.5;
+  background: radial-gradient(circle, #ff9a63, transparent 74%);
+  opacity: 0.62;
   animation-delay: -17s;
 }
 .ph-blob-5 {
-  width: 430px; height: 430px; bottom: -140px; right: 22%;
-  background: radial-gradient(circle, #4dd6c6, transparent 74%);
+  width: 460px; height: 460px; bottom: -150px; right: 20%;
+  background: radial-gradient(circle, #ff6cbe, transparent 74%);
   animation-delay: -22s;
+}
+.ph-blob-6 {
+  width: 400px; height: 400px; top: 44%; left: -150px;
+  background: radial-gradient(circle, #ffd23f, transparent 74%);
+  opacity: 0.55;
+  animation-delay: -14s;
 }
 
 @keyframes ph-blob-float {
@@ -901,6 +907,22 @@ svg { display: block; }
 .ph-diagram-card {
   box-shadow: var(--ph-clay-shadow);
   transform: translateZ(0);
+}
+
+/* Each card wears its system colour: an accent glow in the top-right corner
+   over an accent-tinted surface, plus an accent border. Because --ph-accent is
+   set per system, the catalog becomes eight distinct hues automatically. */
+.ph-system-card {
+  border-color: color-mix(in srgb, var(--ph-accent), transparent 58%);
+  background:
+    radial-gradient(135% 92% at 100% 0%, color-mix(in srgb, var(--ph-accent), transparent 78%), transparent 56%),
+    linear-gradient(165deg, color-mix(in srgb, var(--ph-accent), var(--ph-surface) 82%) 0%, var(--ph-surface) 70%);
+}
+
+.ph-diagram-card {
+  border-color: color-mix(in srgb, var(--ph-accent), transparent 66%);
+  background:
+    linear-gradient(165deg, color-mix(in srgb, var(--ph-accent), var(--ph-surface) 90%) 0%, var(--ph-surface) 62%);
 }
 
 .ph-diagram-card::before {

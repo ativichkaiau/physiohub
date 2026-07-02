@@ -34,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <span className="ph-blob ph-blob-3" />
           <span className="ph-blob ph-blob-4" />
           <span className="ph-blob ph-blob-5" />
+          <span className="ph-blob ph-blob-6" />
         </div>
         <div className="ph-app-content min-h-screen text-ph-text">
           <header className="ph-app-header">

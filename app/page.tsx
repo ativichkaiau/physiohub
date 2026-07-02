@@ -230,7 +230,7 @@ export default function HomePage() {
               <div className="relative">
                 <SystemSignal systemId={system.id} className="h-28 transition duration-200 group-hover:border-[var(--ph-border-strong)]" />
                 <div className="flex items-start justify-between gap-3">
-                  <span className="mt-4 inline-flex ph-clay-chip px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">
+                  <span className="mt-4 inline-flex ph-clay-chip px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-accent">
                     {system.shortName}
                   </span>
                   <div className="mt-4 flex flex-col items-end gap-1">
