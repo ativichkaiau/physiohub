@@ -178,8 +178,8 @@ body {
 .ph-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(58px) saturate(128%);
-  opacity: 0.72;
+  filter: blur(62px) saturate(110%);
+  opacity: 0.5;
   will-change: transform;
   animation: ph-blob-float 28s ease-in-out infinite;
 }
@@ -201,7 +201,7 @@ body {
 .ph-blob-4 {
   width: 520px; height: 520px; bottom: -180px; left: 2%;
   background: radial-gradient(circle, #ff9a63, transparent 74%);
-  opacity: 0.62;
+  opacity: 0.44;
   animation-delay: -17s;
 }
 .ph-blob-5 {
@@ -212,7 +212,7 @@ body {
 .ph-blob-6 {
   width: 400px; height: 400px; top: 44%; left: -150px;
   background: radial-gradient(circle, #ffd23f, transparent 74%);
-  opacity: 0.55;
+  opacity: 0.38;
   animation-delay: -14s;
 }
 
@@ -913,16 +913,16 @@ svg { display: block; }
    over an accent-tinted surface, plus an accent border. Because --ph-accent is
    set per system, the catalog becomes eight distinct hues automatically. */
 .ph-system-card {
-  border-color: color-mix(in srgb, var(--ph-accent), transparent 58%);
+  border-color: color-mix(in srgb, var(--ph-accent), transparent 70%);
   background:
-    radial-gradient(135% 92% at 100% 0%, color-mix(in srgb, var(--ph-accent), transparent 78%), transparent 56%),
-    linear-gradient(165deg, color-mix(in srgb, var(--ph-accent), var(--ph-surface) 82%) 0%, var(--ph-surface) 70%);
+    radial-gradient(135% 92% at 100% 0%, color-mix(in srgb, var(--ph-accent), transparent 87%), transparent 54%),
+    linear-gradient(165deg, color-mix(in srgb, var(--ph-accent), var(--ph-surface) 90%) 0%, var(--ph-surface) 74%);
 }
 
 .ph-diagram-card {
-  border-color: color-mix(in srgb, var(--ph-accent), transparent 66%);
+  border-color: color-mix(in srgb, var(--ph-accent), transparent 74%);
   background:
-    linear-gradient(165deg, color-mix(in srgb, var(--ph-accent), var(--ph-surface) 90%) 0%, var(--ph-surface) 62%);
+    linear-gradient(165deg, color-mix(in srgb, var(--ph-accent), var(--ph-surface) 94%) 0%, var(--ph-surface) 66%);
 }
 
 .ph-diagram-card::before {
