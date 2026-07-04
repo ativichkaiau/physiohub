@@ -64,19 +64,19 @@ export default function HomePage() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center">
           {/* Left — marquee */}
           <div className="max-w-4xl">
-            <span className="ph-cockpit-kicker">Interactive physiology atlas</span>
+            <span className="ph-cockpit-kicker">Live physiology monitor</span>
             <h1 className="mt-7 text-4xl font-black leading-[0.98] text-ph-text sm:text-5xl lg:text-[64px]">
-              Clamp the variables. Watch <span className="ph-cockpit-accent">the body</span> answer back.
+              Perturb a system. Watch <span className="ph-cockpit-accent ph-phosphor">the trace</span> answer back.
             </h1>
             <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-ph-muted sm:text-lg">
-              A systems bench for pressure, flow, gases, filtrate, hormones, impulse, and contraction. Scrub time, perturb curves, trace loops, and share the exact state by URL.
+              A live monitor for pressure, flow, gases, filtrate, hormones, impulse, and contraction. Scrub time, perturb a trace, follow the loop, and lock the exact reading to a URL.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href="#systems"
                 className="focus-ring ph-clay-button inline-flex w-full items-center justify-center rounded-ph px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] no-underline sm:w-auto"
               >
-                Start exploring
+                Go live
               </a>
               <PhysiologyIntro autoOpen launcherClassName="w-full sm:w-auto" />
               <Link
@@ -99,8 +99,8 @@ export default function HomePage() {
           <aside className="ph-cockpit-console p-5 lg:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-ph-muted">Live catalog</p>
-                <h2 className="mt-1.5 text-2xl font-black text-ph-text">Atlas Console</h2>
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-ph-muted">Live channels</p>
+                <h2 className="mt-1.5 text-2xl font-black text-ph-text">Monitor console</h2>
               </div>
               <span
                 className="ph-clay-chip px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-ph-accent"
@@ -121,7 +121,7 @@ export default function HomePage() {
                   </span>
                   <div className="min-w-0">
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-ph-muted">
-                      Featured widget
+                      On the monitor
                     </p>
                     <p className="mt-0.5 truncate text-lg font-black">{featured.title}</p>
                   </div>
@@ -132,7 +132,7 @@ export default function HomePage() {
                   href={getDiagramPath(featured.systemId, featured.slug)}
                   className="focus-ring ph-clay-button mt-4 inline-flex rounded-ph px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] no-underline"
                 >
-                  Open widget
+                  View trace
                 </Link>
               </div>
             ) : null}
@@ -143,7 +143,7 @@ export default function HomePage() {
                 <p className="mt-2 text-2xl font-black tabular-nums text-ph-text">{systems.length}</p>
               </div>
               <div className="ph-cockpit-stat">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">Diagrams</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">Traces</p>
                 <p className="mt-2 text-2xl font-black tabular-nums text-ph-text">{diagramCount}</p>
               </div>
               <div className="ph-cockpit-stat">
@@ -158,11 +158,11 @@ export default function HomePage() {
       <section aria-label="How to use the bench" className="mb-10">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="ph-kicker">🛠 How to use</p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight">Work the bench</h2>
+            <p className="ph-kicker">🩺 How to read the monitor</p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight">Work the monitor</h2>
           </div>
           <p className="max-w-xl text-sm text-ph-muted">
-            Every widget is a live model — move a control, read the response, and share the exact state by URL. No sign-in, nothing to install.
+            Every trace is a live model — move a control, read the response, and lock the exact reading to a URL. No sign-in, nothing to install.
           </p>
         </div>
 
@@ -203,11 +203,11 @@ export default function HomePage() {
 
       <section id="systems" className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="ph-kicker">🗂 Catalog</p>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight">Choose a system</h2>
+          <p className="ph-kicker">📡 Channels</p>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight">Select a channel</h2>
         </div>
         <p className="max-w-xl text-sm text-ph-muted">
-          Each card opens that system&rsquo;s diagram list. Live widgets are interactive; the rest are in development.
+          Each channel opens its trace list. Live traces respond in real time; the rest are still acquiring signal.
         </p>
       </section>
 
@@ -242,9 +242,9 @@ export default function HomePage() {
                       }
                       style={allLive ? { color: "var(--ph-ok)" } : undefined}
                     >
-                      {allLive ? "Complete" : "Live"}
+                      {allLive ? "All live" : "Live"}
                     </span>
-                    <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} diagrams</span>
+                    <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} traces</span>
                   </div>
                 </div>
                 <h3 className="mt-4 text-lg font-bold tracking-tight transition-colors group-hover:text-ph-accent">
@@ -258,7 +258,7 @@ export default function HomePage() {
                   />
                 </div>
                 <p className="mt-2 text-xs text-ph-muted tabular-nums">
-                  {ref} live · {system.diagrams.length - ref} in development
+                  {ref} live · {system.diagrams.length - ref} acquiring
                 </p>
               </div>
             </Link>

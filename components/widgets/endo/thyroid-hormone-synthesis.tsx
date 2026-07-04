@@ -229,7 +229,7 @@ export default function ThyroidHormoneSynthesisWidget() {
             </g>
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
             <Highlighted text={"Click each step inside the follicle: iodide trapping (NIS), oxidation and organification onto thyroglobulin, coupling of MIT and DIT, then colloid uptake and release of T4 and T3. The map also shows where drugs act — thionamides block peroxidase, perchlorate blocks the trap, and high iodide transiently blocks release (Wolff-Chaikoff)."} />
           </p>
         </section>

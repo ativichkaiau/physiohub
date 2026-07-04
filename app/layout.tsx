@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: "VESTRIPPN3.0 · PhysioHub",
     template: "%s · PhysioHub · VESTRIPPN3.0"
   },
-  description: "Interactive physiology diagrams for medical students — scrubbable timelines, perturbable curves, feedback loops, click-to-mechanism walks, and multi-variable interactions."
+  description: "A live physiology monitor for medical students — scrub time, perturb a trace, and read the body's response across scrubbable timelines, perturbable curves, feedback loops, and click-to-mechanism walks."
 };
 
 // Runs synchronously before React hydrates, to set the theme from
@@ -37,19 +37,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <span className="ph-blob ph-blob-6" />
         </div>
         <div className="ph-app-content min-h-screen text-ph-text">
-          <header className="ph-app-header">
-            <div className="ph-app-header-inner mx-auto flex w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">
+          <header className="ph-app-header ph-sweep">
+            <div className="ph-app-header-inner relative z-10 mx-auto flex w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:px-6">
               <Link href="/" className="focus-ring flex min-w-0 items-center gap-2.5 rounded-ph no-underline">
                 <span className="ph-brand-mark grid h-10 w-10 shrink-0 place-items-center rounded-[13px] text-base font-black">V</span>
                 <span className="text-lg font-black tracking-tight sm:text-xl">
-                  VESTRIPPN<span style={{ color: "var(--ph-accent-blue)" }}>3.0</span>
+                  VESTRIPPN<span className="ph-phosphor" style={{ color: "var(--ph-accent-blue)" }}>3.0</span>
                 </span>
               </Link>
               <div className="flex items-center gap-3 sm:gap-4">
+                <span className="hidden items-center gap-1.5 sm:inline-flex" aria-label="Monitor live">
+                  <span className="ph-live-dot" aria-hidden="true" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ph-muted-2">Live</span>
+                </span>
                 <span className="hidden text-sm font-semibold text-ph-muted sm:inline">PhysioHub</span>
                 <span aria-hidden="true" className="hidden h-5 w-px bg-[var(--ph-border-strong)] sm:inline-block" />
                 <span aria-hidden="true" className="hidden text-[10px] font-bold uppercase tracking-[0.2em] text-ph-muted-2 sm:inline">
-                  Mode
+                  Display
                 </span>
                 <ThemeToggle />
               </div>
@@ -65,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/docs" className="focus-ring rounded-ph font-semibold hover:text-ph-text">
                   Docs
                 </Link>
-                <span aria-hidden="true">Interactive physiology · URL-synced state · No backend</span>
+                <span aria-hidden="true">Live physiology telemetry · state locked to the URL · no backend</span>
               </span>
             </div>
           </footer>

@@ -34,7 +34,7 @@ export function DiagramHeader({ diagram }: { diagram: DiagramMeta }) {
           <Suspense
             fallback={
               <span className="ph-clay-button inline-flex px-3 py-2 text-sm text-ph-muted">
-                URL synced
+                State locked
               </span>
             }
           >

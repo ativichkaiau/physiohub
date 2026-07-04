@@ -267,7 +267,7 @@ export default function PituitaryHormoneMapWidget() {
             </g>
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
             <Highlighted text={"Click each axis to trace hypothalamus → pituitary → target → feedback. Most anterior-pituitary hormones run trophic loops where the target hormone brakes upstream. The posterior pituitary is different — ADH and oxytocin are made in the hypothalamus and simply RELEASED neurally, with no trophic gland in between."} />
           </p>
         </section>

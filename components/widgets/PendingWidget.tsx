@@ -263,9 +263,10 @@ export default function PendingWidget() {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <section className="ph-panel ph-chart-stage p-4" aria-label={`${diagram.title} template preview`}>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <h2 className="ph-section-label">Template preview</h2>
-            <span className="ph-clay-chip px-2 py-1 text-xs uppercase text-ph-muted">
-              In development
+            <h2 className="ph-section-label">Signal preview</h2>
+            <span className="ph-clay-chip inline-flex items-center gap-1.5 px-2 py-1 text-xs uppercase text-ph-muted">
+              <span className="ph-live-dot" aria-hidden="true" style={{ background: "var(--ph-warn)" }} />
+              Acquiring signal
             </span>
           </div>
           {diagram.archetype === "feedback-loop" ? (

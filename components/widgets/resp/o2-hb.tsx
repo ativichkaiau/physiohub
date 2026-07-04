@@ -134,7 +134,7 @@ export default function O2HbWidget() {
             height={420}
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
             <Highlighted text={"The S-shape comes from cooperative binding. On the flat top (lungs, high PO2) saturation barely changes, so loading is protected; on the steep middle (tissues) a small PO2 drop unloads a lot of O2. A RIGHT shift (acid, CO2, heat, 2,3-BPG) dumps more oxygen to tissue; a LEFT shift holds onto it. P50 is the PO2 at 50% saturation and moves with the shift."} />
           </p>
         </section>

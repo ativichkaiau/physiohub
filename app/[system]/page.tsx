@@ -51,7 +51,7 @@ export default function SystemPage({ params }: { params: { system: string } }) {
             <SystemSignal systemId={system.id} className="h-44" />
             <dl className="grid grid-cols-3 gap-3">
               <div className="ph-stat-tile p-3">
-                <dt className="ph-kicker">Diagrams</dt>
+                <dt className="ph-kicker">Traces</dt>
                 <dd className="mt-1.5 text-2xl font-bold tabular-nums">{system.diagrams.length}</dd>
               </div>
               <div className="ph-stat-tile p-3">
@@ -59,7 +59,7 @@ export default function SystemPage({ params }: { params: { system: string } }) {
                 <dd className="mt-1.5 text-2xl font-bold tabular-nums" style={{ color: "var(--ph-ok)" }}>{referenceCount}</dd>
               </div>
               <div className="ph-stat-tile p-3">
-                <dt className="ph-kicker">Pending</dt>
+                <dt className="ph-kicker">Acquiring</dt>
                 <dd className="mt-1.5 text-2xl font-bold tabular-nums text-ph-muted">{system.diagrams.length - referenceCount}</dd>
               </div>
             </dl>
@@ -69,11 +69,11 @@ export default function SystemPage({ params }: { params: { system: string } }) {
 
       <section className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="ph-kicker">Diagram bench</p>
-          <h2 className="mt-2 text-xl font-bold tracking-tight">Open a widget</h2>
+          <p className="ph-kicker">Trace bench</p>
+          <h2 className="mt-2 text-xl font-bold tracking-tight">Open a trace</h2>
         </div>
         <p className="text-xs text-ph-muted">
-          Click any card to launch · all state syncs to the URL
+          Open any trace to go live · every reading locks to the URL
         </p>
       </section>
 
@@ -94,7 +94,7 @@ export default function SystemPage({ params }: { params: { system: string } }) {
                 }
                 style={diagram.status === "reference" ? { color: "var(--ph-ok)" } : undefined}
               >
-                {diagram.status === "reference" ? "Live" : "In dev"}
+                {diagram.status === "reference" ? "Live" : "Acquiring"}
               </span>
             </div>
             <h3 className="mt-5 text-lg font-bold leading-tight tracking-tight transition-colors group-hover:text-ph-accent">

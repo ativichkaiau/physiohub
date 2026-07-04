@@ -186,7 +186,7 @@ export default function CalciumHomeostasisWidget() {
             height={420}
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
             <Highlighted text={"Read serum calcium left-to-right. As calcium FALLS, PTH rises to pull it back up — freeing bone calcium, reclaiming it in the kidney, and switching on calcitriol to absorb more from gut. As calcium climbs too HIGH, calcitonin opposes. The hormones are mirror-image guardians that clamp calcium in a narrow band."} />
           </p>
         </section>

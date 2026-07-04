@@ -158,7 +158,7 @@ export default function JvpWaveformWidget() {
             <span className="ph-readout">{time < 0.5 ? "Systole" : "Diastole"}</span>
           </div>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
             <Highlighted text={"Scrub the neck-vein waveform against the cardiac cycle. The a wave is atrial contraction, c is tricuspid bulging, the x descent is atrial relaxation, v is venous filling, the y descent is tricuspid opening. Cannon a waves (AV dissociation) and giant v waves (tricuspid regurgitation) point straight to a diagnosis."} />
           </p>
         </section>

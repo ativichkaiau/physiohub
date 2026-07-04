@@ -34,7 +34,7 @@ export function ShareStateIndicator() {
         className="h-2 w-2 rounded-full bg-ph-accent data-[pulse=true]:animate-ping"
         data-pulse={pulse}
       />
-      <span aria-live="polite">{copied ? "Copied" : "URL synced"}</span>
+      <span aria-live="polite">{copied ? "Copied" : "State locked"}</span>
     </button>
   );
 }

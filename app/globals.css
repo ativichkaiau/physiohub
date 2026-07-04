@@ -11,47 +11,47 @@
 :root {
   color-scheme: light;
 
-  /* Surfaces — bright, airy pastel canvas */
-  --ph-bg:            #edf2fa;
-  --ph-surface:       #fbfcff;
-  --ph-surface-2:     #f1f5fc;
-  --ph-surface-3:     #e7eef8;
-  --ph-card:          rgba(251, 252, 255, 0.76);
-  --ph-card-soft:     rgba(241, 245, 252, 0.70);
+  /* Surfaces — daytime telemetry: cool paper white with a faint cyan graticule */
+  --ph-bg:            #eaf1f5;
+  --ph-surface:       #ffffff;
+  --ph-surface-2:     #e8f0f4;
+  --ph-surface-3:     #dde8ee;
+  --ph-card:          rgba(255, 255, 255, 0.78);
+  --ph-card-soft:     rgba(232, 240, 244, 0.72);
 
   /* Text */
-  --ph-text:          #121826;
-  --ph-muted:         #51607a;
-  --ph-muted-2:       #6a778b;
+  --ph-text:          #071620;
+  --ph-muted:         #47606d;
+  --ph-muted-2:       #6a828f;
 
-  /* Brand — emerald-teal primary, blue reserved for the "3.0" wordmark */
-  --ph-accent:        #0e9e7a;
-  --ph-accent-2:      #e66458;
-  --ph-accent-blue:   #3a63d4;
-  --ph-brand:         #0e9e7a;
+  /* Monitor accents — cyan primary, magenta reserved for the "3.0" spike */
+  --ph-accent:        #0891b2;
+  --ph-accent-2:      #d1417a;
+  --ph-accent-blue:   #2b7fd4;
+  --ph-brand:         #0891b2;
 
-  /* Plot colours */
-  --ph-curve-1:       #168b72;
-  --ph-curve-2:       #d99322;
-  --ph-curve-3:       #d45461;
-  --ph-curve-4:       #e26b43;
-  --ph-curve-5:       #1687a5;
-  --ph-curve-6:       #7559b7;
+  /* Trace colours (readable on white paper) */
+  --ph-curve-1:       #0e9d6b;
+  --ph-curve-2:       #c17d10;
+  --ph-curve-3:       #d43f5e;
+  --ph-curve-4:       #d9603a;
+  --ph-curve-5:       #0e8fb0;
+  --ph-curve-6:       #6d55c9;
   --ph-curve-7:       #bd4d8e;
-  --ph-curve-ref:     #7c899c;
+  --ph-curve-ref:     #6a828f;
 
-  /* Axes + grid */
-  --ph-axis:          #344055;
-  --ph-grid:          rgba(52, 64, 85, 0.05);
+  /* Axes + graticule */
+  --ph-axis:          #26404b;
+  --ph-grid:          rgba(8, 145, 178, 0.06);
 
   /* Borders */
-  --ph-border:        rgba(63, 78, 101, 0.16);
-  --ph-border-strong: rgba(63, 78, 101, 0.28);
+  --ph-border:        rgba(18, 78, 98, 0.16);
+  --ph-border-strong: rgba(18, 78, 98, 0.30);
 
   /* Status */
-  --ph-warn:          #d28a1d;
-  --ph-danger:        #d45461;
-  --ph-ok:            #168b72;
+  --ph-warn:          #b9770f;
+  --ph-danger:        #d43f5e;
+  --ph-ok:            #0e9d6b;
 
   --ph-radius:        8px;
   --ph-clay-shadow:   11px 11px 28px rgba(99, 117, 145, 0.13),
@@ -71,47 +71,47 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  /* Surfaces — true-black (OLED) canvas with near-black lifted panels */
-  --ph-bg:            #000000;
-  --ph-surface:       #0f1117;
-  --ph-surface-2:     #08090d;
-  --ph-surface-3:     #191c24;
-  --ph-card:          rgba(15, 17, 23, 0.74);
-  --ph-card-soft:     rgba(8, 9, 13, 0.68);
+  /* Surfaces — the native monitor: near-OLED black with lifted graphite bays */
+  --ph-bg:            #04070c;
+  --ph-surface:       #0b1119;
+  --ph-surface-2:     #06090f;
+  --ph-surface-3:     #121b26;
+  --ph-card:          rgba(11, 17, 25, 0.76);
+  --ph-card-soft:     rgba(6, 9, 15, 0.70);
 
   /* Text */
-  --ph-text:          #f1f3f6;
-  --ph-muted:         #b0b6c2;
-  --ph-muted-2:       #858e9f;
+  --ph-text:          #dcebf1;
+  --ph-muted:         #8098a6;
+  --ph-muted-2:       #5f7683;
 
-  /* Brand */
-  --ph-accent:        #2fd4a7;
-  --ph-accent-2:      #ff8374;
-  --ph-accent-blue:   #7aa2ff;
-  --ph-brand:         #2fd4a7;
+  /* Monitor accents — electric cyan primary */
+  --ph-accent:        #22d3ee;
+  --ph-accent-2:      #ff4d8d;
+  --ph-accent-blue:   #56ccf2;
+  --ph-brand:         #22d3ee;
 
-  /* Plot colours */
-  --ph-curve-1:       #57d6b2;
-  --ph-curve-2:       #f2c15c;
-  --ph-curve-3:       #ff7d8c;
-  --ph-curve-4:       #ff9a61;
-  --ph-curve-5:       #55c7e2;
-  --ph-curve-6:       #b197f1;
-  --ph-curve-7:       #ef86c1;
-  --ph-curve-ref:     #9ba5b5;
+  /* Trace colours — glowing phosphor */
+  --ph-curve-1:       #34e5a0;
+  --ph-curve-2:       #ffc24d;
+  --ph-curve-3:       #ff6b8a;
+  --ph-curve-4:       #ff9a5a;
+  --ph-curve-5:       #38d0f5;
+  --ph-curve-6:       #b39bff;
+  --ph-curve-7:       #ff7ac8;
+  --ph-curve-ref:     #7a8f9c;
 
-  /* Axes + grid */
-  --ph-axis:          #d6dbe4;
-  --ph-grid:          rgba(230, 234, 241, 0.045);
+  /* Axes + graticule */
+  --ph-axis:          #c4d8e0;
+  --ph-grid:          rgba(34, 211, 238, 0.06);
 
   /* Borders */
-  --ph-border:        rgba(228, 232, 240, 0.14);
-  --ph-border-strong: rgba(228, 232, 240, 0.26);
+  --ph-border:        rgba(120, 190, 210, 0.15);
+  --ph-border-strong: rgba(120, 190, 210, 0.28);
 
   /* Status */
-  --ph-warn:          #f2c15c;
-  --ph-danger:        #ff7d8c;
-  --ph-ok:            #57d6b2;
+  --ph-warn:          #ffc24d;
+  --ph-danger:        #ff6b8a;
+  --ph-ok:            #34e5a0;
 
   --ph-clay-shadow:   10px 10px 26px rgba(0, 0, 0, 0.7),
                       -8px -8px 20px rgba(74, 80, 96, 0.16),
@@ -143,8 +143,8 @@ body {
   min-height: 100%;
   margin: 0;
   background:
-    radial-gradient(125% 100% at -5% -8%, color-mix(in srgb, #43dca8, transparent 85%), transparent 45%),
-    radial-gradient(115% 100% at 106% 4%, color-mix(in srgb, #948dfa, transparent 85%), transparent 48%),
+    radial-gradient(125% 100% at -5% -8%, color-mix(in srgb, #22d3ee, transparent 88%), transparent 45%),
+    radial-gradient(115% 100% at 106% 4%, color-mix(in srgb, #34e5a0, transparent 88%), transparent 48%),
     linear-gradient(var(--ph-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px),
     var(--ph-bg);
@@ -186,33 +186,34 @@ body {
 
 .ph-blob-1 {
   width: 560px; height: 560px; top: -130px; left: -130px;
-  background: radial-gradient(circle, #1fe0a0, transparent 72%);
+  background: radial-gradient(circle, #22d3ee, transparent 72%);
 }
 .ph-blob-2 {
   width: 640px; height: 640px; top: -160px; right: -150px;
-  background: radial-gradient(circle, #9a7bff, transparent 72%);
+  background: radial-gradient(circle, #34e5a0, transparent 72%);
   animation-delay: -5s;
 }
 .ph-blob-3 {
   width: 500px; height: 500px; top: 30%; right: -170px;
-  background: radial-gradient(circle, #3fb4ff, transparent 72%);
+  background: radial-gradient(circle, #38bdf8, transparent 72%);
   animation-delay: -11s;
 }
 .ph-blob-4 {
   width: 520px; height: 520px; bottom: -180px; left: 2%;
-  background: radial-gradient(circle, #ff9a63, transparent 74%);
-  opacity: 0.44;
+  background: radial-gradient(circle, #ff9a5a, transparent 74%);
+  opacity: 0.42;
   animation-delay: -17s;
 }
 .ph-blob-5 {
   width: 460px; height: 460px; bottom: -150px; right: 20%;
-  background: radial-gradient(circle, #ff6cbe, transparent 74%);
+  background: radial-gradient(circle, #ff4d8d, transparent 74%);
+  opacity: 0.4;
   animation-delay: -22s;
 }
 .ph-blob-6 {
   width: 400px; height: 400px; top: 44%; left: -150px;
-  background: radial-gradient(circle, #ffd23f, transparent 74%);
-  opacity: 0.38;
+  background: radial-gradient(circle, #ffc24d, transparent 74%);
+  opacity: 0.36;
   animation-delay: -14s;
 }
 
@@ -242,6 +243,70 @@ body {
 
 :root[data-theme="dark"] .ph-blobs .ph-blob-4 {
   opacity: 0.32;
+}
+
+/* =====================================================================
+   Vital-Signs motifs — the monitor's living hardware.
+   ===================================================================== */
+
+/* A sweeping trace cursor that crosses a surface (header banner). */
+.ph-sweep { position: relative; }
+.ph-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 80%,
+    color-mix(in srgb, var(--ph-accent), transparent 80%) 90%,
+    color-mix(in srgb, var(--ph-accent), transparent 24%) 97%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: ph-sweep-move 5s linear infinite;
+}
+@keyframes ph-sweep-move { to { transform: translateX(100%); } }
+
+/* Pulsing "live" telemetry dot. */
+.ph-live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ph-ok);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--ph-ok), transparent 35%);
+  animation: ph-live-pulse 1.7s ease-out infinite;
+}
+@keyframes ph-live-pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ph-ok), transparent 35%); }
+  70%  { box-shadow: 0 0 0 8px color-mix(in srgb, var(--ph-ok), transparent 100%); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ph-ok), transparent 100%); }
+}
+
+/* Phosphor glow for accent glyphs (brand mark, spike word). */
+.ph-phosphor {
+  text-shadow: 0 0 10px color-mix(in srgb, var(--ph-accent), transparent 64%);
+}
+:root[data-theme="dark"] .ph-phosphor {
+  text-shadow:
+    0 0 12px color-mix(in srgb, var(--ph-accent), transparent 42%),
+    0 0 30px color-mix(in srgb, var(--ph-accent), transparent 70%);
+}
+
+/* Monospace telemetry readouts. */
+.ph-telemetry {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Respect reduced-motion: freeze the sweep, pulse, and blob drift. */
+@media (prefers-reduced-motion: reduce) {
+  .ph-sweep::after { animation: none; opacity: 0; }
+  .ph-live-dot { animation: none; }
+  .ph-blob { animation: none; }
 }
 
 button, input, select { font: inherit; }

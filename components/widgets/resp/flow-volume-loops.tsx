@@ -121,7 +121,7 @@ export default function FlowVolumeLoopsWidget() {
             height={420}
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
             <Highlighted text={"The loop plots flow against volume in one breath. The expiratory limb (top) shoots to peak flow then falls along a straight line that is effort-INDEPENDENT — its slope is set by the airways, not by how hard you blow. Obstruction scoops that limb concave; restriction makes a tall, narrow loop shifted toward low volumes. Compare yours to the normal overlay."} />
           </p>
         </section>

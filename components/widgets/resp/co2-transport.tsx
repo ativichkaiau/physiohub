@@ -126,7 +126,7 @@ export default function Co2TransportWidget() {
             {stepId === 6 ? <text x="360" y="210" textAnchor="middle" fontSize="11" fontWeight="800" fill="var(--ph-accent)">at the lung: O₂ in → CO₂ + H⁺ released (Haldane) → exhaled</text> : null}
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
             <Highlighted text={"Click the journey of CO2 from tissue to lung. Most of it rides as bicarbonate: carbonic anhydrase in the red cell converts CO2 to bicarbonate, which leaves in exchange for chloride (the chloride shift); some binds hemoglobin as carbamino. In the lung it all reverses. The Haldane effect: oxygenated blood carries LESS CO2, so loading oxygen helps unload CO2."} />
           </p>
         </section>

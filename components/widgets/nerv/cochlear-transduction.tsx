@@ -141,7 +141,7 @@ export default function CochlearTransductionWidget() {
             })}
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
             <Highlighted text={"Click each station as sound becomes signal: eardrum → ossicles (impedance matching) → cochlear fluid → basilar membrane, which is TONOTOPIC (base codes high pitch, apex low) → hair cells → CN VIII. Outer-ear or ossicle problems give conductive loss; hair-cell or nerve problems give sensorineural loss."} />
           </p>
         </section>
