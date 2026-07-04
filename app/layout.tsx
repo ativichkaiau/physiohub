@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/" className="focus-ring flex min-w-0 items-center gap-2.5 rounded-ph no-underline">
                 <span className="ph-brand-mark grid h-10 w-10 shrink-0 place-items-center rounded-[13px] text-base font-black">V</span>
                 <span className="text-lg font-black tracking-tight sm:text-xl">
-                  VESTRIPPN<span className="ph-phosphor" style={{ color: "var(--ph-accent-blue)" }}>3.0</span>
+                  VESTRIPPN<span className="ph-brand-30">3.0</span><span className="ph-brand-tag">W11</span>
                 </span>
               </Link>
               <div className="flex items-center gap-3 sm:gap-4">

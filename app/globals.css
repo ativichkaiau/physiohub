@@ -429,12 +429,22 @@ svg { display: block; }
     color-mix(in srgb, var(--ph-brand), black 18%) 100%
   );
   box-shadow:
+    0 0 14px color-mix(in srgb, var(--ph-brand), transparent 66%),
     4px 5px 12px rgba(74, 89, 112, 0.26),
     -3px -3px 9px var(--ph-clay-highlight),
     inset 1px 2px 1px rgba(255, 255, 255, 0.6),
     inset 0 -4px 7px rgba(0, 0, 0, 0.2);
   color: #ffffff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+}
+
+/* Native monitor: the tile floats on a cyan phosphor halo. */
+:root[data-theme="dark"] .ph-brand-mark {
+  box-shadow:
+    0 0 22px color-mix(in srgb, var(--ph-brand), transparent 48%),
+    4px 5px 14px rgba(0, 0, 0, 0.55),
+    inset 1px 2px 1px rgba(255, 255, 255, 0.45),
+    inset 0 -4px 7px rgba(0, 0, 0, 0.28);
 }
 
 /* Glossy highlight sweep across the top half of the tile. */
@@ -445,6 +455,32 @@ svg { display: block; }
   border-radius: inherit;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0));
   pointer-events: none;
+}
+
+/* Wordmark "3.0" — green→cyan gradient fill (phosphor glow in dark). */
+.ph-brand-30 {
+  background: linear-gradient(95deg, #0e9d6b 0%, #0891b2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+:root[data-theme="dark"] .ph-brand-30 {
+  background: linear-gradient(95deg, #34e5a0 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 9px color-mix(in srgb, #22d3ee, transparent 55%));
+}
+
+/* Small build tag riding after the wordmark. */
+.ph-brand-tag {
+  margin-left: 0.34rem;
+  font-size: 0.58em;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  color: var(--ph-muted-2);
+  vertical-align: 0.55em;
 }
 
 .ph-nav-shell {
