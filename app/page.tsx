@@ -69,7 +69,7 @@ export default function HomePage() {
               Perturb a system. Watch <span className="ph-cockpit-accent ph-phosphor">the trace</span> answer back.
             </h1>
             <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-ph-muted sm:text-lg">
-              A live monitor for pressure, flow, gases, filtrate, hormones, impulse, and contraction. Scrub time, perturb a trace, follow the loop, and lock the exact reading to a URL.
+              A live monitor for pressure, flow, gases, filtrate, hormones, impulse, and contraction. Scrub time, perturb curves, trace loops, and share the exact state by URL.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
@@ -143,7 +143,7 @@ export default function HomePage() {
                 <p className="mt-2 text-2xl font-black tabular-nums text-ph-text">{systems.length}</p>
               </div>
               <div className="ph-cockpit-stat">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">Traces</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted">Diagrams</p>
                 <p className="mt-2 text-2xl font-black tabular-nums text-ph-text">{diagramCount}</p>
               </div>
               <div className="ph-cockpit-stat">
@@ -158,11 +158,11 @@ export default function HomePage() {
       <section aria-label="How to use the bench" className="mb-10">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="ph-kicker">🩺 How to read the monitor</p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight">Work the monitor</h2>
+            <p className="ph-kicker">🛠 How to use</p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight">Work the bench</h2>
           </div>
           <p className="max-w-xl text-sm text-ph-muted">
-            Every trace is a live model — move a control, read the response, and lock the exact reading to a URL. No sign-in, nothing to install.
+            Every widget is a live model — move a control, read the response, and share the exact state by URL. No sign-in, nothing to install.
           </p>
         </div>
 
@@ -203,11 +203,11 @@ export default function HomePage() {
 
       <section id="systems" className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="ph-kicker">📡 Channels</p>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight">Select a channel</h2>
+          <p className="ph-kicker">🗂 Catalog</p>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight">Choose a system</h2>
         </div>
         <p className="max-w-xl text-sm text-ph-muted">
-          Each channel opens its trace list. Live traces respond in real time; the rest are still acquiring signal.
+          Each card opens that system&rsquo;s diagram list. Live widgets are interactive; the rest are in development.
         </p>
       </section>
 
@@ -242,9 +242,9 @@ export default function HomePage() {
                       }
                       style={allLive ? { color: "var(--ph-ok)" } : undefined}
                     >
-                      {allLive ? "All live" : "Live"}
+                      {allLive ? "Complete" : "Live"}
                     </span>
-                    <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} traces</span>
+                    <span className="text-xs text-ph-muted tabular-nums">{system.diagrams.length} diagrams</span>
                   </div>
                 </div>
                 <h3 className="mt-4 text-lg font-bold tracking-tight transition-colors group-hover:text-ph-accent">
@@ -258,7 +258,7 @@ export default function HomePage() {
                   />
                 </div>
                 <p className="mt-2 text-xs text-ph-muted tabular-nums">
-                  {ref} live · {system.diagrams.length - ref} acquiring
+                  {ref} live · {system.diagrams.length - ref} in development
                 </p>
               </div>
             </Link>

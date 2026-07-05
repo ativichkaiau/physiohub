@@ -147,7 +147,7 @@ export default function SexualDifferentiationWidget() {
             ))}
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
             <Highlighted text={"Click each step from the bipotential gonad. SRY makes a testis → Sertoli cells secrete AMH (regressing the female ducts) and Leydig cells make testosterone (building the male ducts), with DHT building the external genitalia. No SRY follows the DEFAULT female path. Disorders map onto steps: CAIS (no androgen receptor), 5-alpha-reductase deficiency (no DHT), and CAH."} />
           </p>
         </section>

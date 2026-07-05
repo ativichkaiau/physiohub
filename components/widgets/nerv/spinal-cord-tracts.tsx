@@ -166,7 +166,7 @@ export default function SpinalCordTractsWidget() {
             <text x="180" y="320" textAnchor="middle" fontSize="10" fontWeight="700" fill="var(--ph-muted)">DCML dorsal · corticospinal lateral · spinothalamic anterolateral</text>
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
             <Highlighted text={"Click a tract or drop a lesion on the cord cross-section. The trick is WHERE each pathway crosses: the dorsal columns (fine touch, proprioception) cross up in the medulla, while the spinothalamic tract (pain, temperature) crosses in the cord. That split is why a Brown-Sequard hemisection gives ipsilateral touch loss but contralateral pain loss."} />
           </p>
         </section>

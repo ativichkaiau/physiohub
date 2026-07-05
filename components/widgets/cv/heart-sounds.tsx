@@ -154,7 +154,7 @@ export default function HeartSoundsWidget() {
             ) : null}
           </svg>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
             <Highlighted text={"S1 is mitral and tricuspid closing, S2 is aortic and pulmonic closing. Click each sound; the key is S2 SPLITTING — normally A2 then P2, widening on inspiration. Fixed split (ASD), wide split (RBBB, delayed P2), and paradoxical split (aortic stenosis or LBBB, where A2 is late) each localize the lesion."} />
           </p>
         </section>

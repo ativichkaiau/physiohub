@@ -25,7 +25,7 @@ export function ReportError({ diagramId }: { diagramId: string }) {
   return (
     <footer className="mt-4 border-t border-[var(--ph-border)] pt-4 text-sm text-ph-muted">
       <a className="focus-ring inline-flex rounded-ph hover:text-ph-text" href={href}>
-        Flag a bad trace
+        Report an error in this diagram
       </a>
     </footer>
   );

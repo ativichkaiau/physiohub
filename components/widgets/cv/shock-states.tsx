@@ -316,7 +316,7 @@ export default function ShockStatesWidget() {
             height={430}
           />
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
             <Highlighted text={"This is a map, not a time course: each dot is a snapshot of cardiac output (vertical) versus systemic vascular resistance (horizontal). Normal sits in the middle. High resistance with low output (lower-right) is the cold, clamped-down pattern of cardiogenic and hypovolemic shock; low resistance with high output (upper-left) is the warm, vasodilated pattern of distributive/septic shock. Read the quadrant to read the shock."} />
           </p>
         </section>

@@ -408,7 +408,7 @@ export default function WiggersWidget() {
             />
           </div>
           <p className="ph-clay-well mt-3 px-3 py-2 text-xs leading-relaxed text-ph-muted">
-            <span className="font-black uppercase tracking-[0.14em] text-ph-text">Reading the trace · </span>
+            <span className="font-black uppercase tracking-[0.14em] text-ph-text">How to read · </span>
             <Highlighted text={"Scrub one cardiac cycle and read the stacked traces in a vertical line. Valve events align across pressure, volume, and ECG: the mitral valve closes at S1, the aortic valve opens once LV pressure beats aortic, and the dicrotic notch marks aortic closure (S2). Pressure crossings open and close the valves — follow them top to bottom at any instant."} />
           </p>
         </section>

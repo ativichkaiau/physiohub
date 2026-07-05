@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: "VESTRIPPN3.0 · PhysioHub",
     template: "%s · PhysioHub · VESTRIPPN3.0"
   },
-  description: "A live physiology monitor for medical students — scrub time, perturb a trace, and read the body's response across scrubbable timelines, perturbable curves, feedback loops, and click-to-mechanism walks."
+  description: "Interactive physiology diagrams for medical students — scrubbable timelines, perturbable curves, feedback loops, click-to-mechanism walks, and multi-variable interactions."
 };
 
 // Runs synchronously before React hydrates, to set the theme from
