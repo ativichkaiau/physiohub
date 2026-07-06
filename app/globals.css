@@ -53,18 +53,18 @@
   --ph-danger:        #d43f5e;
   --ph-ok:            #0e9d6b;
 
-  --ph-radius:        13px;
+  --ph-radius:        18px;
   --ph-clay-shadow:   11px 11px 28px rgba(99, 117, 145, 0.13),
-                      -10px -10px 24px rgba(255, 255, 255, 0.92),
-                      inset 1px 1px 0 rgba(255, 255, 255, 0.85);
+                      -10px -10px 24px rgba(255, 255, 255, 0.45),
+                      inset 1px 1px 0 rgba(255, 255, 255, 0.42);
   --ph-clay-shadow-sm: 5px 5px 14px rgba(99, 117, 145, 0.11),
-                       -5px -5px 12px rgba(255, 255, 255, 0.88),
-                       inset 1px 1px 0 rgba(255, 255, 255, 0.75);
+                       -5px -5px 12px rgba(255, 255, 255, 0.42),
+                       inset 1px 1px 0 rgba(255, 255, 255, 0.38);
   --ph-clay-inset:    inset 4px 4px 11px rgba(99, 117, 145, 0.10),
-                      inset -4px -4px 10px rgba(255, 255, 255, 0.85);
+                      inset -4px -4px 10px rgba(255, 255, 255, 0.42);
   --ph-clay-pressed:  inset 3px 3px 8px rgba(90, 107, 132, 0.13),
-                      inset -2px -2px 7px rgba(255, 255, 255, 0.72);
-  --ph-clay-highlight: rgba(255, 255, 255, 0.85);
+                      inset -2px -2px 7px rgba(255, 255, 255, 0.36);
+  --ph-clay-highlight: rgba(255, 255, 255, 0.42);
   --ph-shadow:        var(--ph-clay-shadow);
 }
 
@@ -114,16 +114,16 @@
   --ph-ok:            #34e5a0;
 
   --ph-clay-shadow:   10px 10px 26px rgba(0, 0, 0, 0.7),
-                      -8px -8px 20px rgba(74, 80, 96, 0.16),
-                      inset 1px 1px 0 rgba(255, 255, 255, 0.08);
+                      -8px -8px 20px rgba(74, 80, 96, 0.09),
+                      inset 1px 1px 0 rgba(255, 255, 255, 0.045);
   --ph-clay-shadow-sm: 5px 5px 13px rgba(0, 0, 0, 0.66),
-                       -4px -4px 11px rgba(74, 80, 96, 0.14),
-                       inset 1px 1px 0 rgba(255, 255, 255, 0.07);
+                       -4px -4px 11px rgba(74, 80, 96, 0.08),
+                       inset 1px 1px 0 rgba(255, 255, 255, 0.04);
   --ph-clay-inset:    inset 4px 4px 10px rgba(4, 5, 8, 0.42),
-                      inset -4px -4px 10px rgba(65, 69, 82, 0.18);
+                      inset -4px -4px 10px rgba(65, 69, 82, 0.10);
   --ph-clay-pressed:  inset 3px 3px 8px rgba(4, 5, 8, 0.52),
-                      inset -2px -2px 7px rgba(65, 69, 82, 0.14);
-  --ph-clay-highlight: rgba(255, 255, 255, 0.08);
+                      inset -2px -2px 7px rgba(65, 69, 82, 0.08);
+  --ph-clay-highlight: rgba(255, 255, 255, 0.045);
   --ph-shadow:        var(--ph-clay-shadow);
 }
 

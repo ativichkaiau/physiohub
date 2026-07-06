@@ -401,7 +401,39 @@ const widgetMap: Record<string, ComponentType> = {
   "repro/contraception-methods": dynamic(
     () => import("@/components/widgets/repro/contraception-methods"),
     { loading: () => <WidgetLoading />, ssr: false }
-  )
+  ),
+  "cv/laplace-wall-stress": dynamic(() => import("@/components/widgets/cv/laplace-wall-stress"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "resp/hypoxic-pulmonary-vasoconstriction": dynamic(
+    () => import("@/components/widgets/resp/hypoxic-pulmonary-vasoconstriction"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "nerv/strength-duration-curve": dynamic(
+    () => import("@/components/widgets/nerv/strength-duration-curve"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "msk/bone-density-lifespan": dynamic(
+    () => import("@/components/widgets/msk/bone-density-lifespan"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "gi/sodium-glucose-cotransport": dynamic(
+    () => import("@/components/widgets/gi/sodium-glucose-cotransport"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "endo/cortisol-circadian-rhythm": dynamic(
+    () => import("@/components/widgets/endo/cortisol-circadian-rhythm"),
+    { loading: () => <WidgetLoading />, ssr: false }
+  ),
+  "renal/glucose-titration": dynamic(() => import("@/components/widgets/renal/glucose-titration"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  }),
+  "repro/gnrh-pulsatility": dynamic(() => import("@/components/widgets/repro/gnrh-pulsatility"), {
+    loading: () => <WidgetLoading />,
+    ssr: false
+  })
 };
 
 const PendingWidget = dynamic(() => import("@/components/widgets/PendingWidget"), {

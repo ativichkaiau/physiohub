@@ -372,6 +372,26 @@
               "pages": "143-151"
             }
           ]
+        },
+        {
+          "id": "cv/laplace-wall-stress",
+          "slug": "laplace-wall-stress",
+          "title": "Laplace Wall Stress",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Slide radius, pressure, and wall thickness to see how Laplace's law sets ventricular wall stress and O₂ demand.",
+          "concept": "Wall stress (σ = P·r / 2h) drives myocardial oxygen demand. Dilation and pressure overload raise it; wall thickening lowers it. Explore how concentric hypertrophy normalises stress in pressure overload — and why a dilated, thin, high-pressure ventricle is metabolically expensive.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e"
+            },
+            {
+              "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
+            }
+          ]
         }
       ]
     },
@@ -647,6 +667,26 @@
               "pages": "194-200"
             }
           ]
+        },
+        {
+          "id": "resp/hypoxic-pulmonary-vasoconstriction",
+          "slug": "hypoxic-pulmonary-vasoconstriction",
+          "title": "Hypoxic Pulmonary Vasoconstriction",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Lower alveolar PO₂ and watch pulmonary vascular resistance climb — the lung's unique hypoxic vasoconstriction.",
+          "concept": "Alveolar hypoxia constricts pulmonary arterioles below ~70 mmHg — opposite to the systemic circulation. Locally this improves V/Q matching by diverting flow; globally (altitude, chronic lung disease) it drives pulmonary hypertension and cor pulmonale. Acidosis potentiates it; O₂, calcium-channel blockers, and inhaled NO blunt it.",
+          "references": [
+            {
+              "source": "West Respiratory Physiology, 10e"
+            },
+            {
+              "source": "Costanzo Physiology, 7e"
+            },
+            {
+              "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
+            }
+          ]
         }
       ]
     },
@@ -899,6 +939,23 @@
               "pages": "380-403"
             }
           ]
+        },
+        {
+          "id": "nerv/strength-duration-curve",
+          "slug": "strength-duration-curve",
+          "title": "Strength–Duration Curve",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Trace the minimum stimulus current versus pulse duration — rheobase, chronaxie, and excitability.",
+          "concept": "Threshold current = rheobase·(1 + chronaxie/t). Brief pulses need far more current; rheobase is the long-pulse minimum and chronaxie (the duration at twice rheobase) indexes excitability. Denervated muscle has a long chronaxie — the classic strength-duration test for lower-motor-neuron lesions.",
+          "references": [
+            {
+              "source": "Kandel Principles of Neural Science, 6e"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e"
+            }
+          ]
         }
       ]
     },
@@ -1088,6 +1145,23 @@
             {
               "source": "Kandel Principles of Neural Science, 6e",
               "pages": "724-744"
+            }
+          ]
+        },
+        {
+          "id": "msk/bone-density-lifespan",
+          "slug": "bone-density-lifespan",
+          "title": "Bone Density Across the Lifespan",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Watch bone density rise to a peak near age 30 and decline with age — menopause and risk factors bend the curve.",
+          "concept": "Peak bone mass (~age 30) minus lifetime loss sets fracture risk. Weight-bearing exercise, calcium, and vitamin D raise the peak; oestrogen deficiency, glucocorticoids, and smoking accelerate loss. Read the T-score against WHO thresholds: osteopenia −1 to −2.5, osteoporosis ≤ −2.5.",
+          "references": [
+            {
+              "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e"
             }
           ]
         }
@@ -1289,6 +1363,23 @@
               "pages": "276-285"
             }
           ]
+        },
+        {
+          "id": "gi/sodium-glucose-cotransport",
+          "slug": "sodium-glucose-cotransport",
+          "title": "Na⁺–Glucose Cotransport & ORS",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Add luminal glucose and sodium to drive SGLT1 cotransport and water absorption — the principle behind oral rehydration.",
+          "concept": "SGLT1 cotransports glucose with sodium, and water follows osmotically. Oral rehydration solution works even in secretory (cholera) diarrhoea because the toxin spares this transporter — glucose plus salt still pull water in. Sugar without salt, or a hyperosmolar drink, does far less.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e"
+            }
+          ]
         }
       ]
     },
@@ -1486,6 +1577,23 @@
             {
               "source": "Costanzo Physiology, 7e",
               "pages": "372-380"
+            }
+          ]
+        },
+        {
+          "id": "endo/cortisol-circadian-rhythm",
+          "slug": "cortisol-circadian-rhythm",
+          "title": "Cortisol Circadian Rhythm",
+          "archetype": "scrubbable-timeline",
+          "status": "reference",
+          "teaser": "Scrub one day of cortisol, ACTH, and melatonin — the diurnal HPA rhythm and why timing matters.",
+          "concept": "ACTH drives cortisol, which peaks in the early morning (~8 am) and bottoms out near midnight. A midnight cortisol that is not low is a hallmark of Cushing syndrome; morning cortisol is the standard screening and dosing time. Melatonin runs the opposite way to initiate sleep.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e"
+            },
+            {
+              "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
             }
           ]
         }
@@ -1687,6 +1795,26 @@
               "pages": "780-806"
             }
           ]
+        },
+        {
+          "id": "renal/glucose-titration",
+          "slug": "glucose-titration",
+          "title": "Renal Glucose Titration",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Raise plasma glucose to see filtered, reabsorbed, and excreted rates — transport maximum, threshold, and splay.",
+          "concept": "Filtered glucose rises with plasma glucose; reabsorption plateaus at the transport maximum (Tm ≈ 375 mg/min), so glucose spills into urine above the threshold (~200 mg/dL). The splay reflects nephron heterogeneity. SGLT2 inhibitors lower Tm and produce glucosuria at normal plasma glucose.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e"
+            },
+            {
+              "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
+            }
+          ]
         }
       ]
     },
@@ -1865,6 +1993,23 @@
             {
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1166-1175"
+            }
+          ]
+        },
+        {
+          "id": "repro/gnrh-pulsatility",
+          "slug": "gnrh-pulsatility",
+          "title": "GnRH Pulse Frequency Decoding",
+          "archetype": "perturbable-curve",
+          "status": "reference",
+          "teaser": "Change GnRH pulse frequency to shift LH versus FSH — and see how continuous GnRH suppresses the axis.",
+          "concept": "The pituitary decodes GnRH pulse frequency: fast pulses favour LH, slow pulses favour FSH, and continuous (non-pulsatile) exposure down-regulates the receptor to suppress both. That paradox underlies GnRH-agonist therapy (leuprolide) and hypothalamic amenorrhoea when pulsatility is lost.",
+          "references": [
+            {
+              "source": "Costanzo Physiology, 7e"
+            },
+            {
+              "source": "Boron and Boulpaep Medical Physiology, 3e"
             }
           ]
         }
