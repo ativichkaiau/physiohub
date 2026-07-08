@@ -119,6 +119,30 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
     [config, overlay, values]
   );
 
+  // Snapshot compare: freeze the current curve as a ghost overlay, then perturb
+  // the controls to see before/after (e.g. normal vs shock) on the same axes.
+  const [pinned, setPinned] = useState<{ series: CurveSeries[]; caption: string } | null>(null);
+
+  const chartReference = useMemo(
+    () => (pinned ? [...pinned.series, ...referenceSeries] : referenceSeries),
+    [pinned, referenceSeries]
+  );
+
+  function pinSnapshot() {
+    const snap = series.map((s) => ({
+      ...s,
+      id: `pin-${s.id}`,
+      label: `📌 ${s.label}`,
+      dashed: true,
+      strokeWidth: 2,
+      data: s.data.map((p) => ({ ...p }))
+    }));
+    const caption = config.controls
+      .map((c) => `${c.label} ${values[c.key].toFixed(c.step < 1 ? 2 : 0)}${c.unit ? ` ${c.unit}` : ""}`)
+      .join(" · ");
+    setPinned({ series: snap, caption });
+  }
+
   function updateValue(key: string, value: number) {
     setValues((current) => ({ ...current, [key]: value }));
   }
@@ -150,6 +174,26 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
               {summary.warning}
             </p>
           ) : null}
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={pinned ? () => setPinned(null) : pinSnapshot}
+              aria-pressed={pinned != null}
+              className="focus-ring ph-clay-button inline-flex items-center gap-1.5 rounded-ph px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ph-muted hover:text-ph-text"
+            >
+              {pinned ? "✕ Clear pin" : "📌 Pin snapshot"}
+            </button>
+            {pinned ? (
+              <span
+                className="ph-clay-chip inline-flex max-w-full truncate px-2.5 py-1 text-[11px] text-ph-muted"
+                title={pinned.caption}
+              >
+                Comparing vs pinned · {pinned.caption}
+              </span>
+            ) : (
+              <span className="text-[11px] text-ph-muted-2">Freeze this curve, then perturb the controls to compare.</span>
+            )}
+          </div>
           <Curve
             title={config.title}
             xDomain={config.xDomain}
@@ -157,7 +201,7 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
             xLabel={config.xLabel}
             yLabel={config.yLabel}
             series={series}
-            referenceSeries={referenceSeries}
+            referenceSeries={chartReference}
             annotations={config.buildAnnotations?.(values) ?? []}
             bands={config.bands}
             cursorX={config.getCursorX?.(values)}

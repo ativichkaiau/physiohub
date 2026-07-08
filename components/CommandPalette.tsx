@@ -9,6 +9,7 @@ import {
   getSystemPath,
   getSystems
 } from "@/lib/registry";
+import { getDeck, removeFromDeck, type DeckItem } from "@/lib/deck";
 
 type Entry = {
   id: string;
@@ -67,6 +68,8 @@ const SYSTEMS = getSystems().map((s) => ({
   count: s.diagrams.length
 }));
 
+const SYSTEM_NAME: Record<string, string> = Object.fromEntries(SYSTEMS.map((s) => [s.id, s.name]));
+
 function tokenScore(token: string, entry: Entry): number {
   const t = entry.title.toLowerCase();
   const sys = `${entry.systemName} ${entry.systemShort}`.toLowerCase();
@@ -98,6 +101,23 @@ export function CommandPalette() {
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const [deck, setDeck] = useState<DeckItem[]>([]);
+
+  useEffect(() => {
+    const refresh = () => setDeck(getDeck());
+    refresh();
+    window.addEventListener("ph:deck-changed", refresh);
+    return () => window.removeEventListener("ph:deck-changed", refresh);
+  }, []);
+  useEffect(() => {
+    if (open) setDeck(getDeck());
+  }, [open]);
+
+  // When there's no query, the navigable list is the deck followed by systems.
+  const emptyItems = useMemo(
+    () => [...deck.map((d) => d.url), ...SYSTEMS.map((s) => s.path)],
+    [deck]
+  );
 
   const results = useMemo(() => {
     if (!query.trim()) return [];
@@ -153,7 +173,7 @@ export function CommandPalette() {
   }, [query]);
 
   const onListKey = (e: React.KeyboardEvent) => {
-    const items = query.trim() ? results.length : SYSTEMS.length;
+    const items = query.trim() ? results.length : emptyItems.length;
     if (e.key === "Escape") {
       e.preventDefault();
       close();
@@ -166,7 +186,7 @@ export function CommandPalette() {
     } else if (e.key === "Enter") {
       e.preventDefault();
       if (query.trim() && results[active]) go(results[active].path);
-      else if (!query.trim() && SYSTEMS[active]) go(SYSTEMS[active].path);
+      else if (!query.trim() && emptyItems[active]) go(emptyItems[active]);
     }
   };
 
@@ -253,25 +273,68 @@ export function CommandPalette() {
                 )
               ) : (
                 <>
+                  {deck.length ? (
+                    <>
+                      <p className="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted-2">
+                        Your deck
+                      </p>
+                      {deck.map((it, i) => (
+                        <div
+                          key={it.url}
+                          data-idx={i}
+                          onMouseMove={() => setActive(i)}
+                          className={`flex w-full items-center gap-1 rounded-ph pr-1 transition ${
+                            i === active ? "bg-[color-mix(in_srgb,var(--ph-accent),transparent_86%)]" : ""
+                          }`}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => go(it.url)}
+                            className="flex min-w-0 flex-1 items-center gap-3 rounded-ph px-3 py-2.5 text-left"
+                          >
+                            <span aria-hidden="true" className="text-lg leading-none">{getSystemEmoji(it.systemId)}</span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block truncate text-sm font-bold text-ph-text">{it.title}</span>
+                              <span className="block truncate text-xs text-ph-muted">
+                                {SYSTEM_NAME[it.systemId] ?? it.systemId}
+                                {it.hasState ? " · custom state" : ""}
+                              </span>
+                            </span>
+                          </button>
+                          <button
+                            type="button"
+                            aria-label="Remove from deck"
+                            onClick={() => removeFromDeck(it.url)}
+                            className="focus-ring shrink-0 rounded-ph px-2 py-1 text-ph-muted-2 hover:text-ph-danger"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                    </>
+                  ) : null}
                   <p className="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ph-muted-2">
                     Jump to a system
                   </p>
-                  {SYSTEMS.map((s, i) => (
-                    <button
-                      key={s.id}
-                      type="button"
-                      data-idx={i}
-                      onClick={() => go(s.path)}
-                      onMouseMove={() => setActive(i)}
-                      className={`flex w-full items-center gap-3 rounded-ph px-3 py-2.5 text-left transition ${
-                        i === active ? "bg-[color-mix(in_srgb,var(--ph-accent),transparent_86%)]" : ""
-                      }`}
-                    >
-                      <span aria-hidden="true" className="text-lg leading-none">{s.emoji}</span>
-                      <span className="flex-1 text-sm font-bold text-ph-text">{s.name}</span>
-                      <span className="text-xs text-ph-muted tabular-nums">{s.count} diagrams</span>
-                    </button>
-                  ))}
+                  {SYSTEMS.map((s, i) => {
+                    const idx = deck.length + i;
+                    return (
+                      <button
+                        key={s.id}
+                        type="button"
+                        data-idx={idx}
+                        onClick={() => go(s.path)}
+                        onMouseMove={() => setActive(idx)}
+                        className={`flex w-full items-center gap-3 rounded-ph px-3 py-2.5 text-left transition ${
+                          idx === active ? "bg-[color-mix(in_srgb,var(--ph-accent),transparent_86%)]" : ""
+                        }`}
+                      >
+                        <span aria-hidden="true" className="text-lg leading-none">{s.emoji}</span>
+                        <span className="flex-1 text-sm font-bold text-ph-text">{s.name}</span>
+                        <span className="text-xs text-ph-muted tabular-nums">{s.count} diagrams</span>
+                      </button>
+                    );
+                  })}
                 </>
               )}
             </div>

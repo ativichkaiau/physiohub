@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { ArchetypeBadge } from "@/components/ArchetypeBadge";
 import { PresentMode } from "@/components/PresentMode";
+import { SaveToDeck } from "@/components/SaveToDeck";
 import { ShareStateIndicator } from "@/components/ShareStateIndicator";
 import { getSystemEmoji, type DiagramMeta } from "@/lib/registry";
 
@@ -40,6 +41,13 @@ export function DiagramHeader({ diagram }: { diagram: DiagramMeta }) {
             }
           >
             <ShareStateIndicator />
+          </Suspense>
+          <Suspense
+            fallback={
+              <span className="ph-clay-button inline-flex px-3 py-2 text-sm text-ph-muted">☆</span>
+            }
+          >
+            <SaveToDeck title={diagram.title} systemId={diagram.systemId} />
           </Suspense>
           <PresentMode />
         </div>
