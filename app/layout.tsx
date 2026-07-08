@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CommandPalette } from "@/components/CommandPalette";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </span>
               </Link>
               <div className="flex items-center gap-3 sm:gap-4">
+                <CommandPalette />
                 <span className="hidden items-center gap-1.5 sm:inline-flex" aria-label="Monitor live">
                   <span className="ph-live-dot" aria-hidden="true" />
                   <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ph-muted-2">Live</span>

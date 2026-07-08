@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { DiagramHeader } from "@/components/DiagramHeader";
+import { RelatedDiagrams } from "@/components/RelatedDiagrams";
 import { WidgetLoader } from "@/components/widgets/WidgetLoader";
 import { getAllDiagrams, getDiagramByRoute } from "@/lib/registry";
 
@@ -42,6 +43,7 @@ export default function DiagramPage({ params }: { params: { system: string; diag
       >
         <WidgetLoader diagramId={diagram.id} />
       </Suspense>
+      <RelatedDiagrams diagramId={diagram.id} />
     </div>
   );
 }

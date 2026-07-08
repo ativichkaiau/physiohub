@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { ArchetypeBadge } from "@/components/ArchetypeBadge";
+import { PresentMode } from "@/components/PresentMode";
 import { ShareStateIndicator } from "@/components/ShareStateIndicator";
 import { getSystemEmoji, type DiagramMeta } from "@/lib/registry";
 
@@ -40,6 +41,7 @@ export function DiagramHeader({ diagram }: { diagram: DiagramMeta }) {
           >
             <ShareStateIndicator />
           </Suspense>
+          <PresentMode />
         </div>
       </div>
     </section>

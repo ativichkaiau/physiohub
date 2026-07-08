@@ -309,6 +309,27 @@ body {
   .ph-blob { animation: none; }
 }
 
+/* =====================================================================
+   Presentation / lecture mode — hide chrome, enlarge the single widget.
+   Driven by data-present="on" on <html> (see PresentMode.tsx).
+   ===================================================================== */
+:root[data-present="on"] { font-size: 18px; }
+:root[data-present="on"] body { font-size: 17px; }
+:root[data-present="on"] .ph-app-header,
+:root[data-present="on"] .ph-app-footer,
+:root[data-present="on"] .ph-diagram-header,
+:root[data-present="on"] .ph-blobs,
+:root[data-present="on"] .ph-related-rail,
+:root[data-present="on"] .ph-widget-shell footer {
+  display: none !important;
+}
+:root[data-present="on"] main { padding-top: 1rem; }
+:root[data-present="on"] .ph-widget-shell {
+  max-width: min(1720px, 95vw);
+  margin-inline: auto;
+  padding: 1rem 1.5rem 3rem;
+}
+
 button, input, select { font: inherit; }
 a { color: inherit; }
 svg { display: block; }

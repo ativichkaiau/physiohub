@@ -22,7 +22,8 @@ const DiagramSchema = z.object({
   status: z.enum(["reference", "planned"]),
   teaser: z.string().min(1),
   concept: z.string().min(1),
-  references: z.array(ReferenceSchema).min(1)
+  references: z.array(ReferenceSchema).min(1),
+  related: z.array(z.string()).optional()
 });
 
 const SystemSchema = z.object({

@@ -29,6 +29,12 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "110-117"
             }
+          ],
+          "related": [
+            "cv/pv-loop",
+            "cv/heart-sounds",
+            "cv/jvp-waveform",
+            "cv/ecg-intervals"
           ]
         },
         {
@@ -48,6 +54,11 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "540-548"
             }
+          ],
+          "related": [
+            "cv/pv-loop",
+            "cv/cardiac-output",
+            "msk/length-tension"
           ]
         },
         {
@@ -67,6 +78,11 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "540-548"
             }
+          ],
+          "related": [
+            "cv/frank-starling",
+            "cv/wiggers",
+            "cv/laplace-wall-stress"
           ]
         },
         {
@@ -86,6 +102,11 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "223-231"
             }
+          ],
+          "related": [
+            "cv/cardiac-output",
+            "nerv/autonomic-nervous-system",
+            "cv/shock-states"
           ]
         },
         {
@@ -105,6 +126,12 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "548-555"
             }
+          ],
+          "related": [
+            "cv/frank-starling",
+            "cv/baroreflex",
+            "renal/raas",
+            "cv/shock-states"
           ]
         },
         {
@@ -124,6 +151,12 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "483-501"
             }
+          ],
+          "related": [
+            "cv/coronary-perfusion",
+            "cv/ecg-intervals",
+            "nerv/action-potential",
+            "cv/arrhythmia-mechanisms"
           ]
         },
         {
@@ -143,6 +176,11 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "126-141"
             }
+          ],
+          "related": [
+            "cv/wiggers",
+            "cv/cardiac-action-potentials",
+            "cv/arrhythmia-mechanisms"
           ]
         },
         {
@@ -162,6 +200,10 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "265-276"
             }
+          ],
+          "related": [
+            "cv/laplace-wall-stress",
+            "cv/cardiac-action-potentials"
           ]
         },
         {
@@ -181,6 +223,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "566-575"
             }
+          ],
+          "related": [
+            "cv/poiseuille-flow",
+            "cv/laplace-wall-stress"
           ]
         },
         {
@@ -200,6 +246,9 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "575-583"
             }
+          ],
+          "related": [
+            "cv/vascular-compliance"
           ]
         },
         {
@@ -219,6 +268,9 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "177-190"
             }
+          ],
+          "related": [
+            "renal/gfr-autoregulation"
           ]
         },
         {
@@ -276,6 +328,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "147-153"
             }
+          ],
+          "related": [
+            "cv/cardiac-output",
+            "cv/baroreflex"
           ]
         },
         {
@@ -314,6 +370,9 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "516-522"
             }
+          ],
+          "related": [
+            "cv/wiggers"
           ]
         },
         {
@@ -333,6 +392,9 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "271-279"
             }
+          ],
+          "related": [
+            "cv/wiggers"
           ]
         },
         {
@@ -371,6 +433,10 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "143-151"
             }
+          ],
+          "related": [
+            "cv/ecg-intervals",
+            "cv/cardiac-action-potentials"
           ]
         },
         {
@@ -391,6 +457,11 @@
             {
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
             }
+          ],
+          "related": [
+            "cv/pv-loop",
+            "cv/coronary-perfusion",
+            "cv/vascular-compliance"
           ]
         }
       ]
@@ -419,6 +490,10 @@
               "source": "West Respiratory Physiology, 11e",
               "pages": "76-82"
             }
+          ],
+          "related": [
+            "resp/oxygen-content",
+            "resp/co2-transport"
           ]
         },
         {
@@ -438,6 +513,11 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "210-218"
             }
+          ],
+          "related": [
+            "resp/aa-gradient-hypoxemia",
+            "resp/west-zones",
+            "resp/hypoxic-pulmonary-vasoconstriction"
           ]
         },
         {
@@ -457,6 +537,9 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "191-199"
             }
+          ],
+          "related": [
+            "resp/compliance-pressure-volume"
           ]
         },
         {
@@ -476,6 +559,9 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "686-694"
             }
+          ],
+          "related": [
+            "resp/flow-volume-loops"
           ]
         },
         {
@@ -495,6 +581,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "230-237"
             }
+          ],
+          "related": [
+            "resp/respiratory-acid-base",
+            "resp/co2-transport"
           ]
         },
         {
@@ -514,6 +604,9 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "200-207"
             }
+          ],
+          "related": [
+            "resp/aa-gradient-hypoxemia"
           ]
         },
         {
@@ -533,6 +626,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "694-706"
             }
+          ],
+          "related": [
+            "resp/lung-volumes",
+            "resp/flow-volume-loops"
           ]
         },
         {
@@ -571,6 +668,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "660-668"
             }
+          ],
+          "related": [
+            "resp/o2-hb",
+            "resp/aa-gradient-hypoxemia"
           ]
         },
         {
@@ -590,6 +691,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "818-850"
             }
+          ],
+          "related": [
+            "renal/acid-base",
+            "resp/ventilation-control"
           ]
         },
         {
@@ -609,6 +714,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "186-194"
             }
+          ],
+          "related": [
+            "resp/compliance-pressure-volume",
+            "resp/airway-resistance"
           ]
         },
         {
@@ -628,6 +737,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "210-216"
             }
+          ],
+          "related": [
+            "resp/o2-hb",
+            "resp/ventilation-control"
           ]
         },
         {
@@ -647,6 +760,11 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "200-210"
             }
+          ],
+          "related": [
+            "resp/oxygen-content",
+            "resp/vq-matching",
+            "resp/diffusion-limitation"
           ]
         },
         {
@@ -666,6 +784,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "194-200"
             }
+          ],
+          "related": [
+            "resp/vq-matching",
+            "resp/hypoxic-pulmonary-vasoconstriction"
           ]
         },
         {
@@ -686,6 +808,10 @@
             {
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
             }
+          ],
+          "related": [
+            "resp/vq-matching",
+            "resp/west-zones"
           ]
         }
       ]
@@ -714,6 +840,13 @@
               "source": "Kandel Principles of Neural Science, 6e",
               "pages": "149-162"
             }
+          ],
+          "related": [
+            "cv/cardiac-action-potentials",
+            "nerv/resting-membrane-potential",
+            "nerv/nerve-conduction-velocity",
+            "nerv/strength-duration-curve",
+            "nerv/synaptic-transmission"
           ]
         },
         {
@@ -733,6 +866,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "60-66"
             }
+          ],
+          "related": [
+            "msk/excitation-contraction",
+            "nerv/action-potential"
           ]
         },
         {
@@ -771,6 +908,9 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "74-82"
             }
+          ],
+          "related": [
+            "msk/muscle-spindle"
           ]
         },
         {
@@ -805,6 +945,10 @@
               "source": "Kandel Principles of Neural Science, 6e",
               "pages": "126-147"
             }
+          ],
+          "related": [
+            "nerv/action-potential",
+            "renal/potassium-handling"
           ]
         },
         {
@@ -824,6 +968,10 @@
               "source": "Kandel Principles of Neural Science, 6e",
               "pages": "162-171"
             }
+          ],
+          "related": [
+            "nerv/action-potential",
+            "nerv/strength-duration-curve"
           ]
         },
         {
@@ -843,6 +991,9 @@
               "source": "Kandel Principles of Neural Science, 6e",
               "pages": "620-628"
             }
+          ],
+          "related": [
+            "nerv/autonomic-nervous-system"
           ]
         },
         {
@@ -862,6 +1013,10 @@
               "source": "Katzung Basic and Clinical Pharmacology, 15e",
               "pages": "79-95"
             }
+          ],
+          "related": [
+            "cv/baroreflex",
+            "nerv/pupillary-light-reflex"
           ]
         },
         {
@@ -955,6 +1110,10 @@
             {
               "source": "Boron and Boulpaep Medical Physiology, 3e"
             }
+          ],
+          "related": [
+            "nerv/nerve-conduction-velocity",
+            "nerv/action-potential"
           ]
         }
       ]
@@ -983,6 +1142,11 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "76-88"
             }
+          ],
+          "related": [
+            "msk/excitation-contraction",
+            "msk/force-velocity",
+            "msk/twitch-summation"
           ]
         },
         {
@@ -1002,6 +1166,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "248-260"
             }
+          ],
+          "related": [
+            "cv/frank-starling",
+            "msk/force-velocity"
           ]
         },
         {
@@ -1021,6 +1189,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "36-41"
             }
+          ],
+          "related": [
+            "nerv/synaptic-transmission",
+            "msk/cross-bridge"
           ]
         },
         {
@@ -1036,6 +1208,11 @@
               "source": "Kandel Principles of Neural Science, 6e",
               "pages": "744-756"
             }
+          ],
+          "related": [
+            "msk/twitch-summation",
+            "msk/fiber-type-metabolism",
+            "msk/muscle-spindle"
           ]
         },
         {
@@ -1051,6 +1228,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1090-1100"
             }
+          ],
+          "related": [
+            "endo/calcium-homeostasis",
+            "msk/bone-density-lifespan"
           ]
         },
         {
@@ -1070,6 +1251,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "248-260"
             }
+          ],
+          "related": [
+            "msk/cross-bridge",
+            "msk/length-tension"
           ]
         },
         {
@@ -1089,6 +1274,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "36-41"
             }
+          ],
+          "related": [
+            "msk/motor-unit-recruitment",
+            "msk/cross-bridge"
           ]
         },
         {
@@ -1108,6 +1297,9 @@
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e",
               "pages": "91-96"
             }
+          ],
+          "related": [
+            "msk/motor-unit-recruitment"
           ]
         },
         {
@@ -1127,6 +1319,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "74-82"
             }
+          ],
+          "related": [
+            "nerv/reflex-arc",
+            "msk/motor-unit-recruitment"
           ]
         },
         {
@@ -1163,6 +1359,11 @@
             {
               "source": "Boron and Boulpaep Medical Physiology, 3e"
             }
+          ],
+          "related": [
+            "endo/calcium-homeostasis",
+            "msk/bone-remodeling",
+            "repro/menopause-transition"
           ]
         }
       ]
@@ -1191,6 +1392,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "898-912"
             }
+          ],
+          "related": [
+            "gi/gastric-emptying",
+            "gi/pancreatic-secretion"
           ]
         },
         {
@@ -1229,6 +1434,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "936-950"
             }
+          ],
+          "related": [
+            "gi/sodium-glucose-cotransport",
+            "gi/fat-absorption-micelles"
           ]
         },
         {
@@ -1248,6 +1457,10 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "304-311"
             }
+          ],
+          "related": [
+            "gi/pancreatic-secretion",
+            "gi/fat-absorption-micelles"
           ]
         },
         {
@@ -1267,6 +1480,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "912-924"
             }
+          ],
+          "related": [
+            "gi/gastric-acid",
+            "gi/bile-flow"
           ]
         },
         {
@@ -1286,6 +1503,9 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "878-890"
             }
+          ],
+          "related": [
+            "gi/gastric-acid"
           ]
         },
         {
@@ -1324,6 +1544,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "950-960"
             }
+          ],
+          "related": [
+            "gi/bile-flow",
+            "gi/intestinal-absorption"
           ]
         },
         {
@@ -1343,6 +1567,9 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "960-970"
             }
+          ],
+          "related": [
+            "gi/sodium-glucose-cotransport"
           ]
         },
         {
@@ -1379,6 +1606,11 @@
             {
               "source": "Boron and Boulpaep Medical Physiology, 3e"
             }
+          ],
+          "related": [
+            "gi/colon-water-electrolyte",
+            "gi/intestinal-absorption",
+            "renal/glucose-titration"
           ]
         }
       ]
@@ -1407,6 +1639,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1024-1030"
             }
+          ],
+          "related": [
+            "endo/cortisol-circadian-rhythm",
+            "endo/adrenal-medulla"
           ]
         },
         {
@@ -1426,6 +1662,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1002-1018"
             }
+          ],
+          "related": [
+            "endo/thyroid-hormone-synthesis",
+            "endo/pituitary-hormone-map"
           ]
         },
         {
@@ -1445,6 +1685,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1038-1055"
             }
+          ],
+          "related": [
+            "endo/insulin-glucagon",
+            "endo/leptin-ghrelin-appetite"
           ]
         },
         {
@@ -1464,6 +1708,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1074-1090"
             }
+          ],
+          "related": [
+            "msk/bone-density-lifespan",
+            "msk/bone-remodeling"
           ]
         },
         {
@@ -1483,6 +1731,9 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1002-1011"
             }
+          ],
+          "related": [
+            "endo/hpt-axis"
           ]
         },
         {
@@ -1502,6 +1753,11 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1038-1055"
             }
+          ],
+          "related": [
+            "renal/glucose-titration",
+            "endo/glucose-homeostasis",
+            "endo/hormone-dose-response"
           ]
         },
         {
@@ -1521,6 +1777,9 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "438-445"
             }
+          ],
+          "related": [
+            "endo/glucose-homeostasis"
           ]
         },
         {
@@ -1540,6 +1799,9 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1024-1038"
             }
+          ],
+          "related": [
+            "endo/hpa-axis"
           ]
         },
         {
@@ -1559,6 +1821,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "984-1002"
             }
+          ],
+          "related": [
+            "endo/hpt-axis",
+            "repro/hpg-axis"
           ]
         },
         {
@@ -1578,6 +1844,9 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "372-380"
             }
+          ],
+          "related": [
+            "endo/insulin-glucagon"
           ]
         },
         {
@@ -1595,6 +1864,9 @@
             {
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
             }
+          ],
+          "related": [
+            "endo/hpa-axis"
           ]
         }
       ]
@@ -1623,6 +1895,11 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "738-780"
             }
+          ],
+          "related": [
+            "renal/glucose-titration",
+            "renal/countercurrent",
+            "renal/diuretic-sites"
           ]
         },
         {
@@ -1642,6 +1919,11 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "806-818"
             }
+          ],
+          "related": [
+            "cv/cardiac-output",
+            "renal/gfr-autoregulation",
+            "renal/potassium-handling"
           ]
         },
         {
@@ -1661,6 +1943,11 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "720-738"
             }
+          ],
+          "related": [
+            "cv/capillary-starling",
+            "renal/raas",
+            "renal/glucose-titration"
           ]
         },
         {
@@ -1680,6 +1967,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "780-806"
             }
+          ],
+          "related": [
+            "renal/nephron-handling",
+            "renal/diuretic-sites"
           ]
         },
         {
@@ -1699,6 +1990,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "818-850"
             }
+          ],
+          "related": [
+            "resp/respiratory-acid-base",
+            "renal/potassium-handling"
           ]
         },
         {
@@ -1775,6 +2070,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "738-806"
             }
+          ],
+          "related": [
+            "renal/countercurrent",
+            "renal/nephron-handling"
           ]
         },
         {
@@ -1794,6 +2093,11 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "780-806"
             }
+          ],
+          "related": [
+            "renal/raas",
+            "renal/acid-base",
+            "nerv/resting-membrane-potential"
           ]
         },
         {
@@ -1814,6 +2118,12 @@
             {
               "source": "Guyton and Hall Textbook of Medical Physiology, 14e"
             }
+          ],
+          "related": [
+            "renal/gfr-autoregulation",
+            "renal/nephron-handling",
+            "endo/insulin-glucagon",
+            "gi/sodium-glucose-cotransport"
           ]
         }
       ]
@@ -1842,6 +2152,12 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1134-1148"
             }
+          ],
+          "related": [
+            "repro/hpg-axis",
+            "repro/gnrh-pulsatility",
+            "repro/pregnancy-hormones",
+            "repro/menopause-transition"
           ]
         },
         {
@@ -1861,6 +2177,9 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1118-1133"
             }
+          ],
+          "related": [
+            "repro/hpg-axis"
           ]
         },
         {
@@ -1880,6 +2199,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1148-1162"
             }
+          ],
+          "related": [
+            "repro/menstrual-cycle",
+            "repro/lactation"
           ]
         },
         {
@@ -1899,6 +2222,9 @@
               "source": "Costanzo Physiology, 7e",
               "pages": "480-482"
             }
+          ],
+          "related": [
+            "repro/pregnancy-hormones"
           ]
         },
         {
@@ -1937,6 +2263,12 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1098-1110"
             }
+          ],
+          "related": [
+            "endo/pituitary-hormone-map",
+            "repro/menstrual-cycle",
+            "repro/gnrh-pulsatility",
+            "repro/spermatogenesis"
           ]
         },
         {
@@ -1956,6 +2288,10 @@
               "source": "Boron and Boulpaep Medical Physiology, 3e",
               "pages": "1158-1166"
             }
+          ],
+          "related": [
+            "repro/menstrual-cycle",
+            "msk/bone-density-lifespan"
           ]
         },
         {
@@ -2011,6 +2347,10 @@
             {
               "source": "Boron and Boulpaep Medical Physiology, 3e"
             }
+          ],
+          "related": [
+            "repro/menstrual-cycle",
+            "repro/hpg-axis"
           ]
         }
       ]
