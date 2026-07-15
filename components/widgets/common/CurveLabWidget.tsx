@@ -69,6 +69,51 @@ function valuesChanged(a: Record<string, number>, b: Record<string, number>) {
   return false;
 }
 
+type PredictState = {
+  key: string;
+  label: string;
+  unit?: string;
+  toValue: number;
+  dir: "up" | "down";
+  nudged: Record<string, number>;
+  correct: "up" | "down";
+  answered: "up" | "down" | null;
+};
+
+function snapToStep(value: number, step: number, min: number, max: number) {
+  const snapped = Math.round((value - min) / step) * step + min;
+  return Math.min(max, Math.max(min, snapped));
+}
+
+// A random-but-reasonable control state for "match the target".
+function sampleTarget(controls: CurveLabControl[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const c of controls) {
+    const lo = c.min + (c.max - c.min) * 0.08;
+    const hi = c.max - (c.max - c.min) * 0.08;
+    out[c.key] = snapToStep(lo + Math.random() * (hi - lo), c.step, c.min, c.max);
+  }
+  return out;
+}
+
+// Normalised RMS distance between two sets of series (0 = identical shape).
+function normRms(a: CurveSeries[], b: CurveSeries[], yRange: number): number {
+  let sum = 0;
+  let n = 0;
+  const m = Math.min(a.length, b.length);
+  for (let i = 0; i < m; i += 1) {
+    const da = a[i].data;
+    const db = b[i].data;
+    const len = Math.min(da.length, db.length);
+    for (let j = 0; j < len; j += 1) {
+      const d = (da[j].y - db[j].y) / (yRange || 1);
+      sum += d * d;
+      n += 1;
+    }
+  }
+  return n ? Math.sqrt(sum / n) : 1;
+}
+
 export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -119,14 +164,41 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
     [config, overlay, values]
   );
 
-  // Snapshot compare: freeze the current curve as a ghost overlay, then perturb
-  // the controls to see before/after (e.g. normal vs shock) on the same axes.
+  // Snapshot compare + quiz modes. All three live here, so every perturbable-curve
+  // diagram gets pin, "match the target", and "predict the shift" for free.
   const [pinned, setPinned] = useState<{ series: CurveSeries[]; caption: string } | null>(null);
+  const [mode, setMode] = useState<"explore" | "match" | "predict">("explore");
+  const [target, setTarget] = useState<Record<string, number> | null>(null);
+  const [predict, setPredict] = useState<PredictState | null>(null);
 
-  const chartReference = useMemo(
-    () => (pinned ? [...pinned.series, ...referenceSeries] : referenceSeries),
-    [pinned, referenceSeries]
+  const targetSeries = useMemo(
+    () =>
+      mode === "match" && target
+        ? config.buildSeries(target).map((s) => ({
+            ...s,
+            id: `target-${s.id}`,
+            label: "🎯 Target",
+            colorVar: "var(--ph-warn)",
+            dashed: true,
+            strokeWidth: 3,
+            data: s.data.map((p) => ({ ...p }))
+          }))
+        : [],
+    [config, mode, target]
   );
+
+  const chartReference = useMemo(() => {
+    const extra: CurveSeries[] = [...targetSeries];
+    if (pinned) extra.push(...pinned.series);
+    return [...extra, ...referenceSeries];
+  }, [targetSeries, pinned, referenceSeries]);
+
+  const closeness = useMemo(() => {
+    if (mode !== "match" || !target) return null;
+    const r = normRms(config.buildSeries(values), config.buildSeries(target), config.yDomain[1] - config.yDomain[0]);
+    return Math.max(0, Math.min(100, Math.round(100 * (1 - r / 0.3))));
+  }, [config, mode, target, values]);
+  const matched = closeness !== null && closeness >= 92;
 
   function pinSnapshot() {
     const snap = series.map((s) => ({
@@ -141,6 +213,65 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
       .map((c) => `${c.label} ${values[c.key].toFixed(c.step < 1 ? 2 : 0)}${c.unit ? ` ${c.unit}` : ""}`)
       .join(" · ");
     setPinned({ series: snap, caption });
+  }
+
+  function startMatch() {
+    setPinned(null);
+    setPredict(null);
+    const yRange = config.yDomain[1] - config.yDomain[0];
+    let next = sampleTarget(config.controls);
+    for (let i = 0; i < 8 && normRms(config.buildSeries(values), config.buildSeries(next), yRange) < 0.1; i += 1) {
+      next = sampleTarget(config.controls);
+    }
+    setTarget(next);
+    setMode("match");
+  }
+
+  function startPredict() {
+    setPinned(null);
+    setTarget(null);
+    const yRange = config.yDomain[1] - config.yDomain[0];
+    const meanShift = (nudged: Record<string, number>) => {
+      const a = config.buildSeries(values)[0]?.data ?? [];
+      const b = config.buildSeries(nudged)[0]?.data ?? [];
+      const len = Math.min(a.length, b.length);
+      let sum = 0;
+      for (let j = 0; j < len; j += 1) sum += b[j].y - a[j].y;
+      return len ? sum / len : 0;
+    };
+    const order = [...config.controls].sort(() => Math.random() - 0.5);
+    for (const c of order) {
+      const range = c.max - c.min;
+      const goUp = values[c.key] - c.min < range / 2;
+      const toValue = snapToStep(goUp ? values[c.key] + range * 0.5 : values[c.key] - range * 0.5, c.step, c.min, c.max);
+      if (Math.abs(toValue - values[c.key]) < c.step) continue;
+      const nudged = { ...values, [c.key]: toValue };
+      const mean = meanShift(nudged);
+      if (Math.abs(mean) > yRange * 0.02) {
+        setPredict({ key: c.key, label: c.label, unit: c.unit, toValue, dir: goUp ? "up" : "down", nudged, correct: mean > 0 ? "up" : "down", answered: null });
+        setMode("predict");
+        return;
+      }
+    }
+    const c = config.controls[0];
+    const goUp = values[c.key] - c.min < (c.max - c.min) / 2;
+    const toValue = snapToStep(goUp ? c.max : c.min, c.step, c.min, c.max);
+    const nudged = { ...values, [c.key]: toValue };
+    const mean = meanShift(nudged);
+    setPredict({ key: c.key, label: c.label, unit: c.unit, toValue, dir: goUp ? "up" : "down", nudged, correct: mean >= 0 ? "up" : "down", answered: null });
+    setMode("predict");
+  }
+
+  function answerPredict(answer: "up" | "down") {
+    if (!predict) return;
+    setValues(predict.nudged);
+    setPredict({ ...predict, answered: answer });
+  }
+
+  function exitQuiz() {
+    setMode("explore");
+    setTarget(null);
+    setPredict(null);
   }
 
   function updateValue(key: string, value: number) {
@@ -174,26 +305,117 @@ export function CurveLabWidget({ config }: { config: CurveLabConfig }) {
               {summary.warning}
             </p>
           ) : null}
-          <div className="mb-3 flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              onClick={pinned ? () => setPinned(null) : pinSnapshot}
-              aria-pressed={pinned != null}
-              className="focus-ring ph-clay-button inline-flex items-center gap-1.5 rounded-ph px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ph-muted hover:text-ph-text"
-            >
-              {pinned ? "✕ Clear pin" : "📌 Pin snapshot"}
-            </button>
-            {pinned ? (
-              <span
-                className="ph-clay-chip inline-flex max-w-full truncate px-2.5 py-1 text-[11px] text-ph-muted"
-                title={pinned.caption}
+          {mode === "explore" ? (
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={pinned ? () => setPinned(null) : pinSnapshot}
+                aria-pressed={pinned != null}
+                className="focus-ring ph-clay-button inline-flex items-center gap-1.5 rounded-ph px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ph-muted hover:text-ph-text"
               >
-                Comparing vs pinned · {pinned.caption}
-              </span>
-            ) : (
-              <span className="text-[11px] text-ph-muted-2">Freeze this curve, then perturb the controls to compare.</span>
-            )}
-          </div>
+                {pinned ? "✕ Clear pin" : "📌 Pin snapshot"}
+              </button>
+              <button
+                type="button"
+                onClick={startMatch}
+                className="focus-ring ph-clay-button inline-flex items-center gap-1.5 rounded-ph px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ph-muted hover:text-ph-text"
+              >
+                🎯 Match target
+              </button>
+              <button
+                type="button"
+                onClick={startPredict}
+                className="focus-ring ph-clay-button inline-flex items-center gap-1.5 rounded-ph px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ph-muted hover:text-ph-text"
+              >
+                🔮 Predict
+              </button>
+              {pinned ? (
+                <span
+                  className="ph-clay-chip inline-flex max-w-full truncate px-2.5 py-1 text-[11px] text-ph-muted"
+                  title={pinned.caption}
+                >
+                  Comparing vs pinned · {pinned.caption}
+                </span>
+              ) : null}
+            </div>
+          ) : mode === "match" ? (
+            <div className="ph-clay-well mb-3 p-3">
+              <div className="flex items-center justify-between gap-2">
+                <p className="ph-section-label">🎯 Match the target</p>
+                <button type="button" onClick={exitQuiz} className="focus-ring rounded-ph text-xs font-semibold text-ph-muted hover:text-ph-text">
+                  Exit quiz
+                </button>
+              </div>
+              <p className="mt-1 text-sm text-ph-muted">Drag the controls until your line overlays the gold target curve.</p>
+              <div className="mt-2.5 flex items-center gap-3">
+                <div className="ph-clay-track h-2 flex-1 overflow-hidden rounded-full">
+                  <div
+                    className="h-full rounded-full transition-all duration-200"
+                    style={{ width: `${closeness ?? 0}%`, background: matched ? "var(--ph-ok)" : "var(--ph-accent)" }}
+                  />
+                </div>
+                <span
+                  className="w-24 shrink-0 text-right text-sm font-bold tabular-nums"
+                  style={{ color: matched ? "var(--ph-ok)" : "var(--ph-text)" }}
+                >
+                  {matched ? "✓ Matched" : `${closeness ?? 0}% match`}
+                </span>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={startMatch}
+                  className="focus-ring ph-clay-button rounded-ph px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ph-muted hover:text-ph-text"
+                >
+                  New target
+                </button>
+                <button
+                  type="button"
+                  onClick={() => target && setValues({ ...target })}
+                  className="focus-ring ph-clay-button rounded-ph px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ph-muted hover:text-ph-text"
+                >
+                  Reveal answer
+                </button>
+              </div>
+            </div>
+          ) : predict ? (
+            <div className="ph-clay-well mb-3 p-3">
+              <div className="flex items-center justify-between gap-2">
+                <p className="ph-section-label">🔮 Predict the shift</p>
+                <button type="button" onClick={exitQuiz} className="focus-ring rounded-ph text-xs font-semibold text-ph-muted hover:text-ph-text">
+                  Exit quiz
+                </button>
+              </div>
+              <p className="mt-1.5 text-sm text-ph-text">
+                {predict.dir === "up" ? "Increase" : "Decrease"} <span className="font-bold">{predict.label}</span> to {predict.toValue}
+                {predict.unit ? ` ${predict.unit}` : ""}. Will <span className="font-bold">{config.yLabel}</span> rise or fall?
+              </p>
+              {predict.answered ? (
+                <div className="mt-2">
+                  <p className="text-sm font-bold" style={{ color: predict.answered === predict.correct ? "var(--ph-ok)" : "var(--ph-danger)" }}>
+                    {predict.answered === predict.correct ? "✓ Correct" : "✗ Not quite"} — {config.yLabel} {predict.correct === "up" ? "rises" : "falls"}.
+                  </p>
+                  <p className="mt-1 text-sm text-ph-muted">{summary.body}</p>
+                  <button
+                    type="button"
+                    onClick={startPredict}
+                    className="focus-ring ph-clay-button mt-3 rounded-ph px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ph-muted hover:text-ph-text"
+                  >
+                    Next question
+                  </button>
+                </div>
+              ) : (
+                <div className="mt-2.5 flex gap-2">
+                  <button type="button" onClick={() => answerPredict("up")} className="focus-ring ph-clay-button rounded-ph px-4 py-2 text-sm font-bold text-ph-text">
+                    Rise ↑
+                  </button>
+                  <button type="button" onClick={() => answerPredict("down")} className="focus-ring ph-clay-button rounded-ph px-4 py-2 text-sm font-bold text-ph-text">
+                    Fall ↓
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : null}
           <Curve
             title={config.title}
             xDomain={config.xDomain}
